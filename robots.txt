@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://aidmarketingagency.github.io/aid-demo-pages/sitemap.xml
