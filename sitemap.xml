@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://aidmarketingagency.github.io/aid-demo-pages/hc-heating-cooling/</loc>
+    <lastmod>2026-07-14T03:45:01.571Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://aidmarketingagency.github.io/aid-demo-pages/friends-heating/</loc>
     <lastmod>2026-07-14T03:44:51.773Z</lastmod>
     <changefreq>weekly</changefreq>
@@ -63,11 +68,6 @@
   <url>
     <loc>https://aidmarketingagency.github.io/aid-demo-pages/imperial-construction/</loc>
     <lastmod>2026-07-14T02:22:31.542Z</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://aidmarketingagency.github.io/aid-demo-pages/hc-heating-cooling/</loc>
-    <lastmod>2026-07-14T02:21:50.159Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
 </urlset>
