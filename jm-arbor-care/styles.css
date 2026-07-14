@@ -63,13 +63,35 @@
 
   /* -- Hero: broken grid, asymmetric -- */
   .hero{
-    display:grid;grid-template-columns:1.15fr .85fr;gap:8px;
+    position:relative;
+    display:grid;grid-template-columns:1.15fr .85fr;
+    grid-template-areas:
+      "eyebrow demo"
+      "headline demo"
+      "lede demo"
+      "ring demo"
+      "trust demo";
+    gap:8px;
     padding:44px 0 10px;align-items:start;
   }
-  .hero-copy{padding-top:18px}
+  /* Hero image (v2.1 A2): Pixabay trade-real photo, negative z-index so it paints behind the
+     non-positioned hero content without needing to touch every child's stacking context. Scrim +
+     duotone toward the green accent, same treatment family as the proof-band image below. */
+  .hero-bg{
+    position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;
+    object-fit:cover;object-position:center 30%;
+    filter:grayscale(.3) sepia(.35) hue-rotate(52deg) saturate(1.5) brightness(.4) contrast(1.15);
+  }
+  .hero-scrim{
+    position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:
+      linear-gradient(180deg, var(--void) 0%, rgba(11,16,19,.7) 22%, rgba(11,16,19,.88) 55%, var(--void) 100%),
+      radial-gradient(760px 520px at 84% 6%, rgba(95,168,90,.16), transparent 60%);
+  }
   /* Plain text eyebrow, NOT a pill capsule: uppercase letterspaced label + pulsing live dot,
      no background, no border, no border-radius. */
   .eyebrow{
+    grid-area:eyebrow;
     display:inline-flex;align-items:center;gap:9px;
     font-family:'Archivo',sans-serif;
     font-size:.72rem;text-transform:uppercase;letter-spacing:.2em;color:var(--green-soft);
@@ -78,18 +100,18 @@
   .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--green-soft);box-shadow:0 0 0 0 rgba(95,168,90,.6);animation:pulse 2.2s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(95,168,90,.55)}70%{box-shadow:0 0 0 10px rgba(95,168,90,0)}100%{box-shadow:0 0 0 0 rgba(95,168,90,0)}}
 
-  h1.headline{font-size:clamp(2.5rem,6.3vw,4.4rem);line-height:1.04;color:var(--bone)}
+  h1.headline{grid-area:headline;font-size:clamp(2.5rem,6.3vw,4.4rem);line-height:1.04;color:var(--bone)}
   h1.headline em{font-style:italic;color:var(--green-hot)}
-  .hero p.lede{margin-top:20px;font-size:1.06rem;color:var(--ash);max-width:48ch;font-family:'Archivo',sans-serif}
+  .hero p.lede{grid-area:lede;margin-top:20px;font-size:1.06rem;color:var(--ash);max-width:48ch;font-family:'Archivo',sans-serif}
 
-  .ring-badge{position:relative;width:56px;height:56px;margin:30px 0 0}
+  .ring-badge{grid-area:ring;position:relative;width:56px;height:56px;margin:30px 0 0}
   .ring-badge svg.phone{position:relative;z-index:1;width:56px;height:56px;color:var(--green-soft)}
   .ring{position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--green-soft);animation:ringpulse 2.1s ease-out infinite}
   .ring.r2{animation-delay:.7s}
   .ring.r3{animation-delay:1.4s}
   @keyframes ringpulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(2.1);opacity:0}}
 
-  .trust-row{display:flex;flex-direction:column;gap:14px;margin-top:52px;max-width:370px}
+  .trust-row{grid-area:trust;display:flex;flex-direction:column;gap:14px;margin-top:52px;max-width:370px}
   .trust-item{display:flex;align-items:flex-start;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--hair-soft)}
   .trust-item:last-child{border-bottom:none}
   .trust-item svg{width:17px;height:17px;color:var(--green-soft);flex:none;margin-top:2px}
@@ -98,6 +120,7 @@
 
   /* -- SMS demo panel, offset overlap -- */
   .demo-panel{
+    grid-area:demo;
     position:relative;margin-top:6px;margin-left:-2px;
     background:linear-gradient(180deg,var(--panel-hi),var(--panel));
     border:1px solid var(--hair);border-top:2px solid var(--green);
@@ -155,9 +178,33 @@
   .resp-time .dot{width:6px;height:6px;border-radius:50%;background:var(--green-hot)}
   .disclaimer{font-size:.66rem;color:var(--ash-dim);text-align:right}
 
-  @media (max-width:900px){
-    .hero{grid-template-columns:1fr;gap:26px}
+  /* v2.1 A1: mobile-first attention contract. At <=820px the DOM already reads eyebrow,
+     headline, lede, demo panel, ring-badge, trust-row (restructured out of the old hero-copy
+     wrapper for exactly this reason), so switching to a plain flex column here reproduces the
+     required render order without needing explicit `order` overrides. */
+  @media (max-width:820px){
+    .hero{display:flex;flex-direction:column;gap:22px;padding:36px 0 8px}
     .demo-panel{margin-left:0}
+    body{padding-bottom:calc(74px + env(safe-area-inset-bottom))}
+  }
+
+  /* -- Sticky mobile CTA bar (v2.1 A1): same booking URL as the page CTA, an affordance not a
+     second ask. Hidden via IntersectionObserver while the real CTA panel is on screen. -- */
+  .mobile-cta-bar{display:none}
+  @media (max-width:820px){
+    .mobile-cta-bar{
+      display:flex;align-items:center;justify-content:center;
+      position:fixed;left:0;right:0;bottom:0;z-index:60;
+      background:linear-gradient(92deg,var(--green),var(--green-hot));
+      padding:15px 20px calc(15px + env(safe-area-inset-bottom));
+      box-shadow:0 -10px 26px -6px rgba(0,0,0,.55);
+      transition:transform .28s ease,opacity .28s ease;
+    }
+    .mobile-cta-bar.is-hidden{transform:translateY(100%);opacity:0;pointer-events:none}
+    .mobile-cta-bar a{
+      color:var(--void);text-decoration:none;
+      font-family:'Archivo',sans-serif;font-weight:800;font-size:.94rem;letter-spacing:-.005em;
+    }
   }
 
   /* -- Proof band: real client photo, treated -- */
@@ -269,4 +316,5 @@
   @media (prefers-reduced-motion:reduce){
     .bubble,.typing,.reveal{transition:none!important;opacity:1!important;transform:none!important}
     .ring,.pulse,.replay-btn.spin svg{animation:none!important}
+    .mobile-cta-bar{transition:none!important}
   }
