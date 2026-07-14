@@ -150,4 +150,39 @@
   }
 
   if (reducedMotion()){ showThreadFinal(); }
+
+  // -- Sticky mobile CTA bar (v2.1 amendment A1): hide it while the real CTA panel is
+  // in view so the page never shows two CTAs at once. Same URL, one ask, mobile affordance.
+  var mobileCtaBar = document.getElementById('mobileCtaBar');
+  var ctaPanel = document.querySelector('.cta-panel');
+  if (mobileCtaBar && ctaPanel && 'IntersectionObserver' in window){
+    var ctaBarIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ mobileCtaBar.classList.add('is-hidden'); }
+        else { mobileCtaBar.classList.remove('is-hidden'); }
+      });
+    }, { threshold: 0.1 });
+    ctaBarIO.observe(ctaPanel);
+  }
+})();
+
+(function () {
+  var BUBBLE_ID = 'ultra-fast-widget-bubble-54722168';
+  var KEY = 'aidDemoWidgetAutoOpened';
+  try { if (sessionStorage.getItem(KEY)) return; } catch (e) {}
+  var userTouched = false;
+  document.addEventListener('click', function (e) {
+    if (e.isTrusted && e.target && e.target.closest && e.target.closest('#' + BUBBLE_ID)) { userTouched = true; }
+  }, true);
+  var tries = 0;
+  var t = setInterval(function () {
+    tries += 1;
+    var b = document.getElementById(BUBBLE_ID);
+    if (b && tries >= 7) {
+      clearInterval(t);
+      if (!userTouched) { b.click(); }
+      try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+    }
+    if (tries > 30) { clearInterval(t); }
+  }, 1000);
 })();
