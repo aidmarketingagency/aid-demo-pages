@@ -79,6 +79,18 @@
     reveals.forEach(function(el){ el.classList.add('visible'); });
   }
 
+  // -- Sticky mobile CTA bar: hide while the real CTA panel is in view (v2.1 A1) --
+  var mobileCtaBar = document.getElementById('mobileCtaBar');
+  var ctaPanelEl = document.querySelector('.cta-panel');
+  if (mobileCtaBar && ctaPanelEl && 'IntersectionObserver' in window){
+    var ctaBarIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        mobileCtaBar.classList.toggle('is-hidden', e.isIntersecting);
+      });
+    }, { threshold: 0.15 });
+    ctaBarIO.observe(ctaPanelEl);
+  }
+
   // -- Animated counter for the stat number (DOM nodes, no innerHTML) --
   var statEl = document.querySelector('.stat-number');
   var statReplayBtn = document.getElementById('statReplayBtn');
@@ -149,4 +161,25 @@
   }
 
   if (reducedMotion()){ showThreadFinal(); }
+})();
+
+(function () {
+  var BUBBLE_ID = 'ultra-fast-widget-bubble-54722168';
+  var KEY = 'aidDemoWidgetAutoOpened';
+  try { if (sessionStorage.getItem(KEY)) return; } catch (e) {}
+  var userTouched = false;
+  document.addEventListener('click', function (e) {
+    if (e.isTrusted && e.target && e.target.closest && e.target.closest('#' + BUBBLE_ID)) { userTouched = true; }
+  }, true);
+  var tries = 0;
+  var t = setInterval(function () {
+    tries += 1;
+    var b = document.getElementById(BUBBLE_ID);
+    if (b && tries >= 7) {
+      clearInterval(t);
+      if (!userTouched) { b.click(); }
+      try { sessionStorage.setItem(KEY, '1'); } catch (e) {}
+    }
+    if (tries > 30) { clearInterval(t); }
+  }, 1000);
 })();
