@@ -30,6 +30,18 @@
 
   Stats: live-search verified 2026-07-13, pest-control specific, sourced in the HTML comments
   directly above the claims they support (THE MATH section and hero trust row).
+
+  v2.1 AMENDMENT RETROFIT (2026-07-13, per skills/pmgpt-site-builder/templates/contractor-demo-v2.md
+  "v2.1 amendment"): A1 mobile-first attention contract added (hero uses grid-template-areas so
+  <=820px order is eyebrow/headline/lede, demo panel, then everything else; sticky "Book 15
+  minutes with Ryan" bar added, same CTA URL, hidden via IntersectionObserver while .cta-panel
+  is in view). A2 hero image added: Pixabay "backpack sprayer" query, id 6262049
+  (https://pixabay.com/photos/grass-backpack-sprayer-maintenance-6262049/, CC0), downloaded (not
+  hotlinked) and embedded as a base64 data URI in .hero-secondary with scrim + grain + brass
+  duotone; honest aria-label, not captioned as Gaston-specific since it is stock. A3 shared demo
+  concierge widget (54722168) embedded verbatim with the session-guarded 7-second auto-open.
+  All existing copy, stats, fonts, palette, phone-sequencer logic, and the two CTA anchors are
+  unchanged from the original 2026-07-13 build above.
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -348,6 +360,12 @@
 </head>
 <body>
 
+<!-- v2.1 amendment A1: sticky mobile "Book 15 minutes with Ryan" bar, same URL as the
+     page CTA. JS below hides it via IntersectionObserver while .cta-panel is in view. -->
+<div class="mobile-cta-bar" id="mobileCtaBar">
+  <a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">Book 15 minutes with Ryan</a>
+</div>
+
 <div class="wrap">
 
   <header data-section="header">
@@ -373,10 +391,35 @@
 
   <!-- HERO -->
   <section class="hero" data-section="hero">
-    <div class="hero-copy">
+    <div class="hero-top">
       <span class="eyebrow"><span class="pulse"></span> Missed call, 2:40 PM, Belmont</span>
       <h1 class="headline">Ants in the pantry.<br/>Scott's already on a job.<br/><em>The phone doesn't wait for him.</em></h1>
       <p class="lede">Gaston Pest Solutions has been treating Belmont for the better part of a decade, and the reputation is simple: Scott shows up and does the work himself. That's exactly the problem at 2:40 on a Tuesday. He's elbow-deep under someone's kitchen sink with a sprayer in hand, and a homeowner three streets over just watched a trail of ants cross the counter. That call hits voicemail, and the next name on the Google list gets the job instead. Watch it go the other way.</p>
+    </div>
+
+    <div class="demo-panel reveal">
+      <div class="demo-head">
+        <div class="demo-title">Text thread &middot; <b>Gaston Pest Solutions</b></div>
+        <button class="replay-btn" id="replayBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+          Replay
+        </button>
+      </div>
+      <div class="thread" id="thread">
+        <div class="bubble caller" data-time="2:41 PM">Hi, I have a line of ants coming across my kitchen counter, it's getting worse by the hour. Do you service Belmont?<span class="stamp">2:41 PM</span></div>
+        <div class="typing" id="typing1"><span></span><span></span><span></span></div>
+        <div class="bubble ai" data-time="2:41 PM"><span class="badge">AI replied in 41 seconds</span>Yes, we're right here in Belmont. Ants moving in a visible trail usually means a nest close to the house, often near a foundation crack or a moisture spot. Are you seeing them in one room or more than one?<span class="stamp">2:42 PM</span></div>
+        <div class="bubble caller" data-time="2:47 PM">Just the kitchen so far, but there's a lot of them. I don't want this turning into something bigger<span class="stamp">2:47 PM</span></div>
+        <div class="typing" id="typing2"><span></span><span></span><span></span></div>
+        <div class="bubble ai" data-time="2:47 PM">Smart to catch it now while it's contained. Scott's finishing a treatment across town but has an opening tomorrow at 9 AM to knock out the trail and check the foundation line for the entry point. Want that slot? You'll get his name and the time by text right now.<span class="stamp">2:48 PM</span></div>
+      </div>
+      <div class="demo-foot">
+        <div class="resp-time"><span class="dot"></span> First reply in 41 sec, no human touched a phone</div>
+        <div class="disclaimer">Simulated exchange for demo purposes</div>
+      </div>
+    </div>
+
+    <div class="hero-secondary">
       <div class="ring-badge">
         <span class="ring r1"></span>
         <span class="ring r2"></span>
@@ -405,27 +448,16 @@
           <span><b>Ten years in Belmont doesn't mean much if the phone loses the call.</b> This just makes sure the reputation and the phone line agree with each other.</span>
         </div>
       </div>
-    </div>
 
-    <div class="demo-panel reveal">
-      <div class="demo-head">
-        <div class="demo-title">Text thread &middot; <b>Gaston Pest Solutions</b></div>
-        <button class="replay-btn" id="replayBtn" type="button">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
-          Replay
-        </button>
-      </div>
-      <div class="thread" id="thread">
-        <div class="bubble caller" data-time="2:41 PM">Hi, I have a line of ants coming across my kitchen counter, it's getting worse by the hour. Do you service Belmont?<span class="stamp">2:41 PM</span></div>
-        <div class="typing" id="typing1"><span></span><span></span><span></span></div>
-        <div class="bubble ai" data-time="2:41 PM"><span class="badge">AI replied in 41 seconds</span>Yes, we're right here in Belmont. Ants moving in a visible trail usually means a nest close to the house, often near a foundation crack or a moisture spot. Are you seeing them in one room or more than one?<span class="stamp">2:42 PM</span></div>
-        <div class="bubble caller" data-time="2:47 PM">Just the kitchen so far, but there's a lot of them. I don't want this turning into something bigger<span class="stamp">2:47 PM</span></div>
-        <div class="typing" id="typing2"><span></span><span></span><span></span></div>
-        <div class="bubble ai" data-time="2:47 PM">Smart to catch it now while it's contained. Scott's finishing a treatment across town but has an opening tomorrow at 9 AM to knock out the trail and check the foundation line for the entry point. Want that slot? You'll get his name and the time by text right now.<span class="stamp">2:48 PM</span></div>
-      </div>
-      <div class="demo-foot">
-        <div class="resp-time"><span class="dot"></span> First reply in 41 sec, no human touched a phone</div>
-        <div class="disclaimer">Simulated exchange for demo purposes</div>
+      <!-- v2.1 amendment A2: required trade-real hero image. Source: Pixabay (CC0, no
+           attribution required), downloaded (not hotlinked) and embedded as base64 below.
+           Query "backpack sprayer" -> id 6262049, https://pixabay.com/photos/grass-backpack-sprayer-maintenance-6262049/
+           (photographer: Myriams-Fotos). A worker in protective gear treating a property
+           with a backpack pump sprayer: generic/representative pest-treatment work, not a
+           photo of Scott or Gaston Pest Solutions specifically, hence the honest aria-label
+           below rather than a company-specific caption. -->
+      <div class="hero-photo">
+        <div class="hero-photo-img" role="img" aria-label="A pest control technician in protective gear walking a property with a backpack pump sprayer, treating the ground for pests. Representative stock photo, not an on-site photo of Gaston Pest Solutions."></div>
       </div>
     </div>
   </section>
@@ -512,6 +544,10 @@
 
 </div>
 
+
+
+<!-- AID demo concierge (shared widget 54722168) + one-shot auto-open -->
+<script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
 
 
   <script src="script.js"></script>
