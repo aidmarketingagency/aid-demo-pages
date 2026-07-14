@@ -82,6 +82,28 @@
   h1.headline em{font-style:normal;color:var(--green-soft)}
   .hero p.lede{margin-top:20px;font-size:1.06rem;color:var(--ash);max-width:48ch}
 
+  /* -- A2 (v2.1 amendment): hero image, one trade-real Pixabay photo, scrim + grain +
+     duotone toward the forest-green accent, same grain treatment as the page atmosphere
+     layer so it reads as part of this page, not a raw drop-in. -- */
+  .hero-photo{
+    position:relative;margin:24px 0 0;max-width:460px;
+    border-radius:14px;overflow:hidden;border:1px solid var(--hair);
+    box-shadow:0 30px 60px -26px rgba(0,0,0,.7);
+  }
+  .hero-photo img{
+    display:block;width:100%;height:210px;object-fit:cover;object-position:center 40%;
+    filter:saturate(.56) contrast(1.1) brightness(.6) sepia(.16) hue-rotate(46deg);
+  }
+  .hero-photo::before{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(170deg, rgba(37,92,26,.36) 0%, rgba(10,15,10,.1) 42%, rgba(10,15,10,.66) 100%);
+  }
+  .hero-photo::after{
+    content:"";position:absolute;inset:0;opacity:.1;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  @media (max-width:640px){.hero-photo img{height:180px}}
+
   .ring-badge{position:relative;width:56px;height:56px;margin:30px 0 0}
   .ring-badge svg.phone{position:relative;z-index:1;width:56px;height:56px;color:var(--green-soft)}
   .ring{position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--green-soft);animation:ringpulse 2.1s ease-out infinite}
@@ -155,9 +177,24 @@
   .resp-time .dot{width:6px;height:6px;border-radius:50%;background:var(--green)}
   .disclaimer{font-size:.66rem;color:var(--ash-dim);text-align:right}
 
-  @media (max-width:900px){
-    .hero{grid-template-columns:1fr;gap:26px}
-    .demo-panel{margin-left:0}
+  /* -- A1 (v2.1 amendment): mobile-first attention contract. At <=820px the render
+     order becomes eyebrow, headline, ONE lede sentence, THE DEMO PANEL, then everything
+     else (hero photo, ring-badge, trust-row). .hero-copy goes display:contents so its
+     children become direct grid items of .hero and can take the order below, no DOM
+     restructuring needed. The top of the phone thread must be visible in the first
+     viewport of an iPhone-class screen. -- */
+  @media (max-width:820px){
+    .hero{grid-template-columns:1fr;gap:22px;padding:16px 0 10px}
+    .hero-copy{display:contents}
+    .eyebrow{order:1;margin-bottom:12px}
+    h1.headline{order:2}
+    .hero p.lede{order:3;margin-top:12px}
+    .demo-panel{order:4;margin-left:0;margin-top:2px}
+    .hero-photo{order:5}
+    .ring-badge{order:6}
+    .trust-row{order:7}
+    header{padding:16px 0 4px}
+    .thread{padding-top:10px}
   }
 
   /* -- Proof band: no client photo pulled (site has no usable, licensable job photography;
@@ -253,6 +290,25 @@
   /* -- reveal-on-scroll -- */
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
   .reveal.visible{opacity:1;transform:none}
+
+  /* -- A1 (v2.1 amendment): sticky mobile "Book 15 minutes with Ryan" bar. Same booking
+     URL as the page CTA; hidden via IntersectionObserver while the real CTA panel is in
+     view so the page never shows two CTAs at once, an affordance, not a second ask. -- */
+  .sticky-cta{display:none}
+  @media (max-width:820px){
+    body{padding-bottom:76px}
+    .sticky-cta{
+      display:flex;align-items:center;justify-content:center;gap:8px;
+      position:fixed;left:0;right:0;bottom:0;z-index:60;
+      background:linear-gradient(92deg,var(--green-soft),var(--green));
+      color:var(--void);text-decoration:none;
+      font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.92rem;letter-spacing:.005em;
+      padding:15px 20px calc(15px + env(safe-area-inset-bottom));
+      box-shadow:0 -10px 30px -8px rgba(0,0,0,.55);
+      transition:transform .28s ease;
+    }
+    .sticky-cta.hide{transform:translateY(100%)}
+  }
 
   @media (prefers-reduced-motion:reduce){
     .bubble,.typing,.reveal{transition:none!important;opacity:1!important;transform:none!important}
