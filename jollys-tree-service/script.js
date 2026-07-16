@@ -39,7 +39,8 @@
       { t: 1900, action: function(){ typers[1].classList.remove('show'); bubbles[1].classList.add('show'); } },
       { t: 2700, action: function(){ bubbles[2].classList.add('show'); } },
       { t: 3300, action: function(){ typers[2].classList.add('show'); } },
-      { t: 4200, action: function(){ typers[2].classList.remove('show'); bubbles[3].classList.add('show'); playing = false; } }
+      { t: 4200, action: function(){ typers[2].classList.remove('show'); bubbles[3].classList.add('show'); } },
+      { t: 5100, action: function(){ if (bubbles[4]) bubbles[4].classList.add('show'); playing = false; } }
     ];
     seq.forEach(function(step){ timers.push(setTimeout(step.action, step.t)); });
   }

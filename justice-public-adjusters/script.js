@@ -34,10 +34,11 @@
   var b2 = document.getElementById('b2');
   var b3 = document.getElementById('b3');
   var b4 = document.getElementById('b4');
+  var b5 = document.getElementById('b5');
   var t1 = document.getElementById('typing1');
   var t2 = document.getElementById('typing2');
   var replayBtn = document.getElementById('replayBtn');
-  var bubbles = [b1, b2, b3, b4];
+  var bubbles = [b1, b2, b3, b4, b5].filter(Boolean);
   var typers = [t1, t2];
   var timers = [];
   var playing = false;
@@ -72,7 +73,8 @@
       { t: 2100, fn: function(){ t1.classList.remove('show'); b2.classList.add('show'); } },
       { t: 3000, fn: function(){ b3.classList.add('show'); } },
       { t: 3700, fn: function(){ t2.classList.add('show'); } },
-      { t: 4700, fn: function(){ t2.classList.remove('show'); b4.classList.add('show'); playing = false; } }
+      { t: 4700, fn: function(){ t2.classList.remove('show'); b4.classList.add('show'); } },
+      { t: 5600, fn: function(){ if (b5) b5.classList.add('show'); playing = false; } }
     ];
     seq.forEach(function(step){
       timers.push(setTimeout(step.fn, step.t));

@@ -82,7 +82,7 @@
   h1.headline em{font-style:italic;color:var(--ember-soft)}
   .hero p.lede{margin-top:20px;font-size:1.05rem;color:var(--ash);max-width:50ch}
   .hero p.lede + p.lede{margin-top:10px}
-  .hero p.lede strong{color:var(--bone);font-weight:600}
+  .hero p.lede strong{color:var(--ember-soft);font-weight:700}
 
   .ring-badge{position:relative;width:56px;height:56px;margin:30px 0 0}
   .ring-badge svg.phone{position:relative;z-index:1;width:56px;height:56px;color:var(--ember-soft)}
@@ -201,6 +201,7 @@
   .photo-band::before{
     content:"";position:absolute;inset:0;z-index:1;
     background:
+      linear-gradient(0deg, rgba(10,21,34,.88) 0%, rgba(10,21,34,.5) 38%, transparent 62%),
       linear-gradient(100deg, rgba(10,21,34,.92) 0%, rgba(10,21,34,.72) 40%, rgba(10,21,34,.36) 70%, rgba(10,21,34,.66) 100%),
       radial-gradient(720px 380px at 82% 8%, rgba(200,76,49,.2), transparent 62%);
   }
@@ -223,7 +224,7 @@
     padding:60px 0 20px;margin-top:8px;
   }
   .math-copy{font-size:1.04rem;color:var(--ash);max-width:50ch;padding-bottom:6px}
-  .math-copy strong{color:var(--bone);font-weight:600}
+  .math-copy strong{color:var(--ember-soft);font-weight:700}
   .math-stat{text-align:right}
   .math .stat-label{font-size:.74rem;text-transform:uppercase;letter-spacing:.2em;color:var(--ember-soft);margin-bottom:10px;display:flex;align-items:center;justify-content:flex-end;gap:8px;position:relative;z-index:2}
   .stat-replay{

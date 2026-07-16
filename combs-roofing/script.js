@@ -30,7 +30,7 @@
   // ---- SMS thread ----
   var thread = document.getElementById('thread');
   var bubbles = Array.prototype.slice.call(thread.querySelectorAll('.bubble'));
-  var typers = { 1: document.getElementById('typing1'), 2: document.getElementById('typing2') };
+  var typers = Array.prototype.slice.call(thread.querySelectorAll('.typing'));
   var replayBtn = document.getElementById('replayBtn');
   var timers = [];
   var playing = false;
@@ -39,14 +39,14 @@
 
   function resetThread(){
     bubbles.forEach(function(b){ b.classList.remove('show'); });
-    Object.keys(typers).forEach(function(k){ typers[k].classList.remove('show'); });
+    typers.forEach(function(t){ t.classList.remove('show'); });
   }
 
   function showThreadFinal(){
     clearTimers();
     playing = false;
     bubbles.forEach(function(b){ b.classList.add('show'); });
-    Object.keys(typers).forEach(function(k){ typers[k].classList.remove('show'); });
+    typers.forEach(function(t){ t.classList.remove('show'); });
   }
 
   function playThread(){
@@ -55,14 +55,22 @@
     playing = true;
     clearTimers();
     resetThread();
-    var seq = [
-      { t: 260,  action: function(){ bubbles[0].classList.add('show'); } },
-      { t: 980,  action: function(){ typers[1].classList.add('show'); } },
-      { t: 1950, action: function(){ typers[1].classList.remove('show'); bubbles[1].classList.add('show'); } },
-      { t: 2800, action: function(){ bubbles[2].classList.add('show'); } },
-      { t: 3420, action: function(){ typers[2].classList.add('show'); } },
-      { t: 4380, action: function(){ typers[2].classList.remove('show'); bubbles[3].classList.add('show'); playing = false; } }
-    ];
+    // Walk thread children in DOM order: typing dots run ~950ms before the
+    // bubble that follows; bubbles land ~750ms apart.
+    var children = Array.prototype.slice.call(thread.children);
+    var at = 260;
+    var seq = [];
+    children.forEach(function(el){
+      if (el.classList.contains('typing')){
+        (function(node, t){ seq.push({ t: t, action: function(){ node.classList.add('show'); } }); })(el, at);
+        (function(node, t){ seq.push({ t: t, action: function(){ node.classList.remove('show'); } }); })(el, at + 950);
+        at += 950;
+      } else if (el.classList.contains('bubble')){
+        (function(node, t){ seq.push({ t: t, action: function(){ node.classList.add('show'); } }); })(el, at);
+        at += 750;
+      }
+    });
+    seq.push({ t: at, action: function(){ playing = false; } });
     seq.forEach(function(step){ timers.push(setTimeout(step.action, step.t)); });
   }
 

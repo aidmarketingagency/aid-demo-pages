@@ -171,7 +171,8 @@
     padding:60px 0 20px;border-top:1px solid var(--hair-soft);margin-top:36px;
   }
   .math-copy{font-size:1.04rem;color:var(--ash);max-width:48ch;padding-bottom:6px}
-  .math-copy strong{color:var(--bone);font-weight:600}
+  .math-copy strong{color:var(--red-soft);font-weight:700}
+  .how-item p strong{color:var(--red-soft);font-weight:700}
   .math .stat-label{font-size:.74rem;text-transform:uppercase;letter-spacing:.2em;color:var(--red-soft);margin-bottom:10px;display:flex;align-items:center;gap:8px;position:relative;z-index:2}
   .stat-replay{
     display:inline-flex;align-items:center;justify-content:center;flex:none;
@@ -209,7 +210,8 @@
   .how-item p{font-size:.9rem;color:var(--ash)}
   @media (max-width:900px){
     .how-grid{grid-template-columns:1fr}
-    .how-item.lead{grid-column:auto;grid-row:auto;min-height:auto}
+    /* Single column: put the lead (01) card back on top so the numbers read 01/02/03 */
+    .how-item.lead{grid-column:auto;grid-row:auto;min-height:auto;order:-1}
   }
 
   /* -- CTA -- */

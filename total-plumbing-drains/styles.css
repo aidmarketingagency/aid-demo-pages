@@ -64,7 +64,7 @@
 
   /* -- Hero: broken grid, asymmetric. grid-template-areas (not flex+order across
      sibling containers) so the mobile reorder in A1 can genuinely interleave the
-     demo panel between the lede and the trust row, not just reorder two whole blocks. -->
+     demo panel between the lede and the trust row, not just reorder two whole blocks. */
   .hero{
     display:grid;
     grid-template-columns:1.1fr .9fr;
@@ -89,9 +89,10 @@
   .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--cyan-hot);box-shadow:0 0 0 0 rgba(0,208,255,.6);animation:pulse 2.2s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(0,208,255,.55)}70%{box-shadow:0 0 0 10px rgba(0,208,255,0)}100%{box-shadow:0 0 0 0 rgba(0,208,255,0)}}
 
-  h1.headline{grid-area:headline;font-size:clamp(1.9rem,4.7vw,3.15rem);line-height:1.14;color:var(--bone)}
+  h1.headline{grid-area:headline;font-size:clamp(2.2rem,5.8vw,3.8rem);line-height:1.1;color:var(--bone)}
   h1.headline em{font-style:normal;color:var(--cyan-hot)}
-  .lede{margin-top:20px;font-size:1.03rem;color:var(--ash);max-width:50ch}
+  .lede{margin-top:20px;font-size:1.08rem;color:var(--ash);max-width:50ch}
+  .lede strong,.how-item p strong{color:var(--cyan-hot);font-weight:700}
   .lede-primary{grid-area:lede}
   .lede-secondary{grid-area:lede2}
 
@@ -245,7 +246,7 @@
   .stat-number .cents{color:var(--cyan-hot)}
   .stat-sub{font-size:.88rem;color:var(--ash);max-width:44ch;margin:0 auto}
   .math-copy{font-size:1.03rem;color:var(--ash);max-width:62ch;margin:8px auto 0;text-align:left}
-  .math-copy strong{color:var(--bone);font-weight:600}
+  .math-copy strong{color:var(--cyan-hot);font-weight:700}
 
   /* -- How it works: asymmetric, not 3 equal cards -- */
   .how{padding:56px 0 20px;border-top:1px solid var(--hair-soft);margin-top:36px}

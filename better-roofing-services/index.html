@@ -67,6 +67,7 @@
   with a change listener, per the v2 spec and the worked implementation in
   templates/examples/craftsman-pilot.html.
 -->
+<!-- 2026-07-16 surgical revision pass (Ryan feedback): visible copy cut to ~355 words, SMS mock rewritten as a real short-bubble conversation (customer emojis, relief ending), hero CTA added so the first viewport carries the whole pitch, accent contrast pushed on money numbers, photo scrims hardened for text legibility. Sequencer generalized to any bubble count. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -412,7 +413,9 @@
 
     <h1 class="hero-headline headline">A spotless record.<br/><em>Nobody can find it.</em></h1>
 
-    <p class="hero-lede lede">Better Roofing Services carries an A+ rating with the BBB and a second listing reaching toward Charlotte, but none of it shows up in a search: no website, no Facebook, just a number. Miss it, and they call the next name Google gives them.</p>
+    <p class="hero-lede lede">An A+ record, no website, just a number that <b>now answers itself</b>.</p>
+
+    <a class="hero-cta" href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">Book 15 minutes with Ryan</a>
 
     <div class="hero-demo">
       <div class="demo-panel reveal">
@@ -424,12 +427,15 @@
           </button>
         </div>
         <div class="thread" id="thread">
-          <div class="bubble caller" data-time="6:14 PM">Hi, my neighbor two doors down said you did their roof after that storm a couple years back and it's held up great since. We've got granules piling up in the gutter and a soft spot near the chimney flashing. Wanted a second set of eyes before we file anything.<span class="stamp">6:14 PM</span></div>
-          <div class="typing" id="typing1"><span></span><span></span><span></span></div>
-          <div class="bubble ai" data-time="6:15 PM"><span class="badge">AI replied in 44 seconds</span>Thanks for reaching out to Better Roofing Services. Good to hear the neighbor's roof held up, most of our work still starts that way. Granules plus a soft spot near the flashing is worth a real look before you call the insurance company. Any staining on the ceiling yet, or just what you can see on the roof?<span class="stamp">6:15 PM</span></div>
-          <div class="bubble caller" data-time="6:19 PM">No stains inside yet, just what I saw from the ladder.<span class="stamp">6:19 PM</span></div>
-          <div class="typing" id="typing2"><span></span><span></span><span></span></div>
-          <div class="bubble ai" data-time="6:19 PM">Catching it before it reaches the ceiling is the difference between a repair and a full claim. Jeffrey can walk the roof Thursday after 2 or Saturday morning, no charge, and tell you straight whether it's worth filing. Which one works better?<span class="stamp">6:19 PM</span></div>
+          <div class="bubble caller">Hi, my neighbor said you did their roof after the storm<span class="stamp">6:14 PM</span></div>
+          <div class="bubble caller">We've got granules in the gutters and a soft spot by the chimney</div>
+          <div class="typing"><span></span><span></span><span></span></div>
+          <div class="bubble ai"><span class="badge">AI replied in 44 seconds</span>Better Roofing here, glad that roof held up. Any stains on the ceiling inside yet?</div>
+          <div class="bubble caller">No stains yet, just what I saw from the ladder</div>
+          <div class="bubble caller">Should we file an insurance claim? Kinda stressing 😅</div>
+          <div class="typing"><span></span><span></span><span></span></div>
+          <div class="bubble ai">Caught early it's a repair, not a claim. Jeffrey can walk your roof Thursday after 2, no charge.</div>
+          <div class="bubble caller">Thursday works. Thank you 🙏<span class="stamp">6:20 PM</span></div>
         </div>
         <div class="demo-foot">
           <div class="resp-time"><span class="dot"></span> First reply in 44 sec, no human touched a phone</div>
@@ -448,15 +454,15 @@
       <div class="trust-row">
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>Live on Better Roofing's actual number.</b> Not a mockup, not a template with your name swapped in.</span>
+          <span><b>Live on Better Roofing's actual number.</b> Not a mockup.</span>
         </div>
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>Nothing for Jeffrey to install.</b> It runs quietly behind the number people already call.</span>
+          <span><b>Nothing for Jeffrey to install.</b> It runs behind the number people already call.</span>
         </div>
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>A+ with the BBB since 2020, no website required.</b> The work has always spoken for itself. This makes sure the next caller actually hears it.</span>
+          <span><b>A+ with the BBB since 2020.</b> Now callers actually hear it.</span>
         </div>
       </div>
     </div>
@@ -479,10 +485,10 @@
     <div>
       <div class="stat-label">What one lost job is worth <button class="stat-replay" id="statReplayBtn" type="button" aria-label="Replay the counter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></button></div>
       <div class="stat-number">$12<span class="cents">,000</span></div>
-      <div class="stat-sub">the average insurance payout for a hail-damaged roof</div>
+      <div class="stat-sub">the average hail-damage insurance payout</div>
     </div>
     <div class="math-copy">
-      <p>Better Roofing's A+ rating means the work speaks for itself, once someone reaches you. The problem sits before that: no website, no Facebook page, nothing to search for. When the phone goes to voicemail there is no contact form or message inbox waiting behind it, just silence. National numbers put <strong>62 percent</strong> of small business calls unanswered, and <strong>85 percent</strong> of the people who hit voicemail never call back. The average hail claim pays out $12,000, and full replacements in North Carolina run <strong>$12,000 to $22,000</strong> and up. For a business built on word of mouth, a missed call is not a delayed lead. It is just gone.</p>
+      <p>The average hail claim pays out <strong>$12,000</strong>, and <strong>85 percent</strong> of callers who hit voicemail never call back. A missed call here is just gone.</p>
     </div>
   </section>
 
@@ -490,26 +496,24 @@
   <section class="how reveal" data-section="how-it-works">
     <div class="how-head">
       <h2>How the catch works</h2>
-      <span>Three moving parts, no app to open</span>
     </div>
     <div class="how-grid">
       <div class="how-item lead">
         <div>
           <div class="how-num">01</div>
           <h3>The call comes in, and nobody's at a desk</h3>
-          <p>Better Roofing runs on one person. When Jeffrey's up on a roof or mid-estimate, there is no receptionist, no answering service, and no website or Facebook inbox waiting to catch what the phone misses.</p>
+          <p>Better Roofing runs on one person. A text fires back in under a minute, <b>while your name is still on their screen</b>.</p>
         </div>
-        <p>Every unanswered call fires a text back in under a minute, while your name is still the one on their screen.</p>
       </div>
       <div class="how-item">
         <div class="how-num">02</div>
         <h3>The AI asks what Jeffrey would ask</h3>
-        <p>Flashing, granules, staining, storm dates. It qualifies the way you would, so the roof walks you book are worth booking.</p>
+        <p>Flashing, granules, staining, storm dates. Real qualifying.</p>
       </div>
       <div class="how-item">
         <div class="how-num">03</div>
         <h3>You get a booked roof walk</h3>
-        <p>Day and time locked in, texted to you and the homeowner while you're still on the ladder. You come back to a schedule, not a guess.</p>
+        <p>Day and time locked in, texted to you on the ladder.</p>
       </div>
     </div>
   </section>
@@ -519,12 +523,12 @@
     <div class="cta-panel">
       <div class="cta-inner">
         <h2>See it running on <em>your</em> number.</h2>
-        <p>Fifteen minutes with Ryan. He'll walk through exactly what you saw above, live on Better Roofing's line, and give you a straight answer on whether it's worth doing.</p>
-        <a class="cta-btn" href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">
+        <p>Fifteen minutes with Ryan, live on Better Roofing's line.</p>
+        <a class="cta-btn" href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">
           Book the walkthrough
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
         </a>
-        <p class="cta-note">No pitch deck, no obligation. Just a look at what this looks like on your phone.</p>
+        <p class="cta-note">No pitch deck. Just the demo, live.</p>
       </div>
     </div>
   </section>
@@ -533,7 +537,7 @@
     <p class="quietline">"A record this clean deserves to be easy to find."</p>
     <div class="foot">
       <div>Put together by Ryan McNally at AID Marketing Agency</div>
-      <div><a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">paymegpt.com/p/KqXvRWYi</a></div>
+      <div><a href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">aidmarketingagency.github.io/aid-discovery-call</a></div>
     </div>
   </footer>
 
@@ -542,7 +546,7 @@
 <!-- Sticky mobile CTA bar (A1): hidden while the real CTA panel is in view so the
      page never shows two CTAs at once. Same URL, same intent, one CTA. -->
 <div class="mobile-cta" id="mobileCta">
-  <a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">Book 15 minutes with Ryan</a>
+  <a href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">Book 15 minutes with Ryan</a>
 </div>
 
 

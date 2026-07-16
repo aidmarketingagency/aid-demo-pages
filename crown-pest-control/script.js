@@ -6,7 +6,7 @@
   /* -- SMS thread: staged reveal, typing indicators, replayable, re-armed on scroll re-entry -- */
   var thread = document.getElementById('thread');
   var bubbles = Array.prototype.slice.call(thread.querySelectorAll('.bubble'));
-  var typers = [document.getElementById('typing1'), document.getElementById('typing2')];
+  var typers = Array.prototype.slice.call(thread.querySelectorAll('.typing'));
   var replayBtn = document.getElementById('replayBtn');
   var timers = [];
   var threadGen = 0; // generation token: a superseded run kills itself
@@ -25,14 +25,21 @@
     if (reduced()){ showThreadFinal(); return; }
     var gen = ++threadGen;
     clearTimers(); resetThread();
-    var seq = [
-      { t:260,  fn:function(){ bubbles[0].classList.add('show'); } },
-      { t:1050, fn:function(){ typers[0].classList.add('show'); } },
-      { t:2150, fn:function(){ typers[0].classList.remove('show'); bubbles[1].classList.add('show'); } },
-      { t:3100, fn:function(){ bubbles[2].classList.add('show'); } },
-      { t:3750, fn:function(){ typers[1].classList.add('show'); } },
-      { t:4800, fn:function(){ typers[1].classList.remove('show'); bubbles[3].classList.add('show'); } }
-    ];
+    // Walk thread children in DOM order: typing dots run ~950ms before the
+    // bubble that follows; bubbles land ~750ms apart.
+    var children = Array.prototype.slice.call(thread.children);
+    var at = 260;
+    var seq = [];
+    children.forEach(function(el){
+      if (el.classList.contains('typing')){
+        (function(node, t){ seq.push({ t: t, fn: function(){ node.classList.add('show'); } }); })(el, at);
+        (function(node, t){ seq.push({ t: t, fn: function(){ node.classList.remove('show'); } }); })(el, at + 950);
+        at += 950;
+      } else if (el.classList.contains('bubble')){
+        (function(node, t){ seq.push({ t: t, fn: function(){ node.classList.add('show'); } }); })(el, at);
+        at += 750;
+      }
+    });
     seq.forEach(function(s){
       timers.push(setTimeout(function(){ if (gen === threadGen) s.fn(); }, s.t));
     });

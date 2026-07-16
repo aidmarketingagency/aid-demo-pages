@@ -95,11 +95,11 @@
     filter:saturate(.56) contrast(1.1) brightness(.6) sepia(.16) hue-rotate(46deg);
   }
   .hero-photo::before{
-    content:"";position:absolute;inset:0;
+    content:"";position:absolute;inset:0;z-index:1;
     background:linear-gradient(170deg, rgba(37,92,26,.36) 0%, rgba(10,15,10,.1) 42%, rgba(10,15,10,.66) 100%);
   }
   .hero-photo::after{
-    content:"";position:absolute;inset:0;opacity:.1;mix-blend-mode:overlay;
+    content:"";position:absolute;inset:0;z-index:1;opacity:.1;mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   @media (max-width:640px){.hero-photo img{height:180px}}
@@ -228,7 +228,8 @@
   .stat-number .cents{color:var(--green-soft)}
   .stat-sub{font-size:.86rem;color:var(--ash);margin-top:10px;max-width:34ch}
   .math-copy{font-size:1.04rem;color:var(--ash);max-width:48ch;padding-bottom:6px}
-  .math-copy strong{color:var(--bone);font-weight:600}
+  .math-copy strong{color:var(--green-soft);font-weight:700}
+  .how-item p strong{color:var(--green-soft);font-weight:700}
   @media (max-width:900px){.math{grid-template-columns:1fr;gap:18px;padding-top:44px}}
 
   /* -- How it works: asymmetric, not 3 equal cards -- */

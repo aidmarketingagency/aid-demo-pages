@@ -88,6 +88,8 @@
   }
   h1.headline em{font-style:italic;color:var(--accent-soft)}
   .hero p.lede{margin-top:20px;font-size:1.04rem;color:var(--ash);max-width:47ch;line-height:1.65}
+  .hero p.lede strong{color:var(--accent-soft);font-weight:600}
+  .how-item.lead > p strong{color:var(--accent-soft);font-weight:600}
 
   /* ring badge with 3 animated rings */
   .ring-badge{position:relative;width:56px;height:56px;margin:30px 0 0}
@@ -240,7 +242,7 @@
   .stat-number .cents{color:var(--accent-soft)}
   .stat-sub{font-size:.85rem;color:var(--ash);margin-top:10px;max-width:36ch;font-family:'Libre Franklin',sans-serif}
   .math-copy{font-size:1.03rem;color:var(--ash);max-width:50ch;padding-bottom:6px;font-family:'Libre Franklin',sans-serif;line-height:1.68}
-  .math-copy strong{color:var(--bone);font-weight:600}
+  .math-copy strong{color:var(--accent-soft);font-weight:700}
   @media(max-width:820px){.math{grid-template-columns:1fr;gap:20px;padding-top:44px}}
 
   /* -- How it works: asymmetric, 1 tall lead + 2 stacked (NEVER 3 equal) -- */

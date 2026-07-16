@@ -6,7 +6,7 @@
   // ---- SMS phone sequencer: staged reveal, typing indicators, replayable ----
   var thread = document.getElementById('thread');
   var bubbles = Array.prototype.slice.call(thread.querySelectorAll('.bubble'));
-  var typers = { 1: document.getElementById('typing1'), 2: document.getElementById('typing2') };
+  var typers = Array.prototype.slice.call(thread.querySelectorAll('.typing'));
   var replayBtn = document.getElementById('replayBtn');
   var timers = [];
   var playing = false;
@@ -15,31 +15,41 @@
 
   function resetThread(){
     bubbles.forEach(function(b){ b.classList.remove('show'); });
-    Object.keys(typers).forEach(function(k){ typers[k].classList.remove('show'); });
+    typers.forEach(function(t){ t.classList.remove('show'); });
   }
 
   function showThreadFinal(){
     clearTimers();
     playing = false;
     bubbles.forEach(function(b){ b.classList.add('show'); });
-    Object.keys(typers).forEach(function(k){ typers[k].classList.remove('show'); });
+    typers.forEach(function(t){ t.classList.remove('show'); });
   }
 
+  // Generic sequencer: walks the thread's children in DOM order, so the
+  // conversation can be any length. Typing indicators show briefly before
+  // the AI bubble that follows them.
   function playThread(){
     if (reducedMotion()){ showThreadFinal(); return; }
     if (playing) return;
     playing = true;
     clearTimers();
     resetThread();
-    var seq = [
-      { t: 300,  action: function(){ bubbles[0].classList.add('show'); } },
-      { t: 1050, action: function(){ typers[1].classList.add('show'); } },
-      { t: 2050, action: function(){ typers[1].classList.remove('show'); bubbles[1].classList.add('show'); } },
-      { t: 2950, action: function(){ bubbles[2].classList.add('show'); } },
-      { t: 3550, action: function(){ typers[2].classList.add('show'); } },
-      { t: 4500, action: function(){ typers[2].classList.remove('show'); bubbles[3].classList.add('show'); playing = false; } }
-    ];
-    seq.forEach(function(step){ timers.push(setTimeout(step.action, step.t)); });
+    var at = 300;
+    Array.prototype.forEach.call(thread.children, function(el){
+      if (el.classList.contains('typing')){
+        (function(el, t){
+          timers.push(setTimeout(function(){ el.classList.add('show'); }, t));
+          timers.push(setTimeout(function(){ el.classList.remove('show'); }, t + 850));
+        })(el, at);
+        at += 850;
+      } else if (el.classList.contains('bubble')){
+        (function(el, t){
+          timers.push(setTimeout(function(){ el.classList.add('show'); }, t));
+        })(el, at);
+        at += el.classList.contains('ai') ? 750 : 620;
+      }
+    });
+    timers.push(setTimeout(function(){ playing = false; }, at));
   }
 
   replayBtn.addEventListener('click', function(){

@@ -156,6 +156,17 @@
   @media (max-width:900px){
     .hero{grid-template-columns:1fr;gap:26px}
     .demo-panel{margin-left:0}
+    /* Mobile attention contract (matches the batch's other pages): eyebrow, headline,
+       lede, THE DEMO PANEL, then ring badge + trust row. display:contents lifts the
+       hero-copy children into the hero grid so the demo panel can slot in ahead of
+       the trust row without touching the markup. */
+    .hero-copy{display:contents}
+    .hero-copy .eyebrow{order:1}
+    .hero-copy h1.headline{order:2}
+    .hero-copy p.lede{order:3;margin-top:0}
+    .demo-panel{order:4}
+    .hero-copy .ring-badge{order:5;margin:6px 0 0}
+    .hero-copy .trust-row{order:6;margin-top:8px}
   }
 
   /* -- Proof band: real client photo from their own gallery, treated -- */
@@ -168,7 +179,9 @@
   }
   .proof-img::before{
     content:"";position:absolute;inset:0;
-    background:linear-gradient(100deg, var(--void) 6%, rgba(10,8,7,.55) 42%, rgba(140,4,7,.34) 100%);
+    background:
+      linear-gradient(0deg, rgba(10,8,7,.85) 0%, rgba(10,8,7,.35) 42%, transparent 65%),
+      linear-gradient(100deg, var(--void) 6%, rgba(10,8,7,.55) 42%, rgba(140,4,7,.34) 100%);
   }
   .proof-img::after{
     content:"";position:absolute;inset:0;opacity:.09;mix-blend-mode:overlay;
@@ -201,7 +214,7 @@
   .stat-number .cents{color:var(--crimson-soft)}
   .stat-sub{font-size:.86rem;color:var(--ash);margin-top:10px;max-width:34ch}
   .math-copy{font-size:1.04rem;color:var(--ash);max-width:48ch;padding-bottom:6px}
-  .math-copy strong{color:var(--bone);font-weight:600}
+  .math-copy strong{color:var(--crimson-soft);font-weight:700}
   @media (max-width:900px){.math{grid-template-columns:1fr;gap:18px;padding-top:44px}}
 
   /* -- How it works: asymmetric, not 3 equal cards -- */

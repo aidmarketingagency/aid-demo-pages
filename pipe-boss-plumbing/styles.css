@@ -81,7 +81,7 @@
   .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--red-hot);box-shadow:0 0 0 0 rgba(255,75,61,.6);animation:pulse 2.2s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,75,61,.55)}70%{box-shadow:0 0 0 10px rgba(255,75,61,0)}100%{box-shadow:0 0 0 0 rgba(255,75,61,0)}}
 
-  h1.headline{font-size:clamp(1.9rem,4.9vw,3.25rem);line-height:1.13;color:var(--bone)}
+  h1.headline{font-size:clamp(2.1rem,5.4vw,3.7rem);line-height:1.1;color:var(--bone)}
   h1.headline em{font-style:normal;color:var(--red-hot)}
   .hero p.lede{margin-top:20px;font-size:1.03rem;color:var(--ash);max-width:48ch}
 
@@ -194,7 +194,7 @@
   .stat-number .cents{color:var(--red-hot)}
   .stat-sub{font-size:.88rem;color:var(--ash);max-width:44ch;margin:0 auto}
   .math-copy{font-size:1.02rem;color:var(--ash);max-width:62ch;margin:8px auto 0;text-align:left}
-  .math-copy strong{color:var(--bone);font-weight:600}
+  .math-copy strong{color:var(--red-hot);font-weight:700}
 
   /* -- How it works: asymmetric, one lead item, never three equal cards -- */
   .how{padding:56px 0 20px;border-top:1px solid var(--hair-soft);margin-top:36px}
@@ -213,6 +213,7 @@
   .how-item h3{font-size:1.05rem;color:var(--bone);font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;margin-bottom:8px}
   .how-item.lead h3{font-size:1.28rem;font-family:'Bricolage Grotesque',sans-serif;font-weight:700}
   .how-item p{font-size:.9rem;color:var(--ash)}
+  .how-item p strong{color:var(--red-hot);font-weight:700}
   @media (max-width:900px){
     .how-grid{grid-template-columns:1fr}
     .how-item.lead{grid-row:auto;min-height:auto}

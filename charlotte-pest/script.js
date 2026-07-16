@@ -4,7 +4,7 @@ document.documentElement.className += ' js';
   // -- SMS thread staged reveal + typing indicators, replayable, re-arms on scroll re-entry --
   var thread = document.getElementById('thread');
   var bubbles = Array.prototype.slice.call(thread.querySelectorAll('.bubble'));
-  var typers = { 1: document.getElementById('typing1'), 2: document.getElementById('typing2') };
+  var typers = Array.prototype.slice.call(thread.querySelectorAll('.typing'));
   var replayBtn = document.getElementById('replayBtn');
   var timers = [];
   var playing = false;
@@ -17,14 +17,14 @@ document.documentElement.className += ' js';
 
   function resetThread(){
     bubbles.forEach(function(b){ b.classList.remove('show'); });
-    Object.keys(typers).forEach(function(k){ typers[k].classList.remove('show'); });
+    typers.forEach(function(t){ t.classList.remove('show'); });
   }
 
   function showThreadFinal(){
     clearTimers();
     playing = false;
     bubbles.forEach(function(b){ b.classList.add('show'); });
-    Object.keys(typers).forEach(function(k){ typers[k].classList.remove('show'); });
+    typers.forEach(function(t){ t.classList.remove('show'); });
   }
 
   function playThread(){
@@ -33,14 +33,22 @@ document.documentElement.className += ' js';
     playing = true;
     clearTimers();
     resetThread();
-    var seq = [
-      { t: 300,  action: function(){ bubbles[0].classList.add('show'); } },
-      { t: 1050, action: function(){ typers[1].classList.add('show'); } },
-      { t: 2150, action: function(){ typers[1].classList.remove('show'); bubbles[1].classList.add('show'); } },
-      { t: 3100, action: function(){ bubbles[2].classList.add('show'); } },
-      { t: 3750, action: function(){ typers[2].classList.add('show'); } },
-      { t: 4750, action: function(){ typers[2].classList.remove('show'); bubbles[3].classList.add('show'); playing = false; } }
-    ];
+    // Walk the thread children in DOM order: typing indicators show for ~950ms
+    // before the bubble that follows them, bubbles land ~750ms apart.
+    var children = Array.prototype.slice.call(thread.children);
+    var t = 300;
+    var seq = [];
+    children.forEach(function(el){
+      if (el.classList.contains('typing')){
+        (function(node, at){ seq.push({ t: at, action: function(){ node.classList.add('show'); } }); })(el, t);
+        (function(node, at){ seq.push({ t: at, action: function(){ node.classList.remove('show'); } }); })(el, t + 950);
+        t += 950;
+      } else if (el.classList.contains('bubble')){
+        (function(node, at){ seq.push({ t: at, action: function(){ node.classList.add('show'); } }); })(el, t);
+        t += 750;
+      }
+    });
+    seq.push({ t: t, action: function(){ playing = false; } });
     seq.forEach(function(step){ timers.push(setTimeout(step.action, step.t)); });
   }
 

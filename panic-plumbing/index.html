@@ -380,7 +380,7 @@
     <div class="hero-copy">
       <span class="eyebrow"><span class="pulse"></span> Missed call, 11:47 PM, Concord</span>
       <h1 class="headline">A pipe bursts at 11:47.<br/>The homeowner panics.<br/><em>Your phone doesn't.</em></h1>
-      <p class="lede">The name on the truck is a promise: when it goes wrong at midnight, Panic Plumbing is who you call. But it's an owner-run crew, and at 11:47 Travis is asleep or still under someone's kitchen. That panicked caller gets voicemail, dials the next plumber on Google, and the water keeps running the whole time. Watch the promise get kept anyway.</p>
+      <p class="lede">When Travis can't pick up, the AI texts back in seconds, stops the water, and books the morning visit.</p>
       <div class="ring-badge">
         <span class="ring r1"></span>
         <span class="ring r2"></span>
@@ -396,15 +396,15 @@
       <div class="trust-row">
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>Live on Panic Plumbing's actual number.</b> Not a mockup, not a template with your name swapped in.</span>
+          <span><b>Live on Panic Plumbing's actual number.</b> Not a mockup.</span>
         </div>
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>It answers like a plumber, not a robot.</b> First job: stop the water. Shutoff valve, then the booking. The customer hears calm at midnight.</span>
+          <span><b>Answers like a plumber, not a robot.</b> Stop the water first, then book.</span>
         </div>
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>Licensed and real: NC #34723, right off your own site.</b> This just makes sure the phone works as hard as the license does.</span>
+          <span><b>NC License #34723.</b> Right off your own site.</span>
         </div>
       </div>
     </div>
@@ -418,15 +418,18 @@
         </button>
       </div>
       <div class="thread" id="thread">
-        <div class="bubble caller" data-time="11:47 PM">Water is spraying under my kitchen sink and I can't make it stop. Are you guys open?? I'm in Concord<span class="stamp">11:47 PM</span></div>
+        <div class="bubble caller" data-time="11:47 PM">water is SPRAYING under my kitchen sink 😩<span class="stamp">11:47 PM</span></div>
+        <div class="bubble caller" data-time="11:47 PM">I can't make it stop!! are you open??<span class="stamp">11:47 PM</span></div>
         <div class="typing" id="typing1"><span></span><span></span><span></span></div>
-        <div class="bubble ai" data-time="11:47 PM"><span class="badge">AI replied in 36 seconds</span>You've reached Panic Plumbing's after-hours line. You're in the right place. First, stop the water: there's a small valve under the sink where the line meets the wall. Turn it clockwise until it stops. If it won't budge, the main shutoff is usually by the water meter. Did that work?<span class="stamp">11:48 PM</span></div>
-        <div class="bubble caller" data-time="11:52 PM">Ok found the one under the sink. It stopped. There's water all over the floor<span class="stamp">11:52 PM</span></div>
+        <div class="bubble ai" data-time="11:47 PM"><span class="badge">AI replied in 36 seconds</span>You're in the right place. There's a small valve under the sink where the line meets the wall. Turn it clockwise. Did it stop?<span class="stamp">11:48 PM</span></div>
+        <div class="bubble caller" data-time="11:52 PM">omg it stopped 🙏<span class="stamp">11:52 PM</span></div>
+        <div class="bubble caller" data-time="11:52 PM">floor is soaked but it stopped<span class="stamp">11:52 PM</span></div>
         <div class="typing" id="typing2"><span></span><span></span><span></span></div>
-        <div class="bubble ai" data-time="11:52 PM">Good work, the worst part is over. Towels tonight, and keep the cabinet open so it dries. Travis can be there at 7:30 tomorrow morning to replace that line and check for damage underneath. Want me to lock that in? You'll get his name and the time by text right now.<span class="stamp">11:53 PM</span></div>
+        <div class="bubble ai" data-time="11:53 PM">You did the hard part. Travis can be there at 7:30 AM to replace that line. Want me to lock it in?<span class="stamp">11:53 PM</span></div>
+        <div class="bubble caller" data-time="11:53 PM">yes please. thank you so much ❤️<span class="stamp">11:53 PM</span></div>
       </div>
       <div class="demo-foot">
-        <div class="resp-time"><span class="dot"></span> First reply in 36 sec, no human touched a phone</div>
+        <div class="resp-time"><span class="dot"></span> First reply in 36 sec</div>
         <div class="disclaimer">Simulated exchange for demo purposes</div>
       </div>
     </div>
@@ -441,18 +444,16 @@
        water, sewer back-ups, frozen pipes; Service Roundtable data), and plumbing's
        after-hours call share runs 30-45%:
          https://ainora.lt/blog/hvac-service-call-statistics-2026
-       Water heater replacement averages $1,300 to $5,500 depending on fuel and capacity:
-         https://ainora.lt/blog/hvac-service-call-statistics-2026
        85% of callers who reach voicemail never call back:
          https://www.getaira.io/blog/missed-business-calls-statistics -->
   <section class="math reveal" data-section="math">
     <div>
-      <div class="stat-label">What the water does while the phone rings <button class="stat-replay" id="statReplayBtn" type="button" aria-label="Replay the counter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></button></div>
+      <div class="stat-label">While the phone rings <button class="stat-replay" id="statReplayBtn" type="button" aria-label="Replay the counter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></button></div>
       <div class="stat-number">$15<span class="cents">,000</span></div>
-      <div class="stat-sub">the average insurance claim for water damage or freezing</div>
+      <div class="stat-sub">the average water damage insurance claim</div>
     </div>
     <div class="math-copy">
-      <p>Water damage and freezing make up <strong>22.6 percent of all home insurance claims</strong>, and the average one runs past <strong>$15,000</strong>. That is why plumbing calls can't wait: <strong>30 to 45 percent of residential plumbing calls are same-day emergencies</strong>, and roughly the same share lands after hours, at night, exactly when a one-crew shop can't pick up. Add that <strong>85 percent of callers who hit voicemail never call back</strong>, and every missed midnight call is a customer another plumber talks off the ledge. Even the calm ones are real tickets: a water heater swap alone runs <strong>$1,300 to $5,500</strong>.</p>
+      <p><strong>30 to 45 percent</strong> of plumbing calls are same-day emergencies. <strong>85 percent</strong> of voicemail callers never call back.</p>
     </div>
   </section>
 
@@ -460,26 +461,26 @@
   <section class="how reveal" data-section="how-it-works">
     <div class="how-head">
       <h2>How the catch works</h2>
-      <span>Three moving parts, no app to open</span>
+      <span>Three moving parts</span>
     </div>
     <div class="how-grid">
       <div class="how-item lead">
         <div>
           <div class="how-num">01</div>
           <h3>The call gets missed, on purpose</h3>
-          <p>Travis stays under the sink he's already fixing, or stays asleep at midnight. Nobody drops a wrench for a ringing phone. And burst pipes don't check business hours; they pick nights, weekends, and holidays.</p>
+          <p>Travis is under a sink or asleep. Burst pipes pick nights anyway.</p>
         </div>
-        <p>Every unanswered call fires a text back in under a minute, while the homeowner still has Panic Plumbing on their screen instead of the next plumber on Google.</p>
+        <p>Every missed call gets a text back in <strong>under a minute</strong>.</p>
       </div>
       <div class="how-item">
         <div class="how-num">02</div>
         <h3>The AI stops the water first</h3>
-        <p>Shutoff valve under the sink, main by the meter. It talks a panicking homeowner through the save, then qualifies: active leak or contained, water heater age, what's flooded.</p>
+        <p>Shutoff valve, then the questions: active leak or contained, what's flooded.</p>
       </div>
       <div class="how-item">
         <div class="how-num">03</div>
         <h3>You get a booked morning visit</h3>
-        <p>Time locked in, texted to you and the homeowner overnight. Travis walks in at 7:30 to a stopped leak and a customer who already trusts him, not a cold voicemail from six hours ago.</p>
+        <p>Booked overnight, texted to both of you. Travis walks in at <strong>7:30</strong>.</p>
       </div>
     </div>
   </section>
@@ -489,12 +490,12 @@
     <div class="cta-panel">
       <div class="cta-inner">
         <h2>The name does the marketing.<br/><em>Let the phone do the answering.</em></h2>
-        <p>Fifteen minutes with Ryan. He'll walk through exactly what you saw above, live on Panic Plumbing's line, and give you a straight answer on whether it's worth doing for an owner-run crew.</p>
-        <a class="cta-btn" href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">
+        <p>Fifteen minutes with Ryan, live on Panic Plumbing's own line. Straight answer on whether it's worth it.</p>
+        <a class="cta-btn" href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">
           Book the walkthrough
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
         </a>
-        <p class="cta-note">No pitch deck, no obligation. Just a look at what this looks like on your phone.</p>
+        <p class="cta-note">No pitch deck, no obligation.</p>
       </div>
     </div>
   </section>
@@ -502,8 +503,8 @@
   <footer data-section="footer">
     <p class="quietline">"Panic is the customer's job. Answering is the phone's."</p>
     <div class="foot">
-      <div>Put together by Ryan McNally at AID Marketing Agency</div>
-      <div><a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">paymegpt.com/p/KqXvRWYi</a></div>
+      <div>Ryan McNally, AID Marketing Agency</div>
+      <div><a href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">aidmarketingagency.github.io/aid-discovery-call</a></div>
     </div>
   </footer>
 

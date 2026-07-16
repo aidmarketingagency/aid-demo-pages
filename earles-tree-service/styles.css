@@ -77,9 +77,12 @@
   .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--brass-soft);box-shadow:0 0 0 0 rgba(201,168,76,.6);animation:pulse 2.2s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(201,168,76,.55)}70%{box-shadow:0 0 0 10px rgba(201,168,76,0)}100%{box-shadow:0 0 0 0 rgba(201,168,76,0)}}
 
-  h1.headline{font-size:clamp(2.4rem,6.1vw,4.2rem);line-height:1;color:var(--bone)}
+  h1.headline{font-size:clamp(2.6rem,6.6vw,4.6rem);line-height:1;color:var(--bone)}
   h1.headline em{font-style:normal;color:var(--brass-soft)}
   .hero p.lede{margin-top:20px;font-size:1.06rem;color:var(--ash);max-width:48ch}
+  /* Revision 2026-07-16: single emphasis treatment for money words/numbers, page's own
+     brass accent only, used 3-5 times across the page. */
+  .acc{color:var(--brass-soft);font-weight:700}
 
   /* -- Hero image: one trade-real stock photo, scrim + grain + duotone toward the brass
      accent, base64 so the page stays a single self-contained file. -- */
@@ -226,7 +229,7 @@
   .stat-number .cents{color:var(--brass-soft)}
   .stat-sub{font-size:.86rem;color:var(--ash);margin-top:10px;max-width:34ch}
   .math-copy{font-size:1.04rem;color:var(--ash);max-width:48ch;padding-bottom:6px}
-  .math-copy strong{color:var(--bone);font-weight:600}
+  .math-copy strong{color:var(--brass-soft);font-weight:700}
   @media (max-width:900px){.math{grid-template-columns:1fr;gap:18px;padding-top:44px}}
 
   /* -- How it works: asymmetric, not 3 equal cards -- */

@@ -79,8 +79,12 @@
   .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--brass-hi);box-shadow:0 0 0 0 rgba(201,168,76,.6);animation:pulse 2.2s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(201,168,76,.55)}70%{box-shadow:0 0 0 10px rgba(201,168,76,0)}100%{box-shadow:0 0 0 0 rgba(201,168,76,0)}}
 
-  h1.headline{font-size:clamp(1.9rem,4.9vw,3.3rem);line-height:1.14;color:var(--bone)}
+  /* Revision 2026-07-16: H1 pushed up so the display size visibly dominates the
+     section heads (was clamp 1.9/3.3, sitting too close to the h2 range). */
+  h1.headline{font-size:clamp(2.3rem,5.8vw,4.1rem);line-height:1.08;color:var(--bone)}
   h1.headline em{font-style:normal;color:var(--brass-hi)}
+  /* Single emphasis treatment for money words/numbers, page's own brass accent only. */
+  .acc{color:var(--brass-hi);font-weight:700}
   .hero p.lede{margin-top:20px;font-size:1.05rem;color:var(--ash);max-width:48ch}
 
   .ring-badge{position:relative;width:56px;height:56px;margin:30px 0 0}
@@ -222,7 +226,7 @@
   .stat-number .cents{color:var(--brass-hi)}
   .stat-sub{font-size:.88rem;color:var(--ash);max-width:44ch;margin:0 auto}
   .math-copy{font-size:1.04rem;color:var(--ash);max-width:62ch;margin:8px auto 0;text-align:left}
-  .math-copy strong{color:var(--bone);font-weight:600}
+  .math-copy strong{color:var(--brass-hi);font-weight:700}
 
   /* -- How it works: asymmetric -- */
   .how{padding:56px 0 20px;border-top:1px solid var(--hair-soft);margin-top:36px}

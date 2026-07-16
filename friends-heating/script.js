@@ -1,8 +1,13 @@
 (function(){
   // -- SMS thread staged reveal + typing indicators, replayable --
   var thread = document.getElementById('thread');
-  var bubbles = Array.prototype.slice.call(thread.querySelectorAll('.bubble'));
-  var typers = { 1: document.getElementById('typing1'), 2: document.getElementById('typing2') };
+  // Revision 2026-07-16: sequencer walks the thread in DOM order so the bubble count
+  // can change without touching this file again. Same re-arm + reduced-motion contract.
+  var items = Array.prototype.slice.call(thread.children).filter(function(el){
+    return el.classList.contains('bubble') || el.classList.contains('typing');
+  });
+  var bubbles = items.filter(function(el){ return el.classList.contains('bubble'); });
+  var typers = items.filter(function(el){ return el.classList.contains('typing'); });
   var replayBtn = document.getElementById('replayBtn');
   var timers = [];
   var playing = false;
@@ -14,15 +19,14 @@
   function clearTimers(){ timers.forEach(function(t){ clearTimeout(t); }); timers = []; }
 
   function resetThread(){
-    bubbles.forEach(function(b){ b.classList.remove('show'); });
-    Object.keys(typers).forEach(function(k){ typers[k].classList.remove('show'); });
+    items.forEach(function(el){ el.classList.remove('show'); });
   }
 
   function showThreadFinal(){
     clearTimers();
     playing = false;
     bubbles.forEach(function(b){ b.classList.add('show'); });
-    Object.keys(typers).forEach(function(k){ typers[k].classList.remove('show'); });
+    typers.forEach(function(t){ t.classList.remove('show'); });
   }
 
   function playThread(){
@@ -31,15 +35,18 @@
     playing = true;
     clearTimers();
     resetThread();
-    var seq = [
-      { t: 250,  action: function(){ bubbles[0].classList.add('show'); } },
-      { t: 950,  action: function(){ typers[1].classList.add('show'); } },
-      { t: 1900, action: function(){ typers[1].classList.remove('show'); bubbles[1].classList.add('show'); } },
-      { t: 2700, action: function(){ bubbles[2].classList.add('show'); } },
-      { t: 3300, action: function(){ typers[2].classList.add('show'); } },
-      { t: 4200, action: function(){ typers[2].classList.remove('show'); bubbles[3].classList.add('show'); playing = false; } }
-    ];
-    seq.forEach(function(step){ timers.push(setTimeout(step.action, step.t)); });
+    var t = 250;
+    items.forEach(function(el, i){
+      var isLast = (i === items.length - 1);
+      if (el.classList.contains('typing')){
+        timers.push(setTimeout(function(){ el.classList.add('show'); }, t));
+        t += 850;
+        timers.push(setTimeout(function(){ el.classList.remove('show'); }, t));
+      } else {
+        timers.push(setTimeout(function(){ el.classList.add('show'); if (isLast) playing = false; }, t));
+        t += 650;
+      }
+    });
   }
 
   replayBtn.addEventListener('click', function(){

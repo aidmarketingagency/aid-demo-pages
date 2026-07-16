@@ -224,7 +224,8 @@
   .stat-number .cents{color:var(--leaf)}
   .stat-sub{font-size:.86rem;color:var(--ash);margin-top:10px;max-width:34ch}
   .math-copy{font-size:1.04rem;color:var(--ash);max-width:50ch;padding-bottom:6px}
-  .math-copy strong{color:var(--bone);font-weight:600}
+  .math-copy strong{color:var(--leaf);font-weight:700}
+  .hero p.lede strong,.how-item p strong{color:var(--leaf);font-weight:700}
   @media (max-width:900px){.math{grid-template-columns:1fr;gap:18px;padding-top:42px}}
 
   /* -- How it works: asymmetric, one tall lead item, never three equal cards -- */

@@ -33,11 +33,13 @@
     resetThread();
     var seq = [
       { t: 300,  action: function(){ bubbles[0].classList.add('show'); } },
-      { t: 1100, action: function(){ typers[0].classList.add('show'); } },
-      { t: 2050, action: function(){ typers[0].classList.remove('show'); bubbles[1].classList.add('show'); } },
-      { t: 2950, action: function(){ bubbles[2].classList.add('show'); } },
-      { t: 3550, action: function(){ typers[1].classList.add('show'); } },
-      { t: 4450, action: function(){ typers[1].classList.remove('show'); bubbles[3].classList.add('show'); playing = false; } }
+      { t: 950,  action: function(){ bubbles[1].classList.add('show'); } },
+      { t: 1550, action: function(){ typers[0].classList.add('show'); } },
+      { t: 2450, action: function(){ typers[0].classList.remove('show'); bubbles[2].classList.add('show'); } },
+      { t: 3250, action: function(){ bubbles[3].classList.add('show'); } },
+      { t: 3850, action: function(){ typers[1].classList.add('show'); } },
+      { t: 4750, action: function(){ typers[1].classList.remove('show'); bubbles[4].classList.add('show'); } },
+      { t: 5550, action: function(){ bubbles[5].classList.add('show'); playing = false; } }
     ];
     seq.forEach(function(step){ timers.push(setTimeout(step.action, step.t)); });
   }

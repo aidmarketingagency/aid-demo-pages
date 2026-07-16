@@ -33,11 +33,13 @@
     resetThread();
     var seq = [
       { t: 250,  action: function(){ bubbles[0].classList.add('show'); } },
-      { t: 1000, action: function(){ typers[1].classList.add('show'); } },
-      { t: 1950, action: function(){ typers[1].classList.remove('show'); bubbles[1].classList.add('show'); } },
-      { t: 2800, action: function(){ bubbles[2].classList.add('show'); } },
-      { t: 3400, action: function(){ typers[2].classList.add('show'); } },
-      { t: 4300, action: function(){ typers[2].classList.remove('show'); bubbles[3].classList.add('show'); playing = false; } }
+      { t: 850,  action: function(){ bubbles[1].classList.add('show'); } },
+      { t: 1550, action: function(){ typers[1].classList.add('show'); } },
+      { t: 2450, action: function(){ typers[1].classList.remove('show'); bubbles[2].classList.add('show'); } },
+      { t: 3250, action: function(){ bubbles[3].classList.add('show'); } },
+      { t: 3850, action: function(){ typers[2].classList.add('show'); } },
+      { t: 4750, action: function(){ typers[2].classList.remove('show'); bubbles[4].classList.add('show'); } },
+      { t: 5450, action: function(){ bubbles[5].classList.add('show'); playing = false; } }
     ];
     seq.forEach(function(step){ timers.push(setTimeout(step.action, step.t)); });
   }

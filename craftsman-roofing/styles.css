@@ -79,6 +79,9 @@
 
   h1.headline{font-size:clamp(2.4rem,6.1vw,4.2rem);line-height:1;color:var(--bone)}
   h1.headline em{font-style:normal;color:var(--blue-soft)}
+  /* Revision pass 2026-07-16: money-number emphasis, page's own accent only */
+  strong.money{color:var(--blue-soft);font-weight:700;}
+  .lede strong{color:var(--bone);font-weight:600;}
   .hero p.lede{margin-top:20px;font-size:1.06rem;color:var(--ash);max-width:47ch}
 
   .ring-badge{position:relative;width:56px;height:56px;margin:30px 0 0}
@@ -169,7 +172,10 @@
   }
   .proof-img::before{
     content:"";position:absolute;inset:0;
-    background:linear-gradient(100deg, var(--void) 6%, rgba(7,10,16,.55) 42%, rgba(23,60,150,.38) 100%);
+    /* Revision 2026-07-16: bottom scrim hardened to 0.85 behind the caption zone */
+    background:
+      linear-gradient(0deg, rgba(7,10,16,.85) 0%, rgba(7,10,16,.45) 34%, rgba(7,10,16,0) 62%),
+      linear-gradient(100deg, var(--void) 6%, rgba(7,10,16,.55) 42%, rgba(23,60,150,.38) 100%);
   }
   .proof-img::after{
     content:"";position:absolute;inset:0;opacity:.09;mix-blend-mode:overlay;
@@ -268,6 +274,9 @@
   .reveal.visible{opacity:1;transform:none}
 
   @media (prefers-reduced-motion:reduce){
-    .bubble,.typing,.reveal{transition:none!important;opacity:1!important;transform:none!important}
+    .bubble,.reveal{transition:none!important;opacity:1!important;transform:none!important}
+    .typing{display:none!important}
     .ring,.pulse,.replay-btn.spin svg{animation:none!important}
   }
+  /* Revision pass 2026-07-16: money emphasis wins over section strong/b rules */
+  .wrap strong.money,.wrap b.money{color:var(--blue-soft);font-weight:700;}

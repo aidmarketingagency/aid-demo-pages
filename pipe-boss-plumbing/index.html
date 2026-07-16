@@ -392,7 +392,7 @@
     <div class="hero-lede">
       <span class="eyebrow"><span class="pulse"></span> Missed call, 12:14 AM, Fayetteville</span>
       <h1 class="headline">A pipe bursts at midnight.<br/><em>Does the phone still pick it up?</em></h1>
-      <p class="lede">The Boss earned this call years ago: licensed in Fayetteville since 2018, license number on the site. But the front door is still a Gmail inbox, so a midnight caller finds the plumber with fifty reviews before they find you.</p>
+      <p class="lede">The AI answers the midnight call, walks the caller to the shutoff, and books the morning visit.</p>
     </div>
 
     <div class="demo-panel reveal">
@@ -404,15 +404,18 @@
         </button>
       </div>
       <div class="thread" id="thread">
-        <div class="bubble caller" data-time="12:14 AM">pipe just burst under the house i think, water is coming up through the floor vent in the hallway. this is bad. are yall open right now<span class="stamp">12:14 AM</span></div>
+        <div class="bubble caller" data-time="12:14 AM">pipe burst under the house I think 😰<span class="stamp">12:14 AM</span></div>
+        <div class="bubble caller" data-time="12:14 AM">water's coming up through the floor vent!! yall open??<span class="stamp">12:14 AM</span></div>
         <div class="typing" id="typing1"><span></span><span></span><span></span></div>
-        <div class="bubble ai" data-time="12:15 AM"><span class="badge">AI replied in 44 seconds</span>You've reached Pipe Boss Plumbing's after-hours line, licensed and real, and we've got you. First find your main shutoff, it's usually near the water meter at the street or where the line enters the crawl space. Turn it clockwise until it stops. Can you get to it?<span class="stamp">12:15 AM</span></div>
-        <div class="bubble caller" data-time="12:19 AM">ok found it by the meter, water finally stopped. still soaked under the house though<span class="stamp">12:19 AM</span></div>
+        <div class="bubble ai" data-time="12:15 AM"><span class="badge">AI replied in 44 seconds</span>This is Pipe Boss Plumbing's after-hours line. Find your main shutoff by the water meter. Turn it clockwise until it stops.<span class="stamp">12:15 AM</span></div>
+        <div class="bubble caller" data-time="12:19 AM">ok found it by the meter<span class="stamp">12:19 AM</span></div>
+        <div class="bubble caller" data-time="12:19 AM">it stopped 🙏 everything's soaked under there<span class="stamp">12:19 AM</span></div>
         <div class="typing" id="typing2"><span></span><span></span><span></span></div>
-        <div class="bubble ai" data-time="12:20 AM">Good, you just saved yourself a much bigger repair. Point a fan at that vent tonight if you have one. One of our licensed techs can be there first thing this morning to find the break and check for damage under the slab. Want that locked in? You'll get the name and time by text right now.<span class="stamp">12:20 AM</span></div>
+        <div class="bubble ai" data-time="12:20 AM">That saved you a much bigger repair. A licensed tech can be there first thing this morning. Want me to lock it in?<span class="stamp">12:20 AM</span></div>
+        <div class="bubble caller" data-time="12:20 AM">yes please!! thank you so much 😅<span class="stamp">12:20 AM</span></div>
       </div>
       <div class="demo-foot">
-        <div class="resp-time"><span class="dot"></span> First reply in 44 sec, no human touched a phone</div>
+        <div class="resp-time"><span class="dot"></span> First reply in 44 sec</div>
         <div class="disclaimer">Simulated exchange for demo purposes</div>
       </div>
     </div>
@@ -435,15 +438,15 @@
       <div class="trust-row">
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>Live on Pipe Boss's actual number.</b> Not a mockup, not a template with your name swapped in.</span>
+          <span><b>Live on Pipe Boss's actual number.</b> Not a mockup.</span>
         </div>
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>24 hour emergency service, the way you already advertise it.</b> This just makes sure the phone works as late as the promise does.</span>
+          <span><b>24 hour emergency service.</b> Now the phone keeps the promise.</span>
         </div>
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>Licensed and real: Lic #L-35605, straight off your own site.</b> It answers like a plumber, not a robot: shutoff first, booking second.</span>
+          <span><b>Lic #L-35605.</b> Shutoff first, booking second.</span>
         </div>
       </div>
     </div>
@@ -456,23 +459,18 @@
        $15,400 in 2026, and roughly 1 in 67 insured homes files a water damage or freezing claim
        each year, affecting about 14,000 households a day:
          https://www.consumeraffairs.com/homeowners/water-damage-insurance-claims-statistics.html
-       Most water damage starts inside the house (burst supply lines, failed fittings, clogged
-       drains), not from storms:
-         https://insurify.com/homeowners-insurance/insights/water-damage-statistics/
        62% of small business calls go unanswered; home service businesses miss 27-62% of calls:
          https://www.getaira.io/blog/missed-business-calls-statistics
        85% of callers who reach voicemail never call back:
-         https://pcnanswers.com/missed-call-revenue-study/
-       25-40% of home-service calls arrive outside the 8am-5pm window:
-         https://ainora.lt/blog/hvac-service-call-statistics-2026 -->
+         https://pcnanswers.com/missed-call-revenue-study/ -->
   <section class="math reveal" data-section="math">
     <div>
-      <div class="stat-label">What a burst pipe costs while the phone rings <button class="stat-replay" id="statReplayBtn" type="button" aria-label="Replay the counter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></button></div>
+      <div class="stat-label">While the phone rings <button class="stat-replay" id="statReplayBtn" type="button" aria-label="Replay the counter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></button></div>
       <div class="stat-number">$15<span class="cents">,400</span></div>
-      <div class="stat-sub">the average U.S. homeowners insurance claim for water damage, 2026</div>
+      <div class="stat-sub">average U.S. water damage claim, 2026</div>
     </div>
     <div class="math-copy">
-      <p>Water damage is the <strong>second most common home insurance claim</strong> in the country, and the average one now runs <strong>$15,400</strong>. Most of it starts inside the house, a burst supply line or a failed fitting, not a storm. Nationally, <strong>62 percent of small business calls go unanswered</strong>, and <strong>85 percent of callers who hit voicemail never call back</strong>. Home service calls skew even later: <strong>25 to 40 percent land outside the 8 to 5 window</strong>, exactly when a small plumbing crew can't get to the phone. Every one of those calls that goes to voicemail at midnight is a claim heading to whichever plumber picks up first.</p>
+      <p><strong>62 percent</strong> of small business calls go unanswered. <strong>85 percent</strong> of voicemail callers never call back.</p>
     </div>
   </section>
 
@@ -480,26 +478,25 @@
   <section class="how reveal" data-section="how-it-works">
     <div class="how-head">
       <h2>How the catch works</h2>
-      <span>Three moving parts, no app to open</span>
     </div>
     <div class="how-grid">
       <div class="how-item lead">
         <div>
           <div class="how-num">01</div>
           <h3>The call gets missed, on purpose</h3>
-          <p>A tech is already under a sink or asleep at midnight, and burst pipes don't check business hours; they pick nights and weekends on purpose.</p>
+          <p>The crew's under a sink or asleep. Burst pipes pick midnight.</p>
         </div>
-        <p>Every unanswered call fires a text back inside a minute, while the homeowner still has Pipe Boss on the screen instead of scrolling to the next plumber on Google.</p>
+        <p>Every missed call gets a text back in <strong>under a minute</strong>.</p>
       </div>
       <div class="how-item">
         <div class="how-num">02</div>
         <h3>The AI stops the water first</h3>
-        <p>Main shutoff at the meter or the crawl space, talked through step by step. Then it qualifies: active spray or contained, what's flooded, how bad.</p>
+        <p>Main shutoff first, talked through step by step. Then: what's flooded, how bad.</p>
       </div>
       <div class="how-item">
         <div class="how-num">03</div>
         <h3>You get a booked morning slot</h3>
-        <p>Time locked in, texted to you overnight. Your tech walks in to a stopped leak and a customer who already trusts the name on the truck.</p>
+        <p>Booked overnight, texted to both of you. Your tech walks into a <strong>stopped leak</strong>.</p>
       </div>
     </div>
   </section>
@@ -509,12 +506,12 @@
     <div class="cta-panel">
       <div class="cta-inner">
         <h2>The license says Boss.<br/><em>Let the phone act like it.</em></h2>
-        <p>Fifteen minutes with Ryan. He'll walk through exactly what you just saw, live on Pipe Boss's own number, and give you a straight answer on whether it's worth running for a crew your size.</p>
-        <a class="cta-btn" href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">
+        <p>Fifteen minutes with Ryan, live on Pipe Boss's own number. Straight answer on whether it's worth it.</p>
+        <a class="cta-btn" href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">
           Book the walkthrough
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
         </a>
-        <p class="cta-note">No pitch deck, no obligation. Just a look at what this looks like on your own phone.</p>
+        <p class="cta-note">No pitch deck, no obligation.</p>
       </div>
     </div>
   </section>
@@ -522,8 +519,8 @@
   <footer data-section="footer">
     <p class="quietline">"Being the Boss means somebody always answers."</p>
     <div class="foot">
-      <div>Put together by Ryan McNally at AID Marketing Agency</div>
-      <div><a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">paymegpt.com/p/KqXvRWYi</a></div>
+      <div>Ryan McNally, AID Marketing Agency</div>
+      <div><a href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">aidmarketingagency.github.io/aid-discovery-call</a></div>
     </div>
   </footer>
 
@@ -532,7 +529,7 @@
 <!-- Sticky mobile CTA bar (A1): same URL as the CTA panel and footer, an affordance not a
      second ask, hidden whenever the real CTA panel is on screen. -->
 <div class="sticky-cta" id="stickyCta">
-  <a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">Book 15 minutes with Ryan</a>
+  <a href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">Book 15 minutes with Ryan</a>
 </div>
 
 

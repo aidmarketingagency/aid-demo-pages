@@ -76,7 +76,7 @@
   .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--green-soft);box-shadow:0 0 0 0 rgba(45,187,78,.6);animation:pulse 2.2s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(45,187,78,.55)}70%{box-shadow:0 0 0 10px rgba(45,187,78,0)}100%{box-shadow:0 0 0 0 rgba(45,187,78,0)}}
 
-  h1.headline{font-size:clamp(2.05rem,5.2vw,3.55rem);line-height:1.06;color:var(--bone)}
+  h1.headline{font-size:clamp(2.2rem,5.6vw,3.85rem);line-height:1.05;color:var(--bone)}
   h1.headline em{font-style:normal;color:var(--green-soft)}
   .hero p.lede{margin-top:20px;font-size:1.05rem;color:var(--ash);max-width:50ch}
   .hero p.lede-more{margin-top:12px;font-size:1rem;color:var(--ash);max-width:50ch}
@@ -234,7 +234,8 @@
   .stat-number .cents{color:var(--green-soft)}
   .stat-sub{font-size:.86rem;color:var(--ash);margin-top:10px;max-width:36ch}
   .math-copy{font-size:1.04rem;color:var(--ash);max-width:48ch;padding-bottom:6px}
-  .math-copy strong{color:var(--bone);font-weight:600}
+  .math-copy strong{color:var(--green-soft);font-weight:700}
+  .hero p.lede strong,.how-item p strong{color:var(--green-soft);font-weight:700}
   @media (max-width:900px){.math{grid-template-columns:1fr;gap:18px;padding-top:44px}}
 
   /* -- How it works: asymmetric, one tall lead item, never three equal cards -- */

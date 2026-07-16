@@ -235,7 +235,7 @@
   .stat-number .cents{color:var(--accent-soft)}
   .stat-sub{font-size:.88rem;color:var(--ash);max-width:300px;margin-top:12px}
   .math-copy p{font-size:1.02rem;color:var(--ash);max-width:560px}
-  .math-copy strong{color:var(--bone)}
+  .math-copy strong{color:var(--accent);font-weight:700}
   @media (max-width:900px){.math{grid-template-columns:1fr;gap:20px;padding-top:48px}}
 
   /* ---------- how it works: asymmetric, one lead + two side ---------- */
@@ -257,6 +257,7 @@
   .how-item h3{font-size:1.08rem;color:var(--bone);font-weight:700;margin-bottom:8px}
   .how-item.lead h3{font-size:1.55rem}
   .how-item p{font-size:.9rem;color:var(--ash)}
+  .how-item p strong{color:var(--accent);font-weight:700}
   .how-item.lead > p{margin-top:22px}
   @media (max-width:900px){
     .how-grid{grid-template-columns:1fr}

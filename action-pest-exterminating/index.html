@@ -49,6 +49,7 @@
   - Publish contract steps (deploy, curl verification, screenshots) belong to the publish
     pass, not this file build.
 -->
+<!-- 2026-07-16 surgical revision pass (Ryan feedback): visible copy cut to ~355 words, SMS mock rewritten as a real short-bubble conversation (customer emojis, relief ending), hero CTA added so the first viewport carries the whole pitch, accent contrast pushed on money numbers, photo scrims hardened for text legibility. Sequencer generalized to any bubble count. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -369,7 +370,7 @@
 <!-- v2.1 amendment A1: sticky mobile booking affordance, same URL as the page CTA.
      JS hides it via IntersectionObserver while the real CTA panel is in view. -->
 <div class="mobile-cta-bar" id="mobileCtaBar">
-  <a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">Book 15 minutes with Ryan</a>
+  <a href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">Book 15 minutes with Ryan</a>
 </div>
 
 <div class="wrap">
@@ -387,7 +388,7 @@
         </svg>
         <div>
           <div class="name">Action Pest Exterminating</div>
-          <div class="loc">Midland, NC &middot; Charlotte + Cabarrus &middot; Since 1983</div>
+          <div class="loc">Midland, NC &middot; Since 1983</div>
         </div>
       </div>
       <div class="built-by">Live preview &middot; built by<br/><b>AID Marketing Agency</b></div>
@@ -398,28 +399,33 @@
   <section class="hero" data-section="hero">
     <div class="hero-top">
       <span class="eyebrow"><span class="pulse"></span> Missed call, Saturday 7:42 PM, Midland</span>
-      <h1 class="headline">Four decades of showing up.<br/><em>Sixty three hours a week of nobody picking up.</em></h1>
-      <p class="lede">Action Pest has kept Charlotte and Cabarrus County homes clear since 1983, <b>three generations and more than 30 people on the road</b>, and every one of them goes home when the office locks up at 5. Here is what Saturday night looks like when the phone answers itself.</p>
+      <h1 class="headline">Four decades of showing up.<br/><em>63 hours a week of nobody picking up.</em></h1>
+      <p class="lede">The office closes Friday at 5, and <b>this Saturday call books itself anyway</b>.</p>
+      <a class="hero-cta" href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">Book 15 minutes with Ryan</a>
     </div>
 
     <div class="demo-panel">
       <div class="demo-head">
-        <div class="demo-title">Text thread &middot; <b>Action Pest Exterminating</b></div>
+        <div class="demo-title">Text thread &middot; <b>Action Pest</b></div>
         <button class="replay-btn" id="replayBtn" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
           Replay
         </button>
       </div>
       <div class="thread" id="thread">
-        <div class="bubble caller">Hi, we just got back from a trip and I found little brown bugs in the mattress seam and bites on my daughter's arm. Do you all handle bed bugs?<span class="stamp">Sat 7:43 PM</span></div>
-        <div class="typing" id="typing1"><span></span><span></span><span></span></div>
-        <div class="bubble ai"><span class="badge">AI replied in 38 seconds</span>You reached Action Pest Exterminating. Yes, bed bugs are one of our specialties, and our K9 inspection team can confirm exactly what you have before anyone treats a thing. What's the address?<span class="stamp">Sat 7:43 PM</span></div>
-        <div class="bubble caller">2318 Coldwater Ln in Harrisburg. Please tell me someone can look at this before next week, I can't have her sleeping in that room.<span class="stamp">Sat 7:49 PM</span></div>
-        <div class="typing" id="typing2"><span></span><span></span><span></span></div>
-        <div class="bubble ai">I can hold Monday's first inspection slot at 8:30 AM for you right now. Leave the bedding exactly as it is so the dog gets a clean read. Your confirmation and your inspector's name are on the way by text.<span class="stamp">Sat 7:50 PM</span></div>
+        <div class="bubble caller">Hi, do y'all handle bed bugs??<span class="stamp">Sat 7:43 PM</span></div>
+        <div class="bubble caller">Just found them in the mattress. My daughter has bites 😩</div>
+        <div class="typing"><span></span><span></span><span></span></div>
+        <div class="bubble ai"><span class="badge">AI replied in 38 seconds</span>Action Pest here. Yes, that's our specialty. Our K9 team confirms it first.</div>
+        <div class="bubble ai">What's the address?</div>
+        <div class="bubble caller">2318 Coldwater Ln in Harrisburg</div>
+        <div class="bubble caller">Please say you can come before next week</div>
+        <div class="typing"><span></span><span></span><span></span></div>
+        <div class="bubble ai">Monday 8:30 AM is yours. Leave the bedding as is so the dog gets a clean read.</div>
+        <div class="bubble caller">See you Monday. THANK YOU ❤️<span class="stamp">Sat 7:50 PM</span></div>
       </div>
       <div class="demo-foot">
-        <div class="resp-time"><span class="dot"></span> First reply in 38 sec, on a Saturday night</div>
+        <div class="resp-time"><span class="dot"></span> First reply in 38 seconds, Saturday night</div>
         <div class="disclaimer">Simulated exchange for demo purposes</div>
       </div>
     </div>
@@ -442,15 +448,15 @@
       <div class="trust-row">
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>Runs on Action Pest's actual number.</b> Not a mockup, not a template with the name swapped in.</span>
+          <span><b>Runs on Action Pest's actual number.</b> Not a mockup.</span>
         </div>
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>It knows the house specialties.</b> A bed bug caller hears about the K9 inspection team up front, before anybody treats anything.</span>
+          <span><b>Knows the house specialties.</b> K9 bed bug team included.</span>
         </div>
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>Since 1983 the name has meant somebody shows up.</b> This makes the phone keep that promise on weekends too.</span>
+          <span><b>Since 1983, somebody shows up.</b> Now the phone does too.</span>
         </div>
       </div>
     </div>
@@ -462,10 +468,10 @@
     <div class="gap-scrim"></div>
     <div class="gap-inner">
       <div class="gap-eyebrow">The gap</div>
-      <h2>The sign says trusted since 1983. <em>The hours say Monday to Friday, 8 to 5.</em></h2>
-      <p>That's the office on Highway 24 27, from Action Pest's own website. Friday at 5 the doors lock, and the next time a human touches the phone is Monday morning, <b>63 hours later</b>. A homeowner who finds bites on Saturday has the whole weekend to call somebody else. In pest control, they do.</p>
+      <h2>The sign says trusted since 1983. <em>The hours say 8 to 5.</em></h2>
+      <p>Friday at 5 the doors lock. The next human answers <b>63 hours later</b>.</p>
     </div>
-    <div class="gap-credit">Photo: Action Pest's own office, actionpestexterminating.com</div>
+    <div class="gap-credit">Photo: their own office, actionpestexterminating.com</div>
   </section>
 
   <!-- THE MATH -->
@@ -489,12 +495,12 @@
        (Monday to Friday, 8 to 5, actionpestexterminating.com), not an industry stat. -->
   <section class="math reveal" data-section="math">
     <div>
-      <div class="stat-label">What one weekend call can cost <button class="stat-replay" id="statReplayBtn" type="button" aria-label="Replay the counter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></button></div>
+      <div class="stat-label">What one weekend call costs <button class="stat-replay" id="statReplayBtn" type="button" aria-label="Replay the counter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></button></div>
       <div class="stat-number" id="statNumber">$2<span class="cents">,500</span></div>
-      <div class="stat-sub">the average professional bed bug job, gone to whoever answered</div>
+      <div class="stat-sub">one bed bug job, gone to whoever answered</div>
     </div>
     <div class="math-copy">
-      <p>Published 2026 pricing puts the average professional bed bug treatment at <strong>$2,500</strong>, and whole home heat work runs <strong>$1,500 to $5,000</strong> before any follow up visits. That's one caller, one weekend. Small businesses already miss around <strong>62 percent</strong> of their calls during the day, <strong>85 percent</strong> of people who hit voicemail never call back, and roughly <strong>a quarter to 40 percent</strong> of home service calls arrive outside 8 to 5 in the first place. On its own posted hours, Action Pest's line is covered about 45 of the week's 168 hours. Nobody is asking a 40 year operation to start working weekends. The phone just shouldn't keep the office's hours.</p>
+      <p><strong>85 percent</strong> of callers who hit voicemail never call back. They call the next exterminator.</p>
     </div>
   </section>
 
@@ -502,26 +508,24 @@
   <section class="how reveal" data-section="how-it-works">
     <div class="how-head">
       <h2>What happens to the missed call</h2>
-      <span>Nothing changes about how Action runs</span>
     </div>
     <div class="how-grid">
       <div class="how-item lead">
         <div>
           <div class="how-num">01</div>
           <h3>Friday at 5:01, the catch turns on</h3>
-          <p>The office locks up like it has for four decades, and the 30 plus techs go home to their families. From that minute until Monday, every call that would have died in voicemail gets a text back inside a minute, <b>while Action Pest is still on the caller's screen</b> and the next exterminator on Google isn't.</p>
+          <p>A text fires back inside a minute, <b>while Action Pest is still on the caller's screen</b>.</p>
         </div>
-        <p>It works the same on a Tuesday at lunch when every line in the office is busy. Any missed call, any hour, same catch.</p>
       </div>
       <div class="how-item">
         <div class="how-num">02</div>
-        <h3>It sorts the emergency from the routine</h3>
-        <p>Bed bugs in a mattress or a termite swarm in the garage gets urgency and the right questions. A quarterly service reschedule gets handled without waking anyone up. Plain answers, house specialties included.</p>
+        <h3>It sorts emergency from routine</h3>
+        <p>Bed bugs get urgency. A quarterly reschedule books itself.</p>
       </div>
       <div class="how-item">
         <div class="how-num">03</div>
-        <h3>Monday opens to a schedule, not a backlog</h3>
-        <p>Inspections booked over the weekend with names, addresses, and time slots already confirmed by text. The office picks up Monday at 8 exactly where the AI left off, instead of returning two days of cold voicemails.</p>
+        <h3>Monday opens to a schedule</h3>
+        <p>Weekend bookings confirmed by text.</p>
       </div>
     </div>
   </section>
@@ -531,21 +535,20 @@
     <div class="cta-panel">
       <div class="cta-inner">
         <h2>The name has been good since 1983.<br/><em>Give the phone the same standard.</em></h2>
-        <p>Fifteen minutes with Ryan. Carroll, he'll run this live on Action Pest's own line, show you exactly what the weekend catch looks like at your size, and give you a straight answer on whether it's worth doing.</p>
-        <a class="cta-btn" href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">
+        <p>Fifteen minutes with Ryan, live on Action Pest's own line.</p>
+        <a class="cta-btn" href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">
           Book the 15 minute walkthrough
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
         </a>
-        <p class="cta-note">No pitch deck, no contract talk. Just the demo, live, and your questions.</p>
+        <p class="cta-note">No pitch deck. Just the demo, live.</p>
       </div>
     </div>
   </section>
 
   <footer data-section="footer">
-    <p class="quietline">"Three generations built the name. The phone should work the weekends they don't."</p>
     <div class="foot">
       <div>Put together by Ryan McNally at AID Marketing Agency</div>
-      <div><a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">paymegpt.com/p/KqXvRWYi</a></div>
+      <div><a href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">aidmarketingagency.github.io/aid-discovery-call</a></div>
     </div>
   </footer>
 

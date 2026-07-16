@@ -79,14 +79,26 @@
 
   .headline{
     font-family:'Fraunces',serif;font-weight:900;
-    font-size:clamp(2.15rem,4.6vw,3.55rem);
+    font-size:clamp(2.3rem,5vw,3.9rem);
     line-height:1.04;letter-spacing:-.01em;color:var(--bone);
     margin:18px 0 20px;
   }
   .headline em{font-style:italic;font-weight:700;color:var(--ind-hi)}
 
   .lede{color:var(--ash);font-size:1.02rem;max-width:34em}
-  .lede b{color:var(--bone);font-weight:600}
+  .lede b{color:var(--ind-hi);font-weight:700}
+
+  /* Hero CTA: first viewport carries the whole pitch (2026-07-16 revision pass).
+     Same URL as the page CTA, styled from the existing royal button ramp. */
+  .hero-cta{
+    display:inline-flex;align-items:center;gap:8px;margin-top:24px;
+    background:var(--royal-btn);color:#fff;text-decoration:none;
+    font-weight:700;font-size:.95rem;letter-spacing:.01em;
+    padding:13px 22px;border-radius:10px;
+    box-shadow:0 16px 34px -14px rgba(0,0,0,.6);
+    transition:transform .18s ease,background .18s ease;
+  }
+  .hero-cta:hover{background:var(--royal-btn-hi);transform:translateY(-2px)}
 
   .ring-badge{position:relative;width:56px;height:56px;margin:32px 0 0}
   .ring-badge svg.trade{position:relative;z-index:1;width:56px;height:56px;color:var(--ind-hi)}
@@ -170,11 +182,13 @@
     background-size:cover;background-position:14% 42%; /* keep their road sign in frame, left */
     filter:saturate(.5) contrast(1.06) brightness(.82);
   }
-  /* Scrim + indigo duotone grade toward the page accent, per D3. Dark side right, sign side left. */
+  /* Scrim + indigo duotone grade toward the page accent, per D3. Dark side right, sign side left.
+     2026-07-16 revision: hard-darkened behind the text zone so the headline never fights the
+     signage lettering in the photo. Sign stays visible at far left, text sits on a quiet field. */
   .gap-scrim{
     position:absolute;inset:0;
     background:
-      linear-gradient(260deg, rgba(9,11,21,.95) 0%, rgba(9,11,21,.84) 36%, rgba(13,17,40,.4) 70%, rgba(40,56,144,.26) 100%);
+      linear-gradient(260deg, rgba(9,11,21,.97) 0%, rgba(9,11,21,.93) 30%, rgba(9,11,21,.8) 52%, rgba(13,17,40,.42) 76%, rgba(40,56,144,.24) 100%);
   }
   .gap-inner{position:relative;padding:64px 54px;max-width:33em;margin-left:auto}
   .gap-eyebrow{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.2em;color:var(--ind-hi)}
@@ -184,7 +198,7 @@
   }
   .gap-inner h2 em{font-style:italic;color:var(--ind-hi)}
   .gap-inner p{color:var(--ash);font-size:.98rem}
-  .gap-inner p b{color:var(--bone);font-weight:600}
+  .gap-inner p b{color:var(--ind-hi);font-weight:700}
   .gap-credit{position:relative;padding:0 54px 18px;font-size:.66rem;color:var(--ash-dim);letter-spacing:.04em}
 
   /* ---------- The math ---------- */
@@ -203,8 +217,8 @@
   }
   .stat-number .cents{color:var(--ind-hi)}
   .stat-sub{font-size:.9rem;color:var(--ash);max-width:20em}
-  .math-copy p{color:var(--ash);font-size:.99rem}
-  .math-copy strong{color:var(--bone);font-weight:600}
+  .math-copy p{color:var(--ash);font-size:1.05rem}
+  .math-copy strong{color:var(--ind-hi);font-weight:700}
 
   /* ---------- How it works: asymmetric, one lead + two supporting ---------- */
   .how{margin:74px 0 0}
@@ -304,8 +318,13 @@
     .hero-secondary{margin-top:8px}
     .ring-badge{display:none}
     .gap-band{margin-top:52px}
-    .gap-inner{padding:44px 24px}
+    /* Mobile: text spans the full photo width, so the scrim goes near-solid behind it.
+       Photo breathes at the top, headline sits on a hard-dark field below. */
+    .gap-photo{background-position:12% 45%}
+    .gap-scrim{background:linear-gradient(180deg, rgba(9,11,21,.3) 0%, rgba(9,11,21,.92) 40%, rgba(9,11,21,.97) 100%)}
+    .gap-inner{padding:120px 24px 40px}
     .gap-credit{padding:0 24px 16px}
+    .hero-cta{display:none} /* sticky bar owns the mobile CTA */
     .math{grid-template-columns:1fr;gap:22px;padding:34px 24px;margin-top:56px}
     .how{margin-top:58px}
     .how-grid{grid-template-columns:1fr;grid-template-rows:none}

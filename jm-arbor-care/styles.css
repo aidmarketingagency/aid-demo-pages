@@ -85,7 +85,7 @@
   .hero-scrim{
     position:absolute;inset:0;z-index:-1;pointer-events:none;
     background:
-      linear-gradient(180deg, var(--void) 0%, rgba(11,16,19,.7) 22%, rgba(11,16,19,.88) 55%, var(--void) 100%),
+      linear-gradient(180deg, var(--void) 0%, rgba(11,16,19,.82) 22%, rgba(11,16,19,.93) 55%, var(--void) 100%),
       radial-gradient(760px 520px at 84% 6%, rgba(95,168,90,.16), transparent 60%);
   }
   /* Plain text eyebrow, NOT a pill capsule: uppercase letterspaced label + pulsing live dot,
@@ -103,6 +103,7 @@
   h1.headline{grid-area:headline;font-size:clamp(2.5rem,6.3vw,4.4rem);line-height:1.04;color:var(--bone)}
   h1.headline em{font-style:italic;color:var(--green-hot)}
   .hero p.lede{grid-area:lede;margin-top:20px;font-size:1.06rem;color:var(--ash);max-width:48ch;font-family:'Archivo',sans-serif}
+  .hero p.lede strong{color:var(--green-hot);font-weight:600}
 
   .ring-badge{grid-area:ring;position:relative;width:56px;height:56px;margin:30px 0 0}
   .ring-badge svg.phone{position:relative;z-index:1;width:56px;height:56px;color:var(--green-soft)}
@@ -250,7 +251,7 @@
   .stat-number .cents{color:var(--green-hot)}
   .stat-sub{font-size:.86rem;color:var(--ash);margin-top:10px;max-width:36ch;font-family:'Archivo',sans-serif}
   .math-copy{font-size:1.04rem;color:var(--ash);max-width:48ch;padding-bottom:6px;font-family:'Archivo',sans-serif}
-  .math-copy strong{color:var(--bone);font-weight:600}
+  .math-copy strong{color:var(--green-hot);font-weight:700}
   @media (max-width:900px){.math{grid-template-columns:1fr;gap:18px;padding-top:44px}}
 
   /* -- How it works: asymmetric, not 3 equal cards -- */

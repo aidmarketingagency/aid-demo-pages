@@ -304,7 +304,7 @@ h1.headline em{font-style:italic;color:var(--accent-soft)}
 .stat-number .cents{color:var(--accent-soft)}
 .stat-sub{font-family:'Spectral',serif;font-size:.86rem;color:var(--ash);margin-top:10px;max-width:34ch}
 .math-copy{font-family:'Spectral',serif;font-size:1.02rem;color:var(--ash);max-width:48ch;padding-bottom:6px;line-height:1.72}
-.math-copy strong{color:var(--bone);font-weight:600}
+.math-copy strong{color:var(--accent-soft);font-weight:700}
 @media (max-width:900px){.math{grid-template-columns:1fr;gap:20px;padding-top:44px}}
 
 /* -- How it works -- */
@@ -347,6 +347,7 @@ h1.headline em{font-style:italic;color:var(--accent-soft)}
 }
 .how-item.lead h3{font-size:1.44rem;font-weight:800}
 .how-item p{font-family:'Spectral',serif;font-size:.9rem;color:var(--ash);line-height:1.65}
+.how-item p strong{color:var(--accent-soft);font-weight:700}
 @media (max-width:900px){
   .how-grid{grid-template-columns:1fr}
   .how-item.lead{grid-row:auto;min-height:auto}

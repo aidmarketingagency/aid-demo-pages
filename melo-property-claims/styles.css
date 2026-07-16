@@ -81,6 +81,7 @@
   h1.headline{font-size:clamp(2.35rem,6vw,4.1rem);line-height:1.02;color:var(--bone)}
   h1.headline em{font-style:normal;color:var(--cyan)}
   .hero p.lede{margin-top:20px;font-size:1.06rem;color:var(--ash);max-width:47ch}
+  .hero p.lede strong{color:var(--cyan-soft);font-weight:600}
 
   .ring-badge{position:relative;width:56px;height:56px;margin:30px 0 0}
   .ring-badge svg.phone{position:relative;z-index:1;width:56px;height:56px;color:var(--cyan-soft)}
@@ -176,7 +177,7 @@
     font-size:clamp(1.3rem,3.2vw,2rem);line-height:1.25;color:var(--bone);max-width:30ch;
   }
   .promise p{margin-top:14px;font-size:.95rem;color:var(--ash);max-width:56ch}
-  .promise p strong{color:var(--bone);font-weight:600}
+  .promise p strong{color:var(--cyan-soft);font-weight:600}
 
   /* -- The Math: oversized stat, broken grid -- */
   .math{
@@ -200,7 +201,7 @@
   .stat-number .pct{color:var(--cyan)}
   .stat-sub{font-size:.86rem;color:var(--ash);margin-top:10px;max-width:36ch}
   .math-copy{font-size:1.04rem;color:var(--ash);max-width:48ch;padding-bottom:6px}
-  .math-copy strong{color:var(--bone);font-weight:600}
+  .math-copy strong{color:var(--cyan-soft);font-weight:700}
   @media (max-width:900px){.math{grid-template-columns:1fr;gap:18px;padding-top:44px}}
 
   /* -- How it works: asymmetric, not 3 equal cards -- */

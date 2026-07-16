@@ -229,7 +229,8 @@
   .stat-number .cents{color:var(--brass-hot)}
   .stat-sub{font-size:.86rem;color:var(--ash);margin-top:10px;max-width:36ch;font-family:'Plus Jakarta Sans',sans-serif}
   .math-copy{font-size:1.04rem;color:var(--ash);max-width:48ch;padding-bottom:6px;font-family:'Plus Jakarta Sans',sans-serif}
-  .math-copy strong{color:var(--bone);font-weight:600}
+  .math-copy strong{color:var(--brass-hot);font-weight:700}
+  .how-item p strong{color:var(--brass-hot);font-weight:700}
   @media (max-width:900px){.math{grid-template-columns:1fr;gap:18px;padding-top:44px}}
 
   /* -- How it works: asymmetric, not 3 equal cards -- */

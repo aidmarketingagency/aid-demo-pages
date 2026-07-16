@@ -94,15 +94,15 @@
     filter:saturate(.6) contrast(1.08) brightness(.68) sepia(.18) hue-rotate(-8deg);
   }
   .hero-photo::before{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(175deg, rgba(83,44,20,.4) 0%, rgba(16,11,7,.08) 40%, rgba(16,11,7,.7) 100%);
+    content:"";position:absolute;inset:0;z-index:1;
+    background:linear-gradient(175deg, rgba(83,44,20,.4) 0%, rgba(16,11,7,.08) 40%, rgba(16,11,7,.78) 100%);
   }
   .hero-photo::after{
-    content:"";position:absolute;inset:0;opacity:.12;mix-blend-mode:overlay;
+    content:"";position:absolute;inset:0;z-index:1;opacity:.12;mix-blend-mode:overlay;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   .hero-photo .cap{
-    position:absolute;left:0;right:0;bottom:0;padding:10px 14px;
+    position:absolute;left:0;right:0;bottom:0;z-index:2;padding:10px 14px;
     font-size:.66rem;letter-spacing:.06em;color:var(--bone);opacity:.85;
   }
   @media (max-width:640px){.hero-photo{max-width:220px}}
@@ -227,7 +227,8 @@
   .stat-number .cents{color:var(--bark-soft)}
   .stat-sub{font-size:.86rem;color:var(--ash);margin-top:10px;max-width:34ch}
   .math-copy{font-size:1.04rem;color:var(--ash);max-width:48ch;padding-bottom:6px}
-  .math-copy strong{color:var(--bone);font-weight:600}
+  .math-copy strong{color:var(--bark-soft);font-weight:700}
+  .how-item p strong{color:var(--bark-soft);font-weight:700}
   @media (max-width:900px){.math{grid-template-columns:1fr;gap:18px;padding-top:44px}}
 
   /* -- How it works: asymmetric, not 3 equal cards -- */

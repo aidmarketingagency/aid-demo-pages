@@ -86,7 +86,7 @@
   .hero-scrim{
     position:absolute;inset:0;z-index:-1;pointer-events:none;
     background:
-      linear-gradient(180deg, var(--void) 0%, rgba(13,13,15,.7) 22%, rgba(13,13,15,.88) 55%, var(--void) 100%),
+      linear-gradient(180deg, var(--void) 0%, rgba(13,13,15,.84) 22%, rgba(13,13,15,.92) 55%, var(--void) 100%),
       radial-gradient(760px 520px at 84% 6%, rgba(201,168,76,.16), transparent 60%);
   }
   /* Plain text eyebrow, not a pill capsule: uppercase letterspaced label + pulsing live dot,
@@ -229,7 +229,8 @@
   .stat-number .cents{color:var(--brass-hot)}
   .stat-sub{font-size:.86rem;color:var(--ash);margin-top:10px;max-width:36ch;font-family:'Plus Jakarta Sans',sans-serif}
   .math-copy{font-size:1.04rem;color:var(--ash);max-width:48ch;padding-bottom:6px;font-family:'Plus Jakarta Sans',sans-serif}
-  .math-copy strong{color:var(--bone);font-weight:600}
+  .math-copy strong{color:var(--brass-hot);font-weight:700}
+  .how-item p strong{color:var(--brass-hot);font-weight:700}
   @media (max-width:900px){.math{grid-template-columns:1fr;gap:18px;padding-top:44px}}
 
   /* -- How it works: asymmetric, not 3 equal cards -- */

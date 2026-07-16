@@ -82,6 +82,7 @@
   h1.headline{font-size:clamp(2.35rem,6vw,4.1rem);line-height:1.02;color:var(--bone)}
   h1.headline em{font-style:normal;color:var(--brass-soft)}
   .hero p.lede{margin-top:20px;font-size:1.05rem;color:var(--ash);max-width:50ch}
+  .hero p.lede strong{color:var(--brass-soft);font-weight:600}
 
   /* -- Hero art: original inline SVG windstorm scene in place of a photo (see designer's
      note: this build's brief calls for inline CSS + SVG only, no raster images), scrim
@@ -222,7 +223,7 @@
   .stat-number .cents{color:var(--brass-soft)}
   .stat-sub{font-size:.86rem;color:var(--ash);margin-top:10px;max-width:34ch}
   .math-copy{font-size:1.04rem;color:var(--ash);max-width:48ch;padding-bottom:6px}
-  .math-copy strong{color:var(--bone);font-weight:600}
+  .math-copy strong{color:var(--brass-soft);font-weight:700}
   @media (max-width:900px){.math{grid-template-columns:1fr;gap:18px;padding-top:44px}}
 
   /* -- How it works: asymmetric, not 3 equal cards -- */
