@@ -318,11 +318,12 @@
     .hero-secondary{margin-top:8px}
     .ring-badge{display:none}
     .gap-band{margin-top:52px}
-    /* Mobile: text spans the full photo width, so the scrim goes near-solid behind it.
-       Photo breathes at the top, headline sits on a hard-dark field below. */
-    .gap-photo{background-position:12% 45%}
-    .gap-scrim{background:linear-gradient(180deg, rgba(9,11,21,.3) 0%, rgba(9,11,21,.92) 40%, rgba(9,11,21,.97) 100%)}
-    .gap-inner{padding:120px 24px 40px}
+    /* Mobile: stack instead of overlay. The photo gets its own clearly-visible window
+       (sign in frame, light scrim), and the copy sits below it on a solid field, so
+       neither fights the other. */
+    .gap-photo{position:relative;inset:auto;height:240px;background-position:15% 55%}
+    .gap-scrim{height:240px;inset:0 0 auto;background:linear-gradient(180deg, rgba(9,11,21,.16) 0%, rgba(9,11,21,.1) 60%, rgba(9,11,21,.72) 100%)}
+    .gap-inner{padding:26px 24px 34px;background:rgba(9,11,21,.97)}
     .gap-credit{padding:0 24px 16px}
     .hero-cta{display:none} /* sticky bar owns the mobile CTA */
     .math{grid-template-columns:1fr;gap:22px;padding:34px 24px;margin-top:56px}
