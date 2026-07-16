@@ -1,0 +1,570 @@
+<!--
+  jollys-tree-service.html
+  =========================
+  Built 2026-07-16 under the contractor-demo-v2 spec (skills/pmgpt-site-builder/templates/contractor-demo-v2.md),
+  per a direct build brief from the orchestrating session. Prospect: Jolly's Tree Service, owner Jonathon
+  Belfiore. Jacksonville, NC, the Camp Lejeune / NC coastal corridor. Tree service (removal, storm response).
+  Sourced from docs/outreach/2026-07-11-prospect-dossier-03.md, entry #2.
+
+  DESIGNER'S NOTE (D2 call, required by the v2 spec):
+  No live website exists for Jolly's, confirmed across multiple search passes in the dossier: Gmail is the only
+  contact method on file. A Facebook page exists (facebook.com/jollystreeservice) but there is no scrapeable,
+  faithful brand system there, no real logo mark, no consistent site-wide color signal to extract or facelift.
+  This lands squarely in D2 bucket (c), the Midnight Authority fallback: void #0D0D0F, graphite #1E1E22, brass
+  #C9A84C, bone #F0EDE8. This is the documented AIDHQ standard for exactly this case, nothing to conform to,
+  nothing worth facelifting, not a default reached for out of laziness.
+
+  Hard-req note: this build's brief specifies "inline CSS + SVG only" and "no CDN scripts, widget injected at
+  publish," which supersedes the general template's v2.1 A2 (mandatory embedded photo) and A3 (shared widget
+  embed) amendments for this specific build. In place of a hero photo, the hero art is an original inline SVG
+  windstorm scene, a leaning tree reaching toward a rooftop, wind swoosh lines, drifting leaves, satisfying
+  D4.2's trade SVG requirement with more ambition than a small icon alone. The shared concierge widget script is
+  intentionally omitted here; the publish pipeline injects it.
+
+  D4 personality layer: a windstorm tree-on-house scenario, a pine leaning toward a carport roofline near Piney
+  Green Road after a nighttime gust, Jonathon and the crew already out on another call when it comes in. Stat
+  anchor $3,850, the low end of the storm-response tree-removal cost band in North Carolina, live-search
+  verified 2026-07-16, full source list in the HTML comment above THE MATH section. Trade SVG: an original
+  leaning-tree-in-wind mark, a bent canopy with curved gust lines, distinct from the pine and growth-ring mark
+  used on the Timber Hill Tree Service build and from any roofline, flame, or wrench mark used elsewhere.
+
+  Differentiation spine (per build brief): Jacksonville sits next to Camp Lejeune, and the dossier's why-now
+  signal is specifically that this market has heavy PCS turnover, so a large share of after-storm callers have
+  never used a local tree service before and have no loyalty to any one company yet. Where a build like Timber
+  Hill leans on decades of local trust, this page's spine is speed itself: whoever texts back first is who gets
+  remembered, because there's no existing relationship to fall back on. That angle runs through the lede, the
+  SMS scenario, and the proof band, not just the hook line.
+
+  Dossier detail worked into the eyebrow, lede, and SMS scenario per D4.4: the "Facebook page and a Gmail
+  address" digital footprint and the Camp Lejeune corridor detail, both public-appropriate. The exact Facebook
+  review count and recommend percentage from the dossier are deliberately NOT stated as precise, driftable
+  numbers on this page; the trust row instead states the BBB A+ grade (public, stable) and a pattern claim, per
+  the publish contract's rule against drifting point figures going stale.
+
+  Font pairing: Spectral (display serif, an old-ledger weight that still reads sturdy at large sizes) + Archivo
+  (grotesque body sans, plain and legible). Fresh pairing this session, not reused from Peak Roofing (Big
+  Shoulders + Libre Franklin), the Midnight Authority default (Cormorant Garamond + Plus Jakarta Sans),
+  Craftsman Exteriors (Fraunces + Archivo), Timber Hill Tree Service (Newsreader + Bricolage Grotesque), or the
+  two other tree builds already on disk this batch, JG Tree Services and Ziemba's Tree Service, both of which
+  use Syne + Plus Jakarta Sans on green palettes.
+
+  Animation standard: SMS sequencer and stat counter both re-arm on every scroll re-entry via IntersectionObserver
+  with exit-reset, each with a manual replay affordance, generation-token guarded per the v2 spec,
+  prefers-reduced-motion fallback covers the JS-driven sequences too.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- BASE:START (managed by Coding Agent — do not edit) -->
+<base href="/aid-demo-pages/jollys-tree-service/">
+<!-- BASE:END -->
+
+<!-- pmgpt-demo-template:contractor-demo-v2 -->
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Spectral:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+
+
+
+<!-- SEO Meta Tags -->
+<title>Jolly's Tree Service: your phone, answered | AID</title>
+<meta name="description" content="A working preview of Jolly" />
+<meta property="og:title" content="Jolly's Tree Service: your phone, answered | AID" />
+<meta property="og:description" content="A working preview of Jolly" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Jolly's Tree Service: your phone, answered | AID" />
+<meta name="twitter:description" content="A working preview of Jolly" />
+<!-- End SEO Meta Tags -->
+<script data-lp-token-hydrate>
+(function(){try{
+  var slug="lp-mrnqji2d-9t07v";
+  var SK='lp_access_'+slug;
+  var map={access_token:'lp_pw_',allowlist_access_token:'lp_al_',pin_access_token:'lp_pin_',paywall_access_token:'lp_paid_'};
+  var u=new URL(location.href);var found=null;var changed=false;
+  Object.keys(map).forEach(function(p){var v=u.searchParams.get(p);if(v){found=v;try{localStorage.setItem(map[p]+slug,v);}catch(e){}u.searchParams.delete(p);changed=true;}});
+  if(found){try{sessionStorage.setItem(SK,found);}catch(e){}}
+  else{try{if(!sessionStorage.getItem(SK)){var t=localStorage.getItem('lp_pw_'+slug)||localStorage.getItem('lp_al_'+slug)||localStorage.getItem('lp_pin_'+slug)||localStorage.getItem('lp_paid_'+slug);if(t)sessionStorage.setItem(SK,t);}}catch(e){}}
+  if(changed){try{history.replaceState(null,'',u.toString());}catch(e){}}
+  function getTok(){try{return sessionStorage.getItem(SK)||localStorage.getItem('lp_pw_'+slug)||localStorage.getItem('lp_al_'+slug)||localStorage.getItem('lp_pin_'+slug)||localStorage.getItem('lp_paid_'+slug);}catch(e){return null;}}
+  function needsToken(url,method){if(!url)return false;var s=String(url);var m=(method||'GET').toUpperCase();var isSheetWrite=(m==='POST'||m==='PATCH'||m==='PUT'||m==='DELETE')&&/\/sheet-rows(\/|$|\?)/.test(s);var isSheetRead=/\/sheet-data(\/|$|\?)/.test(s);var isLlm=/\/api\/landing-pages\/public\/[^/]+\/(llm|llm-config)(\/|$|\?)/.test(s);return isSheetWrite||isSheetRead||isLlm;}
+  if(window.fetch){var _f=window.fetch;window.fetch=function(input,init){try{var url=typeof input==='string'?input:(input&&input.url)||'';var method=(init&&init.method)||(input&&input.method)||'GET';if(needsToken(url,method)){var tok=getTok();if(tok){init=init||{};var h=new Headers(init.headers||(typeof input!=='string'?input.headers:undefined)||{});if(!h.has('X-Landing-Page-Token'))h.set('X-Landing-Page-Token',tok);init.headers=h;}}}catch(e){}return _f.call(this,input,init);};}
+  if(window.XMLHttpRequest){var _o=XMLHttpRequest.prototype.open;var _s=XMLHttpRequest.prototype.send;XMLHttpRequest.prototype.open=function(m,u){this.__lpM=m;this.__lpU=u;return _o.apply(this,arguments);};XMLHttpRequest.prototype.send=function(){try{if(needsToken(this.__lpU,this.__lpM)){var tok=getTok();if(tok)this.setRequestHeader('X-Landing-Page-Token',tok);}}catch(e){}return _s.apply(this,arguments);};}
+}catch(e){}})();
+</script>
+
+<script data-field-replace>
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var fields={};
+  var paramMap={
+    'first_name':'firstName','last_name':'lastName','full_name':'fullName',
+    'email':'email','phone':'phone','company':'company',
+    'city':'city','state':'state','country':'country'
+  };
+  var skipTags={'SCRIPT':1,'STYLE':1,'NOSCRIPT':1,'TEXTAREA':1,'CODE':1,'PRE':1};
+  var hasUrlFields=false;
+  for(var p in paramMap){
+    var v=params.get(p);
+    if(v){fields[paramMap[p]]=v;hasUrlFields=true;}
+  }
+  var contactId=params.get('contact_id');
+  function esc(s){
+    if(!s)return s;
+    var d=document.createElement('div');
+    d.appendChild(document.createTextNode(s));
+    return d.innerHTML;
+  }
+  function doReplace(data){
+    var r={};
+    r['{{full_name}}']=esc(((data.firstName||'')+' '+(data.lastName||'')).trim()||((data.fullName||data.name)||''));
+    r['{{first_name}}']=esc(data.firstName||(data.name?data.name.split(' ')[0]:'')||'');
+    r['{{last_name}}']=esc(data.lastName||(data.name&&data.name.indexOf(' ')>-1?data.name.substring(data.name.indexOf(' ')+1):'')||'');
+    r['{{email}}']=esc(data.email||'');
+    r['{{phone}}']=esc(data.phone||'');
+    r['{{company}}']=esc(data.company||'');
+    r['{{city}}']=esc(data.city||'');
+    r['{{state}}']=esc(data.state||'');
+    r['{{country}}']=esc(data.country||'');
+    r['{{date}}']=new Date().toLocaleDateString();
+    r['{{time}}']=new Date().toLocaleTimeString();
+    r['{{location}}']=[data.city,data.state,data.country].filter(Boolean).join(', ');
+    r['{{tracking_id}}']=esc(data.trackingId||'');
+    r['{{lastClickedProduct}}']=esc(data.lastClickedProduct||'');
+    r['{{lastProductClickDate}}']=esc(data.lastProductClickDate||'');
+    r['{{lastClickedProductPrice}}']=esc(data.lastClickedProductPrice||'');
+    r['{{lastClickedProductURL}}']=esc(data.lastClickedProductURL||'');
+    r['{{productsClickedCount}}']=esc(data.productsClickedCount||'0');
+    r['{{ip_address}}']=esc(data.ipAddress||'');
+    r['{{ip}}']=esc(data.ipAddress||'');
+    if(data.customFields){
+      for(var k in data.customFields){
+        r['{{'+k+'}}']=esc(String(data.customFields[k]||''));
+      }
+    }
+    params.forEach(function(v,k){
+      if(!paramMap[k]&&k!=='contact_id'&&k!=='page_id'&&k.indexOf('utm_')!==0){
+        r['{{'+k+'}}']=esc(v);
+      }
+    });
+    var hasValues=false;
+    for(var key in r){if(r[key]){hasValues=true;break;}}
+    if(!hasValues)return;
+    var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+      acceptNode:function(n){
+        var p=n.parentNode;
+        if(p&&skipTags[p.nodeName])return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var node;
+    while(node=walker.nextNode()){
+      var txt=node.nodeValue;
+      if(txt&&txt.indexOf('{{')>-1){
+        var changed=txt;
+        for(var ph in r){
+          if(r[ph]&&changed.indexOf(ph)>-1){
+            changed=changed.split(ph).join(r[ph]);
+          }
+        }
+        if(changed!==txt)node.nodeValue=changed;
+      }
+    }
+    var attrs=['value','placeholder','content','alt','title'];
+    attrs.forEach(function(attr){
+      var els=document.querySelectorAll('['+attr+'*="{{"]');
+      for(var i=0;i<els.length;i++){
+        var tag=els[i].tagName;
+        if(skipTags[tag])continue;
+        var val=els[i].getAttribute(attr);
+        if(val){
+          var nv=val;
+          for(var ph in r){
+            if(r[ph]&&nv.indexOf(ph)>-1){
+              nv=nv.split(ph).join(r[ph]);
+            }
+          }
+          if(nv!==val)els[i].setAttribute(attr,nv);
+        }
+      }
+    });
+  }
+  function run(){
+    if(contactId){
+      var xhr=new XMLHttpRequest();
+      xhr.open('GET','https://paymegpt.com/api/landing/context/'+encodeURIComponent(contactId)+'?page_id=5556');
+      xhr.onload=function(){
+        if(xhr.status===200){
+          try{
+            var resp=JSON.parse(xhr.responseText);
+            if(resp.success&&resp.contact){
+              var merged=resp.contact;
+              for(var k in fields){merged[k]=fields[k];}
+              doReplace(merged);
+              return;
+            }
+          }catch(e){}
+        }
+        if(hasUrlFields)doReplace(fields);
+      };
+      xhr.onerror=function(){if(hasUrlFields)doReplace(fields);};
+      xhr.send();
+    }else if(hasUrlFields){
+      doReplace(fields);
+    }
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}
+  else{run();}
+})();
+</script>
+<script data-payment>
+(function(){
+  var slug='DR3Qyaf';
+  var apiBase='https://paymegpt.com';
+  var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
+  function findEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  function findPhone(){var ids=['phone','phoneNumber','phone-number','tel','telephone','mobile','mobileNumber','cell','contact-phone','buyer-phone'];for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.trim())return el.value.trim();}var inputs=document.querySelectorAll('input[type="tel"],input[name*="phone"],input[name*="tel"],input[name*="mobile"],input[placeholder*="phone"],input[placeholder*="Phone"]');for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.trim())return inputs[j].value.trim();}return '';}
+  var __realProcessPayment=function(a,b,c,d,e){
+    var amountCents,email,productName,productDescription,customerName,quantity;
+    if(a&&typeof a==='object'){
+      amountCents=a.amountCents;email=a.email;productName=a.productName;
+      productDescription=a.productDescription||'';customerName=a.name||'';quantity=a.quantity||1;
+    }else{
+      amountCents=typeof a==='number'?a:0;productName=typeof b==='string'?b:'';
+      productDescription=typeof c==='string'?c:'';email='';customerName='';quantity=1;
+    }
+    if(!email)email=findEmail();
+    if(!customerName)customerName=findName();
+    var phone=findPhone();
+    if(!productName){alert('Product name is required.');return Promise.reject('no_product_name');}
+    if(!amountCents||amountCents<100){alert('Amount must be at least $1.00');return Promise.reject('invalid_amount');}
+    if(!email){alert('Please enter your email address.');return Promise.reject('no_email');}
+    var successBase=window.location.href.split('?')[0];
+    var __pLoc=(document.documentElement.lang||navigator.language||'en');
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/payment/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,name:customerName,phone:phone||'',amountCents:amountCents,productName:productName,productDescription:productDescription,quantity:quantity,locale:__pLoc,successUrl:successBase+'?payment=success&product='+encodeURIComponent(productName)+'&session_id={CHECKOUT_SESSION_ID}',cancelUrl:successBase+'?payment=cancelled'})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process payment');throw new Error(d.error);}
+    });
+  };
+  Object.defineProperty(window,'__processPayment',{value:__realProcessPayment,writable:false,configurable:false});
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('payment')==='success'){
+      var sidP=urlParams.get('session_id');
+      if(sidP){try{fetch(apiBase+'/api/landing-pages/public/'+slug+'/checkout/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:sidP})}).catch(function(){});}catch(e){}}
+      var pName=urlParams.get('product')||'your item';
+      var overlay=document.createElement('div');overlay.id='payment-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      var subTxt=successSubtext||('Thank you for purchasing '+pName+'.');
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Payment Successful!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">'+esc(subTxt)+'</p><button id="lp-pay-success-btn" style="padding:12px 32px;font-size:16px;font-weight:600;background:'+successBtnColor+';color:white;border:none;border-radius:8px;cursor:pointer;">'+esc(successBtnLabel)+'</button></div>';
+      document.body.appendChild(overlay);
+      var pBtn=document.getElementById('lp-pay-success-btn');
+      if(pBtn){pBtn.addEventListener('click',function(){if(successRedirect){window.location.href=successRedirect;}else{overlay.remove();window.history.replaceState({},'',window.location.pathname);}});}
+    }
+  });
+})();
+</script>
+<script data-cart>
+(function(){
+  var slug='DR3Qyaf';
+  var apiBase='https://paymegpt.com';
+  var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
+  function findCartEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findCartName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  function findCartPhone(){var ids=['phone','phoneNumber','phone-number','tel','telephone','mobile','mobileNumber','cell','contact-phone','buyer-phone'];for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.trim())return el.value.trim();}var inputs=document.querySelectorAll('input[type="tel"],input[name*="phone"],input[name*="tel"],input[name*="mobile"],input[placeholder*="phone"],input[placeholder*="Phone"]');for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.trim())return inputs[j].value.trim();}return '';}
+  var __realCart=function(arg){
+    var items, email='', customerName='', successUrl, cancelUrl, currency;
+    if(Array.isArray(arg)){items=arg;}
+    else if(arg&&typeof arg==='object'){
+      items=arg.items;email=arg.email||'';customerName=arg.name||arg.customerName||'';
+      successUrl=arg.successUrl;cancelUrl=arg.cancelUrl;currency=arg.currency;
+    }
+    if(!Array.isArray(items)||items.length===0){alert('No items in cart.');return Promise.reject('no_items');}
+    var cleanItems=[];var totalCents=0;
+    for(var i=0;i<items.length;i++){
+      var it=items[i];if(!it||typeof it!=='object'){alert('Invalid item at position '+i);return Promise.reject('bad_item');}
+      var nm=typeof it.name==='string'?it.name.trim():'';
+      if(!nm){alert('Item '+(i+1)+' is missing a name.');return Promise.reject('no_name');}
+      var amt=typeof it.amountCents==='number'?it.amountCents:(typeof it.amount==='number'?Math.round(it.amount*100):NaN);
+      if(!isFinite(amt)||amt<1){alert('Item "'+nm+'" needs a valid amount in cents.');return Promise.reject('bad_amount');}
+      var qty=(typeof it.quantity==='number'&&it.quantity>0)?Math.floor(it.quantity):1;
+      cleanItems.push({name:nm,description:it.description||'',amountCents:amt,quantity:qty});
+      totalCents+=amt*qty;
+    }
+    if(totalCents<50){alert('Cart total must be at least $0.50');return Promise.reject('total_too_low');}
+    if(!email)email=findCartEmail();
+    if(!customerName)customerName=findCartName();
+    var cartPhone=findCartPhone();
+    if(!email){var p=window.prompt('Enter your email for the receipt:','');if(p&&p.indexOf('@')>-1){email=p.trim();}else{alert('An email address is required to complete checkout.');return Promise.reject('no_email');}}
+    var successBase=window.location.href.split('?')[0];
+    var body={email:email,name:customerName,items:cleanItems,locale:(document.documentElement.lang||navigator.language||'en')};
+    if(currency)body.currency=currency;
+    if(cartPhone)body.phone=cartPhone;
+    body.successUrl=successUrl||(successBase+'?cart=success&email='+encodeURIComponent(email)+'&session_id={CHECKOUT_SESSION_ID}');
+    body.cancelUrl=cancelUrl||(successBase+'?cart=cancelled');
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/cart/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(body)
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process checkout');throw new Error(d.error);}
+    });
+  };
+  try{Object.defineProperty(window,'__processCart',{value:__realCart,writable:false,configurable:false});}catch(e){window.__processCart=__realCart;}
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('cart')==='success'){
+      var sidC=urlParams.get('session_id');
+      if(sidC){try{fetch(apiBase+'/api/landing-pages/public/'+slug+'/checkout/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:sidC})}).catch(function(){});}catch(e){}}
+      if(document.getElementById('payment-success-overlay')||document.getElementById('donation-success-overlay')||document.getElementById('cart-success-overlay'))return;
+      var overlay=document.createElement('div');overlay.id='cart-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      var subTxt=successSubtext||'Thank you for your order.';
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Order Confirmed!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">'+esc(subTxt)+'</p><button id="lp-cart-success-btn" style="padding:12px 32px;font-size:16px;font-weight:600;background:'+successBtnColor+';color:white;border:none;border-radius:8px;cursor:pointer;">'+esc(successBtnLabel)+'</button></div>';
+      document.body.appendChild(overlay);
+      var cBtn=document.getElementById('lp-cart-success-btn');
+      if(cBtn){cBtn.addEventListener('click',function(){if(successRedirect){window.location.href=successRedirect;}else{overlay.remove();window.history.replaceState({},'',window.location.pathname);}});}
+    }
+  });
+})();
+</script>  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="wind-bg" aria-hidden="true"></div>
+
+<div class="wrap">
+
+  <header data-section="header">
+    <div class="mast">
+      <div class="brand">
+        <svg class="windmark" viewBox="0 0 44 46" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M20 44 V27" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M20 27c-9 -1 -13 -10 -8 -17c3 -4 9 -5 13 -2c6 5 5 15 -5 19z" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/>
+          <path d="M4 15c6 -5 10 -5 15 -1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".75"/>
+          <path d="M2 23c7 -6 12 -6 17 -1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".5"/>
+        </svg>
+        <div>
+          <div class="name">Jolly's Tree Service</div>
+          <div class="loc">Jacksonville, NC &middot; Tree Removal &amp; Storm Response</div>
+        </div>
+      </div>
+      <div class="built-by">Live preview &middot; built by<br/><b>AID Marketing Agency</b></div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" data-section="hero">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="pulse"></span> Windstorm call, 9:47pm tonight</span>
+      <h1 class="headline">A windstorm drops a tree.<br/>Your phone rings once.<br/><em>Then it's somebody else's job.</em></h1>
+      <p class="lede">Jolly's whole digital front door is a Facebook page and a Gmail address, and most of Jacksonville still finds Jonathon that way just fine. But this corridor turns over every few years on PCS orders, so a good share of the people calling after a windstorm have never heard of Jolly's before tonight. They're not loyal yet. They're just going to text whoever answers first. Watch what that looks like, live.</p>
+
+      <!-- A2 amendment overridden by this build's brief (inline CSS + SVG only): the hero
+           art is an original SVG windstorm scene instead of an embedded photo. See the
+           designer's note at the top of this file. -->
+      <figure class="hero-scene">
+        <div class="scene-cap">Piney Green Rd, tonight</div>
+        <svg class="scene-svg" viewBox="0 0 460 230" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="sceneTitle">
+          
+          <path d="M296 210 V162 L340 134 L384 162 V210 Z" stroke="#c9a84c" stroke-width="2" stroke-linejoin="round" opacity=".55"/>
+          <rect x="360" y="138" width="12" height="26" stroke="#c9a84c" stroke-width="2" opacity=".4"/>
+          <path d="M296 210 H384" stroke="#c9a84c" stroke-width="2" opacity=".45"/>
+          <path d="M14 48c60 -18 120 -18 180 -2c58 15 96 15 148 -4" stroke="#e3c578" stroke-width="2" stroke-linecap="round" opacity=".55"/>
+          <path d="M8 84c70 -20 140 -18 204 4c50 16 90 12 130 -10" stroke="#e3c578" stroke-width="2" stroke-linecap="round" opacity=".4"/>
+          <path d="M22 116c64 -14 124 -10 178 10" stroke="#e3c578" stroke-width="1.6" stroke-linecap="round" opacity=".3"/>
+          <ellipse cx="222" cy="40" rx="5" ry="3" fill="#e3c578" opacity=".6" transform="rotate(24 222 40)"/>
+          <ellipse cx="260" cy="76" rx="4.5" ry="2.6" fill="#e3c578" opacity=".5" transform="rotate(18 260 76)"/>
+          <ellipse cx="188" cy="106" rx="4" ry="2.4" fill="#e3c578" opacity=".4" transform="rotate(10 188 106)"/>
+          <path d="M150 214 V132" stroke="#f0ede8" stroke-width="4" stroke-linecap="round" opacity=".9"/>
+          <path d="M150 132c-8 -34 4 -62 30 -78c22 -13 46 -6 52 12c8 22 -10 44 -34 52c-18 6 -38 8 -48 14z" stroke="#f0ede8" stroke-width="3" stroke-linejoin="round" fill="rgba(240,237,232,.05)"/>
+          <path d="M150 168c-16 6 -28 0 -32 -12" stroke="#f0ede8" stroke-width="2.2" stroke-linecap="round" opacity=".65"/>
+          <path d="M228 66l14 24c-4 -4 -12 -4 -14 4" stroke="#f0ede8" stroke-width="2" stroke-linecap="round" opacity=".7"/>
+        </svg>
+      </figure>
+
+      <div class="ring-badge">
+        <span class="ring r1"></span>
+        <span class="ring r2"></span>
+        <span class="ring r3"></span>
+        <svg class="phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+
+      <div class="trust-row">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b>Live on Jolly's actual number.</b> Not a mockup, not a template with your name swapped in.</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b>Nothing for you or Jonathon's crew to install.</b> It runs quietly behind the number already on the Facebook page.</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b>A+ with the Better Business Bureau since 2017,</b> and a strong run of five star recommendations on Facebook. This just makes sure the next caller reaches Jonathon instead of the next name they find.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo-panel reveal">
+      <div class="demo-head">
+        <div class="demo-title">Text thread &middot; <b>Jolly's Tree Service</b></div>
+        <button class="replay-btn" id="replayBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+          Replay
+        </button>
+      </div>
+      <div class="thread" id="thread">
+        <div class="bubble caller" data-time="9:47 PM">A big pine just came down in the wind and it's leaning across our carport off Piney Green, right near my husband's truck. He's stationed at Lejeune and leaves for PT at 5. Can somebody look at it tonight?<span class="stamp">9:47 PM</span></div>
+        <div class="typing" id="typing1"><span></span><span></span><span></span></div>
+        <div class="bubble ai" data-time="9:47 PM"><span class="badge">AI replied in 41 seconds</span>Thanks for reaching out to Jolly's! Sorry about the pine, that wind came through fast tonight. Is the truck actually pinned under it, or just close, and can everyone stay clear of the carport until we get eyes on it?<span class="stamp">9:47 PM</span></div>
+        <div class="bubble caller" data-time="9:49 PM">Just close, not pinned, we already moved the truck. It's blocking about half the driveway though.<span class="stamp">9:49 PM</span></div>
+        <div class="typing" id="typing2"><span></span><span></span><span></span></div>
+        <div class="bubble ai" data-time="9:49 PM">Good, that's a first thing tomorrow job, not a middle of the night one. Jonathon can get a crew out early morning before your husband needs to roll out, or early afternoon if that's easier. Which works? I'll text the crew lead's name either way.<span class="stamp">9:49 PM</span></div>
+      </div>
+      <div class="demo-foot">
+        <div class="resp-time"><span class="dot"></span> First reply in 41 sec, no human touched a phone</div>
+        <div class="disclaimer">Simulated exchange for demo purposes</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF BAND: text-based, no photo per this build's inline-CSS-plus-SVG-only brief -->
+  <section class="proof reveal" data-section="proof">
+    <div class="proof-cap">
+      <div class="k">Nearly a decade in, still one Facebook page and a Gmail inbox</div>
+      <p>Jonathon opened Jolly's back in 2016 and has carried Jacksonville's storm calls on a Facebook page and a personal inbox ever since. That's real trust, built the slow way, in a town where half the neighborhood changes every few years. This just makes sure that trust still answers the phone at 9pm when the wind picks up, for the caller who's never heard of Jolly's yet.</p>
+    </div>
+  </section>
+
+  <!-- THE MATH -->
+  <!-- Sources (live-search verified 2026-07-16, per v2 spec: industry stats must be
+       live-search sourced, never estimated):
+       $3,850 to $15,000+ storm-response emergency tree removal cost band in North Carolina:
+         https://tree-removal-cost-guide.com/emergency-tree-removal-cost/north-carolina
+         (cross-checked against the same low-end figure for Central NC storm work:
+         https://lubbersandsons.com/how-much-does-tree-care-cost-in-central-north-carolina/)
+       One real-world example, a homeowner's storm-felled 70-foot oak ran $2,200 to $3,800 in
+       emergency quotes, plus roughly a $500 after-hours callout fee on top:
+         https://stumpoff.com/emergency-tree-removal-cost/
+       62% of small-business calls go unanswered and 85% of callers who hit voicemail never
+       call back, calling a competitor instead:
+         https://www.getaira.io/blog/missed-business-calls-statistics
+       25-40% of home-service calls arrive outside 8am-5pm business hours, re-confirmed
+       against multiple 2026 industry sources in the 25-45% range:
+         https://ainora.lt/blog/hvac-service-call-statistics-2026 -->
+  <section class="math reveal" data-section="math">
+    <div>
+      <div class="stat-label">What one missed storm call is worth <button class="stat-replay" id="statReplayBtn" type="button" aria-label="Replay the counter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></button></div>
+      <div class="stat-number">$3<span class="cents">,850</span></div>
+      <div class="stat-sub">the low end of a storm-response tree removal job in North Carolina</div>
+    </div>
+    <div class="math-copy">
+      <p>That's the floor. Storm-response tree work in North Carolina runs <strong>$3,850 to $15,000 and up</strong>, and one homeowner's storm-felled oak alone ran $2,200 to $3,800 in quotes, plus a $500 after-hours callout fee on top of that. Here's the part that stings twice as hard in a corridor that turns over every few years: <strong>62 percent</strong> of calls to small businesses go unanswered, and <strong>85 percent</strong> of the people who hit voicemail never call back. They text the next name on the map instead. Miss two of those calls the week a windstorm rolls through Jacksonville and that's a full removal or more sitting on somebody else's schedule instead of Jolly's.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how reveal" data-section="how-it-works">
+    <div class="how-head">
+      <h2>The three part catch</h2>
+      <span>No app for Jonathon to open, no app for the caller either</span>
+    </div>
+    <div class="how-grid">
+      <div class="how-item lead">
+        <div>
+          <div class="how-num">01</div>
+          <h3>The call gets missed, on purpose</h3>
+          <p>Jonathon and the crew stay on the saw. Nobody climbs down for a ringing phone, and windstorm calls hit hardest at night and on weekends, exactly when the crew is hardest to reach.</p>
+        </div>
+        <p>Every unanswered call fires a text back in under a minute, while the homeowner still has Jolly's name on their screen instead of the next tree service down the list.</p>
+      </div>
+      <div class="how-item">
+        <div class="how-num">02</div>
+        <h3>The AI asks the right questions</h3>
+        <p>It knows windstorm calls: is the tree touching the house, is the driveway blocked, does anyone need to move a vehicle first. Real triage, not a script.</p>
+      </div>
+      <div class="how-item">
+        <div class="how-num">03</div>
+        <h3>You get a booked estimate</h3>
+        <p>Day and time locked in, texted to Jonathon and the homeowner while the crew finishes the last job. He climbs down to a scheduled site visit, not a cold voicemail.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section reveal" data-section="cta">
+    <div class="cta-panel">
+      <div class="cta-inner">
+        <h2>See it running on <em>Jolly's</em> number.</h2>
+        <p>Fifteen minutes with Ryan. He'll walk you through exactly what you saw above, live on Jolly's line, and give Jonathon a straight answer on whether it's worth doing.</p>
+        <a class="cta-btn" href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">
+          Book the walkthrough
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+        <p class="cta-note">No pitch deck, no obligation. Just a look at what this looks like on your phone.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer data-section="footer">
+    <p class="quietline">"Whoever texts back first gets the job. This is how Jolly's answers first, every time."</p>
+    <div class="foot">
+      <div>Put together by Ryan McNally at AID Marketing Agency</div>
+      <div><a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">paymegpt.com/p/KqXvRWYi</a></div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- A1 sticky mobile CTA bar: same booking URL as the page CTA, an affordance not a
+     second ask. Hidden while the real CTA panel is in view (see script). -->
+<a class="sticky-cta" id="stickyCta" href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">Book 15 minutes with Ryan</a>
+
+
+
+
+<!-- AID demo concierge (shared widget 54722168) + one-shot auto-open -->
+<script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
+
+  <script src="script.js"></script>
+</body>
+</html>
