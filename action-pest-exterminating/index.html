@@ -1,0 +1,566 @@
+<!--
+  action-pest-exterminating.html
+  ==============================
+  Built 2026-07-16 under the contractor-demo-v2 spec (skills/pmgpt-site-builder/templates/contractor-demo-v2.md),
+  including the v2.1 amendment (A1 mobile attention contract, A2 required hero image, A4 funnel posture).
+  Prospect: Action Pest Exterminating, Inc. Midland, NC (Cabarrus County / East Charlotte metro).
+  Owner: Carroll Cox, President. Phone: (704) 563-1941. Dossier: docs/outreach/2026-07-15-prospect-dossier-06.md (D06 #2, score 9, HOT).
+
+  DESIGNER'S NOTE (D2 call, required by the v2 spec):
+  Scraped actionpestexterminating.com (Squarespace). This is bucket (a) REAL BRAND: CONFORM.
+  A genuine logo mark exists (a shield badge with a white "A" ringed by HONEST / EFFECTIVE /
+  PROFESSIONAL, royal blue wordmark, tagline "Trusted Pest Elimination Since 1983") and the
+  site's own CSS declares a deliberate accent: --accent-hsl 230.77, 56.52%, 36.08%, which is
+  hex #283890, a royal indigo that matches the logo. That indigo is THE accent here, used
+  exactly (#283890 for deep panel washes and the CTA family) plus lightness-lifted tints of
+  the SAME hue (#7C8DEE / #A3B0F7) for text-level accents on the near-black navy-ink canvas,
+  since 36% lightness indigo fails contrast on dark. The red on their road sign is signage
+  incidental (phone number paint), left off the page. Type: their site loads Public Sans, so
+  the body face conforms to it; display is Fraunces (from the approved characterful list),
+  fitting a three-generation 1983 heritage company. Fresh pairing: Fraunces + Public Sans
+  (Peak used Big Shoulders + Libre Franklin, Gaston used Spectral + Archivo, Midnight uses
+  Cormorant + Plus Jakarta).
+
+  D4 personality layer: the differentiator for this build (batch has three pest pages) is the
+  1983 heritage + 30-plus-person scale + the after-hours/weekend gap. Their own site posts
+  hours of Monday to Friday, 8 to 5: that is roughly 45 covered hours out of 168, and Friday
+  5 PM to Monday morning is a 63 hour stretch with nobody on the phone. Dossier detail
+  threaded into the eyebrow (missed call, Saturday 7:42 PM) AND the SMS scenario (a weekend
+  bed bug discovery booked into Monday's first inspection slot). The K9 bed bug inspection
+  team detail comes from their own site's service copy and is threaded into the AI's reply
+  and the trust row. The BBB complaint noted in the dossier is internal research only and is
+  NOT surfaced anywhere on the page, per D4.4. Trade SVG art drawn fresh: header brandmark is
+  a shield holding an "A" (an homage to their actual badge, redrawn as strokes), ring badge is
+  a fresh bed bug silhouette. Neither is a Heroicon.
+
+  A2 hero image: rung 1 of the D3 ladder, a CLIENT PHOTO. Their own homepage hero photograph
+  of the Action Pest office and road sign on Highway 24 27 in Midland at dusk
+  (images.squarespace-cdn.com .../main-slide-image-scaled.jpg), downloaded and embedded as a
+  base64 JPEG data URI (1200px, q62), with indigo duotone grade, scrim, and the shared grain
+  pass. Captioned honestly as their own office photo. It carries the after-hours story: the
+  building at dusk, closed, phone still ringing.
+
+  Stats: live-search verified 2026-07-16, sources in the HTML comment above THE MATH section.
+
+  DEVIATIONS (per the parent task's hard requirements for this scratchpad build):
+  - A3 shared concierge widget (paymegpt.com/widget.js) is OMITTED because this deliverable
+    bans CDN scripts. The standard embed is included as an inert HTML comment at the foot of
+    the page for the publish pass to activate.
+  - Publish contract steps (deploy, curl verification, screenshots) belong to the publish
+    pass, not this file build.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- BASE:START (managed by Coding Agent — do not edit) -->
+<base href="/aid-demo-pages/action-pest-exterminating/">
+<!-- BASE:END -->
+
+<!-- pmgpt-demo-template:contractor-demo-v2 -->
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,600;1,9..144,700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+
+
+<!-- SEO Meta Tags -->
+<title>Action Pest Exterminating: the weekend phone, answered | AID</title>
+<meta name="description" content="A working preview of Action Pest Exterminating catching the Saturday night bed bug call that used to wait until Monday. Built by AID Marketing Agency for Midland, NC." />
+<meta property="og:title" content="Action Pest Exterminating: the weekend phone, answered | AID" />
+<meta property="og:description" content="A working preview of Action Pest Exterminating catching the Saturday night bed bug call that used to wait until Monday. Built by AID Marketing Agency for Midland, NC." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Action Pest Exterminating: the weekend phone, answered | AID" />
+<meta name="twitter:description" content="A working preview of Action Pest Exterminating catching the Saturday night bed bug call that used to wait until Monday. Built by AID Marketing Agency for Midland, NC." />
+<!-- End SEO Meta Tags -->
+<script data-lp-token-hydrate>
+(function(){try{
+  var slug="lp-mrnptkxj-6he2o";
+  var SK='lp_access_'+slug;
+  var map={access_token:'lp_pw_',allowlist_access_token:'lp_al_',pin_access_token:'lp_pin_',paywall_access_token:'lp_paid_'};
+  var u=new URL(location.href);var found=null;var changed=false;
+  Object.keys(map).forEach(function(p){var v=u.searchParams.get(p);if(v){found=v;try{localStorage.setItem(map[p]+slug,v);}catch(e){}u.searchParams.delete(p);changed=true;}});
+  if(found){try{sessionStorage.setItem(SK,found);}catch(e){}}
+  else{try{if(!sessionStorage.getItem(SK)){var t=localStorage.getItem('lp_pw_'+slug)||localStorage.getItem('lp_al_'+slug)||localStorage.getItem('lp_pin_'+slug)||localStorage.getItem('lp_paid_'+slug);if(t)sessionStorage.setItem(SK,t);}}catch(e){}}
+  if(changed){try{history.replaceState(null,'',u.toString());}catch(e){}}
+  function getTok(){try{return sessionStorage.getItem(SK)||localStorage.getItem('lp_pw_'+slug)||localStorage.getItem('lp_al_'+slug)||localStorage.getItem('lp_pin_'+slug)||localStorage.getItem('lp_paid_'+slug);}catch(e){return null;}}
+  function needsToken(url,method){if(!url)return false;var s=String(url);var m=(method||'GET').toUpperCase();var isSheetWrite=(m==='POST'||m==='PATCH'||m==='PUT'||m==='DELETE')&&/\/sheet-rows(\/|$|\?)/.test(s);var isSheetRead=/\/sheet-data(\/|$|\?)/.test(s);var isLlm=/\/api\/landing-pages\/public\/[^/]+\/(llm|llm-config)(\/|$|\?)/.test(s);return isSheetWrite||isSheetRead||isLlm;}
+  if(window.fetch){var _f=window.fetch;window.fetch=function(input,init){try{var url=typeof input==='string'?input:(input&&input.url)||'';var method=(init&&init.method)||(input&&input.method)||'GET';if(needsToken(url,method)){var tok=getTok();if(tok){init=init||{};var h=new Headers(init.headers||(typeof input!=='string'?input.headers:undefined)||{});if(!h.has('X-Landing-Page-Token'))h.set('X-Landing-Page-Token',tok);init.headers=h;}}}catch(e){}return _f.call(this,input,init);};}
+  if(window.XMLHttpRequest){var _o=XMLHttpRequest.prototype.open;var _s=XMLHttpRequest.prototype.send;XMLHttpRequest.prototype.open=function(m,u){this.__lpM=m;this.__lpU=u;return _o.apply(this,arguments);};XMLHttpRequest.prototype.send=function(){try{if(needsToken(this.__lpU,this.__lpM)){var tok=getTok();if(tok)this.setRequestHeader('X-Landing-Page-Token',tok);}}catch(e){}return _s.apply(this,arguments);};}
+}catch(e){}})();
+</script>
+
+<script data-field-replace>
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var fields={};
+  var paramMap={
+    'first_name':'firstName','last_name':'lastName','full_name':'fullName',
+    'email':'email','phone':'phone','company':'company',
+    'city':'city','state':'state','country':'country'
+  };
+  var skipTags={'SCRIPT':1,'STYLE':1,'NOSCRIPT':1,'TEXTAREA':1,'CODE':1,'PRE':1};
+  var hasUrlFields=false;
+  for(var p in paramMap){
+    var v=params.get(p);
+    if(v){fields[paramMap[p]]=v;hasUrlFields=true;}
+  }
+  var contactId=params.get('contact_id');
+  function esc(s){
+    if(!s)return s;
+    var d=document.createElement('div');
+    d.appendChild(document.createTextNode(s));
+    return d.innerHTML;
+  }
+  function doReplace(data){
+    var r={};
+    r['{{full_name}}']=esc(((data.firstName||'')+' '+(data.lastName||'')).trim()||((data.fullName||data.name)||''));
+    r['{{first_name}}']=esc(data.firstName||(data.name?data.name.split(' ')[0]:'')||'');
+    r['{{last_name}}']=esc(data.lastName||(data.name&&data.name.indexOf(' ')>-1?data.name.substring(data.name.indexOf(' ')+1):'')||'');
+    r['{{email}}']=esc(data.email||'');
+    r['{{phone}}']=esc(data.phone||'');
+    r['{{company}}']=esc(data.company||'');
+    r['{{city}}']=esc(data.city||'');
+    r['{{state}}']=esc(data.state||'');
+    r['{{country}}']=esc(data.country||'');
+    r['{{date}}']=new Date().toLocaleDateString();
+    r['{{time}}']=new Date().toLocaleTimeString();
+    r['{{location}}']=[data.city,data.state,data.country].filter(Boolean).join(', ');
+    r['{{tracking_id}}']=esc(data.trackingId||'');
+    r['{{lastClickedProduct}}']=esc(data.lastClickedProduct||'');
+    r['{{lastProductClickDate}}']=esc(data.lastProductClickDate||'');
+    r['{{lastClickedProductPrice}}']=esc(data.lastClickedProductPrice||'');
+    r['{{lastClickedProductURL}}']=esc(data.lastClickedProductURL||'');
+    r['{{productsClickedCount}}']=esc(data.productsClickedCount||'0');
+    r['{{ip_address}}']=esc(data.ipAddress||'');
+    r['{{ip}}']=esc(data.ipAddress||'');
+    if(data.customFields){
+      for(var k in data.customFields){
+        r['{{'+k+'}}']=esc(String(data.customFields[k]||''));
+      }
+    }
+    params.forEach(function(v,k){
+      if(!paramMap[k]&&k!=='contact_id'&&k!=='page_id'&&k.indexOf('utm_')!==0){
+        r['{{'+k+'}}']=esc(v);
+      }
+    });
+    var hasValues=false;
+    for(var key in r){if(r[key]){hasValues=true;break;}}
+    if(!hasValues)return;
+    var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+      acceptNode:function(n){
+        var p=n.parentNode;
+        if(p&&skipTags[p.nodeName])return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var node;
+    while(node=walker.nextNode()){
+      var txt=node.nodeValue;
+      if(txt&&txt.indexOf('{{')>-1){
+        var changed=txt;
+        for(var ph in r){
+          if(r[ph]&&changed.indexOf(ph)>-1){
+            changed=changed.split(ph).join(r[ph]);
+          }
+        }
+        if(changed!==txt)node.nodeValue=changed;
+      }
+    }
+    var attrs=['value','placeholder','content','alt','title'];
+    attrs.forEach(function(attr){
+      var els=document.querySelectorAll('['+attr+'*="{{"]');
+      for(var i=0;i<els.length;i++){
+        var tag=els[i].tagName;
+        if(skipTags[tag])continue;
+        var val=els[i].getAttribute(attr);
+        if(val){
+          var nv=val;
+          for(var ph in r){
+            if(r[ph]&&nv.indexOf(ph)>-1){
+              nv=nv.split(ph).join(r[ph]);
+            }
+          }
+          if(nv!==val)els[i].setAttribute(attr,nv);
+        }
+      }
+    });
+  }
+  function run(){
+    if(contactId){
+      var xhr=new XMLHttpRequest();
+      xhr.open('GET','https://paymegpt.com/api/landing/context/'+encodeURIComponent(contactId)+'?page_id=5554');
+      xhr.onload=function(){
+        if(xhr.status===200){
+          try{
+            var resp=JSON.parse(xhr.responseText);
+            if(resp.success&&resp.contact){
+              var merged=resp.contact;
+              for(var k in fields){merged[k]=fields[k];}
+              doReplace(merged);
+              return;
+            }
+          }catch(e){}
+        }
+        if(hasUrlFields)doReplace(fields);
+      };
+      xhr.onerror=function(){if(hasUrlFields)doReplace(fields);};
+      xhr.send();
+    }else if(hasUrlFields){
+      doReplace(fields);
+    }
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}
+  else{run();}
+})();
+</script>
+<script data-payment>
+(function(){
+  var slug='rNKkTk';
+  var apiBase='https://paymegpt.com';
+  var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
+  function findEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  function findPhone(){var ids=['phone','phoneNumber','phone-number','tel','telephone','mobile','mobileNumber','cell','contact-phone','buyer-phone'];for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.trim())return el.value.trim();}var inputs=document.querySelectorAll('input[type="tel"],input[name*="phone"],input[name*="tel"],input[name*="mobile"],input[placeholder*="phone"],input[placeholder*="Phone"]');for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.trim())return inputs[j].value.trim();}return '';}
+  var __realProcessPayment=function(a,b,c,d,e){
+    var amountCents,email,productName,productDescription,customerName,quantity;
+    if(a&&typeof a==='object'){
+      amountCents=a.amountCents;email=a.email;productName=a.productName;
+      productDescription=a.productDescription||'';customerName=a.name||'';quantity=a.quantity||1;
+    }else{
+      amountCents=typeof a==='number'?a:0;productName=typeof b==='string'?b:'';
+      productDescription=typeof c==='string'?c:'';email='';customerName='';quantity=1;
+    }
+    if(!email)email=findEmail();
+    if(!customerName)customerName=findName();
+    var phone=findPhone();
+    if(!productName){alert('Product name is required.');return Promise.reject('no_product_name');}
+    if(!amountCents||amountCents<100){alert('Amount must be at least $1.00');return Promise.reject('invalid_amount');}
+    if(!email){alert('Please enter your email address.');return Promise.reject('no_email');}
+    var successBase=window.location.href.split('?')[0];
+    var __pLoc=(document.documentElement.lang||navigator.language||'en');
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/payment/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,name:customerName,phone:phone||'',amountCents:amountCents,productName:productName,productDescription:productDescription,quantity:quantity,locale:__pLoc,successUrl:successBase+'?payment=success&product='+encodeURIComponent(productName)+'&session_id={CHECKOUT_SESSION_ID}',cancelUrl:successBase+'?payment=cancelled'})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process payment');throw new Error(d.error);}
+    });
+  };
+  Object.defineProperty(window,'__processPayment',{value:__realProcessPayment,writable:false,configurable:false});
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('payment')==='success'){
+      var sidP=urlParams.get('session_id');
+      if(sidP){try{fetch(apiBase+'/api/landing-pages/public/'+slug+'/checkout/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:sidP})}).catch(function(){});}catch(e){}}
+      var pName=urlParams.get('product')||'your item';
+      var overlay=document.createElement('div');overlay.id='payment-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      var subTxt=successSubtext||('Thank you for purchasing '+pName+'.');
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Payment Successful!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">'+esc(subTxt)+'</p><button id="lp-pay-success-btn" style="padding:12px 32px;font-size:16px;font-weight:600;background:'+successBtnColor+';color:white;border:none;border-radius:8px;cursor:pointer;">'+esc(successBtnLabel)+'</button></div>';
+      document.body.appendChild(overlay);
+      var pBtn=document.getElementById('lp-pay-success-btn');
+      if(pBtn){pBtn.addEventListener('click',function(){if(successRedirect){window.location.href=successRedirect;}else{overlay.remove();window.history.replaceState({},'',window.location.pathname);}});}
+    }
+  });
+})();
+</script>
+<script data-cart>
+(function(){
+  var slug='rNKkTk';
+  var apiBase='https://paymegpt.com';
+  var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
+  function findCartEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findCartName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  function findCartPhone(){var ids=['phone','phoneNumber','phone-number','tel','telephone','mobile','mobileNumber','cell','contact-phone','buyer-phone'];for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.trim())return el.value.trim();}var inputs=document.querySelectorAll('input[type="tel"],input[name*="phone"],input[name*="tel"],input[name*="mobile"],input[placeholder*="phone"],input[placeholder*="Phone"]');for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.trim())return inputs[j].value.trim();}return '';}
+  var __realCart=function(arg){
+    var items, email='', customerName='', successUrl, cancelUrl, currency;
+    if(Array.isArray(arg)){items=arg;}
+    else if(arg&&typeof arg==='object'){
+      items=arg.items;email=arg.email||'';customerName=arg.name||arg.customerName||'';
+      successUrl=arg.successUrl;cancelUrl=arg.cancelUrl;currency=arg.currency;
+    }
+    if(!Array.isArray(items)||items.length===0){alert('No items in cart.');return Promise.reject('no_items');}
+    var cleanItems=[];var totalCents=0;
+    for(var i=0;i<items.length;i++){
+      var it=items[i];if(!it||typeof it!=='object'){alert('Invalid item at position '+i);return Promise.reject('bad_item');}
+      var nm=typeof it.name==='string'?it.name.trim():'';
+      if(!nm){alert('Item '+(i+1)+' is missing a name.');return Promise.reject('no_name');}
+      var amt=typeof it.amountCents==='number'?it.amountCents:(typeof it.amount==='number'?Math.round(it.amount*100):NaN);
+      if(!isFinite(amt)||amt<1){alert('Item "'+nm+'" needs a valid amount in cents.');return Promise.reject('bad_amount');}
+      var qty=(typeof it.quantity==='number'&&it.quantity>0)?Math.floor(it.quantity):1;
+      cleanItems.push({name:nm,description:it.description||'',amountCents:amt,quantity:qty});
+      totalCents+=amt*qty;
+    }
+    if(totalCents<50){alert('Cart total must be at least $0.50');return Promise.reject('total_too_low');}
+    if(!email)email=findCartEmail();
+    if(!customerName)customerName=findCartName();
+    var cartPhone=findCartPhone();
+    if(!email){var p=window.prompt('Enter your email for the receipt:','');if(p&&p.indexOf('@')>-1){email=p.trim();}else{alert('An email address is required to complete checkout.');return Promise.reject('no_email');}}
+    var successBase=window.location.href.split('?')[0];
+    var body={email:email,name:customerName,items:cleanItems,locale:(document.documentElement.lang||navigator.language||'en')};
+    if(currency)body.currency=currency;
+    if(cartPhone)body.phone=cartPhone;
+    body.successUrl=successUrl||(successBase+'?cart=success&email='+encodeURIComponent(email)+'&session_id={CHECKOUT_SESSION_ID}');
+    body.cancelUrl=cancelUrl||(successBase+'?cart=cancelled');
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/cart/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(body)
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process checkout');throw new Error(d.error);}
+    });
+  };
+  try{Object.defineProperty(window,'__processCart',{value:__realCart,writable:false,configurable:false});}catch(e){window.__processCart=__realCart;}
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('cart')==='success'){
+      var sidC=urlParams.get('session_id');
+      if(sidC){try{fetch(apiBase+'/api/landing-pages/public/'+slug+'/checkout/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:sidC})}).catch(function(){});}catch(e){}}
+      if(document.getElementById('payment-success-overlay')||document.getElementById('donation-success-overlay')||document.getElementById('cart-success-overlay'))return;
+      var overlay=document.createElement('div');overlay.id='cart-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      var subTxt=successSubtext||'Thank you for your order.';
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Order Confirmed!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">'+esc(subTxt)+'</p><button id="lp-cart-success-btn" style="padding:12px 32px;font-size:16px;font-weight:600;background:'+successBtnColor+';color:white;border:none;border-radius:8px;cursor:pointer;">'+esc(successBtnLabel)+'</button></div>';
+      document.body.appendChild(overlay);
+      var cBtn=document.getElementById('lp-cart-success-btn');
+      if(cBtn){cBtn.addEventListener('click',function(){if(successRedirect){window.location.href=successRedirect;}else{overlay.remove();window.history.replaceState({},'',window.location.pathname);}});}
+    }
+  });
+})();
+</script>  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- v2.1 amendment A1: sticky mobile booking affordance, same URL as the page CTA.
+     JS hides it via IntersectionObserver while the real CTA panel is in view. -->
+<div class="mobile-cta-bar" id="mobileCtaBar">
+  <a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">Book 15 minutes with Ryan</a>
+</div>
+
+<div class="wrap">
+
+  <header data-section="header">
+    <div class="mast">
+      <div class="brand">
+        <!-- Trade/brand SVG: shield holding an "A", an homage to Action Pest's own badge
+             (white A in a shield ringed HONEST / EFFECTIVE / PROFESSIONAL), redrawn fresh
+             as strokes. Not a Heroicon. -->
+        <svg class="mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M24 4 40 9.6V22c0 10.6-6.6 17.6-16 22C14.6 39.6 8 32.6 8 22V9.6L24 4Z" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/>
+          <path d="M17.2 32.5 24 13.5l6.8 19" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M19.9 25.8h8.2" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <div class="name">Action Pest Exterminating</div>
+          <div class="loc">Midland, NC &middot; Charlotte + Cabarrus &middot; Since 1983</div>
+        </div>
+      </div>
+      <div class="built-by">Live preview &middot; built by<br/><b>AID Marketing Agency</b></div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" data-section="hero">
+    <div class="hero-top">
+      <span class="eyebrow"><span class="pulse"></span> Missed call, Saturday 7:42 PM, Midland</span>
+      <h1 class="headline">Four decades of showing up.<br/><em>Sixty three hours a week of nobody picking up.</em></h1>
+      <p class="lede">Action Pest has kept Charlotte and Cabarrus County homes clear since 1983, <b>three generations and more than 30 people on the road</b>, and every one of them goes home when the office locks up at 5. Here is what Saturday night looks like when the phone answers itself.</p>
+    </div>
+
+    <div class="demo-panel">
+      <div class="demo-head">
+        <div class="demo-title">Text thread &middot; <b>Action Pest Exterminating</b></div>
+        <button class="replay-btn" id="replayBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+          Replay
+        </button>
+      </div>
+      <div class="thread" id="thread">
+        <div class="bubble caller">Hi, we just got back from a trip and I found little brown bugs in the mattress seam and bites on my daughter's arm. Do you all handle bed bugs?<span class="stamp">Sat 7:43 PM</span></div>
+        <div class="typing" id="typing1"><span></span><span></span><span></span></div>
+        <div class="bubble ai"><span class="badge">AI replied in 38 seconds</span>You reached Action Pest Exterminating. Yes, bed bugs are one of our specialties, and our K9 inspection team can confirm exactly what you have before anyone treats a thing. What's the address?<span class="stamp">Sat 7:43 PM</span></div>
+        <div class="bubble caller">2318 Coldwater Ln in Harrisburg. Please tell me someone can look at this before next week, I can't have her sleeping in that room.<span class="stamp">Sat 7:49 PM</span></div>
+        <div class="typing" id="typing2"><span></span><span></span><span></span></div>
+        <div class="bubble ai">I can hold Monday's first inspection slot at 8:30 AM for you right now. Leave the bedding exactly as it is so the dog gets a clean read. Your confirmation and your inspector's name are on the way by text.<span class="stamp">Sat 7:50 PM</span></div>
+      </div>
+      <div class="demo-foot">
+        <div class="resp-time"><span class="dot"></span> First reply in 38 sec, on a Saturday night</div>
+        <div class="disclaimer">Simulated exchange for demo purposes</div>
+      </div>
+    </div>
+
+    <div class="hero-secondary">
+      <div class="ring-badge">
+        <span class="ring r1"></span>
+        <span class="ring r2"></span>
+        <span class="ring r3"></span>
+        <!-- Trade SVG: bed bug silhouette, drawn fresh for this build. Not a Heroicon. -->
+        <svg class="trade" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="24" cy="27.5" rx="8" ry="10" stroke="currentColor" stroke-width="1.9"/>
+          <circle cx="24" cy="14.5" r="4" stroke="currentColor" stroke-width="1.9"/>
+          <path d="M21.6 11.4 19 8M26.4 11.4 29 8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          <path d="M17 22.5 10.5 19.5M16 27.5H9.5M17.4 32.5 11.5 36.5M31 22.5l6.5-3M32 27.5h6.5M30.6 32.5l5.9 4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+          <path d="M18 25.5c1.8 1.1 10.2 1.1 12 0M18 30.5c1.8 1.1 10.2 1.1 12 0" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <div class="trust-row">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b>Runs on Action Pest's actual number.</b> Not a mockup, not a template with the name swapped in.</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b>It knows the house specialties.</b> A bed bug caller hears about the K9 inspection team up front, before anybody treats anything.</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b>Since 1983 the name has meant somebody shows up.</b> This makes the phone keep that promise on weekends too.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE 63 HOUR GAP: their own office photo (A2, D3 rung 1: client photo) -->
+  <section class="gap-band reveal" data-section="gap">
+    <div class="gap-photo" role="img" aria-label="Action Pest Exterminating's own office and road sign on Highway 24 27 in Midland, NC, photographed at dusk. Photo from the company's own website."></div>
+    <div class="gap-scrim"></div>
+    <div class="gap-inner">
+      <div class="gap-eyebrow">The gap</div>
+      <h2>The sign says trusted since 1983. <em>The hours say Monday to Friday, 8 to 5.</em></h2>
+      <p>That's the office on Highway 24 27, from Action Pest's own website. Friday at 5 the doors lock, and the next time a human touches the phone is Monday morning, <b>63 hours later</b>. A homeowner who finds bites on Saturday has the whole weekend to call somebody else. In pest control, they do.</p>
+    </div>
+    <div class="gap-credit">Photo: Action Pest's own office, actionpestexterminating.com</div>
+  </section>
+
+  <!-- THE MATH -->
+  <!-- Sources (live-search verified 2026-07-16, per D4.3: industry stats must be live-search
+       sourced, never estimated, never pulled from training data):
+       Average professional bed bug treatment $2,500, typical range $1,000 to $4,000:
+         https://homeguide.com/costs/bed-bug-exterminator-cost
+         https://www.thisoldhouse.com/pest-control/bed-bug-exterminator-cost
+       Whole-home bed bug heat treatment $1,500 to $5,000 ($2,000 to $6,000 on a 2,000 sq ft home):
+         https://homeguide.com/costs/bed-bug-heat-treatment-cost
+         https://www.angi.com/articles/how-much-does-bed-bug-extermination-cost.htm
+       62% of calls to small businesses go unanswered; 85% of callers who reach voicemail
+       never call back:
+         https://www.getaira.io/blog/missed-business-calls-statistics
+         https://pcnanswers.com/missed-call-revenue-study/
+       Roughly 25 to 40% of home-service calls arrive outside 8am to 5pm, with evenings and
+       Saturday mornings the heaviest windows; after-hours calls are nearly all missed:
+         https://ainora.lt/blog/hvac-service-call-statistics-2026
+         https://skipcalls.com/blog/percentage-business-calls-unanswered-statistics-2026
+       The 45-of-168 covered-hours figure is arithmetic on Action Pest's own posted hours
+       (Monday to Friday, 8 to 5, actionpestexterminating.com), not an industry stat. -->
+  <section class="math reveal" data-section="math">
+    <div>
+      <div class="stat-label">What one weekend call can cost <button class="stat-replay" id="statReplayBtn" type="button" aria-label="Replay the counter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></button></div>
+      <div class="stat-number" id="statNumber">$2<span class="cents">,500</span></div>
+      <div class="stat-sub">the average professional bed bug job, gone to whoever answered</div>
+    </div>
+    <div class="math-copy">
+      <p>Published 2026 pricing puts the average professional bed bug treatment at <strong>$2,500</strong>, and whole home heat work runs <strong>$1,500 to $5,000</strong> before any follow up visits. That's one caller, one weekend. Small businesses already miss around <strong>62 percent</strong> of their calls during the day, <strong>85 percent</strong> of people who hit voicemail never call back, and roughly <strong>a quarter to 40 percent</strong> of home service calls arrive outside 8 to 5 in the first place. On its own posted hours, Action Pest's line is covered about 45 of the week's 168 hours. Nobody is asking a 40 year operation to start working weekends. The phone just shouldn't keep the office's hours.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how reveal" data-section="how-it-works">
+    <div class="how-head">
+      <h2>What happens to the missed call</h2>
+      <span>Nothing changes about how Action runs</span>
+    </div>
+    <div class="how-grid">
+      <div class="how-item lead">
+        <div>
+          <div class="how-num">01</div>
+          <h3>Friday at 5:01, the catch turns on</h3>
+          <p>The office locks up like it has for four decades, and the 30 plus techs go home to their families. From that minute until Monday, every call that would have died in voicemail gets a text back inside a minute, <b>while Action Pest is still on the caller's screen</b> and the next exterminator on Google isn't.</p>
+        </div>
+        <p>It works the same on a Tuesday at lunch when every line in the office is busy. Any missed call, any hour, same catch.</p>
+      </div>
+      <div class="how-item">
+        <div class="how-num">02</div>
+        <h3>It sorts the emergency from the routine</h3>
+        <p>Bed bugs in a mattress or a termite swarm in the garage gets urgency and the right questions. A quarterly service reschedule gets handled without waking anyone up. Plain answers, house specialties included.</p>
+      </div>
+      <div class="how-item">
+        <div class="how-num">03</div>
+        <h3>Monday opens to a schedule, not a backlog</h3>
+        <p>Inspections booked over the weekend with names, addresses, and time slots already confirmed by text. The office picks up Monday at 8 exactly where the AI left off, instead of returning two days of cold voicemails.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section reveal" data-section="cta">
+    <div class="cta-panel">
+      <div class="cta-inner">
+        <h2>The name has been good since 1983.<br/><em>Give the phone the same standard.</em></h2>
+        <p>Fifteen minutes with Ryan. Carroll, he'll run this live on Action Pest's own line, show you exactly what the weekend catch looks like at your size, and give you a straight answer on whether it's worth doing.</p>
+        <a class="cta-btn" href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">
+          Book the 15 minute walkthrough
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+        <p class="cta-note">No pitch deck, no contract talk. Just the demo, live, and your questions.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer data-section="footer">
+    <p class="quietline">"Three generations built the name. The phone should work the weekends they don't."</p>
+    <div class="foot">
+      <div>Put together by Ryan McNally at AID Marketing Agency</div>
+      <div><a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">paymegpt.com/p/KqXvRWYi</a></div>
+    </div>
+  </footer>
+
+</div>
+
+
+
+<!-- v2.1 amendment A3: the shared AID demo concierge widget (54722168) is NOT loaded in this
+     scratchpad build because the deliverable bans CDN scripts. Activate the standard embed
+     below (uncomment both script tags) during the publish pass, per the spec.
+
+<script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
+
+-->
+
+  <script src="script.js"></script>
+</body>
+</html>
