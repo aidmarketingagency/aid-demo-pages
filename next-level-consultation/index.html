@@ -1,0 +1,610 @@
+<!--
+  next-level-consultation.html
+  =========================
+  Built 2026-07-16 under the contractor-demo-v2 spec (skills/pmgpt-site-builder/templates/contractor-demo-v2.md),
+  v2.1 amendment applied (A1 mobile-first hero, A2 required hero image, A3 shared widget, A4 funnel posture).
+  Prospect: Next Level Consultation LLC, Greenville, SC. Public adjuster (Krystale' Conley), not a
+  roofer or contractor: carries a dedicated adjuster personality layer, public-adjuster register
+  throughout (claims, carriers, inspections), not a trade template with the name swapped in.
+  Dossier: docs/outreach/2026-07-11-prospect-dossier-03.md, entry #7 (Krystale' Conley).
+
+  DESIGNER'S NOTE (D2 call, required by the v2 spec):
+  Fetched next-level-consults.com directly (curl + text extraction, not the WebFetch summarizer
+  alone, to pull real hex values from the served CSS). The site is a Duda template build ("dm"
+  class prefixes throughout). No designed logo mark exists anywhere in the markup: the header is
+  a plain white-on-teal text wordmark, "Next Level Consultation," set in Fjalla One. The one color
+  that is NOT template gray or white is the header background, #68ccd1, and it is used
+  consistently: it is the .dmHeader background across the whole site, the only accent color on
+  an otherwise white-and-gray Duda default. No logo, no deliberate color story elsewhere, but a
+  real, consistently-used accent color exists. This is bucket (b) GENERIC-BUT-PRESENT: FACELIFT,
+  the Bar Rescue case, not bucket (c): there is a lineage color to keep, it is just an unconsidered
+  Duda default begging to be styled on purpose. Their teal becomes a refined petrol here: hue held
+  at roughly 183 degrees (their #68ccd1 measures H183 S53 L61), deepened and slightly desaturated
+  to #3AA1A6 as the core accent (H183 S48 L44), with a light tint #AEDEE0 for text-on-dark
+  contrast and a near-black teal shadow #154547 for gradient depth. The canvas is a teal-black
+  void, not their white Duda background: Krystale' should recognize her exact color, finally
+  styled with intent instead of left as a template default. Her own homepage copy supplied the
+  quote used in the promise band ("We go above and beyond to ensure you receive the compensation
+  you deserve") and confirmed she is SC Department of Insurance licensed and bonded, both used
+  honestly below and traced to her own site.
+
+  ADJUSTER PERSONALITY LAYER (D4):
+  - Scenario: fresh hail damage in Greenville on a Thursday afternoon (2:14 PM), the exact pain
+    point in the outreach hook: the homeowner calls every public adjuster in the search results
+    until one of them answers. The AI qualifies like an adjuster intake, not a contractor: has the
+    carrier sent anyone out yet, filing fresh or already in progress, do not give a recorded
+    statement or sign anything before talking to Krystale'. Books a free claim review (Krystale's
+    own site sells "free consultation," so the claim traces to her own copy).
+  - Dossier detail woven into the eyebrow, lede, and promise band: Next Level's own posted hours
+    are Mon/Tue/Thu 9 to 5, Wednesday 2:30 to 5:30, Friday 9 to 4, closed the weekend entirely, a
+    one-person practice where Krystale' is the adjuster and the front desk. Storm damage does not
+    wait for her open hours or for her to be off an inspection. Kept to public-appropriate detail
+    only (her own posted hours), nothing from internal-only research.
+  - Stats are ADJUSTER stats, live-search sourced 2026-07-16, not roofing or trade job values.
+    Anchor: the same Florida OPPAGA state watchdog study (Report 10-06, Jan 2010) used industry-
+    wide, but the NON-catastrophe claim comparison this time (a different number than the 747
+    percent hurricane-claim figure used on a prior public-adjuster build, so the page carries its
+    own honest number rather than reusing one): median payment $9,379 with a public adjuster
+    versus $1,391 without, a 574 percent difference. Framed honestly: gross settlement, before the
+    contingency fee, selection effects apply. Full source URLs in the HTML comment above THE MATH
+    section. Missed-call figures (62 percent unanswered, 85 percent of voicemail-hitters never
+    call back) re-verified live-search 2026-07-16, sourced next to the claim.
+  - Trade SVG: a roofline over a house outline with a magnifying glass and checkmark inspecting
+    it, the inspection motif for a public adjuster's actual job (assessing storm damage against a
+    carrier's offer), not a shield, not a generic Heroicon, and not the roofline-alone mark a
+    roofer page would use.
+  - Hero image: D3 ladder rung 1, a client photo already published on the prospect's own site.
+    next-level-consults.com's About section serves a professional headshot of Krystale' Conley
+    (lirp.cdn-website.com/0e8a6171/dms3rep/multi/opt/Photo-395h.png, 318x400). Downloaded,
+    re-encoded to JPEG at native resolution (no upscaling) to keep the embed small, and re-hosted
+    inline as a base64 data URI so the page stays self-contained. Captioned honestly as her real
+    photo, not stock. The site's other embedded image (GettyImages-876388422, two people smiling
+    over a laptop) is the exact banned "smiling office people" slop stock and is not used anywhere
+    on this page.
+
+  Font pairing: Newsreader (display, an editorial serif with real italic contrast, the legal-
+  document register this trade needs) + Plus Jakarta Sans (body, clean and functional). Fresh
+  pairing, distinct from the public-adjuster precedent (Melo: Spectral + Archivo) and from the
+  other documented pairings on file (Craftsman: Fraunces + Archivo; Peak: Big Shoulders + Libre
+  Franklin; Midnight Authority default: Cormorant Garamond + Plus Jakarta Sans; Gaston: Spectral +
+  Archivo).
+
+  v2.1 amendment compliance: A1 mobile-first hero via grid-template-areas (top/demo/sec becomes a
+  single column top, demo, sec at <=820px, so the SMS thread is visible in the first viewport on a
+  phone); sticky "Book 15 minutes with Ryan" bar at <=820px, hidden via IntersectionObserver while
+  the real CTA panel is in view. A2 required hero image, source and treatment documented above,
+  scrim + grain + duotone toward the teal accent, base64-embedded, honest alt/caption. A3 shared
+  demo concierge widget: NOT embedded in this file by direct instruction from this build's task
+  authority ("no CDN scripts, widget injected at publish"), which overrides the general skill
+  spec's default of baking the widget script into every build; the deploy pipeline adds it at
+  publish time instead. A4 funnel posture: no nav menu, no service grid, no about section, one
+  story arc, one CTA URL repeated in the CTA panel, the footer, and the mobile bar.
+
+  Animation standard (v2 spec): SMS sequencer and stat counter re-arm on scroll re-entry, both
+  have manual replay affordances, every JS-driven sequence is gated behind a matchMedia
+  prefers-reduced-motion check with a change listener. Zero em dashes anywhere on the page,
+  including this comment block.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- BASE:START (managed by Coding Agent — do not edit) -->
+<base href="/aid-demo-pages/next-level-consultation/">
+<!-- BASE:END -->
+
+<!-- pmgpt-demo-template:contractor-demo-v2 -->
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+
+
+<!-- SEO Meta Tags -->
+<title>Next Level Consultation: your phone, answered | AID</title>
+<meta name="description" content="A working preview of Next Level Consultation catching a Thursday hail-damage call in Greenville that used to go to voicemail. Built by AID Marketing Agency for Krystale" />
+<meta property="og:title" content="Next Level Consultation: your phone, answered | AID" />
+<meta property="og:description" content="A working preview of Next Level Consultation catching a Thursday hail-damage call in Greenville that used to go to voicemail. Built by AID Marketing Agency for Krystale" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Next Level Consultation: your phone, answered | AID" />
+<meta name="twitter:description" content="A working preview of Next Level Consultation catching a Thursday hail-damage call in Greenville that used to go to voicemail. Built by AID Marketing Agency for Krystale" />
+<!-- End SEO Meta Tags -->
+<script data-lp-token-hydrate>
+(function(){try{
+  var slug="lp-mrnqvexb-99k3x";
+  var SK='lp_access_'+slug;
+  var map={access_token:'lp_pw_',allowlist_access_token:'lp_al_',pin_access_token:'lp_pin_',paywall_access_token:'lp_paid_'};
+  var u=new URL(location.href);var found=null;var changed=false;
+  Object.keys(map).forEach(function(p){var v=u.searchParams.get(p);if(v){found=v;try{localStorage.setItem(map[p]+slug,v);}catch(e){}u.searchParams.delete(p);changed=true;}});
+  if(found){try{sessionStorage.setItem(SK,found);}catch(e){}}
+  else{try{if(!sessionStorage.getItem(SK)){var t=localStorage.getItem('lp_pw_'+slug)||localStorage.getItem('lp_al_'+slug)||localStorage.getItem('lp_pin_'+slug)||localStorage.getItem('lp_paid_'+slug);if(t)sessionStorage.setItem(SK,t);}}catch(e){}}
+  if(changed){try{history.replaceState(null,'',u.toString());}catch(e){}}
+  function getTok(){try{return sessionStorage.getItem(SK)||localStorage.getItem('lp_pw_'+slug)||localStorage.getItem('lp_al_'+slug)||localStorage.getItem('lp_pin_'+slug)||localStorage.getItem('lp_paid_'+slug);}catch(e){return null;}}
+  function needsToken(url,method){if(!url)return false;var s=String(url);var m=(method||'GET').toUpperCase();var isSheetWrite=(m==='POST'||m==='PATCH'||m==='PUT'||m==='DELETE')&&/\/sheet-rows(\/|$|\?)/.test(s);var isSheetRead=/\/sheet-data(\/|$|\?)/.test(s);var isLlm=/\/api\/landing-pages\/public\/[^/]+\/(llm|llm-config)(\/|$|\?)/.test(s);return isSheetWrite||isSheetRead||isLlm;}
+  if(window.fetch){var _f=window.fetch;window.fetch=function(input,init){try{var url=typeof input==='string'?input:(input&&input.url)||'';var method=(init&&init.method)||(input&&input.method)||'GET';if(needsToken(url,method)){var tok=getTok();if(tok){init=init||{};var h=new Headers(init.headers||(typeof input!=='string'?input.headers:undefined)||{});if(!h.has('X-Landing-Page-Token'))h.set('X-Landing-Page-Token',tok);init.headers=h;}}}catch(e){}return _f.call(this,input,init);};}
+  if(window.XMLHttpRequest){var _o=XMLHttpRequest.prototype.open;var _s=XMLHttpRequest.prototype.send;XMLHttpRequest.prototype.open=function(m,u){this.__lpM=m;this.__lpU=u;return _o.apply(this,arguments);};XMLHttpRequest.prototype.send=function(){try{if(needsToken(this.__lpU,this.__lpM)){var tok=getTok();if(tok)this.setRequestHeader('X-Landing-Page-Token',tok);}}catch(e){}return _s.apply(this,arguments);};}
+}catch(e){}})();
+</script>
+
+<script data-field-replace>
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var fields={};
+  var paramMap={
+    'first_name':'firstName','last_name':'lastName','full_name':'fullName',
+    'email':'email','phone':'phone','company':'company',
+    'city':'city','state':'state','country':'country'
+  };
+  var skipTags={'SCRIPT':1,'STYLE':1,'NOSCRIPT':1,'TEXTAREA':1,'CODE':1,'PRE':1};
+  var hasUrlFields=false;
+  for(var p in paramMap){
+    var v=params.get(p);
+    if(v){fields[paramMap[p]]=v;hasUrlFields=true;}
+  }
+  var contactId=params.get('contact_id');
+  function esc(s){
+    if(!s)return s;
+    var d=document.createElement('div');
+    d.appendChild(document.createTextNode(s));
+    return d.innerHTML;
+  }
+  function doReplace(data){
+    var r={};
+    r['{{full_name}}']=esc(((data.firstName||'')+' '+(data.lastName||'')).trim()||((data.fullName||data.name)||''));
+    r['{{first_name}}']=esc(data.firstName||(data.name?data.name.split(' ')[0]:'')||'');
+    r['{{last_name}}']=esc(data.lastName||(data.name&&data.name.indexOf(' ')>-1?data.name.substring(data.name.indexOf(' ')+1):'')||'');
+    r['{{email}}']=esc(data.email||'');
+    r['{{phone}}']=esc(data.phone||'');
+    r['{{company}}']=esc(data.company||'');
+    r['{{city}}']=esc(data.city||'');
+    r['{{state}}']=esc(data.state||'');
+    r['{{country}}']=esc(data.country||'');
+    r['{{date}}']=new Date().toLocaleDateString();
+    r['{{time}}']=new Date().toLocaleTimeString();
+    r['{{location}}']=[data.city,data.state,data.country].filter(Boolean).join(', ');
+    r['{{tracking_id}}']=esc(data.trackingId||'');
+    r['{{lastClickedProduct}}']=esc(data.lastClickedProduct||'');
+    r['{{lastProductClickDate}}']=esc(data.lastProductClickDate||'');
+    r['{{lastClickedProductPrice}}']=esc(data.lastClickedProductPrice||'');
+    r['{{lastClickedProductURL}}']=esc(data.lastClickedProductURL||'');
+    r['{{productsClickedCount}}']=esc(data.productsClickedCount||'0');
+    r['{{ip_address}}']=esc(data.ipAddress||'');
+    r['{{ip}}']=esc(data.ipAddress||'');
+    if(data.customFields){
+      for(var k in data.customFields){
+        r['{{'+k+'}}']=esc(String(data.customFields[k]||''));
+      }
+    }
+    params.forEach(function(v,k){
+      if(!paramMap[k]&&k!=='contact_id'&&k!=='page_id'&&k.indexOf('utm_')!==0){
+        r['{{'+k+'}}']=esc(v);
+      }
+    });
+    var hasValues=false;
+    for(var key in r){if(r[key]){hasValues=true;break;}}
+    if(!hasValues)return;
+    var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+      acceptNode:function(n){
+        var p=n.parentNode;
+        if(p&&skipTags[p.nodeName])return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var node;
+    while(node=walker.nextNode()){
+      var txt=node.nodeValue;
+      if(txt&&txt.indexOf('{{')>-1){
+        var changed=txt;
+        for(var ph in r){
+          if(r[ph]&&changed.indexOf(ph)>-1){
+            changed=changed.split(ph).join(r[ph]);
+          }
+        }
+        if(changed!==txt)node.nodeValue=changed;
+      }
+    }
+    var attrs=['value','placeholder','content','alt','title'];
+    attrs.forEach(function(attr){
+      var els=document.querySelectorAll('['+attr+'*="{{"]');
+      for(var i=0;i<els.length;i++){
+        var tag=els[i].tagName;
+        if(skipTags[tag])continue;
+        var val=els[i].getAttribute(attr);
+        if(val){
+          var nv=val;
+          for(var ph in r){
+            if(r[ph]&&nv.indexOf(ph)>-1){
+              nv=nv.split(ph).join(r[ph]);
+            }
+          }
+          if(nv!==val)els[i].setAttribute(attr,nv);
+        }
+      }
+    });
+  }
+  function run(){
+    if(contactId){
+      var xhr=new XMLHttpRequest();
+      xhr.open('GET','https://paymegpt.com/api/landing/context/'+encodeURIComponent(contactId)+'?page_id=5568');
+      xhr.onload=function(){
+        if(xhr.status===200){
+          try{
+            var resp=JSON.parse(xhr.responseText);
+            if(resp.success&&resp.contact){
+              var merged=resp.contact;
+              for(var k in fields){merged[k]=fields[k];}
+              doReplace(merged);
+              return;
+            }
+          }catch(e){}
+        }
+        if(hasUrlFields)doReplace(fields);
+      };
+      xhr.onerror=function(){if(hasUrlFields)doReplace(fields);};
+      xhr.send();
+    }else if(hasUrlFields){
+      doReplace(fields);
+    }
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}
+  else{run();}
+})();
+</script>
+<script data-payment>
+(function(){
+  var slug='v3HuSchG';
+  var apiBase='https://paymegpt.com';
+  var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
+  function findEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  function findPhone(){var ids=['phone','phoneNumber','phone-number','tel','telephone','mobile','mobileNumber','cell','contact-phone','buyer-phone'];for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.trim())return el.value.trim();}var inputs=document.querySelectorAll('input[type="tel"],input[name*="phone"],input[name*="tel"],input[name*="mobile"],input[placeholder*="phone"],input[placeholder*="Phone"]');for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.trim())return inputs[j].value.trim();}return '';}
+  var __realProcessPayment=function(a,b,c,d,e){
+    var amountCents,email,productName,productDescription,customerName,quantity;
+    if(a&&typeof a==='object'){
+      amountCents=a.amountCents;email=a.email;productName=a.productName;
+      productDescription=a.productDescription||'';customerName=a.name||'';quantity=a.quantity||1;
+    }else{
+      amountCents=typeof a==='number'?a:0;productName=typeof b==='string'?b:'';
+      productDescription=typeof c==='string'?c:'';email='';customerName='';quantity=1;
+    }
+    if(!email)email=findEmail();
+    if(!customerName)customerName=findName();
+    var phone=findPhone();
+    if(!productName){alert('Product name is required.');return Promise.reject('no_product_name');}
+    if(!amountCents||amountCents<100){alert('Amount must be at least $1.00');return Promise.reject('invalid_amount');}
+    if(!email){alert('Please enter your email address.');return Promise.reject('no_email');}
+    var successBase=window.location.href.split('?')[0];
+    var __pLoc=(document.documentElement.lang||navigator.language||'en');
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/payment/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,name:customerName,phone:phone||'',amountCents:amountCents,productName:productName,productDescription:productDescription,quantity:quantity,locale:__pLoc,successUrl:successBase+'?payment=success&product='+encodeURIComponent(productName)+'&session_id={CHECKOUT_SESSION_ID}',cancelUrl:successBase+'?payment=cancelled'})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process payment');throw new Error(d.error);}
+    });
+  };
+  Object.defineProperty(window,'__processPayment',{value:__realProcessPayment,writable:false,configurable:false});
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('payment')==='success'){
+      var sidP=urlParams.get('session_id');
+      if(sidP){try{fetch(apiBase+'/api/landing-pages/public/'+slug+'/checkout/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:sidP})}).catch(function(){});}catch(e){}}
+      var pName=urlParams.get('product')||'your item';
+      var overlay=document.createElement('div');overlay.id='payment-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      var subTxt=successSubtext||('Thank you for purchasing '+pName+'.');
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Payment Successful!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">'+esc(subTxt)+'</p><button id="lp-pay-success-btn" style="padding:12px 32px;font-size:16px;font-weight:600;background:'+successBtnColor+';color:white;border:none;border-radius:8px;cursor:pointer;">'+esc(successBtnLabel)+'</button></div>';
+      document.body.appendChild(overlay);
+      var pBtn=document.getElementById('lp-pay-success-btn');
+      if(pBtn){pBtn.addEventListener('click',function(){if(successRedirect){window.location.href=successRedirect;}else{overlay.remove();window.history.replaceState({},'',window.location.pathname);}});}
+    }
+  });
+})();
+</script>
+<script data-cart>
+(function(){
+  var slug='v3HuSchG';
+  var apiBase='https://paymegpt.com';
+  var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
+  function findCartEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findCartName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  function findCartPhone(){var ids=['phone','phoneNumber','phone-number','tel','telephone','mobile','mobileNumber','cell','contact-phone','buyer-phone'];for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.trim())return el.value.trim();}var inputs=document.querySelectorAll('input[type="tel"],input[name*="phone"],input[name*="tel"],input[name*="mobile"],input[placeholder*="phone"],input[placeholder*="Phone"]');for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.trim())return inputs[j].value.trim();}return '';}
+  var __realCart=function(arg){
+    var items, email='', customerName='', successUrl, cancelUrl, currency;
+    if(Array.isArray(arg)){items=arg;}
+    else if(arg&&typeof arg==='object'){
+      items=arg.items;email=arg.email||'';customerName=arg.name||arg.customerName||'';
+      successUrl=arg.successUrl;cancelUrl=arg.cancelUrl;currency=arg.currency;
+    }
+    if(!Array.isArray(items)||items.length===0){alert('No items in cart.');return Promise.reject('no_items');}
+    var cleanItems=[];var totalCents=0;
+    for(var i=0;i<items.length;i++){
+      var it=items[i];if(!it||typeof it!=='object'){alert('Invalid item at position '+i);return Promise.reject('bad_item');}
+      var nm=typeof it.name==='string'?it.name.trim():'';
+      if(!nm){alert('Item '+(i+1)+' is missing a name.');return Promise.reject('no_name');}
+      var amt=typeof it.amountCents==='number'?it.amountCents:(typeof it.amount==='number'?Math.round(it.amount*100):NaN);
+      if(!isFinite(amt)||amt<1){alert('Item "'+nm+'" needs a valid amount in cents.');return Promise.reject('bad_amount');}
+      var qty=(typeof it.quantity==='number'&&it.quantity>0)?Math.floor(it.quantity):1;
+      cleanItems.push({name:nm,description:it.description||'',amountCents:amt,quantity:qty});
+      totalCents+=amt*qty;
+    }
+    if(totalCents<50){alert('Cart total must be at least $0.50');return Promise.reject('total_too_low');}
+    if(!email)email=findCartEmail();
+    if(!customerName)customerName=findCartName();
+    var cartPhone=findCartPhone();
+    if(!email){var p=window.prompt('Enter your email for the receipt:','');if(p&&p.indexOf('@')>-1){email=p.trim();}else{alert('An email address is required to complete checkout.');return Promise.reject('no_email');}}
+    var successBase=window.location.href.split('?')[0];
+    var body={email:email,name:customerName,items:cleanItems,locale:(document.documentElement.lang||navigator.language||'en')};
+    if(currency)body.currency=currency;
+    if(cartPhone)body.phone=cartPhone;
+    body.successUrl=successUrl||(successBase+'?cart=success&email='+encodeURIComponent(email)+'&session_id={CHECKOUT_SESSION_ID}');
+    body.cancelUrl=cancelUrl||(successBase+'?cart=cancelled');
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/cart/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(body)
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process checkout');throw new Error(d.error);}
+    });
+  };
+  try{Object.defineProperty(window,'__processCart',{value:__realCart,writable:false,configurable:false});}catch(e){window.__processCart=__realCart;}
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('cart')==='success'){
+      var sidC=urlParams.get('session_id');
+      if(sidC){try{fetch(apiBase+'/api/landing-pages/public/'+slug+'/checkout/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:sidC})}).catch(function(){});}catch(e){}}
+      if(document.getElementById('payment-success-overlay')||document.getElementById('donation-success-overlay')||document.getElementById('cart-success-overlay'))return;
+      var overlay=document.createElement('div');overlay.id='cart-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      var subTxt=successSubtext||'Thank you for your order.';
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Order Confirmed!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">'+esc(subTxt)+'</p><button id="lp-cart-success-btn" style="padding:12px 32px;font-size:16px;font-weight:600;background:'+successBtnColor+';color:white;border:none;border-radius:8px;cursor:pointer;">'+esc(successBtnLabel)+'</button></div>';
+      document.body.appendChild(overlay);
+      var cBtn=document.getElementById('lp-cart-success-btn');
+      if(cBtn){cBtn.addEventListener('click',function(){if(successRedirect){window.location.href=successRedirect;}else{overlay.remove();window.history.replaceState({},'',window.location.pathname);}});}
+    }
+  });
+})();
+</script>  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="ledger" aria-hidden="true"></div>
+
+<!-- v2.1 amendment A1: sticky mobile "Book 15 minutes with Ryan" bar, same URL as the
+     page CTA. JS below hides it via IntersectionObserver while .cta-panel is in view. -->
+<div class="mobile-cta-bar" id="mobileCtaBar">
+  <a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">Book 15 minutes with Ryan</a>
+</div>
+
+<div class="wrap">
+
+  <header data-section="header">
+    <div class="mast">
+      <div class="brand">
+        <!-- Trade SVG: a house roofline with a magnifying glass and checkmark inspecting it,
+             the public adjuster's actual job (assessing damage against a carrier's offer),
+             not a shield, not a generic Heroicon. -->
+        <svg class="mark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M5 21 L20 7 L35 21" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 21 V33.5 H24.5 V21" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="27.5" cy="17.5" r="6" stroke="currentColor" stroke-width="2"/>
+          <path d="M31.7 21.7 L36.5 26.5" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/>
+          <path d="M24.8 17.6 L26.7 19.5 L30.4 15.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <div class="name">Next Level Consultation</div>
+          <div class="loc">Greenville, SC &middot; Public Adjuster</div>
+        </div>
+      </div>
+      <div class="built-by">Live preview &middot; built by<br/><b>AID Marketing Agency</b></div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" data-section="hero">
+    <div class="hero-top">
+      <span class="eyebrow"><span class="pulse"></span> Missed call, Greenville, Thursday 2:14 PM</span>
+      <h1 class="headline">The hail lands at 2:14.<br/><em>Next Level answers at 2:15.</em></h1>
+      <p class="lede">Next Level Consultation is a one-person practice: Krystale' is the adjuster, the negotiator, and the front desk. Her posted hours are mornings three days a week, Wednesday after 2:30, done by 4 on Friday, closed the weekend entirely. Hail does not check the calendar. When a Greenville homeowner's roof takes a beating on a Thursday afternoon, they call every public adjuster in the search results until one of them answers, and that adjuster gets the claim. Watch what happens to that same call here, live.</p>
+    </div>
+
+    <div class="demo-panel reveal">
+      <div class="demo-head">
+        <div class="demo-title">Text thread &middot; <b>Next Level Consultation</b></div>
+        <button class="replay-btn" id="replayBtn" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+          Replay
+        </button>
+      </div>
+      <div class="thread" id="thread">
+        <div class="bubble caller" data-time="2:14 PM">Hi, we had bad hail come through Greenville this afternoon and my roof and gutters got hit hard. I have called three other adjusters already and nobody has picked up. Do you handle hail claims out here?<span class="stamp">2:14 PM</span></div>
+        <div class="typing" id="typing1"><span></span><span></span><span></span></div>
+        <div class="bubble ai" data-time="2:15 PM"><span class="badge">AI replied in 52 seconds</span>You reached Next Level Consultation, and yes, hail claims are exactly what Krystale' handles. Sorry the others left you waiting, that happens fast once a storm rolls through. Has your insurance company sent anyone out yet, or are you filing fresh?<span class="stamp">2:15 PM</span></div>
+        <div class="bubble caller" data-time="2:19 PM">Nobody has come out yet. I have not even called my insurance company. I wanted to talk to someone first before I say anything to them.<span class="stamp">2:19 PM</span></div>
+        <div class="typing" id="typing2"><span></span><span></span><span></span></div>
+        <div class="bubble ai" data-time="2:20 PM">Good instinct. Talk to us before you give the carrier a recorded statement or sign anything. Krystale' does a free claim review, no cost to start. She has Thursday at 4:30 or tomorrow morning open to walk the damage with you, which works better? I will text a confirmation either way.<span class="stamp">2:20 PM</span></div>
+      </div>
+      <div class="demo-foot">
+        <div class="resp-time"><span class="dot"></span> First reply in 52 sec, at 2:14 on a Thursday</div>
+        <div class="disclaimer">Simulated exchange for demo purposes</div>
+      </div>
+    </div>
+
+    <div class="hero-secondary">
+      <div class="ring-badge">
+        <span class="ring r1"></span>
+        <span class="ring r2"></span>
+        <span class="ring r3"></span>
+        <svg class="trade" viewBox="0 0 40 40" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5 21 L20 7 L35 21" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 21 V33.5 H24.5 V21" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="27.5" cy="17.5" r="6" stroke-width="2"/>
+          <path d="M31.7 21.7 L36.5 26.5" stroke-width="2.3" stroke-linecap="round"/>
+          <path d="M24.8 17.6 L26.7 19.5 L30.4 15.1" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+
+      <div class="trust-row">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b>Live on Next Level's actual number.</b> Not a mockup, not a template with your name swapped in.</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b>Licensed and bonded through the South Carolina Department of Insurance,</b> same as every claim Next Level takes on.</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b>Krystale' still reviews and books every claim herself.</b> This just keeps the phone answered while she is on-site or with a client.</span>
+        </div>
+      </div>
+
+      <!-- v2.1 amendment A2: required trade-real hero image. Source: D3 ladder rung 1, a real
+           photo already published on the prospect's own site (see designer's note above),
+           downloaded and re-hosted as a base64 data URI, not hotlinked. Honest caption. -->
+      <div class="hero-photo">
+        <div class="hero-photo-img" role="img" aria-label="Photo of Krystale' Conley, founder and public adjuster at Next Level Consultation, from the firm's own website."></div>
+        <div class="hero-photo-cap">Krystale' Conley &middot; founder</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROMISE BAND: Next Level's own homepage copy, held up against her posted hours -->
+  <section class="promise reveal" data-section="promise">
+    <div class="k">From Next Level's own homepage</div>
+    <blockquote>"We go above and beyond to ensure you receive the compensation you deserve."</blockquote>
+    <p>That promise is real, and Krystale' built a licensed, bonded practice on it. <strong>It only gets kept for the homeowner who reaches a person</strong>, and her posted hours cover three mornings, one Wednesday afternoon, and a Friday that ends at 4. This page is about what happens to that same promise on everybody else's afternoon.</p>
+  </section>
+
+  <!-- THE MATH -->
+  <!-- Sources (live-search sourced 2026-07-16, per v2 spec D4.3: ADJUSTER stats, not roofing
+       or trade job values):
+       574% higher median payment on non-catastrophe claims handled with a public adjuster vs
+       unrepresented policyholders ($9,379 with a PA vs $1,391 without). Florida OPPAGA (Office
+       of Program Policy Analysis and Government Accountability) study of Citizens Property
+       Insurance claims, Report 10-06, January 2010. Canonical report page:
+         https://oppaga.fl.gov/Products/ReportDetail?rn=10-06
+       Secondary write-ups of the same figures:
+         https://experiencedpublicadjusters.com/oppaga-study/
+         https://www.flbestpublicadjusters.com/oppaga-study-shows-public-adjusters-get-you-more-money/
+         https://exceladjusters.com/blog/the-impact-of-public-adjusters-on-claim-settlement-amounts/
+       Honesty framing in the copy is deliberate: the OPPAGA figures are gross settlement
+       differences before the adjuster's contingency fee, and adjusters are often hired on
+       harder claims (selection effect), per critiques such as
+         https://johnsonstrategiesllc.com/public-adjusters-747-bogus
+       Public adjuster contingency fees typically 10-20% of settlement:
+         https://insuranceclaimrecoverysupport.com/how-do-public-adjusters-get-paid/
+       62% of business calls go unanswered (only 37.8% answered), 85% of missed callers never
+       call back, average SMB loses $126,000/year to missed calls, re-verified 2026-07-16:
+         https://www.getaira.io/blog/missed-business-calls-statistics -->
+  <section class="math reveal" data-section="math">
+    <div>
+      <div class="stat-label">What representation is worth on a standard claim <button class="stat-replay" id="statReplayBtn" type="button" aria-label="Replay the counter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg></button></div>
+      <div class="stat-number">574<span class="pct">%</span></div>
+      <div class="stat-sub">higher median payment on non-catastrophe claims handled with a public adjuster, per Florida's state watchdog</div>
+    </div>
+    <div class="math-copy">
+      <p>That number comes from the same Florida state study public adjusters cite most (OPPAGA, 2010): on everyday, non-catastrophe claims, the median payment was $9,379 with a public adjuster involved versus $1,391 without. Gross, before the contingency fee, and adjusters often take the harder claims to begin with. Read skeptically, the direction still holds: <strong>represented homeowners recover more</strong>. Which is exactly why a missed call costs twice. National call studies put <strong>62 percent</strong> of business calls unanswered, and <strong>85 percent</strong> of the people who hit voicemail never call back. For Next Level that is not a missed consultation. It is a claim, and the contingency fee attached to it, signing with whoever answered first.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how reveal" data-section="how-it-works">
+    <div class="how-head">
+      <h2>How the catch works</h2>
+      <span>Three moving parts, no app to open</span>
+    </div>
+    <div class="how-grid">
+      <div class="how-item lead">
+        <div>
+          <div class="how-num">01</div>
+          <h3>The call gets missed, honestly</h3>
+          <p>Krystale' is walking a roof, sitting in a claim review, or it is Wednesday morning before her posted hours start. Homeowners with storm damage call the moment the bad news lands, not during business hours.</p>
+        </div>
+        <p>Every unanswered call fires a text back in under a minute, while they still have Next Level on their screen instead of the next name on Google.</p>
+      </div>
+      <div class="how-item">
+        <div class="how-num">02</div>
+        <h3>The AI asks intake questions</h3>
+        <p>It talks claims, not repairs: whether the carrier has sent an adjuster out yet, what got damaged, whether a claim number already exists. Real qualifying that respects what a homeowner staring at storm damage is going through.</p>
+      </div>
+      <div class="how-item">
+        <div class="how-num">03</div>
+        <h3>You get a booked claim review</h3>
+        <p>Day and time locked in, texted to Krystale' and the homeowner. She walks into a scheduled review already knowing where the claim stands, not a cold voicemail from Tuesday.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section reveal" data-section="cta">
+    <div class="cta-panel">
+      <div class="cta-inner">
+        <h2>See it running on <em>your</em> number.</h2>
+        <p>Fifteen minutes with Ryan. He will walk through exactly what you saw above, live on Next Level's line, and give you a straight answer on whether it is worth doing.</p>
+        <a class="cta-btn" href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">
+          Book the walkthrough
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+        <p class="cta-note">No pitch deck, no obligation. Just a look at what this looks like on your phone.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer data-section="footer">
+    <p class="quietline">"The homeowner calls whoever answers. This is how Next Level answers on a Thursday afternoon, every time."</p>
+    <div class="foot">
+      <div>Put together by Ryan McNally at AID Marketing Agency</div>
+      <div><a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">paymegpt.com/p/KqXvRWYi</a></div>
+    </div>
+  </footer>
+
+</div>
+
+
+
+<!-- No widget embed here by design: this build's authority (task brief) specifies the
+     demo concierge widget is injected at publish time by the deploy pipeline, not baked
+     into the static HTML, and that this file must carry no CDN script tags. -->
+
+
+<!-- AID demo concierge (shared widget 54722168) + one-shot auto-open -->
+<script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
+
+  <script src="script.js"></script>
+</body>
+</html>
