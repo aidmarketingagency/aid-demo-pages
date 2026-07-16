@@ -570,6 +570,40 @@
 
 <!-- AID demo concierge (shared widget 54722168) + one-shot auto-open -->
 <script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
+<script data-aid-widget-boost>
+(function(){
+  var WID='54722168';
+  var IMG='https://paymegpt.com/api/files/avatar/widget_avatar_mcp_widget_54722168_1784002747499.png';
+  function sync(){
+    var b=document.getElementById('ultra-fast-widget-bubble-'+WID);
+    if(!b)return;
+    var open=!!document.getElementById('ultra-fast-widget-container-'+WID);
+    var img=b.querySelector('img[data-aid-icon]');
+    if(open){if(img){img.remove();b.style.background='';}return;}
+    if(!img){
+      img=document.createElement('img');
+      img.src=IMG;img.alt='';img.setAttribute('data-aid-icon','');
+      img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;top:0;left:0;pointer-events:none;';
+      b.style.background='#0D0D0F';
+      b.appendChild(img);
+    }
+  }
+  var armed=false;
+  function autoOpen(){
+    if(armed)return;
+    var b=document.getElementById('ultra-fast-widget-bubble-'+WID);
+    if(!b)return;
+    armed=true;
+    if(window.innerWidth<769)return; /* mobile chat is fullscreen; keep the demo page visible */
+    try{if(sessionStorage.getItem('aidWidgetAutoOpened'))return;}catch(e){}
+    setTimeout(function(){
+      try{sessionStorage.setItem('aidWidgetAutoOpened','1');}catch(e){}
+      if(!document.getElementById('ultra-fast-widget-container-'+WID))b.click();
+    },6000);
+  }
+  setInterval(function(){sync();autoOpen();},500);
+})();
+</script>
 
   <script src="script.js"></script>
 </body>
