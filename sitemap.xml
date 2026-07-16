@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://aidmarketingagency.github.io/aid-demo-pages/all-temp-co/</loc>
+    <lastmod>2026-07-16T12:33:42.715Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
     <loc>https://aidmarketingagency.github.io/aid-demo-pages/gaston-pest/</loc>
-    <lastmod>2026-07-14T03:45:28.835Z</lastmod>
+    <lastmod>2026-07-14T04:09:34.214Z</lastmod>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://aidmarketingagency.github.io/aid-demo-pages/friends-heating/</loc>
+    <lastmod>2026-07-14T04:09:33.742Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
@@ -18,11 +28,6 @@
   <url>
     <loc>https://aidmarketingagency.github.io/aid-demo-pages/hc-heating-cooling/</loc>
     <lastmod>2026-07-14T03:45:01.571Z</lastmod>
-    <changefreq>weekly</changefreq>
-  </url>
-  <url>
-    <loc>https://aidmarketingagency.github.io/aid-demo-pages/friends-heating/</loc>
-    <lastmod>2026-07-14T03:44:51.773Z</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
