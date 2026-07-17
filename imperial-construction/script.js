@@ -28,7 +28,6 @@
   }
 
   function playThread(){
-    if (reducedMotion()){ showThreadFinal(); return; }
     if (playing) return;
     playing = true;
     clearTimers();
@@ -58,7 +57,7 @@
       entries.forEach(function(e){
         if (e.isIntersecting){
           playThread();
-        } else if (!reducedMotion()){
+        } else {
           // left the viewport: stop any in-flight sequence so re-entry starts clean.
           clearTimers();
           playing = false;
@@ -108,7 +107,6 @@
     }
 
     function runCount(){
-      if (reducedMotion()){ showStatFinal(); return; }
       var runId = ++countRun;
       var dur = 1400;
       var start = null;
@@ -127,8 +125,6 @@
       requestAnimationFrame(step);
     }
 
-    if (reducedMotion()){ showStatFinal(); }
-
     var statIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if (e.isIntersecting){ runCount(); }
@@ -143,15 +139,7 @@
         runCount();
       });
     }
-
-    if (motionQuery.addEventListener){
-      motionQuery.addEventListener('change', function(){
-        if (reducedMotion()){ showStatFinal(); showThreadFinal(); }
-      });
-    }
   } else if (statEl) {
     if (statReplayBtn) statReplayBtn.style.display = 'none';
   }
-
-  if (reducedMotion()){ showThreadFinal(); }
 })();

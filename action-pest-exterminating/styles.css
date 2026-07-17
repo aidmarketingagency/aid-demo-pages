@@ -164,8 +164,8 @@
   .typing span:nth-child(3){animation-delay:.36s}
   @keyframes blink{0%,100%{opacity:.25}45%{opacity:1}}
   @media (prefers-reduced-motion: reduce){
-    .typing.show{display:none}
-    .bubble{opacity:1;transform:none;transition:none}
+    .typing span{animation:none}
+    .bubble{transform:none;transition:none}
     .pulse,.ring{animation:none}
   }
 

@@ -329,7 +329,6 @@
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation:none !important;transition:none !important}
     .reveal{opacity:1;transform:none}
-    .bubble,.typing{opacity:1;transform:none}
-    .typing{display:none}
+    .bubble,.typing{transform:none}
     html{scroll-behavior:auto}
   }

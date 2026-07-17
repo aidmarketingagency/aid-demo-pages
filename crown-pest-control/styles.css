@@ -303,13 +303,9 @@
     *,*::before,*::after{animation:none!important;transition:none!important}
     html{scroll-behavior:auto}
     .reveal{opacity:1;transform:none}
-    .bubble{opacity:1;transform:none}
-    .typing{display:none!important}
+    /* Bubbles + typing: JS drives visibility one by one; steps land instantly, no slide. */
+    .bubble{transform:none}
   }
 
-.reveal{opacity:1;transform:none}
-  .bubble{opacity:1;transform:none}
-  .typing{display:none!important}
-  .replay-btn,.stat-replay{display:none}
   /* Revision pass 2026-07-16: money emphasis wins over section strong/b rules */
   .wrap strong.money,.wrap b.money{color:var(--crown-tint);font-weight:700;}

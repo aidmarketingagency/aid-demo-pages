@@ -345,6 +345,6 @@
     html{scroll-behavior:auto}
     *,*::before,*::after{animation:none !important;transition:none !important}
     .reveal{opacity:1;transform:none}
-    .bubble{opacity:1;transform:none}
+    .bubble{transform:none!important}
     .demo-col{transform:none}
   }

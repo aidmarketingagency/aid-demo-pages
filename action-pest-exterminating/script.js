@@ -1,5 +1,7 @@
 (function(){
-  // ---- Reduced motion gate covers all JS-driven animation (v2 spec) ----
+  // ---- Motion preference. 2026-07-16 doctrine: the SMS thread sequencing and the
+  // stat count-up are CONTENT, not decoration. They always play on the same timeline;
+  // reduced motion only strips transforms/transitions/pulses (handled in CSS). ----
   var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches:false };
   function reducedMotion(){ return !!motionQuery.matches; }
 
@@ -29,7 +31,6 @@
   // conversation can be any length. Typing indicators show briefly before
   // the AI bubble that follows them.
   function playThread(){
-    if (reducedMotion()){ showThreadFinal(); return; }
     if (playing) return;
     playing = true;
     clearTimers();
@@ -65,7 +66,7 @@
       entries.forEach(function(e){
         if (e.isIntersecting){
           playThread();
-        } else if (!reducedMotion()){
+        } else {
           clearTimers();
           playing = false;
           resetThread();
@@ -124,7 +125,6 @@
     snapStatFinal = showStatFinal;
 
     function runCount(){
-      if (reducedMotion()){ showStatFinal(); return; }
       var runId = ++countRun;
       var dur = 1400;
       var start = null;
@@ -138,8 +138,6 @@
       }
       requestAnimationFrame(step);
     }
-
-    if (reducedMotion()){ showStatFinal(); }
 
     var statIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
@@ -158,18 +156,6 @@
   } else if (statReplayBtn){
     statReplayBtn.style.display = 'none';
   }
-
-  // Mid-session reduced-motion toggle snaps everything to final state (v2 spec).
-  if (motionQuery.addEventListener){
-    motionQuery.addEventListener('change', function(){
-      if (reducedMotion()){
-        showThreadFinal();
-        snapStatFinal();
-      }
-    });
-  }
-
-  if (reducedMotion()){ showThreadFinal(); }
 
   // ---- Sticky mobile CTA bar (A1): hidden while the real CTA panel is in view ----
   var mobileCtaBar = document.getElementById('mobileCtaBar');

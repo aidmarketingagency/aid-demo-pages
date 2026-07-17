@@ -28,7 +28,6 @@
   }
 
   function playThread(){
-    if (reducedMotion()){ showThreadFinal(); return; }
     if (playing) return;
     playing = true;
     clearTimers();
@@ -69,7 +68,7 @@
       entries.forEach(function(e){
         if (e.isIntersecting){
           playThread();
-        } else if (!reducedMotion()){
+        } else {
           // left the viewport: stop any in-flight sequence so re-entry starts clean.
           // Under reduced motion the thread stays fully shown; never re-hide it.
           clearTimers();
@@ -122,7 +121,6 @@
     }
 
     function runCount(){
-      if (reducedMotion()){ showStatFinal(); return; }
       var runId = ++countRun;
       var dur = 1400;
       var start = null;
@@ -143,7 +141,6 @@
 
     // Reduced motion from first paint: show the final figure immediately rather
     // than leaving $0,200 on screen until the section scrolls into view.
-    if (reducedMotion()){ showStatFinal(); }
 
     var statIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
@@ -162,18 +159,12 @@
 
     // Mid-session preference toggles: snap everything to final state when
     // reduce turns on; nothing to do when it turns off (next entry re-animates).
-    if (motionQuery.addEventListener){
-      motionQuery.addEventListener('change', function(){
-        if (reducedMotion()){ showStatFinal(); showThreadFinal(); }
-      });
-    }
   } else if (statEl) {
     // No IntersectionObserver: leave the static $1,200 markup untouched
     if (statReplayBtn) statReplayBtn.style.display = 'none';
   }
 
   // Reduced motion from first paint: the SMS thread renders fully shown, no sequence.
-  if (reducedMotion()){ showThreadFinal(); }
 
   // -- A1 (v2.1 amendment): sticky mobile CTA bar, hidden while the real CTA panel is
   // in view so the page never shows two CTAs at once. Same booking URL as the page CTA. --

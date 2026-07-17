@@ -20,14 +20,16 @@
 })();
 
 (function(){
-  // prefers-reduced-motion query -- used throughout for both CSS-driven and JS-driven animation
+  // Demo doctrine (2026-07-16): the SMS sequencing and stat count-up are CONTENT,
+  // not decoration. They always play, for everyone. Only transforms/slides stay
+  // gated behind prefers-reduced-motion, and that gating lives in styles.css.
   var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   function reducedMotion(){ return !!motionQuery.matches; }
 
   // =====================================================================
   // SMS THREAD: staged reveal + typing indicators
   // IntersectionObserver re-arms on every scroll re-entry (v2 spec).
-  // Exits reset state. Replay button. prefers-reduced-motion shows final state.
+  // Exits reset state. Replay button.
   // =====================================================================
   var thread = document.getElementById('thread');
   var b1 = document.getElementById('b1');
@@ -61,7 +63,6 @@
   }
 
   function playThread(){
-    if (reducedMotion()){ showThreadFinal(); return; }
     if (playing) return;
     playing = true;
     clearTimers();
@@ -95,7 +96,7 @@
       entries.forEach(function(e){
         if (e.isIntersecting){
           playThread();
-        } else if (!reducedMotion()){
+        } else {
           clearTimers();
           playing = false;
           resetThread();
@@ -155,7 +156,6 @@
 
   function runCount(){
     if (!dollarNode) return;
-    if (reducedMotion()){ showStatFinal(); return; }
     var runId = ++countRun;
     var dur = 1500;
     var start = null;
@@ -183,9 +183,6 @@
     statEl.appendChild(dollarNode);
     statEl.appendChild(centsSpan);
 
-    // Reduced motion from first paint: show final immediately
-    if (reducedMotion()){ showStatFinal(); }
-
     if ('IntersectionObserver' in window){
       var statIO = new IntersectionObserver(function(entries){
         entries.forEach(function(e){
@@ -203,22 +200,5 @@
       });
     }
   }
-
-  // =====================================================================
-  // MID-SESSION MOTION CHANGE: snap to final state when reduce turns on
-  // =====================================================================
-  if (motionQuery.addEventListener){
-    motionQuery.addEventListener('change', function(){
-      if (reducedMotion()){ showThreadFinal(); showStatFinal(); }
-    });
-  } else if (motionQuery.addListener){
-    // legacy Safari
-    motionQuery.addListener(function(){
-      if (reducedMotion()){ showThreadFinal(); showStatFinal(); }
-    });
-  }
-
-  // If reduced motion was set from first paint, show SMS thread final immediately
-  if (reducedMotion()){ showThreadFinal(); }
 
 })();

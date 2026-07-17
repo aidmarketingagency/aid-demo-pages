@@ -278,6 +278,7 @@
   .reveal.visible{opacity:1;transform:none}
 
   @media (prefers-reduced-motion:reduce){
-    .bubble,.typing,.reveal{transition:none!important;opacity:1!important;transform:none!important}
-    .ring,.pulse,.replay-btn.spin svg{animation:none!important}
+    .bubble,.typing,.reveal{transition:none!important;transform:none!important}
+    .reveal{opacity:1!important}
+    .ring,.pulse,.replay-btn.spin svg,.typing span{animation:none!important}
   }

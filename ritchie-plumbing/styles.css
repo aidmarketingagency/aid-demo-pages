@@ -427,6 +427,7 @@ footer{padding:36px 0 54px;border-top:1px solid var(--hair-soft)}
 .reveal.visible{opacity:1;transform:none}
 
 @media (prefers-reduced-motion:reduce){
-  .bubble,.typing,.reveal{transition:none!important;opacity:1!important;transform:none!important}
-  .ring,.pulse,.replay-btn.spin svg,.stat-replay.spin svg{animation:none!important}
+  .bubble,.typing{transition:none!important;transform:none!important}
+  .reveal{transition:none!important;opacity:1!important;transform:none!important}
+  .ring,.pulse,.replay-btn.spin svg,.stat-replay.spin svg,.typing span{animation:none!important}
 }

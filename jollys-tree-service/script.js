@@ -7,9 +7,9 @@
   var timers = [];
   var playing = false;
 
-  // v2 spec: the reduced-motion fallback must cover JS-driven animation, not just CSS.
-  // When reduce is set, every sequence renders its FINAL state immediately: no timers,
-  // no typing indicators, no count-up. The change listener handles mid-session toggles.
+  // Demo doctrine (2026-07-16): the SMS sequencing and stat count-up are CONTENT,
+  // not decoration. They always play, for everyone. Only transforms/slides stay
+  // gated behind prefers-reduced-motion, and that gating lives in styles.css.
   var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   function reducedMotion(){ return !!motionQuery.matches; }
 
@@ -28,7 +28,6 @@
   }
 
   function playThread(){
-    if (reducedMotion()){ showThreadFinal(); return; }
     if (playing) return;
     playing = true;
     clearTimers();
@@ -59,9 +58,8 @@
       entries.forEach(function(e){
         if (e.isIntersecting){
           playThread();
-        } else if (!reducedMotion()){
+        } else {
           // left the viewport: stop any in-flight sequence so re-entry starts clean.
-          // Under reduced motion the thread stays fully shown; never re-hide it.
           clearTimers();
           playing = false;
           resetThread();
@@ -112,7 +110,6 @@
     }
 
     function runCount(){
-      if (reducedMotion()){ showStatFinal(); return; }
       var runId = ++countRun;
       var dur = 1400;
       var start = null;
@@ -131,10 +128,6 @@
       requestAnimationFrame(step);
     }
 
-    // Reduced motion from first paint: show the final figure immediately rather
-    // than leaving $0,850 on screen until the section scrolls into view.
-    if (reducedMotion()){ showStatFinal(); }
-
     var statIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if (e.isIntersecting){ runCount(); }
@@ -150,20 +143,10 @@
       });
     }
 
-    // Mid-session preference toggles: snap everything to final state when
-    // reduce turns on; nothing to do when it turns off (next entry re-animates).
-    if (motionQuery.addEventListener){
-      motionQuery.addEventListener('change', function(){
-        if (reducedMotion()){ showStatFinal(); showThreadFinal(); }
-      });
-    }
   } else if (statEl) {
     // No IntersectionObserver: leave the static $3,850 markup untouched
     if (statReplayBtn) statReplayBtn.style.display = 'none';
   }
-
-  // Reduced motion from first paint: the SMS thread renders fully shown, no sequence.
-  if (reducedMotion()){ showThreadFinal(); }
 
   // -- A1: sticky mobile CTA bar, hidden while the real CTA panel is in view so the page
   // never shows two CTAs at once. Same booking URL as the page CTA. --

@@ -319,12 +319,13 @@
     .sticky-cta.hide{transform:translateY(110%)}
   }
 
-  /* -- Reduced motion: everything shows statically, nothing left invisible. JS-driven
-     sequences are separately gated in the script per the v2 spec. -- */
+  /* -- Reduced motion: transforms, transitions, and looping animation die here. The SMS
+     thread and stat count-up are demo CONTENT and still sequence via JS; bubbles and
+     typing pills appear step by step with instant opacity switches, no slide. -- */
   @media (prefers-reduced-motion: reduce){
     *,*::before,*::after{animation:none!important;transition:none!important}
     .reveal{opacity:1;transform:none}
-    .bubble{opacity:1;transform:none}
-    .typing{display:none}
+    .bubble{transform:none}
+    .typing{transform:none}
     html{scroll-behavior:auto}
   }

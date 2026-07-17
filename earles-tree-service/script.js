@@ -6,17 +6,13 @@
   var items = Array.prototype.slice.call(thread.children).filter(function(el){
     return el.classList.contains('bubble') || el.classList.contains('typing');
   });
-  var bubbles = items.filter(function(el){ return el.classList.contains('bubble'); });
-  var typers = items.filter(function(el){ return el.classList.contains('typing'); });
   var replayBtn = document.getElementById('replayBtn');
   var timers = [];
   var playing = false;
 
-  // v2 spec: the reduced-motion fallback must cover JS-driven animation, not just CSS.
-  // When reduce is set, every sequence renders its FINAL state immediately: no timers,
-  // no typing indicators, no count-up. The change listener handles mid-session toggles.
-  var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
-  function reducedMotion(){ return !!motionQuery.matches; }
+  // Doctrine 2026-07-16: the SMS sequencing, typing beats, and stat count-up are CONTENT,
+  // not decoration. They play for everyone on the same timeline. Reduced motion only
+  // strips transforms, transitions, and dot pulses (handled in styles.css), never the sequence.
 
   function clearTimers(){ timers.forEach(function(t){ clearTimeout(t); }); timers = []; }
 
@@ -24,15 +20,7 @@
     items.forEach(function(el){ el.classList.remove('show'); });
   }
 
-  function showThreadFinal(){
-    clearTimers();
-    playing = false;
-    bubbles.forEach(function(b){ b.classList.add('show'); });
-    typers.forEach(function(t){ t.classList.remove('show'); });
-  }
-
   function playThread(){
-    if (reducedMotion()){ showThreadFinal(); return; }
     if (playing) return;
     playing = true;
     clearTimers();
@@ -54,6 +42,9 @@
   replayBtn.addEventListener('click', function(){
     replayBtn.classList.add('spin');
     setTimeout(function(){ replayBtn.classList.remove('spin'); }, 520);
+    clearTimers();
+    playing = false;
+    resetThread();
     playThread();
   });
 
@@ -65,9 +56,8 @@
       entries.forEach(function(e){
         if (e.isIntersecting){
           playThread();
-        } else if (!reducedMotion()){
+        } else {
           // left the viewport: stop any in-flight sequence so re-entry starts clean.
-          // Under reduced motion the thread stays fully shown; never re-hide it.
           clearTimers();
           playing = false;
           resetThread();
@@ -111,14 +101,7 @@
     var STAT_TARGET = 750;
     var countRun = 0; // increments per run; a stale rAF loop sees the mismatch and stops
 
-    function showStatFinal(){
-      countRun++; // kill any in-flight rAF loop
-      dollarNode.textContent = '$' + STAT_TARGET;
-      centsSpan.textContent = '';
-    }
-
     function runCount(){
-      if (reducedMotion()){ showStatFinal(); return; }
       var runId = ++countRun;
       var dur = 1400;
       var start = null;
@@ -134,10 +117,6 @@
       requestAnimationFrame(step);
     }
 
-    // Reduced motion from first paint: show the final figure immediately rather
-    // than leaving $0 on screen until the section scrolls into view.
-    if (reducedMotion()){ showStatFinal(); }
-
     var statIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if (e.isIntersecting){ runCount(); }
@@ -152,21 +131,10 @@
         runCount();
       });
     }
-
-    // Mid-session preference toggles: snap everything to final state when
-    // reduce turns on; nothing to do when it turns off (next entry re-animates).
-    if (motionQuery.addEventListener){
-      motionQuery.addEventListener('change', function(){
-        if (reducedMotion()){ showStatFinal(); showThreadFinal(); }
-      });
-    }
   } else if (statEl) {
     // No IntersectionObserver: leave the static $750 markup untouched
     if (statReplayBtn) statReplayBtn.style.display = 'none';
   }
-
-  // Reduced motion from first paint: the SMS thread renders fully shown, no sequence.
-  if (reducedMotion()){ showThreadFinal(); }
 
   // -- A1: sticky mobile CTA bar, hidden while the real CTA panel is in view so the page
   // never shows two CTAs at once. Same booking URL as the page CTA. --

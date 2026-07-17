@@ -9,9 +9,8 @@ document.documentElement.className += ' js';
   var timers = [];
   var playing = false;
 
-  // Reduced-motion gate covers JS-driven animation, not just CSS (v2 spec house rule).
-  var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
-  function reducedMotion(){ return !!motionQuery.matches; }
+  // Reduced motion: the SMS sequencing and stat count-up are demo CONTENT and always
+  // play. CSS gates transforms/transitions under reduce so each step lands instantly.
 
   function clearTimers(){ timers.forEach(function(t){ clearTimeout(t); }); timers = []; }
 
@@ -20,15 +19,7 @@ document.documentElement.className += ' js';
     typers.forEach(function(t){ t.classList.remove('show'); });
   }
 
-  function showThreadFinal(){
-    clearTimers();
-    playing = false;
-    bubbles.forEach(function(b){ b.classList.add('show'); });
-    typers.forEach(function(t){ t.classList.remove('show'); });
-  }
-
   function playThread(){
-    if (reducedMotion()){ showThreadFinal(); return; }
     if (playing) return;
     playing = true;
     clearTimers();
@@ -65,7 +56,7 @@ document.documentElement.className += ' js';
       entries.forEach(function(e){
         if (e.isIntersecting){
           playThread();
-        } else if (!reducedMotion()){
+        } else {
           clearTimers();
           playing = false;
           resetThread();
@@ -107,7 +98,6 @@ document.documentElement.className += ' js';
   }
 
   function runCount(){
-    if (reducedMotion()){ showStatFinal(); return; }
     var runId = ++countRun;
     var dur = 1400;
     var start = null;
@@ -141,13 +131,6 @@ document.documentElement.className += ' js';
       runCount();
     });
   }
-
-  if (motionQuery.addEventListener){
-    motionQuery.addEventListener('change', function(){
-      if (reducedMotion()){ showStatFinal(); showThreadFinal(); }
-    });
-  }
-  if (reducedMotion()){ showStatFinal(); showThreadFinal(); }
 
   // -- Sticky mobile CTA bar (A1): hidden while the real CTA panel is in view, one ask only --
   var mobileCtaBar = document.getElementById('mobileCtaBar');

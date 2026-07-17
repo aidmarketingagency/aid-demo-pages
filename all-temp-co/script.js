@@ -21,7 +21,9 @@
 
 (function(){
   // =====================================================================
-  // Motion preference
+  // Motion preference. 2026-07-16 doctrine: the SMS thread sequencing and
+  // the stat count-up are CONTENT, not decoration. They always play on the
+  // same timeline; reduced motion only strips transforms/transitions (CSS).
   // =====================================================================
   var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   function reducedMotion(){ return !!motionQuery.matches; }
@@ -52,7 +54,6 @@
   }
 
   function playThread(){
-    if (reducedMotion()){ showThreadFinal(); return; }
     if (playing) return;
     playing = true;
     clearTimers();
@@ -92,7 +93,7 @@
         if (e.isIntersecting){
           playing = false;
           playThread();
-        } else if (!reducedMotion()){
+        } else {
           // Left the viewport: cancel in-flight, reset so re-entry starts clean
           clearTimers();
           playing = false;
@@ -104,9 +105,6 @@
   } else {
     playThread();
   }
-
-  // Reduced motion at first paint: show thread fully
-  if (reducedMotion()){ showThreadFinal(); }
 
   // =====================================================================
   // STAT COUNTER: count-up with rAF, runCount/countRun pattern,
@@ -128,7 +126,6 @@
   }
 
   function runCount(){
-    if (reducedMotion()){ showStatFinal(); return; }
     var runId = ++countRun;
     var dur = 1400;
     var start = null;
@@ -144,8 +141,6 @@
     }
     requestAnimationFrame(step);
   }
-
-  if (reducedMotion()){ showStatFinal(); }
 
   if (statEl && 'IntersectionObserver' in window){
     var statIO = new IntersectionObserver(function(entries){
@@ -199,18 +194,6 @@
       });
     }, { threshold: 0.1 });
     ctaIO.observe(ctaSection);
-  }
-
-  // =====================================================================
-  // Mid-session prefers-reduced-motion toggle: snap everything to final state
-  // =====================================================================
-  if (motionQuery.addEventListener){
-    motionQuery.addEventListener('change', function(){
-      if (reducedMotion()){
-        showStatFinal();
-        showThreadFinal();
-      }
-    });
   }
 
 })();

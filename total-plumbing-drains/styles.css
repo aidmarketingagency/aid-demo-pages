@@ -324,6 +324,7 @@
   }
 
   @media (prefers-reduced-motion:reduce){
-    .bubble,.typing,.reveal,.sticky-cta{transition:none!important;opacity:1!important;transform:none!important}
-    .ring,.pulse,.replay-btn.spin svg,.stat-replay.spin svg{animation:none!important}
+    .bubble,.typing{transition:none!important;transform:none!important}
+    .reveal,.sticky-cta{transition:none!important;opacity:1!important;transform:none!important}
+    .ring,.pulse,.typing span,.replay-btn.spin svg,.stat-replay.spin svg{animation:none!important}
   }

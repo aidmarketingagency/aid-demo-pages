@@ -7,11 +7,9 @@
   var timers = [];
   var playing = false;
 
-  // v2 spec: the reduced-motion fallback must cover JS-driven animation, not just CSS.
-  // When reduce is set, every sequence renders its FINAL state immediately: no timers,
-  // no typing indicators, no count-up. The change listener handles mid-session toggles.
-  var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
-  function reducedMotion(){ return !!motionQuery.matches; }
+  // Doctrine 2026-07-16: the SMS sequence and stat count-up are demo CONTENT and always
+  // play, even under prefers-reduced-motion. Only transforms, slides, and transitions
+  // stay gated behind reduced motion, and the CSS media block handles that.
 
   function clearTimers(){ timers.forEach(function(t){ clearTimeout(t); }); timers = []; }
 
@@ -20,15 +18,7 @@
     Object.keys(typers).forEach(function(k){ typers[k].classList.remove('show'); });
   }
 
-  function showThreadFinal(){
-    clearTimers();
-    playing = false;
-    bubbles.forEach(function(b){ b.classList.add('show'); });
-    Object.keys(typers).forEach(function(k){ typers[k].classList.remove('show'); });
-  }
-
   function playThread(){
-    if (reducedMotion()){ showThreadFinal(); return; }
     if (playing) return;
     playing = true;
     clearTimers();
@@ -62,7 +52,7 @@
       entries.forEach(function(e){
         if (e.isIntersecting){
           playThread();
-        } else if (!reducedMotion()){
+        } else {
           clearTimers();
           playing = false;
           resetThread();
@@ -76,9 +66,9 @@
   }
 
   // -- Reveal-on-scroll for sections (one-time entrance, exempt per the spec, never
-  // leaves content hidden and honors reduced motion via CSS + the gate below) --
+  // leaves content hidden; reduced motion shows them instantly via the CSS block) --
   var reveals = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window && !reducedMotion()){
+  if ('IntersectionObserver' in window){
     var revealIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if (e.isIntersecting){ e.target.classList.add('visible'); revealIO.unobserve(e.target); }
@@ -107,14 +97,7 @@
     var STAT_TARGET = 3500;
     var countRun = 0; // increments per run; a stale rAF loop sees the mismatch and stops
 
-    function showStatFinal(){
-      countRun++;
-      dollarNode.textContent = '$' + Math.floor(STAT_TARGET / 1000);
-      centsSpan.textContent = ',' + String(STAT_TARGET % 1000).padStart(3, '0');
-    }
-
     function runCount(){
-      if (reducedMotion()){ showStatFinal(); return; }
       var runId = ++countRun;
       var dur = 1400;
       var start = null;
@@ -133,8 +116,6 @@
       requestAnimationFrame(step);
     }
 
-    if (reducedMotion()){ showStatFinal(); }
-
     var statIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if (e.isIntersecting){ runCount(); }
@@ -149,20 +130,10 @@
         runCount();
       });
     }
-
-    // Mid-session preference toggles: snap everything to final state when reduce turns on.
-    if (motionQuery.addEventListener){
-      motionQuery.addEventListener('change', function(){
-        if (reducedMotion()){ showStatFinal(); showThreadFinal(); }
-      });
-    }
   } else if (statEl) {
     // No IntersectionObserver: leave the static $3,500 markup untouched
     if (statReplayBtn) statReplayBtn.style.display = 'none';
   }
-
-  // Reduced motion from first paint: the SMS thread renders fully shown, no sequence.
-  if (reducedMotion()){ showThreadFinal(); }
 
   // -- A1 (v2.1): sticky mobile CTA bar, hidden while the real CTA panel is in view so
   // the page never shows two CTAs at once. Same booking URL as the page CTA. --

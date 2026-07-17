@@ -541,7 +541,9 @@
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
     .js .reveal{opacity:1;transform:none;transition:none;}
-    .js .bubble{opacity:1;transform:none;transition:none;}
+    /* Bubbles: JS drives visibility one by one; no transform, no transition, instant steps. */
+    .js .bubble{transform:none;transition:none;}
+    .js .bubble.show{opacity:1;transform:none;}
     .eyebrow .live-dot,.resp-time .dot{animation:none;}
     .ring-badge::before,.ring-badge::after{animation:none;opacity:.25;}
     .typing span{animation:none;}

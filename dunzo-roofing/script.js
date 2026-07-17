@@ -7,9 +7,8 @@
   var timers = [];
   var playing = false;
 
-  // v2 spec: the reduced-motion fallback must cover JS-driven animation, not just CSS.
-  var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
-  function reducedMotion(){ return !!motionQuery.matches; }
+  // Reduced motion: the SMS sequencing and stat count-up are demo CONTENT and always
+  // play. CSS gates transforms/transitions under reduce so each step lands instantly.
 
   function clearTimers(){ timers.forEach(function(t){ clearTimeout(t); }); timers = []; }
 
@@ -18,15 +17,7 @@
     typers.forEach(function(t){ t.classList.remove('show'); });
   }
 
-  function showThreadFinal(){
-    clearTimers();
-    playing = false;
-    bubbles.forEach(function(b){ b.classList.add('show'); });
-    typers.forEach(function(t){ t.classList.remove('show'); });
-  }
-
   function playThread(){
-    if (reducedMotion()){ showThreadFinal(); return; }
     if (playing) return;
     playing = true;
     clearTimers();
@@ -53,6 +44,7 @@
   replayBtn.addEventListener('click', function(){
     replayBtn.classList.add('spin');
     setTimeout(function(){ replayBtn.classList.remove('spin'); }, 520);
+    playing = false;
     playThread();
   });
 
@@ -62,7 +54,7 @@
       entries.forEach(function(e){
         if (e.isIntersecting){
           playThread();
-        } else if (!reducedMotion()){
+        } else {
           clearTimers();
           playing = false;
           resetThread();
@@ -104,14 +96,7 @@
     var STAT_TARGET = 12000;
     var countRun = 0;
 
-    function showStatFinal(){
-      countRun++;
-      dollarNode.textContent = '$' + Math.floor(STAT_TARGET / 1000);
-      centsSpan.textContent = ',' + String(STAT_TARGET % 1000).padStart(3, '0');
-    }
-
     function runCount(){
-      if (reducedMotion()){ showStatFinal(); return; }
       var runId = ++countRun;
       var dur = 1400;
       var start = null;
@@ -130,8 +115,6 @@
       requestAnimationFrame(step);
     }
 
-    if (reducedMotion()){ showStatFinal(); }
-
     var statIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if (e.isIntersecting){ runCount(); }
@@ -147,16 +130,9 @@
       });
     }
 
-    if (motionQuery.addEventListener){
-      motionQuery.addEventListener('change', function(){
-        if (reducedMotion()){ showStatFinal(); showThreadFinal(); }
-      });
-    }
   } else if (statEl) {
     if (statReplayBtn) statReplayBtn.style.display = 'none';
   }
-
-  if (reducedMotion()){ showThreadFinal(); }
 
   // -- Sticky mobile CTA bar (A1): only ever shown after the hero has been scrolled past
   // once, and hidden whenever the real CTA panel is in view so there is never a double ask. --

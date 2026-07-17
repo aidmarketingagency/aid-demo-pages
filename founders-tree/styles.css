@@ -320,6 +320,10 @@
   }
 
   @media (prefers-reduced-motion:reduce){
-    .bubble,.typing,.reveal{transition:none!important;opacity:1!important;transform:none!important}
+    /* SMS thread + typing pills are sequenced CONTENT: JS drives their visibility on the
+       normal timeline; here we only kill the slide/fade so each step appears instantly. */
+    .bubble,.typing{transition:none!important;transform:none!important}
+    .typing span{animation:none!important}
+    .reveal{transition:none!important;opacity:1!important;transform:none!important}
     .ring,.pulse,.replay-btn.spin svg,.stat-replay.spin svg{animation:none!important}
   }

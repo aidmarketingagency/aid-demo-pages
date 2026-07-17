@@ -7,7 +7,9 @@
   var timers = [];
   var playing = false;
 
-  // v2 spec: the reduced-motion fallback must cover JS-driven animation, not just CSS.
+  // 2026-07-16 doctrine: the SMS thread sequencing and the stat count-up are CONTENT,
+  // not decoration. They always play on the same timeline; reduced motion only strips
+  // transforms/transitions/pulses (handled in CSS).
   var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   function reducedMotion(){ return !!motionQuery.matches; }
 
@@ -26,7 +28,6 @@
   }
 
   function playThread(){
-    if (reducedMotion()){ showThreadFinal(); return; }
     if (playing) return;
     playing = true;
     clearTimers();
@@ -55,6 +56,7 @@
   replayBtn.addEventListener('click', function(){
     replayBtn.classList.add('spin');
     setTimeout(function(){ replayBtn.classList.remove('spin'); }, 520);
+    playing = false;
     playThread();
   });
 
@@ -64,7 +66,7 @@
       entries.forEach(function(e){
         if (e.isIntersecting){
           playThread();
-        } else if (!reducedMotion()){
+        } else {
           clearTimers();
           playing = false;
           resetThread();
@@ -113,7 +115,6 @@
     }
 
     function runCount(){
-      if (reducedMotion()){ showStatFinal(); return; }
       var runId = ++countRun;
       var dur = 1400;
       var start = null;
@@ -132,8 +133,6 @@
       requestAnimationFrame(step);
     }
 
-    if (reducedMotion()){ showStatFinal(); }
-
     var statIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if (e.isIntersecting){ runCount(); }
@@ -149,16 +148,9 @@
       });
     }
 
-    if (motionQuery.addEventListener){
-      motionQuery.addEventListener('change', function(){
-        if (reducedMotion()){ showStatFinal(); showThreadFinal(); }
-      });
-    }
   } else if (statEl) {
     if (statReplayBtn) statReplayBtn.style.display = 'none';
   }
-
-  if (reducedMotion()){ showThreadFinal(); }
 
   // -- Sticky mobile CTA bar (A1): hide it while the real CTA panel is in view so the
   // page never shows two CTAs at once. Same URL, one ask, mobile affordance.

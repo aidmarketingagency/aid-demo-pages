@@ -6,15 +6,13 @@
   var items = Array.prototype.slice.call(thread.children).filter(function(el){
     return el.classList.contains('bubble') || el.classList.contains('typing');
   });
-  var bubbles = items.filter(function(el){ return el.classList.contains('bubble'); });
-  var typers = items.filter(function(el){ return el.classList.contains('typing'); });
   var replayBtn = document.getElementById('replayBtn');
   var timers = [];
   var playing = false;
 
-  // v2 spec: reduced-motion fallback must cover JS-driven animation, not just CSS.
-  var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
-  function reducedMotion(){ return !!motionQuery.matches; }
+  // Doctrine 2026-07-16: the SMS sequencing, typing beats, and stat count-up are CONTENT,
+  // not decoration. They play for everyone on the same timeline. Reduced motion only
+  // strips transforms, transitions, and dot pulses (handled in styles.css), never the sequence.
 
   function clearTimers(){ timers.forEach(function(t){ clearTimeout(t); }); timers = []; }
 
@@ -22,15 +20,7 @@
     items.forEach(function(el){ el.classList.remove('show'); });
   }
 
-  function showThreadFinal(){
-    clearTimers();
-    playing = false;
-    bubbles.forEach(function(b){ b.classList.add('show'); });
-    typers.forEach(function(t){ t.classList.remove('show'); });
-  }
-
   function playThread(){
-    if (reducedMotion()){ showThreadFinal(); return; }
     if (playing) return;
     playing = true;
     clearTimers();
@@ -63,7 +53,7 @@
       entries.forEach(function(e){
         if (e.isIntersecting){
           playThread();
-        } else if (!reducedMotion()){
+        } else {
           clearTimers();
           playing = false;
           resetThread();
@@ -97,14 +87,8 @@
 
   function fmt(n){ return n.toLocaleString('en-US'); }
 
-  function showStatFinal(){
-    countRun++;
-    if (statVal) statVal.textContent = fmt(STAT_TARGET);
-  }
-
   function runCount(){
     if (!statVal) return;
-    if (reducedMotion()){ showStatFinal(); return; }
     var runId = ++countRun;
     var dur = 1400;
     var start = null;
@@ -120,7 +104,6 @@
   }
 
   if (statVal && 'IntersectionObserver' in window){
-    if (reducedMotion()){ showStatFinal(); }
     var statIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if (e.isIntersecting){ runCount(); }
@@ -138,13 +121,6 @@
   } else if (statReplayBtn){
     statReplayBtn.style.display = 'none';
   }
-
-  if (motionQuery.addEventListener){
-    motionQuery.addEventListener('change', function(){
-      if (reducedMotion()){ showStatFinal(); showThreadFinal(); }
-    });
-  }
-  if (reducedMotion()){ showThreadFinal(); }
 
   // -- A1 sticky mobile CTA: visible after the hero, hidden while the real CTA panel
   //    (or footer, which repeats the link) is on screen, so one CTA shows at a time --

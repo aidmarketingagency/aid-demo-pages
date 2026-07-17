@@ -6,15 +6,13 @@
   var items = Array.prototype.slice.call(thread.children).filter(function(el){
     return el.classList.contains('bubble') || el.classList.contains('typing');
   });
-  var bubbles = items.filter(function(el){ return el.classList.contains('bubble'); });
-  var typers = items.filter(function(el){ return el.classList.contains('typing'); });
   var replayBtn = document.getElementById('replayBtn');
   var timers = [];
   var playing = false;
 
-  // v2 spec: the reduced-motion fallback must cover JS-driven animation, not just CSS.
-  var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
-  function reducedMotion(){ return !!motionQuery.matches; }
+  // Doctrine 2026-07-16: the SMS sequencing, typing beats, and stat count-up are CONTENT,
+  // not decoration. They play for everyone on the same timeline. Reduced motion only
+  // strips transforms, transitions, and dot pulses (handled in styles.css), never the sequence.
 
   function clearTimers(){ timers.forEach(function(t){ clearTimeout(t); }); timers = []; }
 
@@ -22,15 +20,7 @@
     items.forEach(function(el){ el.classList.remove('show'); });
   }
 
-  function showThreadFinal(){
-    clearTimers();
-    playing = false;
-    bubbles.forEach(function(b){ b.classList.add('show'); });
-    typers.forEach(function(t){ t.classList.remove('show'); });
-  }
-
   function playThread(){
-    if (reducedMotion()){ showThreadFinal(); return; }
     if (playing) return;
     playing = true;
     clearTimers();
@@ -52,6 +42,9 @@
   replayBtn.addEventListener('click', function(){
     replayBtn.classList.add('spin');
     setTimeout(function(){ replayBtn.classList.remove('spin'); }, 520);
+    clearTimers();
+    playing = false;
+    resetThread();
     playThread();
   });
 
@@ -61,7 +54,7 @@
       entries.forEach(function(e){
         if (e.isIntersecting){
           playThread();
-        } else if (!reducedMotion()){
+        } else {
           clearTimers();
           playing = false;
           resetThread();
@@ -104,14 +97,7 @@
     var STAT_TARGET = 1200;
     var countRun = 0;
 
-    function showStatFinal(){
-      countRun++;
-      dollarNode.textContent = '$' + Math.floor(STAT_TARGET / 1000);
-      centsSpan.textContent = ',' + String(STAT_TARGET % 1000).padStart(3, '0');
-    }
-
     function runCount(){
-      if (reducedMotion()){ showStatFinal(); return; }
       var runId = ++countRun;
       var dur = 1400;
       var start = null;
@@ -130,8 +116,6 @@
       requestAnimationFrame(step);
     }
 
-    if (reducedMotion()){ showStatFinal(); }
-
     var statIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if (e.isIntersecting){ runCount(); }
@@ -146,17 +130,9 @@
         runCount();
       });
     }
-
-    if (motionQuery.addEventListener){
-      motionQuery.addEventListener('change', function(){
-        if (reducedMotion()){ showStatFinal(); showThreadFinal(); }
-      });
-    }
   } else if (statEl) {
     if (statReplayBtn) statReplayBtn.style.display = 'none';
   }
-
-  if (reducedMotion()){ showThreadFinal(); }
 
   // -- Sticky mobile CTA bar (v2.1 amendment A1): hide it while the real CTA panel is
   // in view so the page never shows two CTAs at once. Same URL, one ask, mobile affordance.

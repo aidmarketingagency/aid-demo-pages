@@ -7,7 +7,9 @@
   var timers = [];
   var playing = false;
 
-  // v2 spec: the reduced-motion fallback must cover JS-driven animation, not just CSS.
+  // Demo doctrine (2026-07-16): the SMS sequencing and stat count-up are CONTENT,
+  // not decoration. They always play, for everyone. Only transforms/slides stay
+  // gated behind prefers-reduced-motion, and that gating lives in styles.css.
   var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   function reducedMotion(){ return !!motionQuery.matches; }
 
@@ -26,7 +28,6 @@
   }
 
   function playThread(){
-    if (reducedMotion()){ showThreadFinal(); return; }
     if (playing) return;
     playing = true;
     clearTimers();
@@ -55,7 +56,7 @@
       entries.forEach(function(e){
         if (e.isIntersecting){
           playThread();
-        } else if (!reducedMotion()){
+        } else {
           clearTimers();
           playing = false;
           resetThread();
@@ -104,7 +105,6 @@
     }
 
     function runCount(){
-      if (reducedMotion()){ showStatFinal(); return; }
       var runId = ++countRun;
       var dur = 1400;
       var start = null;
@@ -118,8 +118,6 @@
       }
       requestAnimationFrame(step);
     }
-
-    if (reducedMotion()){ showStatFinal(); }
 
     var statIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
@@ -136,14 +134,7 @@
       });
     }
 
-    if (motionQuery.addEventListener){
-      motionQuery.addEventListener('change', function(){
-        if (reducedMotion()){ showStatFinal(); showThreadFinal(); }
-      });
-    }
   } else if (statEl) {
     if (statReplayBtn) statReplayBtn.style.display = 'none';
   }
-
-  if (reducedMotion()){ showThreadFinal(); }
 })();

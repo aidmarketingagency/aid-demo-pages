@@ -315,7 +315,10 @@
   .reveal.visible{opacity:1;transform:none}
 
   @media (prefers-reduced-motion:reduce){
-    .bubble,.typing,.reveal{transition:none!important;opacity:1!important;transform:none!important}
-    .ring,.pulse,.replay-btn.spin svg{animation:none!important}
+    /* Thread bubbles + typing pills stay on the JS timeline (content, not decoration):
+       transitions/slides are killed so .show snaps them in instantly, one by one. */
+    .bubble,.typing{transition:none!important;transform:none!important}
+    .reveal{transition:none!important;opacity:1!important;transform:none!important}
+    .ring,.pulse,.replay-btn.spin svg,.typing span{animation:none!important}
     .mobile-cta-bar{transition:none!important}
   }

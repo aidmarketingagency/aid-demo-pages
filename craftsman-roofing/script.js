@@ -7,11 +7,8 @@
   var timers = [];
   var playing = false;
 
-  // v2 spec: the reduced-motion fallback must cover JS-driven animation, not just CSS.
-  // When reduce is set, every sequence renders its FINAL state immediately: no timers,
-  // no typing indicators, no count-up. The change listener handles mid-session toggles.
-  var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
-  function reducedMotion(){ return !!motionQuery.matches; }
+  // Reduced motion: the SMS sequencing and stat count-up are demo CONTENT and always
+  // play. CSS gates transforms/transitions under reduce so each step lands instantly.
 
   function clearTimers(){ timers.forEach(function(t){ clearTimeout(t); }); timers = []; }
 
@@ -20,15 +17,7 @@
     typers.forEach(function(t){ t.classList.remove('show'); });
   }
 
-  function showThreadFinal(){
-    clearTimers();
-    playing = false;
-    bubbles.forEach(function(b){ b.classList.add('show'); });
-    typers.forEach(function(t){ t.classList.remove('show'); });
-  }
-
   function playThread(){
-    if (reducedMotion()){ showThreadFinal(); return; }
     if (playing) return;
     playing = true;
     clearTimers();
@@ -55,6 +44,7 @@
   replayBtn.addEventListener('click', function(){
     replayBtn.classList.add('spin');
     setTimeout(function(){ replayBtn.classList.remove('spin'); }, 520);
+    playing = false;
     playThread();
   });
 
@@ -66,9 +56,8 @@
       entries.forEach(function(e){
         if (e.isIntersecting){
           playThread();
-        } else if (!reducedMotion()){
+        } else {
           // left the viewport: stop any in-flight sequence so re-entry starts clean.
-          // Under reduced motion the thread stays fully shown; never re-hide it.
           clearTimers();
           playing = false;
           resetThread();
@@ -112,14 +101,7 @@
     var STAT_TARGET = 12000;
     var countRun = 0; // increments per run; a stale rAF loop sees the mismatch and stops
 
-    function showStatFinal(){
-      countRun++; // kill any in-flight rAF loop
-      dollarNode.textContent = '$' + Math.floor(STAT_TARGET / 1000);
-      centsSpan.textContent = ',' + String(STAT_TARGET % 1000).padStart(3, '0');
-    }
-
     function runCount(){
-      if (reducedMotion()){ showStatFinal(); return; }
       var runId = ++countRun;
       var dur = 1400;
       var start = null;
@@ -138,10 +120,6 @@
       requestAnimationFrame(step);
     }
 
-    // Reduced motion from first paint: show the final figure immediately rather
-    // than leaving $0,000 on screen until the section scrolls into view.
-    if (reducedMotion()){ showStatFinal(); }
-
     var statIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if (e.isIntersecting){ runCount(); }
@@ -157,18 +135,8 @@
       });
     }
 
-    // Mid-session preference toggles: snap everything to final state when
-    // reduce turns on; nothing to do when it turns off (next entry re-animates).
-    if (motionQuery.addEventListener){
-      motionQuery.addEventListener('change', function(){
-        if (reducedMotion()){ showStatFinal(); showThreadFinal(); }
-      });
-    }
   } else if (statEl) {
     // No IntersectionObserver: leave the static $12,000 markup untouched
     if (statReplayBtn) statReplayBtn.style.display = 'none';
   }
-
-  // Reduced motion from first paint: the SMS thread renders fully shown, no sequence.
-  if (reducedMotion()){ showThreadFinal(); }
 })();

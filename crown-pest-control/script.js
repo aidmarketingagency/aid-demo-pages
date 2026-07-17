@@ -1,5 +1,7 @@
 (function(){
-  // Reduced motion covers JS-driven animation too, per the v2 spec.
+  // Reduced motion: the SMS sequencing and stat count-up are demo CONTENT and always
+  // play. CSS gates transforms/transitions under reduce so each step lands instantly.
+  // The query below only gates the decorative section reveals.
   var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches:false };
   function reduced(){ return !!motionQuery.matches; }
 
@@ -16,13 +18,7 @@
     bubbles.forEach(function(b){ b.classList.remove('show'); });
     typers.forEach(function(t){ t.classList.remove('show'); });
   }
-  function showThreadFinal(){
-    threadGen++; clearTimers();
-    bubbles.forEach(function(b){ b.classList.add('show'); });
-    typers.forEach(function(t){ t.classList.remove('show'); });
-  }
   function playThread(){
-    if (reduced()){ showThreadFinal(); return; }
     var gen = ++threadGen;
     clearTimers(); resetThread();
     // Walk thread children in DOM order: typing dots run ~950ms before the
@@ -53,7 +49,7 @@
     var demoIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
         if (e.isIntersecting){ playThread(); }
-        else if (!reduced()){ threadGen++; clearTimers(); resetThread(); }
+        else { threadGen++; clearTimers(); resetThread(); }
       });
     }, { threshold:.35 });
     demoIO.observe(thread);
@@ -80,7 +76,6 @@
   function fmt(v){ return '$' + v.toLocaleString('en-US'); }
   function showStatFinal(){ countGen++; statEl.textContent = fmt(STAT_TARGET); }
   function runCount(){
-    if (reduced()){ showStatFinal(); return; }
     var gen = ++countGen;
     var dur = 1400, start = null;
     function step(ts){
@@ -106,14 +101,6 @@
       runCount();
     });
   }
-
-  /* -- mid-session reduced-motion toggle snaps everything to final state -- */
-  if (motionQuery.addEventListener){
-    motionQuery.addEventListener('change', function(){
-      if (reduced()){ showThreadFinal(); showStatFinal(); }
-    });
-  }
-  if (reduced()){ showThreadFinal(); showStatFinal(); }
 
   /* -- sticky mobile CTA bar: hidden while the real CTA panel is in view (one ask at a time) -- */
   var bar = document.getElementById('mobileCtaBar');

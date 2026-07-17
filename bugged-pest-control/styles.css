@@ -309,8 +309,10 @@
   }
 
   @media (prefers-reduced-motion:reduce){
-    .bubble,.reveal{transition:none!important;opacity:1!important;transform:none!important}
-    .typing{display:none!important}
+    .bubble{transition:none!important;transform:none!important}
+    .reveal{transition:none!important;opacity:1!important;transform:none!important}
+    .typing{transition:none!important}
+    .typing span{animation:none!important}
     .ring,.pulse,.replay-btn.spin svg{animation:none!important}
     .mobile-cta-bar{transition:none!important}
   }
