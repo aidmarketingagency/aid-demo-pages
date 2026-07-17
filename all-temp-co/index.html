@@ -521,33 +521,69 @@
 (function(){
   var WID='54722168';
   var IMG='https://paymegpt.com/api/files/avatar/widget_avatar_mcp_widget_54722168_1784002747499.png';
+  function mobile(){return window.innerWidth<769;}
+  var full=false, fsBtn=null;
+  function container(){return document.getElementById('ultra-fast-widget-container-'+WID);}
+  function bubble(){return document.getElementById('ultra-fast-widget-bubble-'+WID);}
+  function isOpen(){var c=container();return !!(c&&getComputedStyle(c).display!=='none');}
+  /* Mobile: chat opens as a bottom sheet, not a fullscreen takeover. The expand
+     button toggles true fullscreen. Inline !important beats the widget's own CSS. */
+  function sheet(c){
+    if(!mobile()||full){unsheet(c);return;}
+    var s=c.style;
+    s.setProperty('top','auto','important');s.setProperty('bottom','10px','important');
+    s.setProperty('left','8px','important');s.setProperty('right','8px','important');
+    s.setProperty('width','auto','important');s.setProperty('height','72vh','important');
+    s.setProperty('max-height','72vh','important');s.setProperty('border-radius','16px','important');
+  }
+  function unsheet(c){
+    ['top','bottom','left','right','width','height','max-height','border-radius'].forEach(function(p){c.style.removeProperty(p);});
+  }
+  function ensureFsBtn(c){
+    if(!mobile()){if(fsBtn&&fsBtn.parentNode){fsBtn.parentNode.removeChild(fsBtn);fsBtn=null;}return;}
+    if(fsBtn&&c.contains(fsBtn))return;
+    fsBtn=document.createElement('button');
+    fsBtn.type='button';fsBtn.setAttribute('aria-label','Toggle full screen');
+    fsBtn.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M8 3H3v5"/><path d="M16 3h5v5"/><path d="M8 21H3v-5"/><path d="M16 21h5v-5"/></svg>';
+    fsBtn.style.cssText='position:absolute;top:9px;left:10px;z-index:2147483647;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:9px;cursor:pointer;';
+    fsBtn.addEventListener('click',function(e){
+      e.stopPropagation();full=!full;var c2=container();
+      if(c2){if(full){unsheet(c2);}else{sheet(c2);}}
+    });
+    c.appendChild(fsBtn);
+  }
   function sync(){
-    var b=document.getElementById('ultra-fast-widget-bubble-'+WID);
+    var b=bubble();
     if(!b)return;
-    var c=document.getElementById('ultra-fast-widget-container-'+WID);var open=!!(c&&getComputedStyle(c).display!=='none');
+    var open=isOpen();
     var img=b.querySelector('img[data-aid-icon]');
-    if(open){if(img){img.remove();b.style.background='';}return;}
-    if(!img){
+    if(open){if(img){img.remove();b.style.background='';}}
+    else if(!img){
       img=document.createElement('img');
       img.src=IMG;img.alt='';img.setAttribute('data-aid-icon','');
       img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;top:0;left:0;pointer-events:none;';
       b.style.background='#0D0D0F';
       b.appendChild(img);
     }
+    var c=container();
+    if(c){
+      if(open){ensureFsBtn(c);sheet(c);}
+      else{full=false;unsheet(c);}
+    }
   }
   var armed=false;
   function autoOpen(){
     if(armed)return;
-    var b=document.getElementById('ultra-fast-widget-bubble-'+WID);
+    var b=bubble();
     if(!b)return;
     armed=true;
     try{if(sessionStorage.getItem('aidWidgetAutoOpened'))return;}catch(e){}
     setTimeout(function(){
       try{sessionStorage.setItem('aidWidgetAutoOpened','1');}catch(e){}
-      var cc=document.getElementById('ultra-fast-widget-container-'+WID);if(!(cc&&getComputedStyle(cc).display!=='none'))b.click();
-    },6000);
+      if(!isOpen())b.click();
+    },10000);
   }
-  setInterval(function(){sync();autoOpen();},500);
+  setInterval(function(){sync();autoOpen();},400);
 })();
 </script>
 
