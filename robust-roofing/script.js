@@ -55,23 +55,60 @@
   replayBtn.addEventListener('click', function(){
     replayBtn.classList.add('spin');
     setTimeout(function(){ replayBtn.classList.remove('spin'); }, 520);
+    // Always resets and replays, including mid-play.
+    clearTimers();
+    playing = false;
     playThread();
   });
 
-  // Re-arm on scroll re-entry (v2 spec animation standard: nothing plays once and dies).
+  // Autoplay contract (Addendum C):
+  // - plays ONCE when the thread is ~15% visible, including already-visible at init
+  // - no observer-driven restart while any part of the thread stays visible
+  // - re-arms ONLY after the thread has FULLY left the viewport (threshold-0 observer)
+  var autoplayArmed = true;
+
+  function autoplayThread(){
+    if (!autoplayArmed) return;
+    autoplayArmed = false;
+    playThread();
+  }
+
+  function threadVisibleFraction(){
+    var r = thread.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight || 0;
+    if (!r.height || !vh) return 0;
+    var visiblePx = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+    if (visiblePx <= 0) return 0;
+    // Measure against the smaller of thread height and viewport height so a
+    // thread taller than the viewport can still reach the 15% mark.
+    return visiblePx / Math.min(r.height, vh);
+  }
+
   if ('IntersectionObserver' in window){
-    var demoIO = new IntersectionObserver(function(entries){
+    var playIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
-        if (e.isIntersecting){
-          playThread();
-        } else {
+        if (e.isIntersecting){ autoplayThread(); }
+      });
+    }, { threshold: 0.15 });
+    playIO.observe(thread);
+
+    var rearmIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        // Fires only when the thread has fully left the viewport: stop any
+        // in-flight sequence, reset, and re-arm so the next entry replays once.
+        if (!e.isIntersecting && e.intersectionRatio <= 0){
           clearTimers();
           playing = false;
           resetThread();
+          autoplayArmed = true;
         }
       });
-    }, { threshold: 0.12 });
-    demoIO.observe(thread);
+    }, { threshold: 0 });
+    rearmIO.observe(thread);
+
+    // Already visible at script init: play now (an in-view thread may never
+    // produce a crossing event, especially on phone-sized viewports).
+    if (threadVisibleFraction() >= 0.15){ autoplayThread(); }
   } else {
     playThread();
   }

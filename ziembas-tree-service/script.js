@@ -44,23 +44,50 @@
     playThread();
   });
 
-  // Re-arm on scroll re-entry (v2 spec animation standard: nothing plays once and dies).
-  // The observer stays attached for the life of the page; on exit any in-flight sequence
-  // is cancelled and reset so re-entry starts clean. Manual Replay button still works.
+  // Sequencer contract (Addendum C): autoplay ONCE when ~15% of the thread is visible,
+  // including when it is already visible at script init. No observer-driven restart while
+  // any part of the thread stays in view (bubble layout shifts must not churn a replay).
+  // Re-arm ONLY after the thread has FULLY left the viewport (threshold-0 observer), so
+  // scrolling away and back replays it once per re-entry. The observer never resets
+  // mid-play; only the Replay button interrupts a run.
   if ('IntersectionObserver' in window){
-    var demoIO = new IntersectionObserver(function(entries){
+    var armed = true;
+    var tryAutoplay = function(){
+      if (!armed) return;
+      armed = false;
+      playThread();
+    };
+
+    // Play trigger: fires when ~15% of the thread becomes visible. Consumes the armed state.
+    // (On a 375px screen the thread runs ~930px tall, so 0.15 stays reachable while 0.35 was not.)
+    var playIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
-        if (e.isIntersecting){
-          playThread();
-        } else {
+        if (e.isIntersecting && e.intersectionRatio >= 0.15){ tryAutoplay(); }
+      });
+    }, { threshold: 0.15 });
+    playIO.observe(thread);
+
+    // Re-arm trigger: only when the thread has fully left the viewport (ratio 0).
+    var rearmIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting){
           clearTimers();
           playing = false;
           resetThread();
+          armed = true;
         }
       });
-    }, { threshold: 0.12 }); /* low threshold: on a 375px screen the thread runs ~930px tall,
-                                so a 0.35 ratio is unreachable and the sequence would never fire */
-    demoIO.observe(thread);
+    }, { threshold: 0 });
+    rearmIO.observe(thread);
+
+    // Already visible at init: observer callbacks are async and may not report a crossing,
+    // so check the rect directly and play if ~15% of the thread is on screen.
+    var initRect = thread.getBoundingClientRect();
+    var viewH = window.innerHeight || document.documentElement.clientHeight;
+    var visiblePx = Math.min(initRect.bottom, viewH) - Math.max(initRect.top, 0);
+    if (initRect.height > 0 && visiblePx > 0 && (visiblePx / initRect.height) >= 0.15){
+      tryAutoplay();
+    }
   } else {
     playThread();
   }

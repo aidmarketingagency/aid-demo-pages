@@ -9,6 +9,7 @@
   var replayBtn = document.getElementById('replayBtn');
   var timers = [];
   var playing = false;
+  var armed = true; // Addendum C: autoplay fires once per full exit/re-entry cycle
 
   // Doctrine 2026-07-16: the SMS sequencing, typing beats, and stat count-up are CONTENT,
   // not decoration. They play for everyone on the same timeline. Reduced motion only
@@ -42,28 +43,49 @@
   replayBtn.addEventListener('click', function(){
     replayBtn.classList.add('spin');
     setTimeout(function(){ replayBtn.classList.remove('spin'); }, 520);
+    armed = false;
     clearTimers();
     playing = false;
     resetThread();
     playThread();
   });
 
-  // Re-arm on scroll re-entry (v2 spec animation standard: nothing plays once and dies).
-  // The observer stays attached for the life of the page: every time the thread
-  // scrolls back into view it resets and re-plays. Manual Replay button still works.
+  // Addendum C contract (2026-07-16): autoplay fires ONCE when the thread first
+  // becomes ~15 percent visible, including when it is already visible at script
+  // init (getBoundingClientRect check below). While any part of the thread stays
+  // visible the observer never resets or replays it. It re-arms ONLY after the
+  // thread has FULLY left the viewport (isIntersecting false at the 0 threshold),
+  // so scrolling away and back replays once per re-entry. Replay button unchanged.
+  var PLAY_RATIO = 0.15;
+
+  function threadVisibleRatio(){
+    var rect = thread.getBoundingClientRect();
+    if (!rect.height) return 0;
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var visible = Math.min(rect.bottom, vh) - Math.max(rect.top, 0);
+    return visible > 0 ? visible / rect.height : 0;
+  }
+
   if ('IntersectionObserver' in window){
+    if (threadVisibleRatio() >= PLAY_RATIO){
+      armed = false;
+      playThread();
+    }
     var demoIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
-        if (e.isIntersecting){
-          playThread();
-        } else {
-          // left the viewport: stop any in-flight sequence so re-entry starts clean.
+        if (!e.isIntersecting){
+          // Fully out of the viewport: stop any in-flight sequence and re-arm.
+          // This branch can never fire while any part of the thread is visible.
           clearTimers();
           playing = false;
           resetThread();
+          armed = true;
+        } else if (armed && e.intersectionRatio >= PLAY_RATIO - 0.001){
+          armed = false;
+          playThread();
         }
       });
-    }, { threshold: 0.35 });
+    }, { threshold: [0, PLAY_RATIO] });
     demoIO.observe(thread);
   } else {
     playThread();

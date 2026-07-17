@@ -86,22 +86,41 @@
     playThread();
   });
 
-  // Re-arm on scroll re-entry (v2 spec: demoIO stays attached for life of page)
+  // Autoplay contract (2026-07-16): fire ONCE when ~15% of the thread is visible
+  // (including already-visible at script init), never observer-restart while any
+  // part stays in view, re-arm ONLY after the thread has FULLY left the viewport.
+  function threadVisibleFraction(){
+    var r = thread.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var visible = Math.min(r.bottom, vh) - Math.max(r.top, 0);
+    return r.height > 0 ? Math.max(0, visible) / r.height : 0;
+  }
+
   if ('IntersectionObserver' in window){
+    var armed = true;
     var demoIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
-        if (e.isIntersecting){
-          playing = false;
-          playThread();
-        } else {
-          // Left the viewport: cancel in-flight, reset so re-entry starts clean
+        if (!e.isIntersecting){
+          // Fully out of the viewport: reset clean, re-arm for ONE replay on re-entry.
+          armed = true;
           clearTimers();
           playing = false;
           resetThread();
+        } else if (armed && e.intersectionRatio >= 0.15){
+          armed = false;
+          playThread();
         }
+        // Partially visible while disarmed: do nothing. Mid-play scrolls and
+        // bubble-driven layout shifts must never reset or restart the thread.
       });
-    }, { threshold: 0.35 });
+    }, { threshold: [0, 0.15] });
     demoIO.observe(thread);
+    // Already visible at script init (thread above the fold or page restored
+    // mid-scroll): play now instead of waiting for a crossing that never comes.
+    if (armed && threadVisibleFraction() >= 0.15){
+      armed = false;
+      playThread();
+    }
   } else {
     playThread();
   }

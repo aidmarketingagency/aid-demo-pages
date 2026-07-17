@@ -6,6 +6,7 @@
   var replayBtn = document.getElementById('replayBtn');
   var timers = [];
   var playing = false;
+  var autoplayArmed = true; // one autoplay per approach; re-arms only after a FULL viewport exit
 
   // v2 spec: the reduced-motion fallback must cover JS-driven animation, not just CSS.
   var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
@@ -28,6 +29,7 @@
   function playThread(){
     if (playing) return;
     playing = true;
+    autoplayArmed = false;
     clearTimers();
     resetThread();
     var seq = [
@@ -46,23 +48,35 @@
   replayBtn.addEventListener('click', function(){
     replayBtn.classList.add('spin');
     setTimeout(function(){ replayBtn.classList.remove('spin'); }, 520);
+    playing = false; // replay always resets and replays, even mid-play
     playThread();
   });
 
-  // Re-arm on scroll re-entry (v2 spec animation standard: nothing plays once and dies).
+  // Autoplay fires once at ~15-20% visibility; re-arms ONLY after the thread has
+  // FULLY left the viewport. No observer-driven restart while any part stays visible.
   if ('IntersectionObserver' in window){
     var demoIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
-        if (e.isIntersecting){
-          playThread();
-        } else {
+        if (!e.isIntersecting){
+          // Fully out of the viewport: stop, reset, re-arm for the next approach.
           clearTimers();
           playing = false;
           resetThread();
+          autoplayArmed = true;
+        } else if (autoplayArmed && e.intersectionRatio >= 0.14){
+          playThread();
         }
       });
-    }, { threshold: 0.35 });
+    }, { threshold: [0, 0.15, 0.2] });
     demoIO.observe(thread);
+
+    // Already visible at script init: play now instead of waiting for a crossing.
+    var initRect = thread.getBoundingClientRect();
+    var initVh = window.innerHeight || document.documentElement.clientHeight || 0;
+    var initVisible = Math.min(initRect.bottom, initVh) - Math.max(initRect.top, 0);
+    if (autoplayArmed && initRect.height > 0 && initVisible / initRect.height >= 0.15){
+      playThread();
+    }
   } else {
     playThread();
   }

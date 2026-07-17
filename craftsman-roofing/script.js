@@ -48,23 +48,44 @@
     playThread();
   });
 
-  // Re-arm on scroll re-entry (v2 spec animation standard: nothing plays once and dies).
-  // The observer stays attached for the life of the page: every time the thread
-  // scrolls back into view it resets and re-plays. Manual Replay button still works.
+  // Autoplay fires ONCE when the thread is ~15-20% visible (including already
+  // visible at script init). No observer-driven restart while any part of the
+  // thread stays in view; re-arm ONLY after it has fully left the viewport.
+  // Manual Replay button still works, including mid-play.
+  var armed = true;
+
+  function autoplayThread(){
+    if (!armed) return;
+    armed = false;
+    playThread();
+  }
+
   if ('IntersectionObserver' in window){
-    var demoIO = new IntersectionObserver(function(entries){
+    var playIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
-        if (e.isIntersecting){
-          playThread();
-        } else {
-          // left the viewport: stop any in-flight sequence so re-entry starts clean.
+        if (e.isIntersecting && e.intersectionRatio >= 0.15){ autoplayThread(); }
+      });
+    }, { threshold: 0.18 });
+    playIO.observe(thread);
+
+    var rearmIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting){
+          // fully left the viewport: stop any in-flight sequence so re-entry starts clean.
           clearTimers();
           playing = false;
           resetThread();
+          armed = true;
         }
       });
-    }, { threshold: 0.35 });
-    demoIO.observe(thread);
+    }, { threshold: 0 });
+    rearmIO.observe(thread);
+
+    // Already visible at script init: play now instead of waiting on an entry.
+    var initRect = thread.getBoundingClientRect();
+    var initVh = window.innerHeight || document.documentElement.clientHeight;
+    var initVisible = Math.min(initRect.bottom, initVh) - Math.max(initRect.top, 0);
+    if (initRect.height > 0 && initVisible / initRect.height >= 0.15){ autoplayThread(); }
   } else {
     playThread();
   }

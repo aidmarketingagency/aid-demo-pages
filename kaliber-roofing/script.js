@@ -47,23 +47,44 @@
   replayBtn.addEventListener('click', function(){
     replayBtn.classList.add('spin');
     setTimeout(function(){ replayBtn.classList.remove('spin'); }, 520);
+    // Replay always resets and replays, including mid-play.
+    clearTimers();
+    playing = false;
     playThread();
   });
 
-  // Re-arm on scroll re-entry (v2 animation standard: nothing plays once and dies).
+  // Addendum C sequencer contract (2026-07-16):
+  // - autoplay fires ONCE when ~15% of the thread is visible, including already-visible at init
+  // - no observer-driven restart while any part of the thread stays visible
+  // - re-arm ONLY after the thread has fully left the viewport (isIntersecting false)
+  // - the observer never resets mid-play; only the Replay button force-restarts
   if ('IntersectionObserver' in window){
+    var armed = true;
     var demoIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
-        if (e.isIntersecting){
-          playThread();
-        } else {
+        if (!e.isIntersecting){
+          // fully out of the viewport: stop, reset, re-arm for the next entry
           clearTimers();
           playing = false;
           resetThread();
+          armed = true;
+        } else if (armed && e.intersectionRatio >= 0.15){
+          armed = false;
+          playThread();
         }
       });
-    }, { threshold: 0.35 });
+    }, { threshold: [0, 0.15] });
     demoIO.observe(thread);
+
+    // Already visible at script init? Play now; armed=false makes the
+    // observer's initial entry for the same state a no-op.
+    var initRect = thread.getBoundingClientRect();
+    var initVh = window.innerHeight || document.documentElement.clientHeight;
+    var initVisible = Math.min(initRect.bottom, initVh) - Math.max(initRect.top, 0);
+    if (initRect.height > 0 && initVisible >= initRect.height * 0.15){
+      armed = false;
+      playThread();
+    }
   } else {
     playThread();
   }
