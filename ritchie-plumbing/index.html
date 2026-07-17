@@ -498,7 +498,7 @@
 </div>
 
 <!-- AID demo concierge (shared widget 54722168) + one-shot auto-open -->
-<script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
+<script src="https://paymegpt.com/widget.js" data-widget="54722168" data-force-theme="dark" async></script>
 <script data-aid-widget-boost>
 (function(){
   var WID='54722168';
@@ -523,7 +523,6 @@
     var b=document.getElementById('ultra-fast-widget-bubble-'+WID);
     if(!b)return;
     armed=true;
-    if(window.innerWidth<769)return; /* mobile chat is fullscreen; keep the demo page visible */
     try{if(sessionStorage.getItem('aidWidgetAutoOpened'))return;}catch(e){}
     setTimeout(function(){
       try{sessionStorage.setItem('aidWidgetAutoOpened','1');}catch(e){}
