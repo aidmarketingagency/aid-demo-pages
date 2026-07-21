@@ -577,6 +577,7 @@
     var b=bubble();
     if(!b)return;
     var open=isOpen();
+    if(open){try{sessionStorage.setItem('aidWidgetAutoOpened','1');}catch(e){}}
     var img=b.querySelector('img[data-aid-icon]');
     if(open){if(img){img.remove();b.style.background='';}}
     else if(!img){
@@ -600,6 +601,7 @@
     armed=true;
     try{if(sessionStorage.getItem('aidWidgetAutoOpened'))return;}catch(e){}
     setTimeout(function(){
+      try{if(sessionStorage.getItem('aidWidgetAutoOpened'))return;}catch(e){}
       try{sessionStorage.setItem('aidWidgetAutoOpened','1');}catch(e){}
       if(!isOpen())b.click();
     },20000);
