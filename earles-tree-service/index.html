@@ -566,9 +566,13 @@
     s.setProperty('left','8px','important');s.setProperty('right','8px','important');
     s.setProperty('width','auto','important');s.setProperty('height','72vh','important');
     s.setProperty('max-height','72vh','important');s.setProperty('border-radius','16px','important');
+    sheeted=true;
   }
+  var sheeted=false;
   function unsheet(c){
+    if(!sheeted)return;
     ['top','bottom','left','right','width','height','max-height','border-radius'].forEach(function(p){c.style.removeProperty(p);});
+    sheeted=false;
   }
   function ensureFsBtn(c){
     if(!mobile()){if(fsBtn&&fsBtn.parentNode){fsBtn.parentNode.removeChild(fsBtn);fsBtn=null;}return;}
