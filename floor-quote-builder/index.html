@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FloorQuote Builder — Demo</title>
+  <style>
+    /* ── CSS VARIABLES ──────────────────────────────────────────────────── */
+    :root {
+      --bg:          #080C18;
+      --bg2:         #0F1428;
+      --glass:       rgba(255,255,255,0.055);
+      --glass-hover: rgba(255,255,255,0.09);
+      --border:      rgba(255,255,255,0.10);
+      --border-hi:   rgba(139,92,246,0.45);
+      --accent-a:    #7C3AED;
+      --accent-b:    #2563EB;
+      --accent-c:    #06B6D4;
+      --text-1:      #F1F5F9;
+      --text-2:      #94A3B8;
+      --text-3:      #64748B;
+      --success:     #10B981;
+      --warn:        #F59E0B;
+      --pill-active: linear-gradient(135deg,var(--accent-a),var(--accent-b));
+      --glow:        0 0 32px rgba(124,58,237,0.18);
+      --radius:      12px;
+      --radius-sm:   8px;
+    }
+
+    /* ── RESET / BASE ───────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text-1);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    /* ── DEMO BANNER ────────────────────────────────────────────────────── */
+    .demo-banner {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(90deg,#92400e,#78350f);
+      border-bottom: 1px solid rgba(251,191,36,0.4);
+      padding: 8px 20px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: #FEF3C7;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .demo-banner .icon { font-size: 15px; }
+
+    /* ── TOP NAV ────────────────────────────────────────────────────────── */
+    .top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 28px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(8,12,24,0.95);
+      backdrop-filter: blur(10px);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 34px; height: 34px;
+      background: var(--pill-active);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .logo-text {
+      font-size: 16px; font-weight: 700;
+      background: linear-gradient(135deg,#A78BFA,#60A5FA);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-badge {
+      font-size: 11px; font-weight: 600;
+      background: rgba(124,58,237,0.15);
+      border: 1px solid rgba(124,58,237,0.3);
+      color: #A78BFA;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    /* ── HERO ───────────────────────────────────────────────────────────── */
+    .hero {
+      text-align: center;
+      padding: 48px 20px 36px;
+    }
+    .hero h1 {
+      font-size: clamp(24px,4vw,38px);
+      font-weight: 800;
+      background: linear-gradient(135deg,#E2D9F3 0%,#A78BFA 40%,#60A5FA 80%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      color: var(--text-2);
+      font-size: 15px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .hero-chips {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+      margin-top: 20px;
+    }
+    .chip {
+      font-size: 12px; font-weight: 500;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      color: var(--text-2);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* ── MAIN LAYOUT ────────────────────────────────────────────────────── */
+    .main-layout {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+    @media (max-width: 900px) {
+      .main-layout { grid-template-columns: 1fr; }
+      .preview-col { order: -1; }
+    }
+
+    /* ── GLASS CARD ─────────────────────────────────────────────────────── */
+    .card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(12px);
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    .card:last-child { margin-bottom: 0; }
+    .card-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-3);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── FIELDS ─────────────────────────────────────────────────────────── */
+    .field { margin-bottom: 14px; }
+    .field:last-child { margin-bottom: 0; }
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-2);
+      margin-bottom: 6px;
+    }
+    .field-hint {
+      font-weight: 400;
+      color: var(--text-3);
+      font-size: 11px;
+      margin-left: 4px;
+    }
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      color: var(--text-1);
+      font-size: 14px;
+      padding: 9px 12px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      font-family: inherit;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--accent-a);
+      box-shadow: 0 0 0 3px rgba(124,58,237,0.15);
+    }
+    select option { background: #1E2235; color: var(--text-1); }
+    textarea { resize: vertical; min-height: 72px; }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* ── PILL TOGGLES ───────────────────────────────────────────────────── */
+    .pill-group {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .pill {
+      padding: 7px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: var(--glass);
+      color: var(--text-2);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.18s;
+      font-family: inherit;
+    }
+    .pill:hover { border-color: var(--accent-a); color: var(--text-1); }
+    .pill.active {
+      background: var(--pill-active);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 2px 12px rgba(124,58,237,0.35);
+    }
+
+    /* ── FLOOR TYPE TOGGLE ──────────────────────────────────────────────── */
+    .floor-toggle {
+      display: flex; flex-wrap: wrap; gap: 10px;
+      margin-bottom: 4px;
+    }
+    .floor-btn {
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--glass);
+      color: var(--text-2);
+      font-size: 13px; font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s;
+      font-family: inherit;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .floor-btn:hover { border-color: var(--accent-a); color: var(--text-1); }
+    .floor-btn.active {
+      border-color: var(--accent-a);
+      background: rgba(124,58,237,0.12);
+      color: #A78BFA;
+    }
+    .floor-section { display: none; }
+    .floor-section.visible { display: block; }
+
+    /* ── CHECKBOX ───────────────────────────────────────────────────────── */
+    .checkbox-row {
+      display: flex; align-items: center; gap: 10px;
+      padding: 8px 0;
+    }
+    .checkbox-row input[type="checkbox"] {
+      width: 18px; height: 18px;
+      accent-color: var(--accent-a);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .checkbox-row label {
+      font-size: 13px; color: var(--text-2);
+      cursor: pointer; margin-bottom: 0;
+    }
+
+    /* ── GENERATE BUTTON ────────────────────────────────────────────────── */
+    .generate-btn {
+      width: 100%;
+      padding: 14px;
+      border-radius: var(--radius);
+      border: none;
+      background: var(--pill-active);
+      color: #fff;
+      font-size: 15px; font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: opacity 0.2s, transform 0.15s;
+      margin-top: 8px;
+      box-shadow: 0 4px 20px rgba(124,58,237,0.4);
+    }
+    .generate-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .generate-btn:active { transform: translateY(0); }
+
+    /* ── PREVIEW COLUMN ─────────────────────────────────────────────────── */
+    .preview-col { position: sticky; top: 60px; align-self: start; }
+
+    .quote-preview {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(12px);
+      overflow: hidden;
+    }
+    .preview-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      background: rgba(124,58,237,0.08);
+    }
+    .preview-header h3 {
+      font-size: 13px; font-weight: 700;
+      color: #A78BFA;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .preview-header p {
+      font-size: 11px; color: var(--text-3);
+      margin-top: 2px;
+    }
+    .preview-body { padding: 20px; }
+
+    /* Quote meta */
+    .quote-meta {
+      font-size: 11px;
+      color: var(--text-3);
+      margin-bottom: 16px;
+      display: flex; gap: 16px; flex-wrap: wrap;
+    }
+    .quote-meta span { display: flex; align-items: center; gap: 4px; }
+
+    /* Line items */
+    .section-header {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #A78BFA;
+      padding: 8px 0 4px;
+      border-bottom: 1px solid rgba(124,58,237,0.2);
+      margin-bottom: 6px;
+      margin-top: 12px;
+    }
+    .section-header:first-child { margin-top: 0; }
+    .line-item {
+      display: flex; justify-content: space-between; align-items: baseline;
+      gap: 8px;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 13px;
+    }
+    .line-item:last-child { border-bottom: none; }
+    .line-desc { color: var(--text-2); flex: 1; min-width: 0; }
+    .line-meta { font-size: 11px; color: var(--text-3); white-space: nowrap; }
+    .line-total { color: var(--text-1); font-weight: 500; white-space: nowrap; }
+
+    /* Totals */
+    .totals-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 16px 0;
+    }
+    .total-row {
+      display: flex; justify-content: space-between;
+      font-size: 13px;
+      padding: 4px 0;
+      color: var(--text-2);
+    }
+    .total-row.grand {
+      font-size: 18px; font-weight: 800;
+      color: #fff;
+      padding: 10px 0 4px;
+    }
+    .total-row.grand .total-val {
+      background: var(--pill-active);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+
+    /* Empty state */
+    .empty-state {
+      text-align: center;
+      padding: 32px 20px;
+      color: var(--text-3);
+    }
+    .empty-state .empty-icon { font-size: 40px; margin-bottom: 10px; }
+    .empty-state p { font-size: 13px; }
+
+    /* Print button */
+    .print-btn {
+      display: block;
+      width: 100%;
+      margin-top: 16px;
+      padding: 11px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(124,58,237,0.4);
+      background: rgba(124,58,237,0.1);
+      color: #A78BFA;
+      font-size: 13px; font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.18s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .print-btn:hover {
+      background: rgba(124,58,237,0.2);
+      border-color: #7C3AED;
+    }
+    .print-btn.hidden { display: none; }
+
+    /* Sample data note */
+    .sample-note {
+      font-size: 10px; color: var(--text-3);
+      text-align: center;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── HOW IT WORKS ───────────────────────────────────────────────────── */
+    .how-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px 64px;
+    }
+    .how-section h2 {
+      font-size: 18px; font-weight: 700;
+      color: var(--text-1);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .how-card {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+    }
+    .how-card .step-num {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      background: var(--pill-active);
+      color: white;
+      font-size: 14px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 12px;
+    }
+    .how-card h4 { font-size: 13px; font-weight: 700; color: var(--text-1); margin-bottom: 6px; }
+    .how-card p { font-size: 12px; color: var(--text-3); }
+
+    /* ── PRINT STYLES ───────────────────────────────────────────────────── */
+    @media print {
+      body { background: white; color: #111; }
+      .demo-banner { display: none; }
+      .top-nav, .hero, .how-section { display: none; }
+      .main-layout { grid-template-columns: 1fr; padding: 0; }
+      .form-col { display: none; }
+      .preview-col { position: static; }
+      .card, .quote-preview {
+        background: white;
+        border: 1px solid #e2e8f0;
+        backdrop-filter: none;
+        box-shadow: none;
+      }
+      .generate-btn, .print-btn { display: none; }
+      .preview-header { background: #f8fafc; border-color: #e2e8f0; }
+      .preview-header h3 { color: #4338CA; }
+      .preview-header p { color: #64748B; }
+      .section-header { color: #4338CA; border-color: #e0e7ff; }
+      .line-desc { color: #475569; }
+      .line-meta { color: #94A3B8; }
+      .line-total { color: #111; }
+      .quote-meta { color: #94A3B8; }
+      .total-row { color: #475569; }
+      .total-row.grand { color: #111; }
+      .total-row.grand .total-val { color: #4338CA; -webkit-text-fill-color: #4338CA; }
+      .sample-note { color: #94A3B8; }
+      .print-header-demo {
+        display: block !important;
+        font-size: 11px;
+        color: #B45309;
+        text-align: center;
+        padding: 8px;
+        background: #FEF3C7;
+        border: 1px solid #FDE68A;
+        border-radius: 6px;
+        margin-bottom: 16px;
+        font-weight: 700;
+      }
+    }
+    .print-header-demo { display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO BANNER -->
+  <div class="demo-banner">
+    <span class="icon">⚠️</span>
+    Demo: sample data — fictional products, illustrative pricing only. Not a real quote.
+    <span class="icon">⚠️</span>
+  </div>
+
+  <!-- TOP NAV -->
+  <nav class="top-nav">
+    <a class="logo" href="#">
+      <div class="logo-icon">🏗️</div>
+      <span class="logo-text">FloorQuote Builder</span>
+    </a>
+    <span class="nav-badge">Portfolio Demo</span>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Commercial Flooring<br>Instant Estimate Generator</h1>
+    <p>Select floor types, enter measurements, and get a fully itemized quote with material, labor, take-up, and add-ons — calculated live.</p>
+    <div class="hero-chips">
+      <span class="chip">LVT / Plank</span>
+      <span class="chip">Carpet</span>
+      <span class="chip">Sheet Vinyl</span>
+      <span class="chip">Live line-item calc</span>
+      <span class="chip">Print-ready</span>
+    </div>
+  </section>
+
+  <!-- MAIN LAYOUT -->
+  <div class="main-layout">
+
+    <!-- FORM COLUMN -->
+    <div class="form-col">
+
+      <!-- Job Info -->
+      <div class="card">
+        <div class="card-title">Job Information</div>
+        <div class="field-row">
+          <div class="field">
+            <label>Property Name</label>
+            <input type="text" id="property" placeholder="e.g. Meridian Heights" />
+          </div>
+          <div class="field">
+            <label>Unit / Location</label>
+            <input type="text" id="unit" placeholder="e.g. 4B, Suite 110" />
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label>Floor Plan</label>
+            <input type="text" id="floor_plan" placeholder="e.g. 2BR/2BA" />
+          </div>
+          <div class="field">
+            <label>Date</label>
+            <input type="text" id="quote_date" />
+          </div>
+        </div>
+        <div class="field">
+          <label>Unit Status</label>
+          <div class="pill-group">
+            <button class="pill status-pill active" data-value="VAC">Vacant</button>
+            <button class="pill status-pill" data-value="OCC">Occupied</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floor Types -->
+      <div class="card">
+        <div class="card-title">Floor Types</div>
+        <div class="floor-toggle">
+          <button class="floor-btn" data-section="section-plank">🪵 LVT / Plank</button>
+          <button class="floor-btn" data-section="section-carpet">🟫 Carpet</button>
+          <button class="floor-btn" data-section="section-vinyl">💧 Sheet Vinyl</button>
+        </div>
+      </div>
+
+      <!-- LVT / Plank Section -->
+      <div class="card floor-section" id="section-plank">
+        <div class="card-title">LVT / Plank</div>
+
+        <div class="field">
+          <label>Product</label>
+          <select id="plank_product">
+            <option value="">— select product —</option>
+            <option value="Montrose Pro 22mil|0.89">Montrose Pro 22mil Glue-Down — $0.89/SF</option>
+            <option value="Summit Click XL 6mm|1.02">Summit Click XL 6mm — $1.02/SF</option>
+            <option value="Ridgecrest Commercial 20mil|0.76">Ridgecrest Commercial 20mil — $0.76/SF</option>
+            <option value="Duracore Click Plank|0.94">Duracore Click Plank — $0.94/SF</option>
+            <option value="Clearpath HD Glue-Down|0.81">Clearpath HD Glue-Down — $0.81/SF</option>
+            <option value="custom|0">Custom (enter price below)</option>
+          </select>
+        </div>
+
+        <div class="field" id="plank_custom_price_field" style="display:none">
+          <label>Custom Price ($/SF)</label>
+          <input type="number" id="plank_custom_price" placeholder="0.00" min="0" step="0.01" />
+        </div>
+
+        <div class="field">
+          <label>Install Method</label>
+          <div class="pill-group">
+            <button class="pill install-pill active" data-value="glue">Glue-Down</button>
+            <button class="pill install-pill" data-value="click">Click</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Square Feet (SF) <span class="field-hint">room area</span></label>
+          <input type="number" id="plank_sf" placeholder="0" min="0" step="1" />
+        </div>
+
+        <div class="field">
+          <label>Floor Prep <span class="field-hint">leveling compound</span></label>
+          <div class="pill-group" style="margin-bottom:10px">
+            <button class="pill fp-plank-pill active" data-value="none">None</button>
+            <button class="pill fp-plank-pill" data-value="sf">By SF</button>
+            <button class="pill fp-plank-pill" data-value="bags">By Bags</button>
+          </div>
+          <div id="fp_plank_sf_field" style="display:none">
+            <input type="number" id="plank_fp_sf" placeholder="0 SF @ $0.28/SF" min="0" step="1" />
+          </div>
+          <div id="fp_plank_bags_field" style="display:none">
+            <div class="field-row">
+              <input type="number" id="plank_fp_bags" placeholder="bags @ $58/ea" min="0" step="1" />
+              <input type="number" id="plank_fp_labor_bags" placeholder="labor bags @ $38/ea" min="0" step="1" />
+            </div>
+          </div>
+        </div>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="plank_tearout" />
+          <label for="plank_tearout">Include tear-out of existing flooring</label>
+        </div>
+      </div>
+
+      <!-- Carpet Section -->
+      <div class="card floor-section" id="section-carpet">
+        <div class="card-title">Carpet</div>
+
+        <div class="field">
+          <label>Product</label>
+          <select id="carpet_product">
+            <option value="">— select product —</option>
+            <option value="Heathfield Berber 32oz|8.25">Heathfield Berber 32oz — $8.25/SY</option>
+            <option value="Crestmore Frieze 28oz|6.95">Crestmore Frieze 28oz — $6.95/SY</option>
+            <option value="Allegheny Loop Pile 25oz|7.40">Allegheny Loop Pile 25oz — $7.40/SY</option>
+            <option value="Waverly Plush 40oz|9.50">Waverly Plush 40oz — $9.50/SY</option>
+            <option value="custom|0">Custom (enter price below)</option>
+          </select>
+        </div>
+
+        <div class="field" id="carpet_custom_price_field" style="display:none">
+          <label>Custom Price ($/SY)</label>
+          <input type="number" id="carpet_custom_price" placeholder="0.00" min="0" step="0.01" />
+        </div>
+
+        <div class="field">
+          <label>Pad Grade</label>
+          <select id="carpet_pad">
+            <option value="2.00">Standard Rebond 6LB 3/8" — $2.00/SY</option>
+            <option value="2.45">Premium Rebond 8LB 7/16" — $2.45/SY</option>
+            <option value="1.75">Economy Rebond 5LB — $1.75/SY</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Square Yards (SY) <span class="field-hint">from measure sheet</span></label>
+          <input type="number" id="carpet_sy" placeholder="0" min="0" step="0.01" />
+        </div>
+
+        <div class="field">
+          <label>Staircase Flights</label>
+          <input type="number" id="carpet_stairs" placeholder="0" min="0" step="1" />
+        </div>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="carpet_tearout" />
+          <label for="carpet_tearout">Include carpet tear-out</label>
+        </div>
+      </div>
+
+      <!-- Sheet Vinyl Section -->
+      <div class="card floor-section" id="section-vinyl">
+        <div class="card-title">Sheet Vinyl</div>
+
+        <div class="field">
+          <label>Product</label>
+          <select id="vinyl_product">
+            <option value="">— select product —</option>
+            <option value="Clearwater Standard 6' Wide|6.25">Clearwater Standard 6' Wide — $6.25/SY</option>
+            <option value="AquaShield Commercial|8.40">AquaShield Commercial — $8.40/SY</option>
+            <option value="Ridgeline Vinyl Plus|7.10">Ridgeline Vinyl Plus — $7.10/SY</option>
+            <option value="Meridian Embossed Sheet|5.80">Meridian Embossed Sheet — $5.80/SY</option>
+            <option value="custom|0">Custom (enter price below)</option>
+          </select>
+        </div>
+
+        <div class="field" id="vinyl_custom_price_field" style="display:none">
+          <label>Custom Price ($/SY)</label>
+          <input type="number" id="vinyl_custom_price" placeholder="0.00" min="0" step="0.01" />
+        </div>
+
+        <div class="field">
+          <label>Square Yards (SY)</label>
+          <input type="number" id="vinyl_sy" placeholder="0" min="0" step="0.01" />
+        </div>
+
+        <div class="field">
+          <label>Floor Prep <span class="field-hint">leveling under vinyl</span></label>
+          <div class="pill-group" style="margin-bottom:10px">
+            <button class="pill fp-vinyl-pill active" data-value="none">None</button>
+            <button class="pill fp-vinyl-pill" data-value="sy">By SY</button>
+            <button class="pill fp-vinyl-pill" data-value="bags">By Bags</button>
+          </div>
+          <div id="fp_vinyl_sy_field" style="display:none">
+            <input type="number" id="vinyl_fp_sy" placeholder="0 SY @ $1.65/SY" min="0" step="1" />
+          </div>
+          <div id="fp_vinyl_bags_field" style="display:none">
+            <div class="field-row">
+              <input type="number" id="vinyl_fp_bags" placeholder="bags @ $58/ea" min="0" step="1" />
+              <input type="number" id="vinyl_fp_labor_bags" placeholder="labor bags @ $38/ea" min="0" step="1" />
+            </div>
+          </div>
+        </div>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="vinyl_tearout" />
+          <label for="vinyl_tearout">Include vinyl tear-out</label>
+        </div>
+      </div>
+
+      <!-- Add-Ons -->
+      <div class="card">
+        <div class="card-title">Add-Ons &amp; Accessories</div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Quarter Round (LF) <span class="field-hint">$1.45/LF</span></label>
+            <input type="number" id="quarter_round" placeholder="0" min="0" step="1" />
+          </div>
+          <div class="field">
+            <label>Metal Transitions (EA) <span class="field-hint">$14.50/EA</span></label>
+            <input type="number" id="metals" placeholder="0" min="0" step="1" />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Toilet Pull &amp; Reset <span class="field-hint">$38/EA</span></label>
+            <input type="number" id="toilets" placeholder="0" min="0" step="1" />
+          </div>
+          <div class="field">
+            <label>Tub Strips <span class="field-hint">$12/EA</span></label>
+            <input type="number" id="tub_strips" placeholder="0" min="0" step="1" />
+          </div>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label>Appliances <span class="field-hint">first 2 free, $8/EA after</span></label>
+            <input type="number" id="appliances" placeholder="0" min="0" step="1" />
+          </div>
+          <div class="field">
+            <label>Rubber Cap Sticks <span class="field-hint">$12/stick, track incl.</span></label>
+            <input type="number" id="cap_sticks" placeholder="0" min="0" step="1" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div class="card">
+        <div class="card-title">Notes</div>
+        <div class="field">
+          <textarea id="notes" placeholder="Scope notes, special conditions, or overrides…"></textarea>
+        </div>
+      </div>
+
+      <button class="generate-btn" id="scroll-to-preview">View Full Estimate ↓</button>
+    </div>
+
+    <!-- PREVIEW COLUMN -->
+    <div class="preview-col">
+      <div class="quote-preview">
+        <div class="preview-header">
+          <h3>Live Estimate</h3>
+          <p>Updates as you enter measurements</p>
+        </div>
+        <div class="preview-body" id="preview-body">
+
+          <div class="print-header-demo">⚠️ DEMO: Sample data — illustrative pricing only</div>
+
+          <!-- Empty state -->
+          <div class="empty-state" id="empty-state">
+            <div class="empty-icon">📋</div>
+            <p>Select a floor type and enter measurements to see your estimate here.</p>
+          </div>
+
+          <!-- Quote content -->
+          <div id="quote-content" style="display:none">
+            <div class="quote-meta" id="quote-meta"></div>
+            <div id="line-items-container"></div>
+            <hr class="totals-divider" />
+            <div class="total-row"><span>Subtotal</span><span id="subtotal-val">—</span></div>
+            <div class="total-row"><span id="tax-label">Tax (7.50%)</span><span id="tax-val">—</span></div>
+            <div class="total-row grand">
+              <span>TOTAL</span>
+              <span class="total-val" id="total-val">—</span>
+            </div>
+            <div class="sample-note">⚠️ Demo: sample data — fictional products &amp; illustrative pricing only</div>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="print-btn hidden" id="print-btn">
+        🖨️ Print / Save as PDF
+      </button>
+    </div>
+
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section">
+    <h2>How It Works</h2>
+    <div class="how-grid">
+      <div class="how-card">
+        <div class="step-num">1</div>
+        <h4>Enter Job Details</h4>
+        <p>Property name, unit, occupancy status — info box auto-populates the quote header.</p>
+      </div>
+      <div class="how-card">
+        <div class="step-num">2</div>
+        <h4>Select Floor Types</h4>
+        <p>Toggle LVT/Plank, Carpet, or Sheet Vinyl (any combination). Each type gets its own section.</p>
+      </div>
+      <div class="how-card">
+        <div class="step-num">3</div>
+        <h4>Enter Measurements</h4>
+        <p>SF for plank, SY for carpet and vinyl — from your measure sheet or MeasureSquare.</p>
+      </div>
+      <div class="how-card">
+        <div class="step-num">4</div>
+        <h4>Get Instant Estimate</h4>
+        <p>Material, labor, floor prep, take-up, and add-ons auto-calculated with running total.</p>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  // ── RATES (FICTIONAL / DEMO — no real pricing) ─────────────────────────────
+  const TAX_RATE = 0.075;
+
+  const RATES = {
+    // LVT/Plank labor ($/SF)
+    plank_glue_vac:   1.15,
+    plank_glue_occ:   1.30,
+    plank_click_vac:  1.30,
+    plank_click_occ:  1.45,
+    plank_min_sf:     100,
+    plank_min_charge: 130.00,
+    plank_takeup_glue:  0.60,
+    plank_takeup_click: 0.80,
+    plank_fp_sf:       0.28,
+    plank_fp_bag:     58.00,
+    plank_fp_labor:   38.00,
+
+    // Carpet labor ($/SY)
+    carpet_vac:  3.50,
+    carpet_occ:  4.50,
+    carpet_min_sy:  20,
+    carpet_min_charge: 130.00,
+    carpet_takeup: 1.65,
+    staircase: 45.00,
+
+    // Vinyl labor ($/SY)
+    vinyl_vac: 4.75,
+    vinyl_occ: 6.25,
+    vinyl_min_sy: 18,
+    vinyl_min_charge: 130.00,
+    vinyl_takeup: 2.75,
+    vinyl_fp_sy:  1.65,
+    vinyl_fp_bag: 58.00,
+    vinyl_fp_labor: 38.00,
+
+    // Addons
+    quarter_round: 1.45,
+    metal_standard: 14.50,
+    toilet: 38.00,
+    tub_strip: 12.00,
+    appliance: 8.00,
+    cap_stick: 12.00,
+  };
+
+  // ── STATE ──────────────────────────────────────────────────────────────────
+  let occupancy = 'VAC';
+  let installMethod = 'glue';
+  let fpPlankMode = 'none';
+  let fpVinylMode = 'none';
+
+  // ── DATE ───────────────────────────────────────────────────────────────────
+  const today = new Date();
+  document.getElementById('quote_date').value =
+    (today.getMonth()+1).toString().padStart(2,'0') + '/' +
+    today.getDate().toString().padStart(2,'0') + '/' +
+    today.getFullYear();
+
+  // ── PILL TOGGLES ───────────────────────────────────────────────────────────
+  function setupPillGroup(selector, onChange) {
+    document.querySelectorAll(selector).forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll(selector).forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        onChange(btn.dataset.value);
+      });
+    });
+  }
+
+  setupPillGroup('.status-pill', v => { occupancy = v; recalc(); });
+  setupPillGroup('.install-pill', v => { installMethod = v; recalc(); });
+
+  // Floor prep — plank
+  document.querySelectorAll('.fp-plank-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fp-plank-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      fpPlankMode = btn.dataset.value;
+      document.getElementById('fp_plank_sf_field').style.display   = fpPlankMode === 'sf'   ? 'block' : 'none';
+      document.getElementById('fp_plank_bags_field').style.display = fpPlankMode === 'bags' ? 'block' : 'none';
+      recalc();
+    });
+  });
+
+  // Floor prep — vinyl
+  document.querySelectorAll('.fp-vinyl-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.fp-vinyl-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      fpVinylMode = btn.dataset.value;
+      document.getElementById('fp_vinyl_sy_field').style.display   = fpVinylMode === 'sy'   ? 'block' : 'none';
+      document.getElementById('fp_vinyl_bags_field').style.display = fpVinylMode === 'bags' ? 'block' : 'none';
+      recalc();
+    });
+  });
+
+  // ── FLOOR TYPE TOGGLES ─────────────────────────────────────────────────────
+  document.querySelectorAll('.floor-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.classList.toggle('active');
+      const section = document.getElementById(btn.dataset.section);
+      section.classList.toggle('visible');
+      recalc();
+    });
+  });
+
+  // ── CUSTOM PRODUCT PRICE FIELDS ────────────────────────────────────────────
+  document.getElementById('plank_product').addEventListener('change', function() {
+    const isCustom = this.value.startsWith('custom');
+    document.getElementById('plank_custom_price_field').style.display = isCustom ? 'block' : 'none';
+    recalc();
+  });
+  document.getElementById('carpet_product').addEventListener('change', function() {
+    const isCustom = this.value.startsWith('custom');
+    document.getElementById('carpet_custom_price_field').style.display = isCustom ? 'block' : 'none';
+    recalc();
+  });
+  document.getElementById('vinyl_product').addEventListener('change', function() {
+    const isCustom = this.value.startsWith('custom');
+    document.getElementById('vinyl_custom_price_field').style.display = isCustom ? 'block' : 'none';
+    recalc();
+  });
+
+  // ── SCROLL TO PREVIEW ──────────────────────────────────────────────────────
+  document.getElementById('scroll-to-preview').addEventListener('click', () => {
+    document.querySelector('.preview-col').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // ── PRINT ──────────────────────────────────────────────────────────────────
+  document.getElementById('print-btn').addEventListener('click', () => window.print());
+
+  // ── INPUT LISTENERS ────────────────────────────────────────────────────────
+  const watchIds = [
+    'property','unit','floor_plan','quote_date',
+    'plank_sf','plank_custom_price','plank_fp_sf','plank_fp_bags','plank_fp_labor_bags',
+    'carpet_sy','carpet_custom_price','carpet_stairs',
+    'vinyl_sy','vinyl_custom_price','vinyl_fp_sy','vinyl_fp_bags','vinyl_fp_labor_bags',
+    'quarter_round','metals','toilets','tub_strips','appliances','cap_sticks',
+    'notes','carpet_pad'
+  ];
+  watchIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', recalc);
+  });
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', recalc);
+  });
+
+  // ── HELPERS ────────────────────────────────────────────────────────────────
+  function $n(id) {
+    const v = parseFloat(document.getElementById(id)?.value || '0');
+    return isNaN(v) || v < 0 ? 0 : v;
+  }
+  function $s(id) { return document.getElementById(id)?.value?.trim() || ''; }
+  function $cb(id) { return document.getElementById(id)?.checked || false; }
+  function fmt(v) { return '$' + v.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+  function fmtQty(v) { return Number.isInteger(v) ? String(v) : v.toFixed(2); }
+  function money(v) { return Math.round(v * 100) / 100; }
+
+  function makeItem(desc, qty, uom, unitPrice) {
+    const total = money(qty * unitPrice);
+    return { desc, qty, uom, unitPrice, total };
+  }
+
+  function parseProduct(selectId, customPriceId) {
+    const val = document.getElementById(selectId)?.value || '';
+    if (!val) return { name: '', price: 0 };
+    const parts = val.split('|');
+    if (parts[0] === 'custom') {
+      return { name: 'Custom Product', price: parseFloat(document.getElementById(customPriceId)?.value) || 0 };
+    }
+    return { name: parts[0], price: parseFloat(parts[1]) || 0 };
+  }
+
+  // ── CALCULATION ENGINE ─────────────────────────────────────────────────────
+  function recalc() {
+    const sections = [];
+
+    // ── PLANK ──────────────────────────────────────────────────────────────
+    const plankVisible = document.getElementById('section-plank').classList.contains('visible');
+    if (plankVisible) {
+      const sf = $n('plank_sf');
+      const prod = parseProduct('plank_product', 'plank_custom_price');
+      const isClick = installMethod === 'click';
+      const items = [];
+
+      if (sf > 0 && prod.price > 0) {
+        items.push(makeItem(prod.name, sf, 'SF', prod.price));
+
+        const laborRate = isClick
+          ? (occupancy === 'OCC' ? RATES.plank_click_occ : RATES.plank_click_vac)
+          : (occupancy === 'OCC' ? RATES.plank_glue_occ  : RATES.plank_glue_vac);
+        const laborLabel = `LVT/Plank Install — ${isClick ? 'Click' : 'Glue-Down'}, ${occupancy === 'OCC' ? 'Occupied' : 'Vacant'}`;
+
+        if (sf <= RATES.plank_min_sf) {
+          items.push(makeItem(laborLabel + ' (Min. Charge)', 1, 'EA', RATES.plank_min_charge));
+        } else {
+          items.push(makeItem(laborLabel, sf, 'SF', laborRate));
+        }
+
+        if ($cb('plank_tearout')) {
+          const takeupRate = isClick ? RATES.plank_takeup_click : RATES.plank_takeup_glue;
+          const takeupSF = Math.round(sf * 0.9);
+          items.push(makeItem(`LVT/Plank Take-Up (${isClick ? 'Click' : 'Glue-Down'})`, takeupSF, 'SF', takeupRate));
+        }
+
+        // Floor prep
+        if (fpPlankMode === 'sf') {
+          const fpSF = $n('plank_fp_sf');
+          if (fpSF > 0) items.push(makeItem('Floor Prep (Leveling Compound)', fpSF, 'SF', RATES.plank_fp_sf));
+        } else if (fpPlankMode === 'bags') {
+          const bags = $n('plank_fp_bags');
+          const laborBags = $n('plank_fp_labor_bags');
+          if (bags > 0) items.push(makeItem('Floor Prep Compound (Bags)', bags, 'EA', RATES.plank_fp_bag));
+          if (laborBags > 0) items.push(makeItem('Floor Prep Labor (per bag)', laborBags, 'EA', RATES.plank_fp_labor));
+        }
+
+        sections.push({ title: 'LVT / PLANK', items });
+      }
+    }
+
+    // ── CARPET ─────────────────────────────────────────────────────────────
+    const carpetVisible = document.getElementById('section-carpet').classList.contains('visible');
+    if (carpetVisible) {
+      const sy = $n('carpet_sy');
+      const prod = parseProduct('carpet_product', 'carpet_custom_price');
+      const padRate = parseFloat(document.getElementById('carpet_pad')?.value || '2.00') || 2.00;
+      const padLabelMap = {
+        '2.00': "Standard Rebond 6LB 3/8\"",
+        '2.45': "Premium Rebond 8LB 7/16\"",
+        '1.75': "Economy Rebond 5LB",
+      };
+      const padLabel = padLabelMap[padRate.toFixed(2)] || "Carpet Pad";
+      const stairs = Math.floor($n('carpet_stairs'));
+      const items = [];
+
+      if (sy > 0 && prod.price > 0) {
+        items.push(makeItem(prod.name, sy, 'SY', prod.price));
+        items.push(makeItem(padLabel, sy, 'SY', padRate));
+
+        const laborRate  = occupancy === 'OCC' ? RATES.carpet_occ : RATES.carpet_vac;
+        const laborLabel = `Carpet Install — ${occupancy === 'OCC' ? 'Occupied' : 'Vacant'}`;
+        if (sy < RATES.carpet_min_sy) {
+          items.push(makeItem(laborLabel + ' (Min. Charge)', 1, 'EA', RATES.carpet_min_charge));
+        } else {
+          items.push(makeItem(laborLabel, sy, 'SY', laborRate));
+        }
+
+        if ($cb('carpet_tearout')) {
+          const takeupSY = Math.round(sy * 0.9);
+          items.push(makeItem('Carpet Take-Up', takeupSY, 'SY', RATES.carpet_takeup));
+        }
+
+        if (stairs > 0) {
+          items.push(makeItem('Staircase Install (Carpet)', stairs, 'EA', RATES.staircase));
+        }
+
+        sections.push({ title: 'CARPET', items });
+      }
+    }
+
+    // ── SHEET VINYL ─────────────────────────────────────────────────────────
+    const vinylVisible = document.getElementById('section-vinyl').classList.contains('visible');
+    if (vinylVisible) {
+      const sy = $n('vinyl_sy');
+      const prod = parseProduct('vinyl_product', 'vinyl_custom_price');
+      const items = [];
+
+      if (sy > 0 && prod.price > 0) {
+        items.push(makeItem(prod.name, sy, 'SY', prod.price));
+
+        const laborRate  = occupancy === 'OCC' ? RATES.vinyl_occ : RATES.vinyl_vac;
+        const laborLabel = `Sheet Vinyl Install — ${occupancy === 'OCC' ? 'Occupied' : 'Vacant'}`;
+        if (sy < RATES.vinyl_min_sy) {
+          items.push(makeItem(laborLabel + ' (Min. Charge)', 1, 'EA', RATES.vinyl_min_charge));
+        } else {
+          items.push(makeItem(laborLabel, sy, 'SY', laborRate));
+        }
+
+        if ($cb('vinyl_tearout')) {
+          const takeupSY = Math.round(sy * 0.9);
+          items.push(makeItem('Sheet Vinyl Take-Up', takeupSY, 'SY', RATES.vinyl_takeup));
+        }
+
+        if (fpVinylMode === 'sy') {
+          const fpSY = $n('vinyl_fp_sy');
+          if (fpSY > 0) items.push(makeItem('Floor Prep (Vinyl)', fpSY, 'SY', RATES.vinyl_fp_sy));
+        } else if (fpVinylMode === 'bags') {
+          const bags = $n('vinyl_fp_bags');
+          const laborBags = $n('vinyl_fp_labor_bags');
+          if (bags > 0) items.push(makeItem('Floor Prep Compound (Bags)', bags, 'EA', RATES.vinyl_fp_bag));
+          if (laborBags > 0) items.push(makeItem('Floor Prep Labor (per bag)', laborBags, 'EA', RATES.vinyl_fp_labor));
+        }
+
+        sections.push({ title: 'SHEET VINYL', items });
+      }
+    }
+
+    // ── MISCELLANEOUS ───────────────────────────────────────────────────────
+    const miscItems = [];
+    const qr   = Math.floor($n('quarter_round'));
+    const mtl  = Math.floor($n('metals'));
+    const tlt  = Math.floor($n('toilets'));
+    const tub  = Math.floor($n('tub_strips'));
+    const app  = Math.floor($n('appliances'));
+    const caps = Math.floor($n('cap_sticks'));
+
+    if (qr  > 0) miscItems.push(makeItem('Quarter Round (Material + Install)', qr,  'LF', RATES.quarter_round));
+    if (mtl > 0) miscItems.push(makeItem('Metal Transition Strip', mtl, 'EA', RATES.metal_standard));
+    if (tlt > 0) miscItems.push(makeItem('Pull & Reset Toilet (incl. seal)', tlt, 'EA', RATES.toilet));
+    if (tub > 0) miscItems.push(makeItem('Tub Strip', tub, 'EA', RATES.tub_strip));
+
+    if (app > 0) {
+      const free = Math.min(app, 2);
+      const paid = Math.max(app - 2, 0);
+      if (free > 0) miscItems.push({ desc: `Move Appliances — First ${free} N/C`, qty: free, uom: 'EA', unitPrice: 0, total: 0 });
+      if (paid > 0) miscItems.push(makeItem('Move Appliances', paid, 'EA', RATES.appliance));
+    }
+
+    if (caps > 0) {
+      miscItems.push(makeItem('Rubber Cap Transition (12\' Stick)', caps, 'EA', RATES.cap_stick));
+      miscItems.push({ desc: 'Metal Track (included)', qty: caps, uom: 'EA', unitPrice: 0, total: 0 });
+    }
+
+    if (miscItems.length > 0) sections.push({ title: 'MISCELLANEOUS', items: miscItems });
+
+    // ── RENDER ───────────────────────────────────────────────────────────────
+    renderPreview(sections);
+  }
+
+  function renderPreview(sections) {
+    const empty    = document.getElementById('empty-state');
+    const content  = document.getElementById('quote-content');
+    const metaEl   = document.getElementById('quote-meta');
+    const container = document.getElementById('line-items-container');
+    const printBtn = document.getElementById('print-btn');
+
+    const hasItems = sections.some(s => s.items.length > 0);
+
+    if (!hasItems) {
+      empty.style.display = 'block';
+      content.style.display = 'none';
+      printBtn.classList.add('hidden');
+      return;
+    }
+
+    empty.style.display = 'none';
+    content.style.display = 'block';
+    printBtn.classList.remove('hidden');
+
+    // Meta row
+    const prop    = $s('property') || 'Property';
+    const unit    = $s('unit');
+    const date    = $s('quote_date');
+    const fp      = $s('floor_plan');
+    metaEl.innerHTML = [
+      prop ? `<span>🏢 ${prop}${unit ? ' · ' + unit : ''}</span>` : '',
+      fp   ? `<span>📐 ${fp}</span>` : '',
+      date ? `<span>📅 ${date}</span>` : '',
+      `<span>👤 ${occupancy === 'OCC' ? 'Occupied' : 'Vacant'}</span>`,
+    ].filter(Boolean).join('');
+
+    // Line items
+    container.innerHTML = '';
+    let subtotal = 0;
+
+    sections.forEach(sec => {
+      const hdr = document.createElement('div');
+      hdr.className = 'section-header';
+      hdr.textContent = sec.title;
+      container.appendChild(hdr);
+
+      sec.items.forEach(item => {
+        subtotal += item.total;
+        const row = document.createElement('div');
+        row.className = 'line-item';
+        const meta = item.unitPrice > 0
+          ? `${fmtQty(item.qty)} ${item.uom} × ${fmt(item.unitPrice)}`
+          : (item.qty > 0 ? `${fmtQty(item.qty)} ${item.uom}` : '');
+        row.innerHTML = `
+          <span class="line-desc">${item.desc}</span>
+          <span class="line-meta">${meta}</span>
+          <span class="line-total">${item.total > 0 ? fmt(item.total) : 'N/C'}</span>
+        `;
+        container.appendChild(row);
+      });
+    });
+
+    subtotal = money(subtotal);
+    const tax   = money(subtotal * TAX_RATE);
+    const total = money(subtotal + tax);
+
+    document.getElementById('subtotal-val').textContent = fmt(subtotal);
+    document.getElementById('tax-label').textContent    = `Tax (${(TAX_RATE*100).toFixed(2)}%)`;
+    document.getElementById('tax-val').textContent      = fmt(tax);
+    document.getElementById('total-val').textContent    = fmt(total);
+  }
+
+  // ── INITIAL RENDER ─────────────────────────────────────────────────────────
+  recalc();
+  </script>
+
+</body>
+</html>
