@@ -1,0 +1,317 @@
+<!--
+  service-pro-plumbing/index.html
+  ================================
+  Built 2026-07-21 under the contractor-demo-v2 spec (skills/pmgpt-site-builder/templates/contractor-demo-v2.md)
+  + v2.1 amendments A1-A4. Prospect: Service Pro Plumbing, LLC, Concord NC (dossier_07_2026_07_16, score 10).
+  Owner: William Ollivett IV. Trade: plumbing.
+
+  DESIGNER'S NOTE (D2 call, required by the v2 spec):
+  Fetched serviceproplumbing.net live (WebFetch, 2026-07-21). D2 bucket (b) GENERIC-BUT-PRESENT.
+  The site is Wix-built with a white background and no extractable hex values in the CSS; the plumbing
+  blue lineage is implied by the trade rather than a deliberate palette decision. LogoDesignModify2.png
+  is their logo image file but contains no extractable color data. Treatment: elevate the implied blue
+  into an intentional story: near-black navy canvas (#090D14), one steel-blue accent (#2864C8) doing
+  all the work, bone text. Bar Rescue case: the client never had a real palette, so this is the first
+  time their blue shows up with real design intent behind it. Type pairing chosen fresh: Newsreader
+  (authoritative editorial italic, right for a shop with a Master P1 license and 15+ years in Concord)
+  + Libre Franklin (workhorse grotesque body). Not used by Crown (Fraunces+Bricolage), Craftsman, or
+  any prior build in this wave.
+
+  D4 personality layer: one dossier detail woven through eyebrow, lede, and SMS scenario: the
+  documented review complaint about being quoted a two-and-a-half-week wait by a rep who sounded
+  annoyed and was quick to end the call. That is the exact pain this page sells against. SMS scenario:
+  active leak under the kitchen sink at 8:47 PM, homeowner can't wait 2.5 weeks.
+
+  D4.3 stats, live-search verified 2026-07-21:
+  Average emergency plumbing call in Charlotte/Concord NC: $97-$487 (Angi, charlotte emergency plumber).
+  Average burst-pipe/water-line repair in NC: $1,200-$3,500; midpoint $2,200.
+  Source: https://www.angi.com/articles/emergency-plumber-cost/nc/charlotte
+  62% of small-business calls go unanswered: https://www.getaira.io/blog/missed-business-calls-statistics
+  85% of voicemail callers never call back: https://pcnanswers.com/missed-call-revenue-study/
+
+  v2.1 amendments: A1 mobile-first order (hero-copy, demo-panel, hero-secondary via CSS flex-direction
+  column order:1,2,3 at <=820px). A2 hero image: D3 ladder rung 1 — Service Pro's own service truck
+  fleet photo from their Wix site (d5911f_4ca619e3cc8e472ebb515d942e8aca3b~mv2.jpg), downloaded
+  2026-07-21, compressed, embedded as base64 in styles.css --hero-bg var. A3 shared widget 54722168
+  embed + boost snippet (copied from crown-pest-control/index.html, includes 7/21 sheeted desktop fix).
+  A4 funnel posture: no nav, no service grid, no about section. One story, one CTA.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- BASE:START (managed by Coding Agent — do not edit) -->
+<base href="/aid-demo-pages/service-pro-plumbing/">
+<!-- BASE:END -->
+
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,600;0,6..72,700;1,6..72,600;1,6..72,700&display=swap" rel="stylesheet"/>
+
+<!-- SEO Meta Tags -->
+<title>Service Pro Plumbing: Concord's calls answered in 42 seconds | AID</title>
+<meta name="description" content="A live preview for William Ollivett IV: watch an 8:47 PM leak call turn into a same-day booking while every Service Pro tech is already on a job. Built by AID Marketing Agency."/>
+<meta property="og:title" content="Service Pro Plumbing: Concord's calls answered in 42 seconds | AID"/>
+<meta property="og:description" content="See what happens when a Concord homeowner can't wait 2.5 weeks. Built for Service Pro Plumbing by AID Marketing Agency."/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!-- End SEO Meta Tags -->
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="haze" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- v2.1 A1: sticky mobile booking bar, same URL as page CTA, hidden while CTA panel is in view -->
+<div class="mobile-cta-bar" id="mobileCtaBar">
+  <a href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">Book 15 minutes with Ryan</a>
+</div>
+
+<div class="wrap">
+
+  <header data-section="header">
+    <div class="mast">
+      <div class="brand">
+        <!-- fresh plumbing mark: wrench + water drop, drawn for this build -->
+        <svg width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <path d="M30 6C27.2 6 24.7 7.2 23 9.2L10 22.2C8.2 23.8 8 26.2 9.4 28L9.6 28.2C11 30 13.4 30.2 15 28.8L28 15.8C29.8 14.2 32.6 14.4 34.2 16.2C35.8 18 35.6 20.8 33.8 22.4L24 31.4" stroke="#2864C8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="30" cy="37" r="5" fill="none" stroke="#2864C8" stroke-width="2"/>
+          <path d="M30 34 C30 34 28 36 30 38 C32 36 30 34 30 34Z" fill="#2864C8"/>
+        </svg>
+        <div>
+          <div class="name">Service Pro Plumbing, LLC</div>
+          <div class="loc">Concord, NC &middot; Plumbing</div>
+        </div>
+      </div>
+      <div class="built-by">Live preview &middot; built by<br/><b>AID Marketing Agency</b></div>
+    </div>
+  </header>
+
+  <section class="hero" data-section="hero">
+
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="dot" aria-hidden="true"></span>Live demo for William Ollivett IV</div>
+      <h1>Five techs in Concord. <em>Zero leaks</em> left on voicemail.</h1>
+      <p class="lede"><b>Family-owned since 2008</b>, Master P1 licensed, 1-year warranty on every job. This catches the pipe call that can't wait two and a half weeks.</p>
+    </div>
+
+    <div class="demo-panel" id="demoPanel">
+      <div class="demo-head">
+        <div class="demo-title">Text thread</div>
+        <button class="replay-btn" id="replayBtn" type="button" aria-label="Replay the text thread">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+        </button>
+      </div>
+      <div class="thread" id="thread">
+        <div class="bubble caller">Water coming out under my kitchen sink. Pretty bad leak<span class="stamp">8:47 PM</span></div>
+        <div class="typing" id="typing1" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="bubble ai"><span class="badge">AI replied in 42 seconds</span>Got it. Did you shut the valve under the sink, or is it still flowing?<span class="stamp">8:48 PM</span></div>
+        <div class="bubble caller">turned it but still dripping. I cannot wait 2 weeks for this<span class="stamp">8:49 PM</span></div>
+        <div class="typing" id="typing2" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="bubble ai">Understood. We have a tech in Concord. Same-night slot is open after 9 PM. Want it?<span class="stamp">8:50 PM</span></div>
+        <div class="bubble caller">YES please<span class="stamp">8:50 PM</span></div>
+        <div class="typing" id="typing3" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="bubble ai">Booked. Tech will text you 20 minutes out. Name for the work order?<span class="stamp">8:51 PM</span></div>
+        <div class="bubble caller">Sarah, thank you so much<span class="stamp">8:51 PM</span></div>
+      </div>
+      <div class="demo-foot">
+        <div class="resp-time"><span class="dot" aria-hidden="true"></span>First reply in 42 seconds</div>
+        <div class="disclaimer">Simulated exchange for demo purposes</div>
+      </div>
+    </div>
+
+    <div class="hero-secondary">
+      <p class="pain">She hit voicemail at the last company. Got quoted <b>two and a half weeks.</b> She hung up and dialed the next plumber on her screen. That was your job.</p>
+
+      <div class="ring-row">
+        <div class="ring-badge" aria-hidden="true">
+          <span class="ring"></span><span class="ring r2"></span>
+          <span class="core">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F4F1EE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+        </div>
+        <p class="ring-copy"><b>Your missed call, caught.</b> Hit replay.</p>
+      </div>
+
+      <div class="trust-row">
+        <div class="trust-item"><span class="tick">&#9670;</span><span><b>Master P1 licensed</b>, bonded &amp; insured in North Carolina</span></div>
+        <div class="trust-item"><span class="tick">&#9670;</span><span><b>1-year warranty</b> on every part and every hour of labor</span></div>
+        <div class="trust-item"><span class="tick">&#9670;</span><span><b>Serving Concord</b> and Cabarrus County since 2008</span></div>
+      </div>
+
+      <div class="hero-photo" role="img" aria-label="Service Pro Plumbing's own service trucks, from their fleet photo on serviceproplumbing.net"></div>
+      <div class="photo-cap">Service Pro's own fleet &middot; serviceproplumbing.net</div>
+    </div>
+
+  </section>
+
+  <!-- D4.3 stat sources, live-search verified 2026-07-21:
+       Average emergency plumbing job in Charlotte NC (nearest metro to Concord): $97-$487 service call;
+       burst-pipe / water-line repair runs $1,200-$3,500 depending on access and pipe run.
+       Midpoint anchor: $2,200 for one emergency repair job.
+         https://www.angi.com/articles/emergency-plumber-cost/nc/charlotte
+       62% of inbound calls to small service businesses go unanswered:
+         https://www.getaira.io/blog/missed-business-calls-statistics
+       85% of callers who hit voicemail never call back:
+         https://pcnanswers.com/missed-call-revenue-study/ -->
+  <section class="math reveal" data-section="math">
+    <div>
+      <div class="stat-label">
+        <!-- fresh plumbing pipe-burst mark for this build -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <path d="M3 9h6v6H3z"/>
+          <path d="M9 12h12"/>
+          <path d="M15 9v6"/>
+          <path d="M18 7l2-2M18 17l2 2"/>
+        </svg>
+        What one missed emergency call is worth
+        <button class="stat-replay" id="statReplayBtn" type="button" aria-label="Replay the counter">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+        </button>
+      </div>
+      <div class="stat-number" id="statNumber">$2,200</div>
+      <div class="stat-sub">one emergency pipe repair, Concord NC</div>
+    </div>
+    <div class="math-copy">
+      <p>Emergency plumbing jobs in Cabarrus County run <b class="money">$1,200 to $3,500</b> depending on the repair. <b class="money">62 percent</b> of calls to service businesses go unanswered, and <b class="money">85 percent</b> of homeowners who reach voicemail never call back. They call the next plumber.</p>
+    </div>
+  </section>
+
+  <section class="how reveal" data-section="how-it-works">
+    <div class="how-head">
+      <h2>How it works on your line</h2>
+      <p>It sits behind the number on your trucks. When a tech can't pick up, it does.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-item lead">
+        <div>
+          <div class="how-num">01</div>
+          <h3>The missed call becomes a text</h3>
+          <p><b>No voicemail, no hold music.</b> A text from your own Service Pro number before they Google the next plumber. They get the same care that built <b class="money">hundreds of five-star reviews</b> in Concord.</p>
+        </div>
+        <!-- fresh pipe mark echoing the header SVG, no Heroicons -->
+        <svg class="lead-mark" width="44" height="44" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <path d="M3 18h12v12H3z" stroke="#2864C8" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M15 24h30" stroke="#2864C8" stroke-width="2" stroke-linecap="round"/>
+          <path d="M30 18v12" stroke="#2864C8" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="how-item">
+        <div class="how-num">02</div>
+        <h3>It qualifies like your best dispatcher</h3>
+        <p>Active leak or can it hold? Shut-off accessible? Your techs get the job scoped before they arrive.</p>
+      </div>
+      <div class="how-item">
+        <div class="how-num">03</div>
+        <h3>A booked slot texts you directly</h3>
+        <p><b>Same night, 9 PM, kitchen sink, Concord</b>  texted to dispatch while the tech finishes the current job.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section reveal" data-section="cta">
+    <div class="cta-panel" id="ctaPanel">
+      <div class="cta-inner">
+        <h2>See it wired to your real number</h2>
+        <p>Fifteen minutes with Ryan, live on your line. No slides, no sales pressure, no contract talk.</p>
+      </div>
+      <a class="cta-btn" href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">
+        Book 15 minutes with Ryan
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <footer data-section="footer">
+    <p class="quietline">A reputation built on showing up. This makes sure the call gets answered first.</p>
+    <div class="foot">
+      <div>Ryan McNally &middot; AID Marketing Agency</div>
+      <div><a href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">aidmarketingagency.github.io/aid-discovery-call</a></div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- AID demo concierge (shared widget 54722168) + boost snippet copied from crown-pest-control/index.html 2026-07-21 (includes 7/21 sheeted desktop fix) -->
+<script src="https://paymegpt.com/widget.js" data-widget="54722168" data-force-theme="dark" async></script>
+<script data-aid-widget-boost>
+(function(){
+  var WID='54722168';
+  var IMG='https://paymegpt.com/api/files/avatar/widget_avatar_mcp_widget_54722168_1784002747499.png';
+  function mobile(){return window.innerWidth<769;}
+  var full=false, fsBtn=null;
+  function container(){return document.getElementById('ultra-fast-widget-container-'+WID);}
+  function bubble(){return document.getElementById('ultra-fast-widget-bubble-'+WID);}
+  function isOpen(){var c=container();return !!(c&&getComputedStyle(c).display!=='none');}
+  function sheet(c){
+    if(!mobile()||full){unsheet(c);return;}
+    var s=c.style;
+    s.setProperty('top','auto','important');s.setProperty('bottom','10px','important');
+    s.setProperty('left','8px','important');s.setProperty('right','8px','important');
+    s.setProperty('width','auto','important');s.setProperty('height','72vh','important');
+    s.setProperty('max-height','72vh','important');s.setProperty('border-radius','16px','important');
+    sheeted=true;
+  }
+  var sheeted=false;
+  function unsheet(c){
+    if(!sheeted)return;
+    ['top','bottom','left','right','width','height','max-height','border-radius'].forEach(function(p){c.style.removeProperty(p);});
+    sheeted=false;
+  }
+  function ensureFsBtn(c){
+    if(!mobile()){if(fsBtn&&fsBtn.parentNode){fsBtn.parentNode.removeChild(fsBtn);fsBtn=null;}return;}
+    if(fsBtn&&c.contains(fsBtn))return;
+    fsBtn=document.createElement('button');
+    fsBtn.type='button';fsBtn.setAttribute('aria-label','Toggle full screen');
+    fsBtn.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M8 3H3v5"/><path d="M16 3h5v5"/><path d="M8 21H3v-5"/><path d="M16 21h5v-5"/></svg>';
+    fsBtn.style.cssText='position:absolute;top:9px;left:10px;z-index:2147483647;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:9px;cursor:pointer;';
+    fsBtn.addEventListener('click',function(e){
+      e.stopPropagation();full=!full;var c2=container();
+      if(c2){if(full){unsheet(c2);}else{sheet(c2);}}
+    });
+    c.appendChild(fsBtn);
+  }
+  function sync(){
+    var b=bubble();
+    if(!b)return;
+    var open=isOpen();
+    if(open){try{sessionStorage.setItem('aidWidgetAutoOpened','1');}catch(e){}}
+    var img=b.querySelector('img[data-aid-icon]');
+    if(open){if(img){img.remove();b.style.background='';}}
+    else if(!img){
+      img=document.createElement('img');
+      img.src=IMG;img.alt='';img.setAttribute('data-aid-icon','');
+      img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;top:0;left:0;pointer-events:none;';
+      b.style.background='#0D0D0F';
+      b.appendChild(img);
+    }
+    var c=container();
+    if(c){
+      if(open){ensureFsBtn(c);sheet(c);}
+      else{full=false;unsheet(c);}
+    }
+  }
+  var armed=false;
+  function autoOpen(){
+    if(armed)return;
+    var b=bubble();
+    if(!b)return;
+    armed=true;
+    try{if(sessionStorage.getItem('aidWidgetAutoOpened'))return;}catch(e){}
+    setTimeout(function(){
+      try{if(sessionStorage.getItem('aidWidgetAutoOpened'))return;}catch(e){}
+      try{sessionStorage.setItem('aidWidgetAutoOpened','1');}catch(e){}
+      if(!isOpen())b.click();
+    },20000);
+  }
+  setInterval(function(){sync();autoOpen();},400);
+})();
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>

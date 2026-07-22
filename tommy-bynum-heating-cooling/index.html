@@ -1,0 +1,313 @@
+<!--
+  tommy-bynum-heating-cooling/index.html
+  =======================================
+  Built 2026-07-21 under the contractor-demo-v2 spec + v2.1 amendments.
+  Prospect: Tommy Bynum Heating & Cooling, Gastonia NC (dossier-09, score 10).
+  Owner: Tommy Bynum. Trade: HVAC.
+
+  DESIGNER'S NOTE (D2 call):
+  Fetched tbynum.com live (WebFetch, 2026-07-21). D2 bucket (b) GENERIC-BUT-PRESENT.
+  The site uses a consistent green accent tied to their bunny mascot brand ("Save Money,
+  Call the Bunny!"). Green shows up in CTAs and mascot branding but reads as franchise-builder
+  color rather than a deliberately designed palette — no hex in CSS, no real logo mark beyond
+  a wordmark. Treatment: keep the green as the recognizable lineage signal, elevate it into
+  a real design story: deep forest canvas (#070F0A), one living-green accent (#1DAA5E) doing
+  all the work. First time "that green" looks intentional. Type: Syne (bold, geometric display
+  that matches the "Save Money, Call the Bunny" brand energy — confident and direct) + Plus
+  Jakarta Sans as the body face. Fresh pairing not used by Crown, Service Pro, or any prior build.
+
+  D4 personality layer: the bunny tagline and 1979 founding date are threaded into the eyebrow
+  and lede. The documented gap: BBB/review complaint confirms customer called twice for AC service,
+  was told an on-call tech would call, never received a callback. SMS scenario: AC goes out mid-July
+  afternoon in Gaston County, caller never hears back, then finds Tommy Bynum via the AI response.
+
+  D4.3 stats, live-search verified 2026-07-21:
+  Average AC system replacement in NC: $3,500-$7,500 (callkodiakhvac.com Charlotte data);
+  typical mid-range Gaston County installation: ~$4,200.
+  Source: https://www.callkodiakhvac.com/learning-center/costs/hvac-repair-costs-charlotte
+  25-40% of home-service calls arrive outside 8am-5pm (ainora.lt/blog/hvac-service-call-statistics-2026).
+  62% of calls go unanswered; 85% of voicemail callers never call back (getaira.io / pcnanswers.com).
+
+  v2.1: A1 mobile-first order CSS. A2 hero image: Tommy Bynum's own AC repair job photo from
+  tbynum.com/wp-content/uploads/2021/09/AC-Repair-Photo-2-web-800x800.jpg, downloaded and base64
+  embedded. A3 widget 54722168 + boost snippet (crown-pest-control copy, 7/21 sheeted fix).
+  A4 funnel posture maintained.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- BASE:START (managed by Coding Agent — do not edit) -->
+<base href="/aid-demo-pages/tommy-bynum-heating-cooling/">
+<!-- BASE:END -->
+
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600&family=Syne:wght@600;700;800&display=swap" rel="stylesheet"/>
+
+<!-- SEO Meta Tags -->
+<title>Tommy Bynum Heating & Cooling: 44 years in Gastonia, zero callbacks missed | AID</title>
+<meta name="description" content="A live preview for Tommy Bynum: watch a July afternoon AC call turn into a booked slot while every tech is already dispatched. Built by AID Marketing Agency."/>
+<meta property="og:title" content="Tommy Bynum Heating & Cooling: 44 years in Gastonia, zero callbacks missed | AID"/>
+<meta property="og:description" content="The call that slips through when every tech is out. See what happens next. Built by AID Marketing Agency."/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<!-- End SEO Meta Tags -->
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<div class="haze" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- v2.1 A1: sticky mobile CTA bar -->
+<div class="mobile-cta-bar" id="mobileCtaBar">
+  <a href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">Book 15 minutes with Ryan</a>
+</div>
+
+<div class="wrap">
+
+  <header data-section="header">
+    <div class="mast">
+      <div class="brand">
+        <!-- fresh HVAC coil mark — not a Heroicon -->
+        <svg width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <rect x="8" y="12" width="32" height="24" rx="3" stroke="#1DAA5E" stroke-width="2"/>
+          <path d="M16 20 C16 18 18 16 20 18 C22 20 24 16 26 18 C28 20 30 16 32 18" stroke="#1DAA5E" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M16 26 C16 24 18 22 20 24 C22 26 24 22 26 24 C28 26 30 22 32 24" stroke="#1DAA5E" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M20 36 L20 40 M28 36 L28 40" stroke="#1DAA5E" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <div class="name">Tommy Bynum Heating &amp; Cooling</div>
+          <div class="loc">Gastonia, NC &middot; HVAC</div>
+        </div>
+      </div>
+      <div class="built-by">Live preview &middot; built by<br/><b>AID Marketing Agency</b></div>
+    </div>
+  </header>
+
+  <section class="hero" data-section="hero">
+
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="dot" aria-hidden="true"></span>Live demo for Tommy Bynum</div>
+      <h1>Saving Gastonia from the heat since 1979. <em>Not one call</em> left waiting.</h1>
+      <p class="lede"><b>44 years in Gaston County</b>, 20 trucks running, 4.9 stars on Google. This catches the AC call that comes in while every tech is already dispatched.</p>
+    </div>
+
+    <div class="demo-panel" id="demoPanel">
+      <div class="demo-head">
+        <div class="demo-title">Text thread</div>
+        <button class="replay-btn" id="replayBtn" type="button" aria-label="Replay the text thread">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+        </button>
+      </div>
+      <div class="thread" id="thread">
+        <div class="bubble caller">AC stopped working, it's 86 in here. I called twice and never got a callback<span class="stamp">3:12 PM</span></div>
+        <div class="typing" id="typing1" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="bubble ai"><span class="badge">AI replied in 38 seconds</span>Sorry about that. Is the unit running at all or completely off?<span class="stamp">3:13 PM</span></div>
+        <div class="bubble caller">completely off. Fan not even spinning<span class="stamp">3:14 PM</span></div>
+        <div class="typing" id="typing2" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="bubble ai">Got it. We have a tech finishing up in Gastonia. She can be there by 5:30 today. Does that work?<span class="stamp">3:15 PM</span></div>
+        <div class="bubble caller">yes please!!<span class="stamp">3:15 PM</span></div>
+        <div class="typing" id="typing3" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="bubble ai">Booked. She'll text you 30 minutes before arrival. Is the unit accessible from the attic?<span class="stamp">3:16 PM</span></div>
+        <div class="bubble caller">yes, thank you. finally<span class="stamp">3:16 PM</span></div>
+      </div>
+      <div class="demo-foot">
+        <div class="resp-time"><span class="dot" aria-hidden="true"></span>First reply in 38 seconds</div>
+        <div class="disclaimer">Simulated exchange for demo purposes</div>
+      </div>
+    </div>
+
+    <div class="hero-secondary">
+      <p class="pain">She called twice. Was told a tech would call back. <b>Nobody called.</b> It was 86 degrees. She went back to Google and found your competitor.</p>
+
+      <div class="ring-row">
+        <div class="ring-badge" aria-hidden="true">
+          <span class="ring"></span><span class="ring r2"></span>
+          <span class="core">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#F2EEEA" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </span>
+        </div>
+        <p class="ring-copy"><b>Your missed call, answered.</b> Hit replay.</p>
+      </div>
+
+      <div class="trust-row">
+        <div class="trust-item"><span class="tick">&#9670;</span><span><b>Established 1979</b> &mdash; serving Gaston County for over 44 years</span></div>
+        <div class="trust-item"><span class="tick">&#9670;</span><span><b>4.9 stars</b> on Google, certified technicians across every brand</span></div>
+        <div class="trust-item"><span class="tick">&#9670;</span><span><b>24/7 emergency service</b> &mdash; the promise your line needs to keep</span></div>
+      </div>
+
+      <div class="hero-photo" role="img" aria-label="Tommy Bynum Heating and Cooling technician working on an AC unit, from their own website tbynum.com"></div>
+      <div class="photo-cap">Tommy Bynum's own AC repair work &middot; tbynum.com</div>
+    </div>
+
+  </section>
+
+  <!-- D4.3 stat sources, live-search verified 2026-07-21:
+       Average AC system replacement in Charlotte metro / Gaston County: $3,500-$7,500;
+       typical mid-range replacement for a 1,500 sq ft home ~$4,200.
+         https://www.callkodiakhvac.com/learning-center/costs/hvac-repair-costs-charlotte
+       25-40% of HVAC calls arrive outside standard 8am-5pm hours:
+         https://ainora.lt/blog/hvac-service-call-statistics-2026
+       62% of calls unanswered; 85% of voicemail callers never call back:
+         https://www.getaira.io/blog/missed-business-calls-statistics
+         https://pcnanswers.com/missed-call-revenue-study/ -->
+  <section class="math reveal" data-section="math">
+    <div>
+      <div class="stat-label">
+        <!-- fresh cooling coil mark for the math section -->
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+          <rect x="3" y="6" width="18" height="13" rx="2"/>
+          <path d="M7 11 C7 9.5 8.5 8 10 9.5 C11.5 11 13 8 14.5 9.5 C16 11 17.5 8 17.5 9.5"/>
+          <path d="M9 20 L9 22 M15 20 L15 22"/>
+        </svg>
+        What one AC replacement is worth
+        <button class="stat-replay" id="statReplayBtn" type="button" aria-label="Replay the counter">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+        </button>
+      </div>
+      <div class="stat-number" id="statNumber">$4,200</div>
+      <div class="stat-sub">one AC system replacement, Gaston County</div>
+    </div>
+    <div class="math-copy">
+      <p>AC replacements in the Charlotte metro run <b class="money">$3,500 to $7,500</b>. One in four HVAC calls comes in <b class="money">after 5 PM</b>, exactly when techs are wrapping up. <b class="money">85 percent</b> of callers who hit voicemail won't call back. They'll call whoever picks up.</p>
+    </div>
+  </section>
+
+  <section class="how reveal" data-section="how-it-works">
+    <div class="how-head">
+      <h2>How it works on your line</h2>
+      <p>It answers the call your team can't get to. Same number, same Tommy Bynum voice.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-item lead">
+        <div>
+          <div class="how-num">01</div>
+          <h3>The missed call becomes a text, fast</h3>
+          <p><b>Before they scroll back to Google.</b> A text from your Gastonia number in under a minute. The same responsiveness that earned <b class="money">4.9 stars</b> across hundreds of reviews, available after 5 PM.</p>
+        </div>
+        <!-- HVAC coil mark, no Heroicons -->
+        <svg class="lead-mark" width="44" height="44" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <rect x="6" y="10" width="36" height="28" rx="3" stroke="#1DAA5E" stroke-width="2"/>
+          <path d="M14 20 C14 18 16 16 18 18 C20 20 22 16 24 18 C26 20 28 16 30 18 C32 20 34 16 36 18" stroke="#1DAA5E" stroke-width="1.8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="how-item">
+        <div class="how-num">02</div>
+        <h3>It asks what your techs would ask</h3>
+        <p>Unit completely off or just not cooling? Accessible from the attic? The tech shows up scoped.</p>
+      </div>
+      <div class="how-item">
+        <div class="how-num">03</div>
+        <h3>A booked slot lands on your schedule</h3>
+        <p><b>5:30 PM today, Gastonia</b>, texted to the office while the tech finishes up across town.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section reveal" data-section="cta">
+    <div class="cta-panel" id="ctaPanel">
+      <div class="cta-inner">
+        <h2>See it wired to your real number</h2>
+        <p>Fifteen minutes with Ryan, live on your line. No slides, no pressure.</p>
+      </div>
+      <a class="cta-btn" href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">
+        Book 15 minutes with Ryan
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <footer data-section="footer">
+    <p class="quietline">44 years of showing up in Gastonia. This makes sure the phone does too.</p>
+    <div class="foot">
+      <div>Ryan McNally &middot; AID Marketing Agency</div>
+      <div><a href="https://aidmarketingagency.github.io/aid-discovery-call/" target="_blank" rel="noopener">aidmarketingagency.github.io/aid-discovery-call</a></div>
+    </div>
+  </footer>
+
+</div>
+
+<!-- AID demo concierge (shared widget 54722168) + boost snippet copied from crown-pest-control/index.html 2026-07-21 (includes 7/21 sheeted desktop fix) -->
+<script src="https://paymegpt.com/widget.js" data-widget="54722168" data-force-theme="dark" async></script>
+<script data-aid-widget-boost>
+(function(){
+  var WID='54722168';
+  var IMG='https://paymegpt.com/api/files/avatar/widget_avatar_mcp_widget_54722168_1784002747499.png';
+  function mobile(){return window.innerWidth<769;}
+  var full=false, fsBtn=null;
+  function container(){return document.getElementById('ultra-fast-widget-container-'+WID);}
+  function bubble(){return document.getElementById('ultra-fast-widget-bubble-'+WID);}
+  function isOpen(){var c=container();return !!(c&&getComputedStyle(c).display!=='none');}
+  function sheet(c){
+    if(!mobile()||full){unsheet(c);return;}
+    var s=c.style;
+    s.setProperty('top','auto','important');s.setProperty('bottom','10px','important');
+    s.setProperty('left','8px','important');s.setProperty('right','8px','important');
+    s.setProperty('width','auto','important');s.setProperty('height','72vh','important');
+    s.setProperty('max-height','72vh','important');s.setProperty('border-radius','16px','important');
+    sheeted=true;
+  }
+  var sheeted=false;
+  function unsheet(c){
+    if(!sheeted)return;
+    ['top','bottom','left','right','width','height','max-height','border-radius'].forEach(function(p){c.style.removeProperty(p);});
+    sheeted=false;
+  }
+  function ensureFsBtn(c){
+    if(!mobile()){if(fsBtn&&fsBtn.parentNode){fsBtn.parentNode.removeChild(fsBtn);fsBtn=null;}return;}
+    if(fsBtn&&c.contains(fsBtn))return;
+    fsBtn=document.createElement('button');
+    fsBtn.type='button';fsBtn.setAttribute('aria-label','Toggle full screen');
+    fsBtn.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M8 3H3v5"/><path d="M16 3h5v5"/><path d="M8 21H3v-5"/><path d="M16 21h5v-5"/></svg>';
+    fsBtn.style.cssText='position:absolute;top:9px;left:10px;z-index:2147483647;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:9px;cursor:pointer;';
+    fsBtn.addEventListener('click',function(e){
+      e.stopPropagation();full=!full;var c2=container();
+      if(c2){if(full){unsheet(c2);}else{sheet(c2);}}
+    });
+    c.appendChild(fsBtn);
+  }
+  function sync(){
+    var b=bubble();
+    if(!b)return;
+    var open=isOpen();
+    if(open){try{sessionStorage.setItem('aidWidgetAutoOpened','1');}catch(e){}}
+    var img=b.querySelector('img[data-aid-icon]');
+    if(open){if(img){img.remove();b.style.background='';}}
+    else if(!img){
+      img=document.createElement('img');
+      img.src=IMG;img.alt='';img.setAttribute('data-aid-icon','');
+      img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;top:0;left:0;pointer-events:none;';
+      b.style.background='#0D0D0F';
+      b.appendChild(img);
+    }
+    var c=container();
+    if(c){
+      if(open){ensureFsBtn(c);sheet(c);}
+      else{full=false;unsheet(c);}
+    }
+  }
+  var armed=false;
+  function autoOpen(){
+    if(armed)return;
+    var b=bubble();
+    if(!b)return;
+    armed=true;
+    try{if(sessionStorage.getItem('aidWidgetAutoOpened'))return;}catch(e){}
+    setTimeout(function(){
+      try{if(sessionStorage.getItem('aidWidgetAutoOpened'))return;}catch(e){}
+      try{sessionStorage.setItem('aidWidgetAutoOpened','1');}catch(e){}
+      if(!isOpen())b.click();
+    },20000);
+  }
+  setInterval(function(){sync();autoOpen();},400);
+})();
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
