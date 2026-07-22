@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ryan McNally — Systems Builder</title>
+  <meta name="description" content="Agentic systems, AI-assisted operations tools, and automation infrastructure built for real business workflows." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ───────────────────────────── RESET ───────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ───────────────────────────── TOKENS ──────────────────────────── */
+    :root {
+      --bg-base:        #09090f;
+      --bg-surface:     #0f0f1a;
+      --bg-elevated:    #151525;
+      --border:         rgba(255,255,255,0.07);
+      --border-hover:   rgba(139,92,246,0.35);
+      --text-primary:   #f1f0ff;
+      --text-secondary: #9894b4;
+      --text-muted:     #5c5880;
+      --accent-purple:  #8b5cf6;
+      --accent-blue:    #3b82f6;
+      --accent-cyan:    #06b6d4;
+      --glass-bg:       rgba(15,15,26,0.72);
+      --glass-blur:     18px;
+      --radius-sm:      8px;
+      --radius-md:      14px;
+      --radius-lg:      20px;
+      --radius-xl:      28px;
+      --shadow-card:    0 4px 32px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.04) inset;
+      --shadow-glow:    0 0 40px rgba(139,92,246,0.12);
+      --transition:     0.22s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ───────────────────────────── BASE ────────────────────────────── */
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─────────────────────── BACKGROUND ORBS ───────────────────────── */
+    .bg-orbs {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.18;
+    }
+    .orb-1 {
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, #8b5cf6, transparent 70%);
+      top: -200px; left: -200px;
+    }
+    .orb-2 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, #3b82f6, transparent 70%);
+      bottom: 10%; right: -100px;
+    }
+    .orb-3 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, #06b6d4, transparent 70%);
+      top: 40%; left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.10;
+    }
+
+    /* ─────────────────────────── LAYOUT ────────────────────────────── */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ─────────────────────────── HEADER ────────────────────────────── */
+    header {
+      position: relative;
+      padding: 96px 0 72px;
+      text-align: center;
+    }
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: 1px solid rgba(139,92,246,0.28);
+      background: rgba(139,92,246,0.08);
+      font-size: 12px;
+      font-weight: 500;
+      color: #a78bfa;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+    .header-badge .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #8b5cf6;
+      box-shadow: 0 0 8px #8b5cf6;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+    h1 {
+      font-size: clamp(38px, 6vw, 64px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #f1f0ff 0%, #c4b5fd 50%, #93c5fd 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .header-sub {
+      font-size: 18px;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.65;
+    }
+
+    /* ─────────────────────── STAT PILLS ────────────────────────────── */
+    .stat-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur));
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    .stat-pill strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ─────────────────────── VIDEO SECTION ─────────────────────────── */
+    .section { padding: 64px 0; }
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+    .section-title {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .section-desc {
+      color: var(--text-secondary);
+      font-size: 15px;
+      max-width: 560px;
+      margin-bottom: 40px;
+    }
+
+    /* ─────────────────────── VIDEO GRID ────────────────────────────── */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+      gap: 20px;
+    }
+    .video-slot {
+      position: relative;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur));
+      overflow: hidden;
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+    .video-slot:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-glow);
+    }
+    .video-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      position: relative;
+      overflow: hidden;
+    }
+    .video-thumb::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 48px,
+        rgba(139,92,246,0.04) 48px,
+        rgba(139,92,246,0.04) 49px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 48px,
+        rgba(139,92,246,0.04) 48px,
+        rgba(139,92,246,0.04) 49px
+      );
+    }
+    .play-icon {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: rgba(139,92,246,0.15);
+      border: 2px solid rgba(139,92,246,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+    }
+    .play-icon svg { margin-left: 4px; }
+    .video-pending-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      position: relative;
+      z-index: 1;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .video-info {
+      padding: 16px 18px 18px;
+    }
+    .video-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .video-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ────────────────────── BUILD GRID ─────────────────────────────── */
+    .builds-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    /* ─────────────────────── BUILD CARD ────────────────────────────── */
+    .card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border);
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur));
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+    .card:hover {
+      border-color: var(--border-hover);
+      box-shadow: var(--shadow-card), var(--shadow-glow);
+      transform: translateY(-2px);
+    }
+    .card-screenshot {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #111122, #1a1040, #0a1628);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-screenshot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .screenshot-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+    }
+    .placeholder-grid {
+      position: absolute;
+      inset: 0;
+      background:
+        repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px),
+        repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(255,255,255,0.03) 39px, rgba(255,255,255,0.03) 40px);
+    }
+    .placeholder-icon {
+      width: 44px; height: 44px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 1;
+      font-size: 22px;
+    }
+    .placeholder-text {
+      font-size: 11px;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* card accent bar */
+    .card-accent {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+    }
+
+    .card-body {
+      padding: 20px 22px 22px;
+    }
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 100px;
+    }
+    .tag-purple { background: rgba(139,92,246,0.12); color: #a78bfa; border: 1px solid rgba(139,92,246,0.2); }
+    .tag-blue   { background: rgba(59,130,246,0.12);  color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+    .tag-cyan   { background: rgba(6,182,212,0.12);   color: #67e8f9; border: 1px solid rgba(6,182,212,0.2); }
+    .tag-green  { background: rgba(16,185,129,0.10);  color: #6ee7b7; border: 1px solid rgba(16,185,129,0.18); }
+    .tag-amber  { background: rgba(245,158,11,0.10);  color: #fcd34d; border: 1px solid rgba(245,158,11,0.18); }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+    }
+    .card-desc {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+    .card-desc strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+    .card-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* ──────────────────────── LINK BUTTONS ─────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all var(--transition);
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, rgba(139,92,246,0.25), rgba(59,130,246,0.2));
+      border-color: rgba(139,92,246,0.35);
+      color: #c4b5fd;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, rgba(139,92,246,0.4), rgba(59,130,246,0.3));
+      border-color: rgba(139,92,246,0.6);
+      color: #e9d5ff;
+      box-shadow: 0 0 16px rgba(139,92,246,0.2);
+    }
+    .btn-ghost {
+      background: rgba(255,255,255,0.04);
+      border-color: var(--border);
+      color: var(--text-secondary);
+    }
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.15);
+      color: var(--text-primary);
+    }
+    .btn-coming {
+      background: transparent;
+      border-color: rgba(255,255,255,0.06);
+      color: var(--text-muted);
+      cursor: default;
+      pointer-events: none;
+    }
+    /* P2-P4 slot buttons (placeholder until demos ship) */
+    .btn-slot {
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(139,92,246,0.04),
+        rgba(139,92,246,0.04) 4px,
+        transparent 4px,
+        transparent 12px
+      );
+      border: 1px dashed rgba(139,92,246,0.22);
+      color: rgba(139,92,246,0.45);
+      font-style: italic;
+      pointer-events: none;
+    }
+
+    /* ─────────────────────── DIVIDER ───────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 8px 0 64px;
+    }
+
+    /* ─────────────────────── ACCENT COLORS per card ────────────────── */
+    .accent-purple { background: linear-gradient(90deg, #8b5cf6, #a78bfa); }
+    .accent-blue   { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+    .accent-cyan   { background: linear-gradient(90deg, #06b6d4, #22d3ee); }
+    .accent-green  { background: linear-gradient(90deg, #10b981, #34d399); }
+    .accent-amber  { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+    .accent-indigo { background: linear-gradient(90deg, #6366f1, #818cf8); }
+    .accent-rose   { background: linear-gradient(90deg, #f43f5e, #fb7185); }
+    .accent-teal   { background: linear-gradient(90deg, #14b8a6, #2dd4bf); }
+    .accent-violet { background: linear-gradient(90deg, #7c3aed, #8b5cf6); }
+
+    /* placeholder icon backgrounds */
+    .icon-bg-purple { background: rgba(139,92,246,0.15); border: 1px solid rgba(139,92,246,0.25); }
+    .icon-bg-blue   { background: rgba(59,130,246,0.15);  border: 1px solid rgba(59,130,246,0.25); }
+    .icon-bg-cyan   { background: rgba(6,182,212,0.15);   border: 1px solid rgba(6,182,212,0.25); }
+    .icon-bg-green  { background: rgba(16,185,129,0.12);  border: 1px solid rgba(16,185,129,0.22); }
+    .icon-bg-amber  { background: rgba(245,158,11,0.12);  border: 1px solid rgba(245,158,11,0.22); }
+    .icon-bg-indigo { background: rgba(99,102,241,0.15);  border: 1px solid rgba(99,102,241,0.25); }
+    .icon-bg-rose   { background: rgba(244,63,94,0.12);   border: 1px solid rgba(244,63,94,0.22); }
+    .icon-bg-teal   { background: rgba(20,184,166,0.12);  border: 1px solid rgba(20,184,166,0.22); }
+    .icon-bg-violet { background: rgba(124,58,237,0.15);  border: 1px solid rgba(124,58,237,0.25); }
+
+    /* ─────────────────────── FEATURED (wide) ───────────────────────── */
+    .builds-grid .card-featured {
+      grid-column: 1 / -1;
+    }
+    .card-featured .card-screenshot {
+      aspect-ratio: 21/7;
+    }
+
+    /* ─────────────────────── CONTACT / FOOTER ──────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 0 60px;
+      text-align: center;
+    }
+    .footer-name {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      margin-bottom: 8px;
+    }
+    .footer-tagline {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 9px 18px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--glass-bg);
+      backdrop-filter: blur(var(--glass-blur));
+      color: var(--text-secondary);
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all var(--transition);
+    }
+    .contact-link:hover {
+      border-color: var(--border-hover);
+      color: var(--text-primary);
+      box-shadow: 0 0 16px rgba(139,92,246,0.12);
+    }
+    .footer-copy {
+      margin-top: 36px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ────────────────────── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 680px) {
+      header { padding: 64px 0 48px; }
+      .section { padding: 44px 0; }
+      .builds-grid { grid-template-columns: 1fr; }
+      .card-featured .card-screenshot { aspect-ratio: 16/9; }
+    }
+
+    /* ────────────────────── SCROLLBAR ──────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; background: var(--bg-base); }
+    ::-webkit-scrollbar-thumb { background: rgba(139,92,246,0.25); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+  <!-- background orbs -->
+  <div class="bg-orbs" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <!-- ══════════════════ HEADER ══════════════════ -->
+  <header>
+    <div class="container">
+      <div class="header-badge">
+        <span class="dot"></span>
+        Systems Builder
+      </div>
+      <h1>Ryan McNally</h1>
+      <p class="header-sub">
+        I build agentic systems and AI-assisted operations tools — from voice-activated quoting to multi-agent scheduling infrastructure. Each project below is wired to real workflows.
+      </p>
+      <div class="stat-row">
+        <div class="stat-pill"><strong>9</strong> shipped systems</div>
+        <div class="stat-pill"><strong>Node.js · Python · Supabase</strong> backend stack</div>
+        <div class="stat-pill"><strong>Claude · OpenRouter</strong> AI routing</div>
+        <div class="stat-pill"><strong>Netlify · GitHub Actions</strong> infrastructure</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ══════════════════ WALKTHROUGH VIDEOS ══════════════════ -->
+  <section class="section" id="videos">
+    <div class="container">
+      <div class="section-label">Walkthroughs</div>
+      <h2 class="section-title">See them running</h2>
+      <p class="section-desc">Short screen recordings showing each system in action against live (or synthetic) data.</p>
+
+      <div class="video-grid">
+
+        <!-- Video slot 1 — P5: Hermes drafting an order -->
+        <div class="video-slot" id="video-hermes">
+          <div class="video-thumb">
+            <div class="placeholder-grid"></div>
+            <div class="play-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M6 4l14 8-14 8V4z" fill="rgba(139,92,246,0.8)"/>
+              </svg>
+            </div>
+            <span class="video-pending-label"><!-- P5: Ryan records → drops here --></span>
+          </div>
+          <div class="video-info">
+            <div class="video-title">Hermes — AI Sales Order Drafter</div>
+            <div class="video-desc">Walkthrough: inbound message → structured order draft → approval.</div>
+          </div>
+        </div>
+
+        <!-- Video slot 2 — P5: CarPlay voice quote -->
+        <div class="video-slot" id="video-carplay">
+          <div class="video-thumb">
+            <div class="placeholder-grid"></div>
+            <div class="play-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M6 4l14 8-14 8V4z" fill="rgba(59,130,246,0.8)"/>
+              </svg>
+            </div>
+            <span class="video-pending-label"><!-- P5: Ryan records → drops here --></span>
+          </div>
+          <div class="video-info">
+            <div class="video-title">CarPlay Voice Quoting</div>
+            <div class="video-desc">Walkthrough: speak a request → structured estimate on CarPlay screen.</div>
+          </div>
+        </div>
+
+        <!-- Video slot 3 — P5: inbox with auto-drafted order -->
+        <div class="video-slot" id="video-inbox">
+          <div class="video-thumb">
+            <div class="placeholder-grid"></div>
+            <div class="play-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M6 4l14 8-14 8V4z" fill="rgba(6,182,212,0.8)"/>
+              </svg>
+            </div>
+            <span class="video-pending-label"><!-- P5: Ryan records → drops here --></span>
+          </div>
+          <div class="video-info">
+            <div class="video-title">Auto-Drafted Sales Order — Inbox View</div>
+            <div class="video-desc">Walkthrough: supplier email arrives → AI draft awaiting one-click approval.</div>
+          </div>
+        </div>
+
+      </div>
+      <!-- ↑ P5 VIDEO SLOTS: swap src="" once Ryan sends the 3 clips via Telegram (P6 task) -->
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <!-- ══════════════════ BUILDS ══════════════════ -->
+  <section class="section" id="builds">
+    <div class="container">
+      <div class="section-label">Builds</div>
+      <h2 class="section-title">What I've shipped</h2>
+      <p class="section-desc">Each card is a working system. Demo links open synthetic-data environments with a "Demo: sample data" banner.</p>
+
+      <div class="builds-grid">
+
+        <!-- ── 1. AIOS Dashboard ── -->
+        <article class="card" id="aios">
+          <div class="card-accent accent-purple"></div>
+          <div class="card-screenshot">
+            <div class="placeholder-grid"></div>
+            <div class="screenshot-placeholder">
+              <div class="placeholder-icon icon-bg-purple">📊</div>
+              <span class="placeholder-text">screenshot — gated / passcode-protected live app</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags">
+              <span class="tag tag-purple">Dashboard</span>
+              <span class="tag tag-blue">Multi-Agent</span>
+              <span class="tag tag-green">Real-time</span>
+            </div>
+            <h3 class="card-title">AIOS Dashboard</h3>
+            <p class="card-desc">
+              A real-time operations command center that surfaces pipeline health, agent activity, and scheduling state across a multi-agent system — all in one glass-panel UI. <strong>Built with React + Vite on Netlify, backed by a Supabase Postgres database, with a gated Netlify Function acting as the only data door; no keys ship in the client bundle.</strong>
+            </p>
+            <div class="card-links">
+              <a href="https://aidmarketingagency.github.io/aid-demo-pages/aios-demo/" class="btn btn-primary" target="_blank" rel="noopener">Live Demo ↗</a>
+              <span class="btn btn-coming">Live app — passcode-protected</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── 2. Hermes — Auto-Drafted Sales Orders ── -->
+        <article class="card" id="hermes">
+          <div class="card-accent accent-amber"></div>
+          <div class="card-screenshot">
+            <div class="placeholder-grid"></div>
+            <div class="screenshot-placeholder">
+              <div class="placeholder-icon icon-bg-amber">📝</div>
+              <span class="placeholder-text">walkthrough video above ↑</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags">
+              <span class="tag tag-amber">AI Drafting</span>
+              <span class="tag tag-blue">Automation</span>
+              <span class="tag tag-purple">Human-in-loop</span>
+            </div>
+            <h3 class="card-title">Hermes — AI Sales Order Drafter</h3>
+            <p class="card-desc">
+              Reads inbound supplier emails and WhatsApp messages, then pre-drafts structured sales orders — line items, quantities, pricing — ready for one-click approval. <strong>Node.js Netlify Function pipeline: message arrives → Claude parses fields → draft written to Supabase → Telegram notification fires for human review before any order is confirmed.</strong>
+            </p>
+            <div class="card-links">
+              <a href="#video-hermes" class="btn btn-ghost">▶ Walkthrough video ↑</a>
+              <span class="btn btn-coming">Live — internal tool</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── 3. CarPlay Voice Quoting ── -->
+        <article class="card" id="carplay">
+          <div class="card-accent accent-blue"></div>
+          <div class="card-screenshot">
+            <div class="placeholder-grid"></div>
+            <div class="screenshot-placeholder">
+              <div class="placeholder-icon icon-bg-blue">🎙️</div>
+              <span class="placeholder-text">walkthrough video above ↑</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags">
+              <span class="tag tag-blue">Voice AI</span>
+              <span class="tag tag-cyan">iOS / CarPlay</span>
+              <span class="tag tag-purple">Real-time</span>
+            </div>
+            <h3 class="card-title">CarPlay Voice Quoting</h3>
+            <p class="card-desc">
+              A field quoting tool that lets a sales rep speak a job brief hands-free in the car and receive a structured estimate on the CarPlay screen in real time. <strong>iOS shortcut triggers a voice-to-text capture; the transcription hits a Python API endpoint, Claude structures the estimate, and a formatted result returns to the CarPlay display within seconds.</strong>
+            </p>
+            <div class="card-links">
+              <a href="#video-carplay" class="btn btn-ghost">▶ Walkthrough video ↑</a>
+              <span class="btn btn-coming">Live — internal tool</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── 4. Quote Maker ── -->
+        <article class="card" id="quote-maker">
+          <div class="card-accent accent-green"></div>
+          <div class="card-screenshot">
+            <div class="placeholder-grid"></div>
+            <div class="screenshot-placeholder">
+              <div class="placeholder-icon icon-bg-green">💰</div>
+              <span class="placeholder-text">screenshot — see demo link below</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags">
+              <span class="tag tag-green">Field Sales</span>
+              <span class="tag tag-blue">Photo AI</span>
+              <span class="tag tag-purple">PDF Output</span>
+            </div>
+            <h3 class="card-title">Quote Maker</h3>
+            <p class="card-desc">
+              A multi-step quoting tool for field reps: photograph a job site, upload photos, and receive a formatted quote PDF with AI-parsed scope, labor estimate, and materials breakdown. <strong>React form → Netlify Function → OpenRouter AI vision parse → line-item assembly → Puppeteer PDF render; the whole flow takes under 60 seconds in the field.</strong>
+            </p>
+            <div class="card-links">
+              <a href="https://aidmarketingagency.github.io/aid-demo-pages/floor-quote-builder/" class="btn btn-primary" target="_blank" rel="noopener">Live Demo ↗</a>
+              <span class="btn btn-ghost">Walkthrough on request</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── 5. Condition Docs ── -->
+        <article class="card" id="condition-docs">
+          <div class="card-accent accent-cyan"></div>
+          <div class="card-screenshot">
+            <div class="placeholder-grid"></div>
+            <div class="screenshot-placeholder">
+              <div class="placeholder-icon icon-bg-cyan">🏠</div>
+              <span class="placeholder-text">screenshot — see demo link below</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags">
+              <span class="tag tag-cyan">AI Vision</span>
+              <span class="tag tag-blue">Property Tech</span>
+              <span class="tag tag-green">Report Gen</span>
+            </div>
+            <h3 class="card-title">UnitProof</h3>
+            <p class="card-desc">
+              An AI property inspection tool: upload photos from a unit walkthrough and receive a structured condition report with per-room annotations, damage flags, and an overall readiness score. <strong>Photos route to a Netlify Function that calls Claude Vision; results are stored in Supabase per inspection session and rendered as a printable structured report.</strong>
+            </p>
+            <div class="card-links">
+              <a href="https://aidmarketingagency.github.io/aid-demo-pages/unitproof-demo/" class="btn btn-primary" target="_blank" rel="noopener">Live Demo ↗</a>
+              <span class="btn btn-ghost">Walkthrough on request</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── 6. MOV Board ── -->
+        <article class="card" id="mov-board">
+          <div class="card-accent accent-indigo"></div>
+          <div class="card-screenshot">
+            <div class="placeholder-grid"></div>
+            <div class="screenshot-placeholder">
+              <div class="placeholder-icon icon-bg-indigo">🏢</div>
+              <span class="placeholder-text">screenshot — gated live app</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags">
+              <span class="tag tag-purple">Operations</span>
+              <span class="tag tag-blue">Multi-Unit</span>
+              <span class="tag tag-cyan">Status Board</span>
+            </div>
+            <h3 class="card-title">MOV Board — Makeready Operations</h3>
+            <p class="card-desc">
+              A kanban-style readiness board for multi-unit residential operations: tracks each unit through the make-ready pipeline (inspect → remediate → clean → ready), surfaces blockers, and pushes SMS alerts on state changes. <strong>Supabase Realtime subscriptions power the live card updates; a Netlify Function handles incoming Twilio SMS status webhooks.</strong>
+            </p>
+            <div class="card-links">
+              <span class="btn btn-coming">Live — internal tool</span>
+              <span class="btn btn-ghost">Walkthrough on request</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── 7. Blog + Social Engine ── -->
+        <article class="card" id="blog-engine">
+          <div class="card-accent accent-rose"></div>
+          <div class="card-screenshot">
+            <div class="placeholder-grid"></div>
+            <div class="screenshot-placeholder">
+              <div class="placeholder-icon icon-bg-rose">✍️</div>
+              <span class="placeholder-text">screenshot — internal tool</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags">
+              <span class="tag tag-purple">Content AI</span>
+              <span class="tag tag-blue">Automation</span>
+              <span class="tag tag-amber">Multi-format</span>
+            </div>
+            <h3 class="card-title">Blog + Social Engine</h3>
+            <p class="card-desc">
+              An automated content pipeline: submit a topic brief, and the system drafts a long-form blog post, extracts three social variants (LinkedIn, Twitter thread, short-form), and queues them for review — all in one trigger. <strong>Python orchestration layer uses Claude for drafting; output goes to Supabase for review-queue state, then pushes approved pieces via API to the target platforms.</strong>
+            </p>
+            <div class="card-links">
+              <span class="btn btn-coming">Internal pipeline</span>
+              <span class="btn btn-ghost">Walkthrough on request</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── 8. AI Receptionists (Missed-Call SMS) ── -->
+        <article class="card card-featured" id="ai-receptionist">
+          <div class="card-accent accent-violet"></div>
+          <div class="card-screenshot">
+            <div class="placeholder-grid"></div>
+            <div class="screenshot-placeholder">
+              <div class="placeholder-icon icon-bg-violet">📞</div>
+              <span class="placeholder-text">screenshot — SMS conversation flow (synthetic data)</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags">
+              <span class="tag tag-purple">Conversational AI</span>
+              <span class="tag tag-blue">Lead Qualification</span>
+              <span class="tag tag-green">Appointment Booking</span>
+              <span class="tag tag-cyan">SMS / Voice</span>
+            </div>
+            <h3 class="card-title">AI Receptionists — Missed-Call Takeover</h3>
+            <p class="card-desc">
+              When a contractor misses a call, an AI receptionist immediately texts back, qualifies the lead with targeted questions, and books an appointment — all via SMS conversation, no human required. The system handles objections, captures job scope, and writes the booked appointment directly to the contractor's calendar. <strong>Architecture: missed call triggers a PayMeGPT voice/SMS workflow; Claude drives the conversational qualification via a webhook-connected Netlify Function; confirmed bookings sync to the contractor's Google Calendar via GCal API with a confirmation SMS to both parties.</strong>
+            </p>
+            <div class="card-links">
+              <span class="btn btn-ghost">Live — deployed for contractor clients</span>
+              <span class="btn btn-ghost">Walkthrough on request</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- ── 9. Agent Memory + Scheduling Infrastructure ── -->
+        <article class="card card-featured" id="agent-infra">
+          <div class="card-accent accent-teal"></div>
+          <div class="card-screenshot">
+            <div class="placeholder-grid"></div>
+            <div class="screenshot-placeholder">
+              <div class="placeholder-icon icon-bg-teal">🤖</div>
+              <span class="placeholder-text">architecture diagram — see walkthrough</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-tags">
+              <span class="tag tag-cyan">Infrastructure</span>
+              <span class="tag tag-purple">Multi-Agent</span>
+              <span class="tag tag-blue">Memory System</span>
+              <span class="tag tag-green">Scheduling</span>
+            </div>
+            <h3 class="card-title">Agent Memory + Scheduling Infrastructure</h3>
+            <p class="card-desc">
+              The operational backbone under all the other builds: a 10-agent topology with cross-session memory, two-lane scheduling (GitHub Actions for deterministic recurring jobs; Air task queue for judgment work), and a Supabase semantic core that consolidates facts across agent sessions. Agents share state, avoid redundant work, and recover from interruption without losing context. <strong>Python stop hooks write session facts to Supabase on every agent exit; a nightly GitHub Actions workflow consolidates and pins the semantic core; model routing is enforced by a hook layer that gates which model each task class may use.</strong>
+            </p>
+            <div class="card-links">
+              <span class="btn btn-ghost">Internal infrastructure</span>
+              <span class="btn btn-ghost">Architecture walkthrough on request</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><div class="divider"></div></div>
+
+  <!-- ══════════════════ FOOTER ══════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-name">Ryan McNally</div>
+      <div class="footer-tagline">Systems Builder · Charlotte, NC</div>
+      <div class="contact-links">
+        <a href="mailto:ryan@aidmarketingagency.com" class="contact-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          ryan@aidmarketingagency.com
+        </a>
+        <a href="https://github.com/ryanmcnally" class="contact-link" target="_blank" rel="noopener noreferrer">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://linkedin.com/in/ryanmcnally" class="contact-link" target="_blank" rel="noopener noreferrer">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <p class="footer-copy">
+        Built with Node.js · Python · Supabase · Claude · React · Netlify
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

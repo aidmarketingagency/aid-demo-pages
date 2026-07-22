@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="UnitProof — AI-powered property inspection reports. Demo instance with sample data." />
+  <title>UnitProof — AI Inspection Reports (Demo)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#f0f4ff', 100: '#e0eaff', 400: '#818cf8', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3', 900: '#312e81' },
+            glass: { DEFAULT: 'rgba(255,255,255,0.05)', border: 'rgba(255,255,255,0.10)', hover: 'rgba(255,255,255,0.08)' }
+          },
+          backgroundImage: {
+            'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+          },
+          animation: { 'fade-in': 'fadeIn 0.3s ease-out', 'slide-up': 'slideUp 0.4s ease-out' },
+          keyframes: {
+            fadeIn: { from: { opacity: 0 }, to: { opacity: 1 } },
+            slideUp: { from: { opacity: 0, transform: 'translateY(12px)' }, to: { opacity: 1, transform: 'translateY(0)' } }
+          }
+        }
+      }
+    }
+  </script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body { background: #0b0b14; }
+    .glass-card {
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.09);
+    }
+    .glass-card-hover:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(99,102,241,0.35);
+      transition: all 0.2s ease;
+    }
+    .gradient-border {
+      background: linear-gradient(135deg, rgba(99,102,241,0.3), rgba(139,92,246,0.15));
+      border: 1px solid rgba(99,102,241,0.3);
+    }
+    .badge-chargeable { background: rgba(239,68,68,0.15); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; }
+    .badge-normal { background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.25); color: #86efac; }
+    .badge-warn { background: rgba(234,179,8,0.12); border: 1px solid rgba(234,179,8,0.25); color: #fde047; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(99,102,241,0.3); border-radius: 2px; }
+  </style>
+</head>
+<body class="dark min-h-screen text-white">
+
+<!-- DEMO BANNER — required, never remove -->
+<div class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center gap-2 py-2 px-4 text-xs font-medium"
+     style="background: linear-gradient(135deg, rgba(99,102,241,0.95), rgba(139,92,246,0.95)); backdrop-filter: blur(8px);">
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+  Demo: sample data — no real properties, tenants, or inspection records are shown
+</div>
+
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState, useEffect, useCallback } = React;
+
+// ─── Synthetic Demo Data ────────────────────────────────────────────────────
+// ZERO real data: all names, addresses, phone numbers, emails are invented.
+const DEMO_INSPECTIONS = [
+  {
+    id: "demo-001",
+    status: "complete",
+    property_address: "2847 Maplewood Court",
+    unit_number: "Apt 204",
+    city_state: "Durham, NC 27703",
+    inspection_type: "move_out",
+    inspection_date: "2026-07-14",
+    tenant_name: "Jordan M.",
+    inspector_name: "Alex R.",
+    rooms: [
+      {
+        room_id: "r1", room_name: "Living Room",
+        photo_count: 3, notes: "Tenant has dog (large breed per lease)",
+        chargeable_items: [
+          { item: "Carpet", damage_type: "pet_stain", severity: 4, description: "Large pet urine stain approximately 24×18 inches near the east wall. Odor present on close inspection.", beyond_normal_wear: true, recommended_action: "Replace", estimated_repair_cost: "$350–500", confidence: "high" },
+          { item: "Baseboard", damage_type: "scratch", severity: 2, description: "Bite marks and scratch gouges on west baseboard, consistent with pet activity.", beyond_normal_wear: true, recommended_action: "Replace section", estimated_repair_cost: "$80–120", confidence: "high" }
+        ],
+        normal_items: [
+          { item: "Walls", damage_type: "normal_wear", severity: 1, description: "Minor scuffs at chair-height. Consistent with normal occupancy.", beyond_normal_wear: false, recommended_action: "Clean", estimated_repair_cost: "N/A", confidence: "high" }
+        ]
+      },
+      {
+        room_id: "r2", room_name: "Kitchen",
+        photo_count: 4, notes: "Check oven and under-sink",
+        chargeable_items: [
+          { item: "Oven", damage_type: "burn/grease", severity: 3, description: "Interior oven surfaces coated in baked-on grease exceeding standard cleaning threshold. Bottom element partially obscured.", beyond_normal_wear: true, recommended_action: "Deep clean / professional", estimated_repair_cost: "$120–180", confidence: "high" },
+          { item: "Countertop", damage_type: "burn_mark", severity: 3, description: "Circular burn mark approx. 3-inch diameter near the stove, likely from a hot pan placed directly on laminate surface.", beyond_normal_wear: true, recommended_action: "Repair or replace section", estimated_repair_cost: "$200–350", confidence: "medium" }
+        ],
+        normal_items: [
+          { item: "Refrigerator", damage_type: "normal_wear", severity: 1, description: "Minor shelf scratches consistent with normal use. Interior clean.", beyond_normal_wear: false, recommended_action: "Clean", estimated_repair_cost: "N/A", confidence: "high" },
+          { item: "Cabinetry", damage_type: "normal_wear", severity: 2, description: "Expected door hinge wear on lower cabinets. Hardware intact.", beyond_normal_wear: false, recommended_action: "No action", estimated_repair_cost: "N/A", confidence: "high" }
+        ]
+      },
+      {
+        room_id: "r3", room_name: "Master Bedroom",
+        photo_count: 2, notes: "",
+        chargeable_items: [
+          { item: "Door", damage_type: "hole", severity: 5, description: "Fist-sized hole (approx 4×4 inches) in hollow-core door panel, consistent with impact damage.", beyond_normal_wear: true, recommended_action: "Replace door", estimated_repair_cost: "$175–275", confidence: "high" }
+        ],
+        normal_items: [
+          { item: "Carpet", damage_type: "normal_wear", severity: 2, description: "Traffic lane wear on path between door and closet. No staining.", beyond_normal_wear: false, recommended_action: "No action", estimated_repair_cost: "N/A", confidence: "high" },
+          { item: "Walls", damage_type: "normal_wear", severity: 1, description: "Minor nail holes from picture hanging (3 total). Standard move-out expectation.", beyond_normal_wear: false, recommended_action: "Patch", estimated_repair_cost: "N/A", confidence: "high" }
+        ]
+      },
+      {
+        room_id: "r4", room_name: "Bathroom",
+        photo_count: 3, notes: "Tenant reported slow drain at move-in",
+        chargeable_items: [
+          { item: "Toilet", damage_type: "crack", severity: 4, description: "Hairline crack running across the porcelain tank lid. Crack extends approx 6 inches. Potential failure risk.", beyond_normal_wear: true, recommended_action: "Replace tank lid", estimated_repair_cost: "$95–145", confidence: "high" },
+          { item: "Mirror", damage_type: "chip", severity: 2, description: "2-inch chip in lower-right corner of vanity mirror. Sharp edge present.", beyond_normal_wear: true, recommended_action: "Replace mirror", estimated_repair_cost: "$80–130", confidence: "high" }
+        ],
+        normal_items: [
+          { item: "Caulk (tub)", damage_type: "normal_wear", severity: 2, description: "Caulk line shows minor discoloration and hairline separation. Typical for occupancy period.", beyond_normal_wear: false, recommended_action: "Re-caulk at turnover", estimated_repair_cost: "N/A", confidence: "high" }
+        ]
+      }
+    ],
+    cost_summary: { items_with_estimates: 7, estimated_total_low: 1100, estimated_total_high: 1700, range_string: "$1,100 – $1,700" }
+  },
+  {
+    id: "demo-002",
+    status: "complete",
+    property_address: "519 Birchwood Lane",
+    unit_number: "Unit B",
+    city_state: "Raleigh, NC 27609",
+    inspection_type: "move_in",
+    inspection_date: "2026-07-10",
+    tenant_name: "Priya K.",
+    inspector_name: "Alex R.",
+    rooms: [
+      {
+        room_id: "r5", room_name: "Living Room",
+        photo_count: 2, notes: "Pre-existing scuff on north wall noted",
+        chargeable_items: [],
+        normal_items: [
+          { item: "Walls", damage_type: "pre_existing_scuff", severity: 2, description: "Scuff mark on north wall (pre-existing, documented for tenant protection).", beyond_normal_wear: false, recommended_action: "Document only", estimated_repair_cost: "N/A", confidence: "high" },
+          { item: "Carpet", damage_type: "normal_wear", severity: 1, description: "Carpet in good condition. No staining or damage visible.", beyond_normal_wear: false, recommended_action: "No action", estimated_repair_cost: "N/A", confidence: "high" }
+        ]
+      },
+      {
+        room_id: "r6", room_name: "Kitchen",
+        photo_count: 3, notes: "",
+        chargeable_items: [],
+        normal_items: [
+          { item: "Appliances", damage_type: "normal_wear", severity: 1, description: "All appliances operational and clean. Minor surface scratches on dishwasher control panel — normal for unit age.", beyond_normal_wear: false, recommended_action: "No action", estimated_repair_cost: "N/A", confidence: "high" }
+        ]
+      }
+    ],
+    cost_summary: { items_with_estimates: 0, estimated_total_low: 0, estimated_total_high: 0, range_string: "No chargeable items" }
+  },
+  {
+    id: "demo-003",
+    status: "complete",
+    property_address: "1120 Ridgecrest Drive",
+    unit_number: "Apt 11A",
+    city_state: "Chapel Hill, NC 27514",
+    inspection_type: "move_out",
+    inspection_date: "2026-07-18",
+    tenant_name: "Marcus T.",
+    inspector_name: "Sam L.",
+    rooms: [
+      {
+        room_id: "r7", room_name: "Living Room",
+        photo_count: 3, notes: "",
+        chargeable_items: [
+          { item: "Wall", damage_type: "large_hole", severity: 4, description: "Hole approximately 6×8 inches through drywall near television mount location. Appears consistent with bracket removal without proper repair.", beyond_normal_wear: true, recommended_action: "Drywall patch + paint", estimated_repair_cost: "$150–250", confidence: "high" }
+        ],
+        normal_items: [
+          { item: "Flooring (hardwood)", damage_type: "normal_wear", severity: 2, description: "Light surface scratches consistent with furniture movement over 18-month tenancy.", beyond_normal_wear: false, recommended_action: "Polish", estimated_repair_cost: "N/A", confidence: "high" }
+        ]
+      },
+      {
+        room_id: "r8", room_name: "Bedroom 1",
+        photo_count: 2, notes: "",
+        chargeable_items: [],
+        normal_items: [
+          { item: "Carpet", damage_type: "normal_wear", severity: 2, description: "Traffic lane indentation. No stains or damage beyond expected wear.", beyond_normal_wear: false, recommended_action: "No action", estimated_repair_cost: "N/A", confidence: "high" }
+        ]
+      }
+    ],
+    cost_summary: { items_with_estimates: 1, estimated_total_low: 150, estimated_total_high: 250, range_string: "$150 – $250" }
+  }
+];
+
+// ─── Icons ──────────────────────────────────────────────────────────────────
+const Icon = ({ path, size = 16, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    {path}
+  </svg>
+);
+
+const icons = {
+  home: <><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></>,
+  camera: <><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></>,
+  alert: <><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></>,
+  check: <polyline points="20 6 9 12 4 9"/>,
+  file: <><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></>,
+  arrow_left: <><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></>,
+  chevron: <polyline points="9 18 15 12 9 6"/>,
+  dollar: <><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></>,
+  building: <><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="2"/><line x1="15" y1="22" x2="15" y2="2"/></>,
+  layers: <><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></>,
+  ai: <><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></>,
+  pdf: <><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></>,
+  sparkle: <><path d="M12 2L9.5 9.5 2 12l7.5 2.5L12 22l2.5-7.5L22 12l-7.5-2.5z"/></>,
+};
+
+// ─── Severity Badge ─────────────────────────────────────────────────────────
+const SeverityDot = ({ level }) => {
+  const colors = ["", "bg-emerald-400","bg-yellow-400","bg-orange-400","bg-red-400","bg-red-600"];
+  return <span className={`inline-block w-2 h-2 rounded-full ${colors[level] || "bg-gray-400"}`} />;
+};
+
+// ─── Charge Badge ────────────────────────────────────────────────────────────
+const ChargeBadge = ({ chargeable }) => chargeable
+  ? <span className="badge-chargeable text-xs px-2 py-0.5 rounded-full font-medium">Chargeable</span>
+  : <span className="badge-normal text-xs px-2 py-0.5 rounded-full font-medium">Normal Wear</span>;
+
+// ─── Inspection Type Badge ───────────────────────────────────────────────────
+const InspTypeBadge = ({ type }) => {
+  const cfg = type === "move_out"
+    ? { label: "Move-Out", cls: "badge-chargeable" }
+    : { label: "Move-In", cls: "badge-normal" };
+  return <span className={`${cfg.cls} text-xs px-2 py-0.5 rounded-full font-medium`}>{cfg.label}</span>;
+};
+
+// ─── Header ─────────────────────────────────────────────────────────────────
+const Header = ({ onBack, title }) => (
+  <header className="sticky top-8 z-40 flex items-center gap-3 px-4 py-3 glass-card"
+          style={{ background: "rgba(11,11,20,0.85)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+    {onBack && (
+      <button onClick={onBack} className="p-2 rounded-lg hover:bg-white/5 transition-colors">
+        <Icon path={icons.arrow_left} size={18} />
+      </button>
+    )}
+    <div className="flex items-center gap-2">
+      <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg, #6366f1, #8b5cf6)" }}>
+        <Icon path={icons.layers} size={13} className="text-white" />
+      </div>
+      <span className="font-semibold tracking-wide text-white text-sm">UnitProof</span>
+    </div>
+    {title && <span className="text-white/40 text-sm ml-1">/ {title}</span>}
+    <div className="ml-auto">
+      <span className="text-xs text-indigo-400 bg-indigo-500/10 border border-indigo-500/20 px-2 py-1 rounded-full">AI-Powered</span>
+    </div>
+  </header>
+);
+
+// ─── Inspection List View ────────────────────────────────────────────────────
+const InspectionList = ({ onSelect }) => {
+  const counts = {
+    total: DEMO_INSPECTIONS.length,
+    complete: DEMO_INSPECTIONS.filter(i => i.status === "complete").length,
+    chargeable: DEMO_INSPECTIONS.filter(i => i.cost_summary.items_with_estimates > 0).length
+  };
+
+  return (
+    <div className="min-h-screen" style={{ background: "radial-gradient(ellipse at top, #1a1040 0%, #0b0b14 60%)" }}>
+      <Header />
+      <div className="max-w-2xl mx-auto px-4 pt-6 pb-12 space-y-6 animate-fade-in">
+        {/* Hero */}
+        <div className="glass-card gradient-border rounded-2xl p-6 text-center">
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <Icon path={icons.sparkle} size={18} className="text-indigo-400" />
+            <span className="text-indigo-300 text-sm font-medium">AI Inspection Reports</span>
+          </div>
+          <h1 className="text-2xl font-bold text-white mb-2">UnitProof</h1>
+          <p className="text-white/50 text-sm leading-relaxed max-w-sm mx-auto">
+            Photo-to-report in under 90 seconds. AI identifies damage, classifies wear vs. chargeable, and builds a signed PDF.
+          </p>
+        </div>
+
+        {/* Stats */}
+        <div className="grid grid-cols-3 gap-3">
+          {[
+            { label: "Inspections", value: counts.total, icon: icons.file },
+            { label: "Completed", value: counts.complete, icon: icons.check },
+            { label: "With Charges", value: counts.chargeable, icon: icons.dollar }
+          ].map((s, i) => (
+            <div key={i} className="glass-card rounded-xl p-4 text-center">
+              <Icon path={s.icon} size={16} className="text-indigo-400 mx-auto mb-2" />
+              <div className="text-xl font-bold text-white">{s.value}</div>
+              <div className="text-xs text-white/40 mt-0.5">{s.label}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* Inspection cards */}
+        <div className="space-y-3">
+          <h2 className="text-sm font-medium text-white/50 uppercase tracking-wider px-1">Inspection Records</h2>
+          {DEMO_INSPECTIONS.map(insp => (
+            <button
+              key={insp.id}
+              onClick={() => onSelect(insp)}
+              className="glass-card glass-card-hover rounded-xl p-4 w-full text-left transition-all duration-200 animate-slide-up"
+            >
+              <div className="flex items-start justify-between mb-3">
+                <div>
+                  <div className="font-semibold text-white text-sm">{insp.property_address}, {insp.unit_number}</div>
+                  <div className="text-xs text-white/40 mt-0.5">{insp.city_state}</div>
+                </div>
+                <InspTypeBadge type={insp.inspection_type} />
+              </div>
+              <div className="flex items-center gap-4 text-xs text-white/40">
+                <span className="flex items-center gap-1">
+                  <Icon path={icons.home} size={12} /> {insp.tenant_name}
+                </span>
+                <span className="flex items-center gap-1">
+                  <Icon path={icons.camera} size={12} /> {insp.rooms.reduce((a, r) => a + r.photo_count, 0)} photos
+                </span>
+                <span>{new Date(insp.inspection_date + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+              </div>
+              {insp.cost_summary.items_with_estimates > 0 && (
+                <div className="mt-3 flex items-center justify-between pt-3 border-t border-white/5">
+                  <span className="text-xs text-white/40">{insp.cost_summary.items_with_estimates} chargeable items</span>
+                  <span className="text-sm font-semibold text-red-400">{insp.cost_summary.range_string}</span>
+                </div>
+              )}
+              {insp.cost_summary.items_with_estimates === 0 && (
+                <div className="mt-3 pt-3 border-t border-white/5">
+                  <span className="text-xs text-emerald-400 flex items-center gap-1">
+                    <Icon path={icons.check} size={12} /> No chargeable damage
+                  </span>
+                </div>
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* How it works */}
+        <div className="glass-card rounded-xl p-5">
+          <h3 className="text-sm font-semibold text-white/70 mb-4 flex items-center gap-2">
+            <Icon path={icons.ai} size={14} className="text-indigo-400" /> How UnitProof Works
+          </h3>
+          <div className="space-y-3">
+            {[
+              ["Take photos", "Photo each room at move-in and move-out from your phone."],
+              ["AI analyzes damage", "Vision AI classifies each item: normal wear or chargeable, with estimated costs."],
+              ["Sign & export PDF", "One-tap export of a NC-compliant inspection report, ready for your records."]
+            ].map(([title, desc], i) => (
+              <div key={i} className="flex gap-3">
+                <div className="w-6 h-6 rounded-full flex-shrink-0 flex items-center justify-center text-xs font-bold"
+                     style={{ background: "linear-gradient(135deg, rgba(99,102,241,0.3), rgba(139,92,246,0.2))", border: "1px solid rgba(99,102,241,0.3)" }}>
+                  {i + 1}
+                </div>
+                <div>
+                  <div className="text-sm font-medium text-white">{title}</div>
+                  <div className="text-xs text-white/40 mt-0.5">{desc}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ─── Room Card ───────────────────────────────────────────────────────────────
+const RoomCard = ({ room, expanded, onToggle }) => {
+  const allItems = [...room.chargeable_items, ...room.normal_items];
+  const chargeCount = room.chargeable_items.length;
+  return (
+    <div className="glass-card rounded-xl overflow-hidden">
+      <button
+        onClick={onToggle}
+        className="w-full flex items-center justify-between p-4 hover:bg-white/3 transition-colors text-left"
+      >
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center"
+               style={{ background: chargeCount > 0 ? "rgba(239,68,68,0.15)" : "rgba(34,197,94,0.1)", border: chargeCount > 0 ? "1px solid rgba(239,68,68,0.25)" : "1px solid rgba(34,197,94,0.2)" }}>
+            <Icon path={icons.home} size={14} className={chargeCount > 0 ? "text-red-400" : "text-emerald-400"} />
+          </div>
+          <div>
+            <div className="font-medium text-white text-sm">{room.room_name}</div>
+            <div className="text-xs text-white/40">{room.photo_count} photos · {allItems.length} findings</div>
+          </div>
+        </div>
+        <div className="flex items-center gap-2">
+          {chargeCount > 0 && <span className="badge-chargeable text-xs px-2 py-0.5 rounded-full">{chargeCount} chargeable</span>}
+          <Icon path={icons.chevron} size={14} className={`text-white/40 transition-transform duration-200 ${expanded ? "rotate-90" : ""}`} />
+        </div>
+      </button>
+
+      {expanded && (
+        <div className="border-t border-white/5 divide-y divide-white/5 animate-fade-in">
+          {allItems.map((item, idx) => (
+            <div key={idx} className="p-4 space-y-2">
+              <div className="flex items-start justify-between gap-3">
+                <div className="flex items-center gap-2">
+                  <SeverityDot level={item.severity} />
+                  <span className="text-sm font-medium text-white">{item.item}</span>
+                  <span className="text-xs text-white/30">· {item.damage_type.replace(/_/g,' ')}</span>
+                </div>
+                <ChargeBadge chargeable={item.beyond_normal_wear} />
+              </div>
+              <p className="text-xs text-white/60 leading-relaxed">{item.description}</p>
+              <div className="flex items-center justify-between">
+                <span className="text-xs text-white/40">Action: <span className="text-white/60">{item.recommended_action}</span></span>
+                {item.beyond_normal_wear && item.estimated_repair_cost !== "N/A" && (
+                  <span className="text-xs font-semibold text-red-400">{item.estimated_repair_cost}</span>
+                )}
+              </div>
+              <div className="flex items-center gap-1 mt-1">
+                <span className="text-xs text-white/25">AI confidence:</span>
+                <span className={`text-xs ${item.confidence === 'high' ? 'text-emerald-400' : item.confidence === 'medium' ? 'text-yellow-400' : 'text-white/40'}`}>
+                  {item.confidence}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
+// ─── Inspection Detail View ──────────────────────────────────────────────────
+const InspectionDetail = ({ insp, onBack }) => {
+  const [expandedRooms, setExpandedRooms] = useState({ [insp.rooms[0]?.room_id]: true });
+  const [showChargeSheet, setShowChargeSheet] = useState(false);
+
+  const toggleRoom = id => setExpandedRooms(prev => ({ ...prev, [id]: !prev[id] }));
+
+  const allChargeable = insp.rooms.flatMap(r => r.chargeable_items.map(i => ({ ...i, room: r.room_name })));
+
+  return (
+    <div className="min-h-screen" style={{ background: "radial-gradient(ellipse at top, #1a1040 0%, #0b0b14 60%)" }}>
+      <Header onBack={onBack} title={`${insp.property_address}`} />
+      <div className="max-w-2xl mx-auto px-4 pt-6 pb-12 space-y-5 animate-slide-up">
+        {/* Property summary */}
+        <div className="glass-card gradient-border rounded-2xl p-5">
+          <div className="flex items-start justify-between mb-4">
+            <div>
+              <h2 className="text-lg font-bold text-white">{insp.property_address}</h2>
+              <div className="text-sm text-white/50">{insp.unit_number} · {insp.city_state}</div>
+            </div>
+            <InspTypeBadge type={insp.inspection_type} />
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              ["Date", new Date(insp.inspection_date + 'T00:00:00').toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' })],
+              ["Tenant", insp.tenant_name],
+              ["Inspector", insp.inspector_name],
+              ["Rooms", `${insp.rooms.length} rooms documented`]
+            ].map(([k, v]) => (
+              <div key={k}>
+                <div className="text-xs text-white/30 uppercase tracking-wider">{k}</div>
+                <div className="text-sm text-white mt-0.5">{v}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Cost summary if applicable */}
+        {insp.cost_summary.items_with_estimates > 0 && (
+          <div className="glass-card rounded-xl p-4" style={{ background: "rgba(239,68,68,0.06)", border: "1px solid rgba(239,68,68,0.2)" }}>
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Icon path={icons.dollar} size={16} className="text-red-400" />
+                <span className="text-sm font-medium text-white">Estimated Damage Cost</span>
+              </div>
+              <span className="text-lg font-bold text-red-400">{insp.cost_summary.range_string}</span>
+            </div>
+            <div className="text-xs text-white/40 mt-1">{insp.cost_summary.items_with_estimates} chargeable items identified by AI</div>
+          </div>
+        )}
+
+        {insp.cost_summary.items_with_estimates === 0 && (
+          <div className="glass-card rounded-xl p-4" style={{ background: "rgba(34,197,94,0.05)", border: "1px solid rgba(34,197,94,0.2)" }}>
+            <div className="flex items-center gap-2">
+              <Icon path={icons.check} size={16} className="text-emerald-400" />
+              <span className="text-sm text-emerald-300 font-medium">Clean Move-In — No Chargeable Damage Found</span>
+            </div>
+            <div className="text-xs text-white/40 mt-1">All findings classified as normal wear and tear under NC law</div>
+          </div>
+        )}
+
+        {/* Room breakdown */}
+        <div className="space-y-2">
+          <div className="flex items-center justify-between px-1">
+            <h3 className="text-sm font-medium text-white/50 uppercase tracking-wider">Room Analysis</h3>
+            {allChargeable.length > 0 && (
+              <button
+                onClick={() => setShowChargeSheet(!showChargeSheet)}
+                className="text-xs text-indigo-400 hover:text-indigo-300 transition-colors"
+              >
+                {showChargeSheet ? "Hide" : "View"} Charge Sheet
+              </button>
+            )}
+          </div>
+          {insp.rooms.map(room => (
+            <RoomCard
+              key={room.room_id}
+              room={room}
+              expanded={!!expandedRooms[room.room_id]}
+              onToggle={() => toggleRoom(room.room_id)}
+            />
+          ))}
+        </div>
+
+        {/* Charge Sheet */}
+        {showChargeSheet && allChargeable.length > 0 && (
+          <div className="glass-card rounded-xl overflow-hidden animate-slide-up">
+            <div className="p-4 border-b border-white/5 flex items-center gap-2">
+              <Icon path={icons.dollar} size={14} className="text-red-400" />
+              <h3 className="text-sm font-semibold text-white">Charge Sheet</h3>
+            </div>
+            <div className="divide-y divide-white/5">
+              {allChargeable.map((item, idx) => (
+                <div key={idx} className="flex items-center justify-between p-3">
+                  <div>
+                    <div className="text-sm text-white">{item.room} — {item.item}</div>
+                    <div className="text-xs text-white/40">{item.recommended_action}</div>
+                  </div>
+                  <span className="text-sm font-semibold text-red-400 text-right whitespace-nowrap ml-4">{item.estimated_repair_cost}</span>
+                </div>
+              ))}
+              <div className="flex items-center justify-between p-3 bg-white/3">
+                <span className="text-sm font-semibold text-white">Total Estimate</span>
+                <span className="text-base font-bold text-red-400">{insp.cost_summary.range_string}</span>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Export PDF (disabled in demo) */}
+        <div className="glass-card rounded-xl p-4 text-center">
+          <div className="flex items-center justify-center gap-2 mb-2">
+            <Icon path={icons.pdf} size={16} className="text-indigo-400" />
+            <span className="text-sm font-medium text-white">Export Report PDF</span>
+          </div>
+          <p className="text-xs text-white/40 mb-3">Full production: one-tap PDF with NC legal language, photos, and inspector signature block.</p>
+          <button className="px-4 py-2 rounded-lg text-sm font-medium text-white/50 cursor-not-allowed"
+                  style={{ background: "rgba(99,102,241,0.1)", border: "1px solid rgba(99,102,241,0.2)" }}>
+            PDF Export (live builds only)
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+// ─── App Root ────────────────────────────────────────────────────────────────
+const App = () => {
+  const [selected, setSelected] = useState(null);
+
+  return selected
+    ? <InspectionDetail insp={selected} onBack={() => setSelected(null)} />
+    : <InspectionList onSelect={setSelected} />;
+};
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>
