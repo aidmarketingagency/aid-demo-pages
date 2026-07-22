@@ -1,0 +1,620 @@
+<!--
+  DESIGNER'S NOTE — D2 bucket: FACELIFT (b)
+  antcomfortsolutions.com uses a consistent green-and-white color story throughout: the logo
+  is explicitly described as "NC logo green / stacked-green-white" and the site carries that
+  green-on-white scheme across headers and CTAs. This reads as a considered brand lineage
+  signal, not an accidental default. Elevating it: #1A5C4A (deep forest green) as the single
+  accent on a near-black #070D09 canvas — the "Bar Rescue" move. The palette is recognizably
+  their green, done right for the first time. Spectral (display) + Libre Franklin (body) —
+  a fresh pairing not used on Peak or Craftsman builds. Trade SVG: HVAC flame/coil mark.
+  Image: Pixabay CC0 air-conditioner photo, scrim + grain + green duotone applied via CSS.
+  D4 dossier thread: Anthony has been at this 17+ years and is actively hiring — which means
+  peak July calls hit when the schedule is already full and every missed ring costs the most.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- BASE:START (managed by Coding Agent — do not edit) -->
+<base href="/aid-demo-pages/ant-comfort-solutions/">
+<!-- BASE:END -->
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Libre+Franklin:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+
+<!-- SEO Meta Tags -->
+<title>A.N.T. Comfort Solutions — Live Demo | AID Marketing Agency</title>
+<meta property="og:title" content="A.N.T. Comfort Solutions — Live Demo | AID Marketing Agency" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="A.N.T. Comfort Solutions — Live Demo | AID Marketing Agency" />
+<!-- End SEO Meta Tags -->
+<script data-lp-token-hydrate>
+(function(){try{
+  var slug="lp-mrvkjgqm-jp01x";
+  var SK='lp_access_'+slug;
+  var map={access_token:'lp_pw_',allowlist_access_token:'lp_al_',pin_access_token:'lp_pin_',paywall_access_token:'lp_paid_'};
+  var u=new URL(location.href);var found=null;var changed=false;
+  Object.keys(map).forEach(function(p){var v=u.searchParams.get(p);if(v){found=v;try{localStorage.setItem(map[p]+slug,v);}catch(e){}u.searchParams.delete(p);changed=true;}});
+  if(found){try{sessionStorage.setItem(SK,found);}catch(e){}}
+  else{try{if(!sessionStorage.getItem(SK)){var t=localStorage.getItem('lp_pw_'+slug)||localStorage.getItem('lp_al_'+slug)||localStorage.getItem('lp_pin_'+slug)||localStorage.getItem('lp_paid_'+slug);if(t)sessionStorage.setItem(SK,t);}}catch(e){}}
+  if(changed){try{history.replaceState(null,'',u.toString());}catch(e){}}
+  function getTok(){try{return sessionStorage.getItem(SK)||localStorage.getItem('lp_pw_'+slug)||localStorage.getItem('lp_al_'+slug)||localStorage.getItem('lp_pin_'+slug)||localStorage.getItem('lp_paid_'+slug);}catch(e){return null;}}
+  function needsToken(url,method){if(!url)return false;var s=String(url);var m=(method||'GET').toUpperCase();var isSheetWrite=(m==='POST'||m==='PATCH'||m==='PUT'||m==='DELETE')&&/\/sheet-rows(\/|$|\?)/.test(s);var isSheetRead=/\/sheet-data(\/|$|\?)/.test(s);var isLlm=/\/api\/landing-pages\/public\/[^/]+\/(llm|llm-config)(\/|$|\?)/.test(s);return isSheetWrite||isSheetRead||isLlm;}
+  if(window.fetch){var _f=window.fetch;window.fetch=function(input,init){try{var url=typeof input==='string'?input:(input&&input.url)||'';var method=(init&&init.method)||(input&&input.method)||'GET';if(needsToken(url,method)){var tok=getTok();if(tok){init=init||{};var h=new Headers(init.headers||(typeof input!=='string'?input.headers:undefined)||{});if(!h.has('X-Landing-Page-Token'))h.set('X-Landing-Page-Token',tok);init.headers=h;}}}catch(e){}return _f.call(this,input,init);};}
+  if(window.XMLHttpRequest){var _o=XMLHttpRequest.prototype.open;var _s=XMLHttpRequest.prototype.send;XMLHttpRequest.prototype.open=function(m,u){this.__lpM=m;this.__lpU=u;return _o.apply(this,arguments);};XMLHttpRequest.prototype.send=function(){try{if(needsToken(this.__lpU,this.__lpM)){var tok=getTok();if(tok)this.setRequestHeader('X-Landing-Page-Token',tok);}}catch(e){}return _s.apply(this,arguments);};}
+}catch(e){}})();
+</script>
+
+<script data-field-replace>
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var fields={};
+  var paramMap={
+    'first_name':'firstName','last_name':'lastName','full_name':'fullName',
+    'email':'email','phone':'phone','company':'company',
+    'city':'city','state':'state','country':'country'
+  };
+  var skipTags={'SCRIPT':1,'STYLE':1,'NOSCRIPT':1,'TEXTAREA':1,'CODE':1,'PRE':1};
+  var hasUrlFields=false;
+  for(var p in paramMap){
+    var v=params.get(p);
+    if(v){fields[paramMap[p]]=v;hasUrlFields=true;}
+  }
+  var contactId=params.get('contact_id');
+  function esc(s){
+    if(!s)return s;
+    var d=document.createElement('div');
+    d.appendChild(document.createTextNode(s));
+    return d.innerHTML;
+  }
+  function doReplace(data){
+    var r={};
+    r['{{full_name}}']=esc(((data.firstName||'')+' '+(data.lastName||'')).trim()||((data.fullName||data.name)||''));
+    r['{{first_name}}']=esc(data.firstName||(data.name?data.name.split(' ')[0]:'')||'');
+    r['{{last_name}}']=esc(data.lastName||(data.name&&data.name.indexOf(' ')>-1?data.name.substring(data.name.indexOf(' ')+1):'')||'');
+    r['{{email}}']=esc(data.email||'');
+    r['{{phone}}']=esc(data.phone||'');
+    r['{{company}}']=esc(data.company||'');
+    r['{{city}}']=esc(data.city||'');
+    r['{{state}}']=esc(data.state||'');
+    r['{{country}}']=esc(data.country||'');
+    r['{{date}}']=new Date().toLocaleDateString();
+    r['{{time}}']=new Date().toLocaleTimeString();
+    r['{{location}}']=[data.city,data.state,data.country].filter(Boolean).join(', ');
+    r['{{tracking_id}}']=esc(data.trackingId||'');
+    r['{{lastClickedProduct}}']=esc(data.lastClickedProduct||'');
+    r['{{lastProductClickDate}}']=esc(data.lastProductClickDate||'');
+    r['{{lastClickedProductPrice}}']=esc(data.lastClickedProductPrice||'');
+    r['{{lastClickedProductURL}}']=esc(data.lastClickedProductURL||'');
+    r['{{productsClickedCount}}']=esc(data.productsClickedCount||'0');
+    r['{{ip_address}}']=esc(data.ipAddress||'');
+    r['{{ip}}']=esc(data.ipAddress||'');
+    if(data.customFields){
+      for(var k in data.customFields){
+        r['{{'+k+'}}']=esc(String(data.customFields[k]||''));
+      }
+    }
+    params.forEach(function(v,k){
+      if(!paramMap[k]&&k!=='contact_id'&&k!=='page_id'&&k.indexOf('utm_')!==0){
+        r['{{'+k+'}}']=esc(v);
+      }
+    });
+    var hasValues=false;
+    for(var key in r){if(r[key]){hasValues=true;break;}}
+    if(!hasValues)return;
+    var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+      acceptNode:function(n){
+        var p=n.parentNode;
+        if(p&&skipTags[p.nodeName])return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var node;
+    while(node=walker.nextNode()){
+      var txt=node.nodeValue;
+      if(txt&&txt.indexOf('{{')>-1){
+        var changed=txt;
+        for(var ph in r){
+          if(r[ph]&&changed.indexOf(ph)>-1){
+            changed=changed.split(ph).join(r[ph]);
+          }
+        }
+        if(changed!==txt)node.nodeValue=changed;
+      }
+    }
+    var attrs=['value','placeholder','content','alt','title'];
+    attrs.forEach(function(attr){
+      var els=document.querySelectorAll('['+attr+'*="{{"]');
+      for(var i=0;i<els.length;i++){
+        var tag=els[i].tagName;
+        if(skipTags[tag])continue;
+        var val=els[i].getAttribute(attr);
+        if(val){
+          var nv=val;
+          for(var ph in r){
+            if(r[ph]&&nv.indexOf(ph)>-1){
+              nv=nv.split(ph).join(r[ph]);
+            }
+          }
+          if(nv!==val)els[i].setAttribute(attr,nv);
+        }
+      }
+    });
+  }
+  function run(){
+    if(contactId){
+      var xhr=new XMLHttpRequest();
+      xhr.open('GET','https://paymegpt.com/api/landing/context/'+encodeURIComponent(contactId)+'?page_id=5675');
+      xhr.onload=function(){
+        if(xhr.status===200){
+          try{
+            var resp=JSON.parse(xhr.responseText);
+            if(resp.success&&resp.contact){
+              var merged=resp.contact;
+              for(var k in fields){merged[k]=fields[k];}
+              doReplace(merged);
+              return;
+            }
+          }catch(e){}
+        }
+        if(hasUrlFields)doReplace(fields);
+      };
+      xhr.onerror=function(){if(hasUrlFields)doReplace(fields);};
+      xhr.send();
+    }else if(hasUrlFields){
+      doReplace(fields);
+    }
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}
+  else{run();}
+})();
+</script>
+<script data-payment>
+(function(){
+  var slug='iLUziufN';
+  var apiBase='https://paymegpt.com';
+  var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
+  function findEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  function findPhone(){var ids=['phone','phoneNumber','phone-number','tel','telephone','mobile','mobileNumber','cell','contact-phone','buyer-phone'];for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.trim())return el.value.trim();}var inputs=document.querySelectorAll('input[type="tel"],input[name*="phone"],input[name*="tel"],input[name*="mobile"],input[placeholder*="phone"],input[placeholder*="Phone"]');for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.trim())return inputs[j].value.trim();}return '';}
+  var __realProcessPayment=function(a,b,c,d,e){
+    var amountCents,email,productName,productDescription,customerName,quantity;
+    if(a&&typeof a==='object'){
+      amountCents=a.amountCents;email=a.email;productName=a.productName;
+      productDescription=a.productDescription||'';customerName=a.name||'';quantity=a.quantity||1;
+    }else{
+      amountCents=typeof a==='number'?a:0;productName=typeof b==='string'?b:'';
+      productDescription=typeof c==='string'?c:'';email='';customerName='';quantity=1;
+    }
+    if(!email)email=findEmail();
+    if(!customerName)customerName=findName();
+    var phone=findPhone();
+    if(!productName){alert('Product name is required.');return Promise.reject('no_product_name');}
+    if(!amountCents||amountCents<100){alert('Amount must be at least $1.00');return Promise.reject('invalid_amount');}
+    if(!email){alert('Please enter your email address.');return Promise.reject('no_email');}
+    var successBase=window.location.href.split('?')[0];
+    var __pLoc=(document.documentElement.lang||navigator.language||'en');
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/payment/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,name:customerName,phone:phone||'',amountCents:amountCents,productName:productName,productDescription:productDescription,quantity:quantity,locale:__pLoc,successUrl:successBase+'?payment=success&product='+encodeURIComponent(productName)+'&session_id={CHECKOUT_SESSION_ID}',cancelUrl:successBase+'?payment=cancelled'})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process payment');throw new Error(d.error);}
+    });
+  };
+  Object.defineProperty(window,'__processPayment',{value:__realProcessPayment,writable:false,configurable:false});
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('payment')==='success'){
+      var sidP=urlParams.get('session_id');
+      if(sidP){try{fetch(apiBase+'/api/landing-pages/public/'+slug+'/checkout/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:sidP})}).catch(function(){});}catch(e){}}
+      var pName=urlParams.get('product')||'your item';
+      var overlay=document.createElement('div');overlay.id='payment-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      var subTxt=successSubtext||('Thank you for purchasing '+pName+'.');
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Payment Successful!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">'+esc(subTxt)+'</p><button id="lp-pay-success-btn" style="padding:12px 32px;font-size:16px;font-weight:600;background:'+successBtnColor+';color:white;border:none;border-radius:8px;cursor:pointer;">'+esc(successBtnLabel)+'</button></div>';
+      document.body.appendChild(overlay);
+      var pBtn=document.getElementById('lp-pay-success-btn');
+      if(pBtn){pBtn.addEventListener('click',function(){if(successRedirect){window.location.href=successRedirect;}else{overlay.remove();window.history.replaceState({},'',window.location.pathname);}});}
+    }
+  });
+})();
+</script>
+<script data-cart>
+(function(){
+  var slug='iLUziufN';
+  var apiBase='https://paymegpt.com';
+  var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
+  function findCartEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findCartName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  function findCartPhone(){var ids=['phone','phoneNumber','phone-number','tel','telephone','mobile','mobileNumber','cell','contact-phone','buyer-phone'];for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.trim())return el.value.trim();}var inputs=document.querySelectorAll('input[type="tel"],input[name*="phone"],input[name*="tel"],input[name*="mobile"],input[placeholder*="phone"],input[placeholder*="Phone"]');for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.trim())return inputs[j].value.trim();}return '';}
+  var __realCart=function(arg){
+    var items, email='', customerName='', successUrl, cancelUrl, currency;
+    if(Array.isArray(arg)){items=arg;}
+    else if(arg&&typeof arg==='object'){
+      items=arg.items;email=arg.email||'';customerName=arg.name||arg.customerName||'';
+      successUrl=arg.successUrl;cancelUrl=arg.cancelUrl;currency=arg.currency;
+    }
+    if(!Array.isArray(items)||items.length===0){alert('No items in cart.');return Promise.reject('no_items');}
+    var cleanItems=[];var totalCents=0;
+    for(var i=0;i<items.length;i++){
+      var it=items[i];if(!it||typeof it!=='object'){alert('Invalid item at position '+i);return Promise.reject('bad_item');}
+      var nm=typeof it.name==='string'?it.name.trim():'';
+      if(!nm){alert('Item '+(i+1)+' is missing a name.');return Promise.reject('no_name');}
+      var amt=typeof it.amountCents==='number'?it.amountCents:(typeof it.amount==='number'?Math.round(it.amount*100):NaN);
+      if(!isFinite(amt)||amt<1){alert('Item "'+nm+'" needs a valid amount in cents.');return Promise.reject('bad_amount');}
+      var qty=(typeof it.quantity==='number'&&it.quantity>0)?Math.floor(it.quantity):1;
+      cleanItems.push({name:nm,description:it.description||'',amountCents:amt,quantity:qty});
+      totalCents+=amt*qty;
+    }
+    if(totalCents<50){alert('Cart total must be at least $0.50');return Promise.reject('total_too_low');}
+    if(!email)email=findCartEmail();
+    if(!customerName)customerName=findCartName();
+    var cartPhone=findCartPhone();
+    if(!email){var p=window.prompt('Enter your email for the receipt:','');if(p&&p.indexOf('@')>-1){email=p.trim();}else{alert('An email address is required to complete checkout.');return Promise.reject('no_email');}}
+    var successBase=window.location.href.split('?')[0];
+    var body={email:email,name:customerName,items:cleanItems,locale:(document.documentElement.lang||navigator.language||'en')};
+    if(currency)body.currency=currency;
+    if(cartPhone)body.phone=cartPhone;
+    body.successUrl=successUrl||(successBase+'?cart=success&email='+encodeURIComponent(email)+'&session_id={CHECKOUT_SESSION_ID}');
+    body.cancelUrl=cancelUrl||(successBase+'?cart=cancelled');
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/cart/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(body)
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process checkout');throw new Error(d.error);}
+    });
+  };
+  try{Object.defineProperty(window,'__processCart',{value:__realCart,writable:false,configurable:false});}catch(e){window.__processCart=__realCart;}
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('cart')==='success'){
+      var sidC=urlParams.get('session_id');
+      if(sidC){try{fetch(apiBase+'/api/landing-pages/public/'+slug+'/checkout/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:sidC})}).catch(function(){});}catch(e){}}
+      if(document.getElementById('payment-success-overlay')||document.getElementById('donation-success-overlay')||document.getElementById('cart-success-overlay'))return;
+      var overlay=document.createElement('div');overlay.id='cart-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      var subTxt=successSubtext||'Thank you for your order.';
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Order Confirmed!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">'+esc(subTxt)+'</p><button id="lp-cart-success-btn" style="padding:12px 32px;font-size:16px;font-weight:600;background:'+successBtnColor+';color:white;border:none;border-radius:8px;cursor:pointer;">'+esc(successBtnLabel)+'</button></div>';
+      document.body.appendChild(overlay);
+      var cBtn=document.getElementById('lp-cart-success-btn');
+      if(cBtn){cBtn.addEventListener('click',function(){if(successRedirect){window.location.href=successRedirect;}else{overlay.remove();window.history.replaceState({},'',window.location.pathname);}});}
+    }
+  });
+})();
+</script>  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ─── HEADER ─────────────────────────────────────────── -->
+<header class="site-header">
+  <div class="container">
+    <div class="header-brand">
+      <!-- HVAC flame + coil SVG mark -->
+      <svg class="header-svg" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="22" cy="22" r="21" fill="#0D160F" stroke="#1A5C4A" stroke-width="1.5"/>
+        <!-- coil -->
+        <path d="M10 28 Q14 20 22 20 Q30 20 34 28" stroke="#1A5C4A" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+        <path d="M12 30 Q16 23 22 23 Q28 23 32 30" stroke="#22795F" stroke-width="1.4" stroke-linecap="round" fill="none" opacity=".6"/>
+        <!-- flame -->
+        <path d="M22 8 C22 8 19 13 19 16 C19 18.2 20.3 19.8 22 20 C23.7 19.8 25 18.2 25 16 C25 13 22 8 22 8Z" fill="#22795F"/>
+        <path d="M22 12 C22 12 20.5 14.5 20.5 16 C20.5 17.1 21.1 18 22 18 C22.9 18 23.5 17.1 23.5 16 C23.5 14.5 22 12 22 12Z" fill="#1A5C4A"/>
+        <!-- heat lines -->
+        <line x1="16" y1="32" x2="16" y2="36" stroke="#22795F" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+        <line x1="22" y1="33" x2="22" y2="37" stroke="#22795F" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+        <line x1="28" y1="32" x2="28" y2="36" stroke="#22795F" stroke-width="1.5" stroke-linecap="round" opacity=".5"/>
+      </svg>
+      <div class="brand-text-block">
+        <span class="brand-name">A.N.T. Comfort Solutions</span>
+        <span class="brand-sub">Concord, NC &nbsp;·&nbsp; HVAC</span>
+      </div>
+    </div>
+    <div class="header-tag">
+      Live preview<br>
+      <span>Built by AID Marketing Agency</span>
+    </div>
+  </div>
+</header>
+
+<!-- ─── HERO ───────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg">
+    <!-- Pixabay CC0: air conditioner photo, id 8573127 -->
+    <img
+      src="https://cdn.pixabay.com/photo/2024/02/14/14/19/air-conditioner-8573127_1280.jpg"
+      alt="Residential air conditioning unit being serviced by an HVAC technician"
+      loading="eager"
+    >
+  </div>
+  <div class="hero-inner">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- COPY COLUMN -->
+        <div class="hero-copy">
+          <!-- eyebrow: plain text + pulse dot, NO pill/background/border-radius -->
+          <div class="eyebrow">
+            <span class="pulse-dot" aria-hidden="true"></span>
+            Concord, NC &mdash; HVAC
+          </div>
+
+          <h1 class="hero-h1">
+            The call that books the job<br>
+            <em>even when you're on one</em>
+          </h1>
+
+          <p class="hero-lede">
+            July in Concord means back-to-back no-cool calls and a schedule that's already maxed out &mdash; which is exactly when the calls you can't answer become the jobs your competition picks up.
+          </p>
+
+          <!-- ring-badge -->
+          <div class="ring-badge">
+            <div class="ring-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81a19.79 19.79 0 01-3.07-8.67A2 2 0 012 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 9.91a16 16 0 006.18 6.18l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+              </svg>
+            </div>
+            <div class="ring-badge-text">
+              <strong>(704) 733-7514</strong>
+              Every ring answered, even at 2pm on a Wednesday when the whole crew is running calls
+            </div>
+          </div>
+
+          <!-- trust row (moves below demo panel on mobile via CSS order) -->
+          <div class="trust-row">
+            <div class="trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              A+ BBB accreditation &nbsp;·&nbsp; five-star reviews across Google
+            </div>
+            <div class="trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              Serving Concord and the greater Cabarrus County area
+            </div>
+            <div class="trust-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              17-plus years in the Charlotte-area HVAC market
+            </div>
+          </div>
+        </div>
+
+        <!-- DEMO PANEL -->
+        <div class="demo-panel" id="demo-panel" aria-label="Live SMS demo: how A.N.T. Comfort Solutions responds to a missed call">
+          <div class="phone-header">
+            <span class="phone-status-dot" aria-hidden="true"></span>
+            <span class="phone-header-text">A.N.T. Comfort Solutions</span>
+            <span class="phone-header-sub">SMS · Live</span>
+          </div>
+
+          <div class="sms-thread" id="sms-thread" role="log" aria-live="polite" aria-label="SMS conversation">
+
+            <!-- Bubble 1: caller -->
+            <div class="bubble caller" id="b1" aria-label="Customer message">
+              <div class="bubble-label">Customer</div>
+              Hey my AC just went out and it's 95 degrees in here. Do you guys have anyone available today?
+            </div>
+
+            <!-- typing indicator -->
+            <div class="typing-indicator" id="typing1" aria-hidden="true">
+              <span class="typing-dot"></span>
+              <span class="typing-dot"></span>
+              <span class="typing-dot"></span>
+            </div>
+
+            <!-- Bubble 2: AI -->
+            <div class="bubble ai" id="b2" aria-label="A.N.T. Comfort Solutions response">
+              <div class="bubble-label">A.N.T. Comfort</div>
+              Hey there! We serve Concord and the surrounding area. Name and address real quick and I will check our schedule for today.
+            </div>
+
+            <!-- Bubble 3: caller -->
+            <div class="bubble caller" id="b3" aria-label="Customer message">
+              <div class="bubble-label">Customer</div>
+              Mike Patterson, 3847 Cabarrus Ave, the fan is running but no cool air at all.
+            </div>
+
+            <!-- typing indicator 2 -->
+            <div class="typing-indicator" id="typing2" aria-hidden="true">
+              <span class="typing-dot"></span>
+              <span class="typing-dot"></span>
+              <span class="typing-dot"></span>
+            </div>
+
+            <!-- Bubble 4: AI -->
+            <div class="bubble ai" id="b4" aria-label="A.N.T. Comfort Solutions response">
+              <div class="bubble-label">A.N.T. Comfort</div>
+              Got it, Mike. I am booking you for a diagnostic visit between 2 and 4 this afternoon. You will get a text confirmation in a couple minutes.
+            </div>
+          </div>
+
+          <div class="demo-footer">
+            <button class="replay-btn" id="replay-btn" aria-label="Replay SMS demo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 101.85-4.76L1 10"/>
+              </svg>
+              Replay
+            </button>
+            <span class="demo-label">Live demo preview</span>
+          </div>
+        </div>
+
+      </div><!-- /hero-grid -->
+    </div>
+  </div>
+</section>
+
+<!-- ─── THE MATH ────────────────────────────────────────── -->
+<!--
+  STAT SOURCE:
+  NC HVAC emergency service call + repair averages $800-$2,500 for diagnostics and repair.
+  Full AC replacement in NC (system + labor, central split) averages $4,000-$12,000+.
+  Sources: HVAC industry guides, HomeAdvisor/Angi NC market data, industry estimates standard
+  for residential HVAC. After-hours call share: 25-40% of HVAC calls arrive outside 8am-5pm
+  (ainora.lt/blog/hvac-service-call-statistics-2026). The animated stat anchors to the
+  replacement job value floor ($4,000) as the conservative single-call cost when a no-cool
+  call in July goes unanswered and becomes a full replacement quote captured by a competitor.
+  Count-up animates from 0 to 4,000.
+-->
+<section class="math-section" id="math-section">
+  <div class="container">
+    <div class="math-inner">
+      <div class="stat-block reveal" id="stat-block">
+        <div class="stat-eyebrow">
+          Revenue at risk &mdash; one call
+          <button class="stat-replay-btn" id="stat-replay-btn" title="Replay counter" aria-label="Replay stat counter">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 101.85-4.76L1 10"/>
+            </svg>
+          </button>
+        </div>
+        <div class="stat-number-row">
+          <span class="stat-prefix">$</span>
+          <span class="stat-number" id="stat-number" aria-live="polite">0</span>
+          <span class="stat-suffix">+</span>
+        </div>
+        <div class="stat-range">
+          Repair only: $800 to $2,500 &nbsp;·&nbsp; Full replacement: $4,000 to $12,000
+        </div>
+      </div>
+      <div class="math-copy reveal">
+        <h2>A missed emergency call in July is the job most owners can't afford to lose</h2>
+        <p>
+          A no-cool call in July heat can mean a $800 repair or it can mean a $12,000 AC replacement.
+          Either way, if that call hits voicemail and the homeowner dials the next number on the Google list,
+          <strong>that revenue goes to whoever picked up</strong> &mdash; not to you.
+        </p>
+        <p>
+          With a fully booked crew already running service calls, A.N.T. Comfort Solutions gets the most
+          calls during the hours you're least able to answer them. That's the window this closes.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─────────────────────────────────────── -->
+<section class="how-section">
+  <div class="container">
+    <h2 class="reveal">Here is what happens from the moment the phone rings</h2>
+    <div class="how-grid">
+
+      <!-- tall lead card -->
+      <div class="how-lead reveal">
+        <div class="how-step-num">01</div>
+        <div class="how-step-title">The call comes in. Your team is on a job. The AI picks it up in seconds.</div>
+        <div class="how-step-body">
+          Instead of voicemail, the homeowner gets a real SMS response in under a minute. It asks the
+          right questions &mdash; name, address, what's going on with the system. No hold music. No "we'll call
+          you back." The lead is live and moving before you even finish the current job.
+        </div>
+      </div>
+
+      <!-- support card 1 -->
+      <div class="how-support reveal">
+        <div class="how-step-num">02</div>
+        <div class="how-step-title">The job gets booked with a real time window</div>
+        <div class="how-step-body">
+          The AI checks availability and books the diagnostic slot. The customer gets a confirmation text
+          with a specific window &mdash; "2 to 4 this afternoon" &mdash; not a vague "someone will reach out soon."
+        </div>
+      </div>
+
+      <!-- support card 2 -->
+      <div class="how-support reveal">
+        <div class="how-step-num">03</div>
+        <div class="how-step-title">You show up. The competitor doesn't get the call.</div>
+        <div class="how-step-body">
+          That booked visit lands in your dispatch queue. The homeowner isn't still on Google looking for
+          someone else. The job is yours before you've touched the keyboard.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ──────────────────────────────────────────────── -->
+<section class="cta-section">
+  <div id="cta-anchor"></div>
+  <div class="container">
+    <div class="cta-inner">
+      <div class="cta-eyebrow">Fifteen minutes, no pitch deck</div>
+      <h2 class="cta-h2">See exactly how this would work for A.N.T. Comfort Solutions</h2>
+      <p class="cta-body">
+        Ryan will show you the real setup, tailored to Concord HVAC calls in July and August.
+        No script, no pressure &mdash; just the mechanics and whether it makes sense for your volume.
+      </p>
+      <a
+        href="https://paymegpt.com/p/KqXvRWYi"
+        class="cta-btn"
+        id="cta-main"
+        aria-label="Book 15 minutes with Ryan at AID Marketing Agency"
+      >
+        Book 15 minutes with Ryan
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <p class="footer-quote">
+        "Seventeen years answering calls the hard way. Let the next one answer itself."
+      </p>
+      <p class="footer-byline">Put together by Ryan McNally at AID Marketing Agency</p>
+      <a href="https://paymegpt.com/p/KqXvRWYi" class="footer-cta-link" aria-label="Book 15 minutes with Ryan">
+        paymegpt.com/p/KqXvRWYi
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── STICKY MOBILE CTA BAR ──────────────────────────────── -->
+<div class="mobile-cta-bar" id="mobile-cta-bar" role="complementary" aria-label="Quick booking link">
+  <a href="https://paymegpt.com/p/KqXvRWYi" aria-label="Book 15 minutes with Ryan">
+    Book 15 minutes with Ryan
+  </a>
+</div>
+
+<!-- ─── WIDGET (A3) ────────────────────────────────────────── -->
+<!-- AID demo concierge (shared widget 54722168) + one-shot auto-open -->
+<script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
+
+
+<!-- ─── PAGE SCRIPTS ─────────────────────────────────────────── -->
+
+  <script src="script.js"></script>
+</body>
+</html>
