@@ -1,11 +1,268 @@
-\n(function () {\n  var BUBBLE_ID = 'ultra-fast-widget-bubble-54722168';\n  var KEY = 'aidDemoWidgetAutoOpened';\n  try { if (sessionStorage.getItem(KEY)) return; } catch (e) {}\n  var userTouched = false;\n  document.addEventListener('click', function (e) {\n    if (e.isTrusted && e.target && e.target.closest && e.target.closest('#' + BUBBLE_ID)) { userTouched = true; }\n  }, true);\n  var tries = 0;\n  var t = setInterval(function () {\n    tries += 1;\n    var b = document.getElementById(BUBBLE_ID);\n    if (b && tries >= 7) {\n      clearInterval(t);\n      if (!userTouched) { b.click(); }\n      try { sessionStorage.setItem(KEY, '1'); } catch (e) {}\n    }\n    if (tries > 30) { clearInterval(t); }\n  }, 1000);\n})();\n
+(function(){
+  // -- prefers-reduced-motion gate (covers JS-driven animation, not just CSS) --
+  var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
+  function reducedMotion(){ return !!motionQuery.matches; }
 
-\n(function(){\n  // -- prefers-reduced-motion gate (covers JS-driven animation, not just CSS) --\n  var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };\n  function reducedMotion(){ return !!motionQuery.matches; }\n\n  // ---- SMS thread: staged reveal, typing indicators, replayable, re-arms on scroll ----\n  var thread = document.getElementById('thread');\n  var bubbles = Array.prototype.slice.call(thread.querySelectorAll('.bubble'));\n  var typers = { 1: document.getElementById('typing1'), 2: document.getElementById('typing2') };\n  var replayBtn = document.getElementById('replayBtn');\n  var timers = [];\n  var playing = false;\n\n  function clearTimers(){ timers.forEach(function(t){ clearTimeout(t); }); timers = []; }\n\n  function resetThread(){\n    bubbles.forEach(function(b){ b.classList.remove('show'); });\n    Object.keys(typers).forEach(function(k){ typers[k].classList.remove('show'); });\n  }\n\n  function showThreadFinal(){\n    clearTimers();\n    playing = false;\n    bubbles.forEach(function(b){ b.classList.add('show'); });\n    Object.keys(typers).forEach(function(k){ typers[k].classList.remove('show'); });\n  }\n\n  function playThread(){\n    if (reducedMotion()){ showThreadFinal(); return; }\n    if (playing) return;\n    playing = true;\n    clearTimers();\n    resetThread();\n    var seq = [\n      { t: 280,  action: function(){ bubbles[0].classList.add('show'); } },\n      { t: 1000, action: function(){ typers[1].classList.add('show'); } },\n      { t: 2000, action: function(){ typers[1].classList.remove('show'); bubbles[1].classList.add('show'); } },\n      { t: 2900, action: function(){ bubbles[2].classList.add('show'); } },\n      { t: 3550, action: function(){ typers[2].classList.add('show'); } },\n      { t: 4600, action: function(){ typers[2].classList.remove('show'); bubbles[3].classList.add('show'); playing = false; } }\n    ];\n    seq.forEach(function(step){ timers.push(setTimeout(step.action, step.t)); });\n  }\n\n  replayBtn.addEventListener('click', function(){\n    replayBtn.classList.add('spin');\n    setTimeout(function(){ replayBtn.classList.remove('spin'); }, 520);\n    playing = false;\n    playThread();\n  });\n\n  // Re-arm on scroll re-entry: stays attached for page lifetime.\n  // Exits: cancel timers + reset so next entry starts clean (never under reduced motion).\n  if ('IntersectionObserver' in window){\n    var demoIO = new IntersectionObserver(function(entries){\n      entries.forEach(function(e){\n        if (e.isIntersecting){\n          playThread();\n        } else if (!reducedMotion()){\n          clearTimers();\n          playing = false;\n          resetThread();\n        }\n      });\n    }, { threshold: 0.28 });\n    demoIO.observe(thread);\n  } else {\n    playThread();\n  }\n\n  // Reduced motion at first paint: show final state immediately\n  if (reducedMotion()){ showThreadFinal(); }\n\n  // ---- Reveal-on-scroll for sections ----\n  var reveals = document.querySelectorAll('.reveal');\n  if ('IntersectionObserver' in window){\n    var revealIO = new IntersectionObserver(function(entries){\n      entries.forEach(function(e){\n        if (e.isIntersecting){ e.target.classList.add('visible'); revealIO.unobserve(e.target); }\n      });\n    }, { threshold: 0.12 });\n    reveals.forEach(function(el){ revealIO.observe(el); });\n  } else {\n    reveals.forEach(function(el){ el.classList.add('visible'); });\n  }\n\n  // ---- Animated stat counter: re-arms on every scroll re-entry, manual replay ----\n  var statEl = document.querySelector('.stat-number');\n  var statReplayBtn = document.getElementById('statReplayBtn');\n\n  if (statEl){\n    statEl.textContent = '';\n    var dollarNode = document.createTextNode('$0');\n    var centsSpan = document.createElement('span');\n    centsSpan.className = 'cents';\n    centsSpan.textContent = ',000';\n    statEl.appendChild(dollarNode);\n    statEl.appendChild(centsSpan);\n\n    // $12,000: the average insurance payout for a hail-damaged roof.\n    // NC range runs $12k-$22k+. Source: see HTML comment above THE MATH section.\n    var STAT_TARGET = 12000;\n    var countRun = 0;\n\n    function showStatFinal(){\n      countRun++;\n      dollarNode.textContent = '$' + Math.floor(STAT_TARGET / 1000);\n      centsSpan.textContent = ',' + String(STAT_TARGET % 1000).padStart(3, '0');\n    }\n\n    function runCount(){\n      if (reducedMotion()){ showStatFinal(); return; }\n      var runId = ++countRun;\n      var dur = 1500;\n      var start = null;\n      function step(ts){\n        if (runId !== countRun) return; // superseded\n        if (!start) start = ts;\n        var progress = Math.min((ts - start) / dur, 1);\n        var eased = 1 - Math.pow(1 - progress, 3);\n        var val = Math.round(eased * STAT_TARGET);\n        var dollars = Math.floor(val / 1000);\n        var cents = String(val % 1000).padStart(3, '0');\n        dollarNode.textContent = '$' + dollars;\n        centsSpan.textContent = ',' + cents;\n        if (progress < 1) requestAnimationFrame(step);\n      }\n      requestAnimationFrame(step);\n    }\n\n    if (reducedMotion()){ showStatFinal(); }\n\n    if ('IntersectionObserver' in window){\n      var statIO = new IntersectionObserver(function(entries){\n        entries.forEach(function(e){\n          if (e.isIntersecting){ runCount(); }\n        });\n      }, { threshold: 0.38 });\n      statIO.observe(statEl);\n    }\n\n    if (statReplayBtn){\n      statReplayBtn.addEventListener('click', function(){\n        statReplayBtn.classList.add('spin');\n        setTimeout(function(){ statReplayBtn.classList.remove('spin'); }, 520);\n        runCount();\n      });\n    }\n\n    // Mid-session motion preference toggle\n    if (motionQuery.addEventListener){\n      motionQuery.addEventListener('change', function(){\n        if (reducedMotion()){ showStatFinal(); showThreadFinal(); }\n      });\n    } else if (motionQuery.addListener){\n      motionQuery.addListener(function(){\n        if (reducedMotion()){ showStatFinal(); showThreadFinal(); }\n      });\n    }\n  }\n\n  // ---- Sticky mobile CTA bar: hide when main CTA panel is in view ----\n  var mobileCta = document.getElementById('mobileCta');\n  var ctaPanel = document.getElementById('cta-panel');\n  if (mobileCta && ctaPanel && 'IntersectionObserver' in window){\n    var ctaIO = new IntersectionObserver(function(entries){\n      entries.forEach(function(e){\n        mobileCta.style.display = e.isIntersecting ? 'none' : '';\n      });\n    }, { threshold: 0.1 });\n    ctaIO.observe(ctaPanel);\n  }\n\n})();\n
+  // ---- SMS thread: staged reveal, typing indicators, replayable, re-arms on scroll ----
+  var thread = document.getElementById('thread');
+  var bubbles = Array.prototype.slice.call(thread.querySelectorAll('.bubble'));
+  var typers = { 1: document.getElementById('typing1'), 2: document.getElementById('typing2') };
+  var replayBtn = document.getElementById('replayBtn');
+  var timers = [];
+  var playing = false;
 
-\n649\t(function () {\n650\t  var BUBBLE_ID = 'ultra-fast-widget-bubble-54722168';\n651\t  var KEY = 'aidDemoWidgetAutoOpened';\n652\t  try { if (sessionStorage.getItem(KEY)) return; } catch (e) {}\n653\t  var userTouched = false;\n654\t  document.addEventListener('click', function (e) {\n655\t    if (e.isTrusted && e.target && e.target.closest && e.target.closest('#' + BUBBLE_ID)) { userTouched = true; }\n656\t  }, true);\n657\t  var tries = 0;\n658\t  var t = setInterval(function () {\n659\t    tries += 1;\n660\t    var b = document.getElementById(BUBBLE_ID);\n661\t    if (b && tries >= 7) {\n662\t      clearInterval(t);\n663\t      if (!userTouched) { b.click(); }\n664\t      try { sessionStorage.setItem(KEY, '1'); } catch (e) {}\n665\t    }\n666\t    if (tries > 30) { clearInterval(t); }\n667\t  }, 1000);\n668\t})();\n669\t
+  function clearTimers(){ timers.forEach(function(t){ clearTimeout(t); }); timers = []; }
 
-\n672\t(function(){\n673\t  // -- prefers-reduced-motion gate (covers JS-driven animation, not just CSS) --\n674\t  var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };\n675\t  function reducedMotion(){ return !!motionQuery.matches; }\n676\t\n677\t  // ---- SMS thread: staged reveal, typing indicators, replayable, re-arms on scroll ----\n678\t  var thread = document.getElementById('thread');\n679\t  var bubbles = Array.prototype.slice.call(thread.querySelectorAll('.bubble'));\n680\t  var typers = { 1: document.getElementById('typing1'), 2: document.getElementById('typing2') };\n681\t  var replayBtn = document.getElementById('replayBtn');\n682\t  var timers = [];\n683\t  var playing = false;\n684\t\n685\t  function clearTimers(){ timers.forEach(function(t){ clearTimeout(t); }); timers = []; }\n686\t\n687\t  function resetThread(){\n688\t    bubbles.forEach(function(b){ b.classList.remove('show'); });\n689\t    Object.keys(typers).forEach(function(k){ typers[k].classList.remove('show'); });\n690\t  }\n691\t\n692\t  function showThreadFinal(){\n693\t    clearTimers();\n694\t    playing = false;\n695\t    bubbles.forEach(function(b){ b.classList.add('show'); });\n696\t    Object.keys(typers).forEach(function(k){ typers[k].classList.remove('show'); });\n697\t  }\n698\t\n699\t  function playThread(){\n700\t    if (reducedMotion()){ showThreadFinal(); return; }\n701\t    if (playing) return;\n702\t    playing = true;\n703\t    clearTimers();\n704\t    resetThread();\n705\t    var seq = [\n706\t      { t: 280,  action: function(){ bubbles[0].classList.add('show'); } },\n707\t      { t: 1000, action: function(){ typers[1].classList.add('show'); } },\n708\t      { t: 2000, action: function(){ typers[1].classList.remove('show'); bubbles[1].classList.add('show'); } },\n709\t      { t: 2900, action: function(){ bubbles[2].classList.add('show'); } },\n710\t      { t: 3550, action: function(){ typers[2].classList.add('show'); } },\n711\t      { t: 4600, action: function(){ typers[2].classList.remove('show'); bubbles[3].classList.add('show'); playing = false; } }\n712\t    ];\n713\t    seq.forEach(function(step){ timers.push(setTimeout(step.action, step.t)); });\n714\t  }\n715\t\n716\t  replayBtn.addEventListener('click', function(){\n717\t    replayBtn.classList.add('spin');\n718\t    setTimeout(function(){ replayBtn.classList.remove('spin'); }, 520);\n719\t    playing = false;\n720\t    playThread();\n721\t  });\n722\t\n723\t  // Re-arm on scroll re-entry: stays attached for page lifetime.\n724\t  // Exits: cancel timers + reset so next entry starts clean (never under reduced motion).\n725\t  if ('IntersectionObserver' in window){\n726\t    var demoIO = new IntersectionObserver(function(entries){\n727\t      entries.forEach(function(e){\n728\t        if (e.isIntersecting){\n729\t          playThread();\n730\t        } else if (!reducedMotion()){\n731\t          clearTimers();\n732\t          playing = false;\n733\t          resetThread();\n734\t        }\n735\t      });\n736\t    }, { threshold: 0.28 });\n737\t    demoIO.observe(thread);\n738\t  } else {\n739\t    playThread();\n740\t  }\n741\t\n742\t  // Reduced motion at first paint: show final state immediately\n743\t  if (reducedMotion()){ showThreadFinal(); }\n744\t\n745\t  // ---- Reveal-on-scroll for sections ----\n746\t  var reveals = document.querySelectorAll('.reveal');\n747\t  if ('IntersectionObserver' in window){\n748\t    var revealIO = new IntersectionObserver(function(entries){\n749\t      entries.forEach(function(e){\n750\t        if (e.isIntersecting){ e.target.classList.add('visible'); revealIO.unobserve(e.target); }\n751\t      });\n752\t    }, { threshold: 0.12 });\n753\t    reveals.forEach(function(el){ revealIO.observe(el); });\n754\t  } else {\n755\t    reveals.forEach(function(el){ el.classList.add('visible'); });\n756\t  }\n757\t\n758\t  // ---- Animated stat counter: re-arms on every scroll re-entry, manual replay ----\n759\t  var statEl = document.querySelector('.stat-number');\n760\t  var statReplayBtn = document.getElementById('statReplayBtn');\n761\t\n762\t  if (statEl){\n763\t    statEl.textContent = '';\n764\t    var dollarNode = document.createTextNode('$0');\n765\t    var centsSpan = document.createElement('span');\n766\t    centsSpan.className = 'cents';\n767\t    centsSpan.textContent = ',000';\n768\t    statEl.appendChild(dollarNode);\n769\t    statEl.appendChild(centsSpan);\n770\t\n771\t    // $12,000: the average insurance payout for a hail-damaged roof.\n772\t    // NC range runs $12k-$22k+. Source: see HTML comment above THE MATH section.\n773\t    var STAT_TARGET = 12000;\n774\t    var countRun = 0;\n775\t\n776\t    function showStatFinal(){\n777\t      countRun++;\n778\t      dollarNode.textContent = '$' + Math.floor(STAT_TARGET / 1000);\n779\t      centsSpan.textContent = ',' + String(STAT_TARGET % 1000).padStart(3, '0');\n780\t    }\n781\t\n782\t    function runCount(){\n783\t      if (reducedMotion()){ showStatFinal(); return; }\n784\t      var runId = ++countRun;\n785\t      var dur = 1500;\n786\t      var start = null;\n787\t      function step(ts){\n788\t        if (runId !== countRun) return; // superseded\n789\t        if (!start) start = ts;\n790\t        var progress = Math.min((ts - start) / dur, 1);\n791\t        var eased = 1 - Math.pow(1 - progress, 3);\n792\t        var val = Math.round(eased * STAT_TARGET);\n793\t        var dollars = Math.floor(val / 1000);\n794\t        var cents = String(val % 1000).padStart(3, '0');\n795\t        dollarNode.textContent = '$' + dollars;\n796\t        centsSpan.textContent = ',' + cents;\n797\t        if (progress < 1) requestAnimationFrame(step);\n798\t      }\n799\t      requestAnimationFrame(step);\n800\t    }\n801\t\n802\t    if (reducedMotion()){ showStatFinal(); }\n803\t\n804\t    if ('IntersectionObserver' in window){\n805\t      var statIO = new IntersectionObserver(function(entries){\n806\t        entries.forEach(function(e){\n807\t          if (e.isIntersecting){ runCount(); }\n808\t        });\n809\t      }, { threshold: 0.38 });\n810\t      statIO.observe(statEl);\n811\t    }\n812\t\n813\t    if (statReplayBtn){\n814\t      statReplayBtn.addEventListener('click', function(){\n815\t        statReplayBtn.classList.add('spin');\n816\t        setTimeout(function(){ statReplayBtn.classList.remove('spin'); }, 520);\n817\t        runCount();\n818\t      });\n819\t    }\n820\t\n821\t    // Mid-session motion preference toggle\n822\t    if (motionQuery.addEventListener){\n823\t      motionQuery.addEventListener('change', function(){\n824\t        if (reducedMotion()){ showStatFinal(); showThreadFinal(); }\n825\t      });\n826\t    } else if (motionQuery.addListener){\n827\t      motionQuery.addListener(function(){\n828\t        if (reducedMotion()){ showStatFinal(); showThreadFinal(); }\n829\t      });\n830\t    }\n831\t  }\n832\t\n833\t  // ---- Sticky mobile CTA bar: hide when main CTA panel is in view ----\n834\t  var mobileCta = document.getElementById('mobileCta');\n835\t  var ctaPanel = document.getElementById('cta-panel');\n836\t  if (mobileCta && ctaPanel && 'IntersectionObserver' in window){\n837\t    var ctaIO = new IntersectionObserver(function(entries){\n838\t      entries.forEach(function(e){\n839\t        mobileCta.style.display = e.isIntersecting ? 'none' : '';\n840\t      });\n841\t    }, { threshold: 0.1 });\n842\t    ctaIO.observe(ctaPanel);\n843\t  }\n844\t\n845\t})();\n846\t
+  function resetThread(){
+    bubbles.forEach(function(b){ b.classList.remove('show'); });
+    Object.keys(typers).forEach(function(k){ typers[k].classList.remove('show'); });
+  }
 
-\n(function () {\n  var BUBBLE_ID = 'ultra-fast-widget-bubble-54722168';\n  var KEY = 'aidDemoWidgetAutoOpened';\n  try { if (sessionStorage.getItem(KEY)) return; } catch (e) {}\n  var userTouched = false;\n  document.addEventListener('click', function (e) {\n    if (e.isTrusted && e.target && e.target.closest && e.target.closest('#' + BUBBLE_ID)) { userTouched = true; }\n  }, true);\n  var tries = 0;\n  var t = setInterval(function () {\n    tries += 1;\n    var b = document.getElementById(BUBBLE_ID);\n    if (b && tries >= 7) {\n      clearInterval(t);\n      if (!userTouched) { b.click(); }\n      try { sessionStorage.setItem(KEY, '1'); } catch (e) {}\n    }\n    if (tries > 30) { clearInterval(t); }\n  }, 1000);\n})();\n
+  function showThreadFinal(){
+    clearTimers();
+    playing = false;
+    bubbles.forEach(function(b){ b.classList.add('show'); });
+    Object.keys(typers).forEach(function(k){ typers[k].classList.remove('show'); });
+  }
 
-\n(function(){\n  // -- prefers-reduced-motion gate (covers JS-driven animation, not just CSS) --\n  var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };\n  function reducedMotion(){ return !!motionQuery.matches; }\n\n  // ---- SMS thread: staged reveal, typing indicators, replayable, re-arms on scroll ----\n  var thread = document.getElementById('thread');\n  var bubbles = Array.prototype.slice.call(thread.querySelectorAll('.bubble'));\n  var typers = { 1: document.getElementById('typing1'), 2: document.getElementById('typing2') };\n  var replayBtn = document.getElementById('replayBtn');\n  var timers = [];\n  var playing = false;\n\n  function clearTimers(){ timers.forEach(function(t){ clearTimeout(t); }); timers = []; }\n\n  function resetThread(){\n    bubbles.forEach(function(b){ b.classList.remove('show'); });\n    Object.keys(typers).forEach(function(k){ typers[k].classList.remove('show'); });\n  }\n\n  function showThreadFinal(){\n    clearTimers();\n    playing = false;\n    bubbles.forEach(function(b){ b.classList.add('show'); });\n    Object.keys(typers).forEach(function(k){ typers[k].classList.remove('show'); });\n  }\n\n  function playThread(){\n    if (reducedMotion()){ showThreadFinal(); return; }\n    if (playing) return;\n    playing = true;\n    clearTimers();\n    resetThread();\n    var seq = [\n      { t: 280,  action: function(){ bubbles[0].classList.add('show'); } },\n      { t: 1000, action: function(){ typers[1].classList.add('show'); } },\n      { t: 2000, action: function(){ typers[1].classList.remove('show'); bubbles[1].classList.add('show'); } },\n      { t: 2900, action: function(){ bubbles[2].classList.add('show'); } },\n      { t: 3550, action: function(){ typers[2].classList.add('show'); } },\n      { t: 4600, action: function(){ typers[2].classList.remove('show'); bubbles[3].classList.add('show'); playing = false; } }\n    ];\n    seq.forEach(function(step){ timers.push(setTimeout(step.action, step.t)); });\n  }\n\n  replayBtn.addEventListener('click', function(){\n    replayBtn.classList.add('spin');\n    setTimeout(function(){ replayBtn.classList.remove('spin'); }, 520);\n    playing = false;\n    playThread();\n  });\n\n  // Re-arm on scroll re-entry: stays attached for page lifetime.\n  // Exits: cancel timers + reset so next entry starts clean (never under reduced motion).\n  if ('IntersectionObserver' in window){\n    var demoIO = new IntersectionObserver(function(entries){\n      entries.forEach(function(e){\n        if (e.isIntersecting){\n          playThread();\n        } else if (!reducedMotion()){\n          clearTimers();\n          playing = false;\n          resetThread();\n        }\n      });\n    }, { threshold: 0.28 });\n    demoIO.observe(thread);\n  } else {\n    playThread();\n  }\n\n  // Reduced motion at first paint: show final state immediately\n  if (reducedMotion()){ showThreadFinal(); }\n\n  // ---- Reveal-on-scroll for sections ----\n  var reveals = document.querySelectorAll('.reveal');\n  if ('IntersectionObserver' in window){\n    var revealIO = new IntersectionObserver(function(entries){\n      entries.forEach(function(e){\n        if (e.isIntersecting){ e.target.classList.add('visible'); revealIO.unobserve(e.target); }\n      });\n    }, { threshold: 0.12 });\n    reveals.forEach(function(el){ revealIO.observe(el); });\n  } else {\n    reveals.forEach(function(el){ el.classList.add('visible'); });\n  }\n\n  // ---- Animated stat counter: re-arms on every scroll re-entry, manual replay ----\n  var statEl = document.querySelector('.stat-number');\n  var statReplayBtn = document.getElementById('statReplayBtn');\n\n  if (statEl){\n    statEl.textContent = '';\n    var dollarNode = document.createTextNode('$0');\n    var centsSpan = document.createElement('span');\n    centsSpan.className = 'cents';\n    centsSpan.textContent = ',000';\n    statEl.appendChild(dollarNode);\n    statEl.appendChild(centsSpan);\n\n    // $12,000: the average insurance payout for a hail-damaged roof.\n    // NC range runs $12k-$22k+. Source: see HTML comment above THE MATH section.\n    var STAT_TARGET = 12000;\n    var countRun = 0;\n\n    function showStatFinal(){\n      countRun++;\n      dollarNode.textContent = '$' + Math.floor(STAT_TARGET / 1000);\n      centsSpan.textContent = ',' + String(STAT_TARGET % 1000).padStart(3, '0');\n    }\n\n    function runCount(){\n      if (reducedMotion()){ showStatFinal(); return; }\n      var runId = ++countRun;\n      var dur = 1500;\n      var start = null;\n      function step(ts){\n        if (runId !== countRun) return; // superseded\n        if (!start) start = ts;\n        var progress = Math.min((ts - start) / dur, 1);\n        var eased = 1 - Math.pow(1 - progress, 3);\n        var val = Math.round(eased * STAT_TARGET);\n        var dollars = Math.floor(val / 1000);\n        var cents = String(val % 1000).padStart(3, '0');\n        dollarNode.textContent = '$' + dollars;\n        centsSpan.textContent = ',' + cents;\n        if (progress < 1) requestAnimationFrame(step);\n      }\n      requestAnimationFrame(step);\n    }\n\n    if (reducedMotion()){ showStatFinal(); }\n\n    if ('IntersectionObserver' in window){\n      var statIO = new IntersectionObserver(function(entries){\n        entries.forEach(function(e){\n          if (e.isIntersecting){ runCount(); }\n        });\n      }, { threshold: 0.38 });\n      statIO.observe(statEl);\n    }\n\n    if (statReplayBtn){\n      statReplayBtn.addEventListener('click', function(){\n        statReplayBtn.classList.add('spin');\n        setTimeout(function(){ statReplayBtn.classList.remove('spin'); }, 520);\n        runCount();\n      });\n    }\n\n    // Mid-session motion preference toggle\n    if (motionQuery.addEventListener){\n      motionQuery.addEventListener('change', function(){\n        if (reducedMotion()){ showStatFinal(); showThreadFinal(); }\n      });\n    } else if (motionQuery.addListener){\n      motionQuery.addListener(function(){\n        if (reducedMotion()){ showStatFinal(); showThreadFinal(); }\n      });\n    }\n  }\n\n  // ---- Sticky mobile CTA bar: hide when main CTA panel is in view ----\n  var mobileCta = document.getElementById('mobileCta');\n  var ctaPanel = document.getElementById('cta-panel');\n  if (mobileCta && ctaPanel && 'IntersectionObserver' in window){\n    var ctaIO = new IntersectionObserver(function(entries){\n      entries.forEach(function(e){\n        mobileCta.style.display = e.isIntersecting ? 'none' : '';\n      });\n    }, { threshold: 0.1 });\n    ctaIO.observe(ctaPanel);\n  }\n\n})();\n
+  function playThread(){
+    if (reducedMotion()){ showThreadFinal(); return; }
+    if (playing) return;
+    playing = true;
+    clearTimers();
+    resetThread();
+    var seq = [
+      { t: 280,  action: function(){ bubbles[0].classList.add('show'); } },
+      { t: 1000, action: function(){ typers[1].classList.add('show'); } },
+      { t: 2000, action: function(){ typers[1].classList.remove('show'); bubbles[1].classList.add('show'); } },
+      { t: 2900, action: function(){ bubbles[2].classList.add('show'); } },
+      { t: 3550, action: function(){ typers[2].classList.add('show'); } },
+      { t: 4600, action: function(){ typers[2].classList.remove('show'); bubbles[3].classList.add('show'); playing = false; } }
+    ];
+    seq.forEach(function(step){ timers.push(setTimeout(step.action, step.t)); });
+  }
+
+  replayBtn.addEventListener('click', function(){
+    replayBtn.classList.add('spin');
+    setTimeout(function(){ replayBtn.classList.remove('spin'); }, 520);
+    playing = false;
+    playThread();
+  });
+
+  // Re-arm on scroll re-entry: stays attached for page lifetime.
+  // Exits: cancel timers + reset so next entry starts clean (never under reduced motion).
+  if ('IntersectionObserver' in window){
+    var demoIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){
+          playThread();
+        } else if (!reducedMotion()){
+          clearTimers();
+          playing = false;
+          resetThread();
+        }
+      });
+    }, { threshold: 0.28 });
+    demoIO.observe(thread);
+  } else {
+    playThread();
+  }
+
+  // Reduced motion at first paint: show final state immediately
+  if (reducedMotion()){ showThreadFinal(); }
+
+  // ---- Reveal-on-scroll for sections ----
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window){
+    var revealIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('visible'); revealIO.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(function(el){ revealIO.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('visible'); });
+  }
+
+  // ---- Animated stat counter: re-arms on every scroll re-entry, manual replay ----
+  var statEl = document.querySelector('.stat-number');
+  var statReplayBtn = document.getElementById('statReplayBtn');
+
+  if (statEl){
+    statEl.textContent = '';
+    var dollarNode = document.createTextNode('$0');
+    var centsSpan = document.createElement('span');
+    centsSpan.className = 'cents';
+    centsSpan.textContent = ',000';
+    statEl.appendChild(dollarNode);
+    statEl.appendChild(centsSpan);
+
+    // $12,000: the average insurance payout for a hail-damaged roof.
+    // NC range runs $12k-$22k+. Source: see HTML comment above THE MATH section.
+    var STAT_TARGET = 12000;
+    var countRun = 0;
+
+    function showStatFinal(){
+      countRun++;
+      dollarNode.textContent = '$' + Math.floor(STAT_TARGET / 1000);
+      centsSpan.textContent = ',' + String(STAT_TARGET % 1000).padStart(3, '0');
+    }
+
+    function runCount(){
+      if (reducedMotion()){ showStatFinal(); return; }
+      var runId = ++countRun;
+      var dur = 1500;
+      var start = null;
+      function step(ts){
+        if (runId !== countRun) return; // superseded
+        if (!start) start = ts;
+        var progress = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var val = Math.round(eased * STAT_TARGET);
+        var dollars = Math.floor(val / 1000);
+        var cents = String(val % 1000).padStart(3, '0');
+        dollarNode.textContent = '$' + dollars;
+        centsSpan.textContent = ',' + cents;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    if (reducedMotion()){ showStatFinal(); }
+
+    if ('IntersectionObserver' in window){
+      var statIO = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (e.isIntersecting){ runCount(); }
+        });
+      }, { threshold: 0.38 });
+      statIO.observe(statEl);
+    }
+
+    if (statReplayBtn){
+      statReplayBtn.addEventListener('click', function(){
+        statReplayBtn.classList.add('spin');
+        setTimeout(function(){ statReplayBtn.classList.remove('spin'); }, 520);
+        runCount();
+      });
+    }
+
+    // Mid-session motion preference toggle
+    if (motionQuery.addEventListener){
+      motionQuery.addEventListener('change', function(){
+        if (reducedMotion()){ showStatFinal(); showThreadFinal(); }
+      });
+    } else if (motionQuery.addListener){
+      motionQuery.addListener(function(){
+        if (reducedMotion()){ showStatFinal(); showThreadFinal(); }
+      });
+    }
+  }
+
+  // ---- Sticky mobile CTA bar: hide when main CTA panel is in view ----
+  var mobileCta = document.getElementById('mobileCta');
+  var ctaPanel = document.getElementById('cta-panel');
+  if (mobileCta && ctaPanel && 'IntersectionObserver' in window){
+    var ctaIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        mobileCta.style.display = e.isIntersecting ? 'none' : '';
+      });
+    }, { threshold: 0.1 });
+    ctaIO.observe(ctaPanel);
+  }
+
+})();
+
+/* AID teaser bubble + auto-open schedule (v3, 2026-07-22):
+   teaser at 10s next to the closed launcher, auto-open never before 20s.
+   Pages with the data-aid-widget-boost snippet keep that snippet's own 20s
+   opener; this block only auto-opens on pages without it. Clicking the
+   teaser or the launcher opens the chat immediately. */
+(function () {
+  var WID = '54722168';
+  var BUBBLE_ID = 'ultra-fast-widget-bubble-' + WID;
+  var OPEN_KEY = 'aidWidgetAutoOpened';
+  var LEGACY_KEY = 'aidDemoWidgetAutoOpened';
+  var TEASER_KEY = 'aidTeaserShown';
+  var TEASER_AT = 10; /* seconds, the old auto-open moment */
+  var OPEN_AT = 20;   /* seconds, minimum auto-open delay */
+  var hasBoost = !!document.querySelector('script[data-aid-widget-boost]');
+  function bubble() { return document.getElementById(BUBBLE_ID); }
+  function isOpen() {
+    var c = document.getElementById('ultra-fast-widget-container-' + WID);
+    return !!(c && getComputedStyle(c).display !== 'none');
+  }
+  function alreadyOpened() {
+    try { return !!(sessionStorage.getItem(OPEN_KEY) || sessionStorage.getItem(LEGACY_KEY)); } catch (e) { return false; }
+  }
+  var teaser = null;
+  var userTouched = false;
+  document.addEventListener('click', function (e) {
+    if (e.isTrusted && e.target && e.target.closest && e.target.closest('#' + BUBBLE_ID)) {
+      userTouched = true;
+      hideTeaser();
+    }
+  }, true);
+  function hideTeaser() {
+    if (!teaser) return;
+    var t = teaser;
+    teaser = null;
+    t.style.opacity = '0';
+    setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 450);
+  }
+  function openChat() {
+    hideTeaser();
+    var b = bubble();
+    if (b && !isOpen()) b.click();
+  }
+  function showTeaser() {
+    if (teaser || userTouched || isOpen() || alreadyOpened()) return;
+    try {
+      if (sessionStorage.getItem(TEASER_KEY)) return;
+      sessionStorage.setItem(TEASER_KEY, '1');
+    } catch (e) {}
+    var d = document.createElement('div');
+    d.setAttribute('data-aid-teaser', '');
+    d.setAttribute('role', 'button');
+    d.setAttribute('tabindex', '0');
+    d.style.cssText = 'position:fixed;right:20px;bottom:98px;z-index:999998;max-width:250px;background:#141419;color:#F4F4F5;padding:13px 32px 13px 16px;border-radius:16px;border:1px solid rgba(201,168,76,.45);box-shadow:0 12px 28px rgba(0,0,0,.5);font:500 14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;cursor:pointer;opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease;';
+    var txt = document.createElement('p');
+    txt.style.cssText = 'margin:0;';
+    txt.textContent = 'Free demo, your Agent talks and speaks! 🎙️';
+    var x = document.createElement('button');
+    x.type = 'button';
+    x.setAttribute('aria-label', 'Dismiss');
+    x.textContent = '×';
+    x.style.cssText = 'position:absolute;top:2px;right:6px;background:transparent;border:none;color:rgba(244,244,245,.55);font-size:18px;line-height:1;cursor:pointer;padding:2px 4px;';
+    x.addEventListener('click', function (e) { e.stopPropagation(); hideTeaser(); });
+    var arrow = document.createElement('span');
+    arrow.style.cssText = 'position:absolute;bottom:-7px;right:26px;width:12px;height:12px;background:#141419;border-right:1px solid rgba(201,168,76,.45);border-bottom:1px solid rgba(201,168,76,.45);transform:rotate(45deg);';
+    d.appendChild(txt);
+    d.appendChild(x);
+    d.appendChild(arrow);
+    d.addEventListener('click', function (e) { if (e.target === x) return; e.stopPropagation(); openChat(); });
+    d.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openChat(); } });
+    document.body.appendChild(d);
+    teaser = d;
+    requestAnimationFrame(function () { d.style.opacity = '1'; d.style.transform = 'translateY(0)'; });
+  }
+  var ticks = 0;
+  var timer = setInterval(function () {
+    ticks += 1;
+    if (isOpen()) {
+      hideTeaser();
+      if (hasBoost || ticks >= OPEN_AT) clearInterval(timer);
+      return;
+    }
+    var b = bubble();
+    if (b && ticks >= TEASER_AT) showTeaser();
+    if (!hasBoost && b && ticks >= OPEN_AT) {
+      clearInterval(timer);
+      hideTeaser();
+      var guard = alreadyOpened();
+      try { sessionStorage.setItem(LEGACY_KEY, '1'); } catch (e) {}
+      if (!guard && !userTouched && !isOpen()) b.click();
+    }
+    if (ticks > 60) clearInterval(timer);
+  }, 1000);
+})();
