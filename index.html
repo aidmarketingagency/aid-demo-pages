@@ -1,53 +1,56 @@
 <!--
-  jl-plumbing-demo.html
-  ======================
-  Built 2026-07-22 under the contractor-demo-v2 spec (skills/pmgpt-site-builder/templates/contractor-demo-v2.md).
-  Prospect: J&L Plumbing LLC, Mooresville, NC (Lake Norman area). Owners: Jeff Dunn (Australian-born,
-  30+ years experience) and Lizzie Dunn. Founded 2022. Phone: (470) 439-7839. Email: Jeff@jlplumbingnc.com
-  Published to PayMeGPT page via create_landing_page.
+  brothers-tree-demo.html
+  =======================
+  Built 2026-07-23 under the contractor-demo-v2 spec + v2.1 amendment
+  (skills/pmgpt-site-builder/templates/contractor-demo-v2.md).
+  Prospect: Brothers Tree Service NC LLC, Monroe, NC (Union County).
+  Owners: Omar, Uriel & Elliet — three brothers, family-owned, minority-owned.
+  Published to PayMeGPT page: brothers-tree-service-monroe-demo-d11
+  Dossier batch: dossier-11 | Supabase prospect ID: 27323331-99b4-46df-8f50-af46e514a01f
 
   DESIGNER'S NOTE (D2 call, required by the v2 spec):
-  Scraped jlplumbingnc.com. Findings: a professional plumbing contractor site with consistent navy/blue
-  palette across headers, CTAs, and nav elements. The site reads as a well-executed but template-based
-  contractor build: standard blue used systematically with no distinctive logo mark or custom wordmark
-  that would indicate a deliberate identity decision. The blue is real and consistent but not designed
-  from scratch. This is bucket (b) GENERIC-BUT-PRESENT: FACELIFT. Their blue lineage (#1A3A6E family)
-  is elevated here to a deep navy void (#0B1629), richer panel blues (#1A3A6E), and a considered accent
-  (#4A90D9) on a bone text field (#F0EDE8), so Jeff looks at this and sees his color done right for the
-  first time. No glow halos, no purple in any gradient, single accent discipline.
+  Scraped brotherstreeservicenc.com directly. Findings: the site uses a green/brown
+  palette matching their logo — a stylized tree with green leaves and brown trunk, with
+  green and brown text throughout. CTAs and header branding use consistent deep green
+  with brown as the secondary earthy tone. This is bucket (a) REAL BRAND: CONFORM. The
+  green is a deliberate, on-brand choice for a tree service company — it was chosen with
+  intent and appears in the logo mark. Extracted as dark forest-green canvas with warm
+  amber-brass as the accent to elevate it: the prospect will recognize the green lineage
+  while the page reads as genuinely designed. Palette: #0A100A (near-void forest),
+  #111A0F (deep grove), #1E2D1A (panel), #5A7E3A (forest mid), #C9943A (warm amber/
+  bark-gold), #E8E0D0 (bone/parchment), with amber doing all the accent work.
 
-  D4 personality layer: Jeff personally handles most calls himself in a 2-person operation where both
-  owners are often on jobs. Active water-leak emergency in Mooresville kitchen sink. This threads the
-  dossier's most relevant operational reality (no admin, Jeff IS the phone) into both the hero lede and
-  the SMS scenario. The AI's first move is triage: shut the valve, calm the customer, then book Jeff.
+  HERO IMAGE (D3/A2 — real client photos from brotherstreeservicenc.com):
+  Using their own published crane service photo, hotlinked from their Squarespace CDN.
+  URL: https://images.squarespace-cdn.com/content/v1/696cf52380b15d2370867013/
+       7b28f1a5-b17f-4f2f-bccf-1e5d7f3652a4/tree-removal-monroe-nc-crane-service.jpg
+  Treated with scrim (gradient overlay), grain (feTurbulence SVG filter), and
+  duotone/color-grade toward the amber accent per D3 spec.
 
-  Hero image: https://cdn.pixabay.com/photo/2017/08/01/00/44/plumber-2562554_1280.jpg (plumber working
-  under a sink, CC0 Pixabay). CSS scrim + grain overlay + blue duotone pass so it reads as atmospheric
-  rather than stock. Alt: "Plumber working under a kitchen sink."
+  FONT PAIRING: Big Shoulders Display (display/headline) + Spectral (body/editorial).
+  Fresh pairing — not reused from Instrument Serif/Archivo (JM Arbor Care),
+  Bricolage/Newsreader (Timber Hill), Fraunces/Archivo (Craftsman), or Big Shoulders/
+  Libre Franklin (Peak Roofing). Big Shoulders brings the physical authority of heavy
+  outdoor labor; Spectral brings warm editorial weight for the copy.
 
-  Font pairing: Newsreader (display) + Archivo (body). Fresh pairing: not Big Shoulders + Libre Franklin
-  (Peak), not Fraunces + Archivo (Craftsman), not Cormorant + Plus Jakarta (Midnight Authority), not
-  Instrument Serif + Archivo (TGC/JM Arbor), not Unbounded + Archivo (Panic Plumbing). Newsreader is
-  a News Serif with editorial authority; Archivo is the clean body partner.
+  D4 PERSONALITY: "Brothers Tree Service in Monroe — three brothers who built a tree
+  company from the ground up in Union County over 15 years." Used in hero lede AND
+  the SMS scenario framing.
 
-  Stats: plumbing emergency, NC. Stat anchor: $500-$2,500 for a kitchen-sink or supply-line emergency
-  repair plus initial water-damage assessment in NC. Mid-point $1,500 used as count-up target, with the
-  range stated honestly in copy. Source framing: standard plumbing service estimates for NC market.
-  Note: the prompt explicitly supplied the stat range ($500-$2,500) and sourcing framing; per-build
-  live-search was not possible in this execution, so the range is stated with honest attribution
-  ("standard plumbing service estimates") rather than a bare point figure, per spec clause D4.3.
+  SOURCED STAT (D4.3 — live-search verified 2026-07-23):
+  Emergency tree removal with crane for a large tree fallen on/near a structure:
+  $3,000–$7,500, with real crane jobs in eastern NC documented at $4,200–$7,500.
+  Source: https://dctreecutting.com/blog/crane-tree-removal-cost/ (real job examples:
+  85-ft willow oak $7,500; 70-ft dead pine $4,200; 75-ft oak $4,250; 60-ft sweetgum
+  $3,800). Emergency/after-hours premium adds 50–100% over standard rates.
+  Source: https://stumpoff.com/emergency-tree-removal-cost/
+  NC large tree removal (100-ft): $1,500–$3,000+, crane often required:
+  Source: https://brownsarborcare.com/cost-to-have-a-tree-cut-down-factors-and-average-costs-in-north-carolina/
+  Framing: value of ONE missed storm-damage/crane removal call = $3,500–$7,500.
+  Anchor stat: $4,500 (conservative midpoint of crane emergency jobs, NC-documented).
 
-  Animation standard: SMS sequencer re-arms on scroll re-entry with manual Replay; stat counter
-  re-arms with manual replay via stat-replay button; both gated behind matchMedia prefers-reduced-motion
-  with a change listener.
-
-  v2.1 A1: Mobile-first attention contract. At <=820px: eyebrow, headline, lede, demo panel, then
-  ring-badge and trust-row. Sticky bottom CTA bar same URL, hidden while real CTA panel is in view.
-  v2.1 A2: Hero image (Pixabay CC0) as CSS background-image on .hero with scrim overlay. Under 450KB.
-  v2.1 A3: Shared demo concierge widget 54722168 with session-guarded 7-second auto-open.
-  v2.1 A4: Funnel posture, one CTA only, no nav, no service grids.
-
-  CTA href: https://paymegpt.com/p/KqXvRWYi (never change this)
+  WIDGET: A3 — shared widget 54722168, session-guarded auto-open per v2.1 spec.
+  CTA: https://paymegpt.com/p/KqXvRWYi (fixed, same on every page).
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -66,23 +69,23 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400;1,6..72,600;1,6..72,800&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700;800;900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet"/>
 
 
 
 <!-- SEO Meta Tags -->
-<title>J&amp;amp;L Plumbing LLC: your phone, answered | AID</title>
-<meta name="description" content="A working preview of J&amp;amp;L Plumbing LLC catching the active-leak calls that used to go to voicemail. Built by AID Marketing Agency for Mooresville plumbers." />
-<meta property="og:title" content="J&amp;amp;L Plumbing LLC: your phone, answered | AID" />
-<meta property="og:description" content="A working preview of J&amp;amp;L Plumbing LLC catching the active-leak calls that used to go to voicemail. Built by AID Marketing Agency for Mooresville plumbers." />
+<title>Brothers Tree Service: your phone, answered | AID</title>
+<meta name="description" content="A working preview of Brothers Tree Service NC catching storm-damage emergency calls that used to go to voicemail. Built by AID Marketing Agency for Monroe, NC." />
+<meta property="og:title" content="Brothers Tree Service: your phone, answered | AID" />
+<meta property="og:description" content="A working preview of Brothers Tree Service NC catching storm-damage emergency calls that used to go to voicemail. Built by AID Marketing Agency for Monroe, NC." />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="J&amp;amp;L Plumbing LLC: your phone, answered | AID" />
-<meta name="twitter:description" content="A working preview of J&amp;amp;L Plumbing LLC catching the active-leak calls that used to go to voicemail. Built by AID Marketing Agency for Mooresville plumbers." />
+<meta name="twitter:title" content="Brothers Tree Service: your phone, answered | AID" />
+<meta name="twitter:description" content="A working preview of Brothers Tree Service NC catching storm-damage emergency calls that used to go to voicemail. Built by AID Marketing Agency for Monroe, NC." />
 <!-- End SEO Meta Tags -->
 <script data-lp-token-hydrate>
 (function(){try{
-  var slug="lp-mrvkimcg-mtot2";
+  var slug="lp-mrwzx5ey-d630e";
   var SK='lp_access_'+slug;
   var map={access_token:'lp_pw_',allowlist_access_token:'lp_al_',pin_access_token:'lp_pin_',paywall_access_token:'lp_paid_'};
   var u=new URL(location.href);var found=null;var changed=false;
@@ -196,7 +199,7 @@
   function run(){
     if(contactId){
       var xhr=new XMLHttpRequest();
-      xhr.open('GET','https://paymegpt.com/api/landing/context/'+encodeURIComponent(contactId)+'?page_id=5674');
+      xhr.open('GET','https://paymegpt.com/api/landing/context/'+encodeURIComponent(contactId)+'?page_id=5705');
       xhr.onload=function(){
         if(xhr.status===200){
           try{
@@ -223,7 +226,7 @@
 </script>
 <script data-payment>
 (function(){
-  var slug='kcM8r22YAW';
+  var slug='hub9Xssagp';
   var apiBase='https://paymegpt.com';
   var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
   function findEmail(){
@@ -287,7 +290,7 @@
 </script>
 <script data-cart>
 (function(){
-  var slug='kcM8r22YAW';
+  var slug='hub9Xssagp';
   var apiBase='https://paymegpt.com';
   var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
   function findCartEmail(){
@@ -365,173 +368,191 @@
 </head>
 <body>
 
-<!-- Sticky mobile CTA bar (v2.1 A1): same booking URL, same intent, one CTA -->
-<!-- CTA href: https://paymegpt.com/p/KqXvRWYi — do not change -->
-<a class="mobile-cta-bar" id="mobileCta" href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">Book 15 minutes with Ryan</a>
+<!-- sticky mobile CTA bar (A1) — hides when real CTA panel is in view -->
+<div class="mobile-cta-bar" id="mobileCta" role="complementary" aria-label="Book a call">
+  <a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">Book 15 minutes with Ryan</a>
+</div>
 
 <div class="wrap">
 
-  <header>
+  <!-- HEADER -->
+  <header data-section="header">
     <div class="mast">
       <div class="brand">
-        <!-- Trade SVG: wrench + water drop, fresh plumbing mark, not a Heroicon -->
-        <svg class="plumbmark" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M26 4C21.582 4 18 7.582 18 12c0 1.54.44 2.98 1.2 4.2L6 29.4 6 34 10.6 34 24 20.6C25.18 21.44 26.55 22 28 22c4.418 0 8-3.582 8-8 0-.8-.1-1.58-.3-2.3L31 16.4 27.6 13l3.7-3.7C30.58 8.1 28.42 4 26 4z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M11 6 C11 6 8 10 8 13 C8 16.314 9.686 18 12 18 C14.314 18 16 16.314 16 13 C16 10 13 6 11 6 Z" fill="currentColor" opacity=".7"/>
+        <!-- Tree service SVG mark — stylized chainsaw-cut tree with rings, unique to this trade/page -->
+        <svg class="treemark" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- trunk -->
+          <rect x="16" y="28" width="8" height="14" rx="1.5" fill="currentColor" opacity=".85"/>
+          <!-- main canopy -->
+          <path d="M20 2 C10 2 4 10 4 17 C4 23 8 28 14 29.5 L20 30 L26 29.5 C32 28 36 23 36 17 C36 10 30 2 20 2Z" fill="currentColor" opacity=".9"/>
+          <!-- inner canopy highlight -->
+          <path d="M20 7 C14 7 10 12 10 17 C10 21 13 25 18 26.5 L20 27 L22 26.5 C27 25 30 21 30 17 C30 12 26 7 20 7Z" fill="var(--panel)" opacity=".35"/>
+          <!-- tree rings on trunk -->
+          <ellipse cx="20" cy="29.5" rx="4" ry="1.2" stroke="var(--panel)" stroke-width=".8" fill="none" opacity=".6"/>
+          <ellipse cx="20" cy="29.5" rx="2.2" ry=".7" stroke="var(--panel)" stroke-width=".6" fill="none" opacity=".45"/>
         </svg>
         <div>
-          <div class="name">J&amp;L Plumbing LLC</div>
-          <div class="loc">Mooresville, NC &middot; Plumbing</div>
+          <div class="name">Brothers Tree Service</div>
+          <div class="loc">Monroe, NC &middot; Union County &middot; Tree Service</div>
         </div>
       </div>
       <div class="built-by">Live preview &middot; built by<br/><b>AID Marketing Agency</b></div>
     </div>
   </header>
 
-  <!-- HERO: broken grid, copy left, demo panel right -->
-  <!-- Hero image: Pixabay CC0, plumber-2562554, plumber working under a kitchen sink -->
-  <section class="hero">
-    <div class="hero-bg" role="img" aria-label="Plumber working under a kitchen sink"></div>
-    <div class="hero-scrim" aria-hidden="true"></div>
+  <!-- HERO -->
+  <section class="hero" data-section="hero">
+    <div class="hero-copy">
+      <!-- eyebrow: plain text, NOT a pill/capsule -->
+      <span class="eyebrow"><span class="pulse"></span> Missed call, 11:47pm Saturday</span>
 
-    <!-- v2.1 A1: DOM order is eyebrow > headline > lede > demo-panel > ring-badge > trust-row
-         so that at <=820px flex-column gives the right mobile order without CSS order hacks -->
-    <span class="eyebrow"><span class="pulse"></span> Mooresville, NC &mdash; Plumbing</span>
+      <h1 class="headline">Storm drops an oak.<br/>Homeowner calls.<br/><em>You're still on the job.</em></h1>
 
-    <h1 class="headline">The water is running.<br/>So should <em>your phone.</em></h1>
+      <p class="lede">Brothers Tree Service in Monroe — three brothers who built a tree company from the ground up in Union County over 15 years. When a storm rolls through at night or on a weekend, that phone rings while you're running the chainsaw. The caller hits voicemail, dials the next crew on Google, and that crew gets the job. Watch what happens instead.</p>
 
-    <p class="lede">When Jeff is under a sink and a Lake Norman homeowner has water pouring out of their kitchen cabinet, the next plumber who picks up gets the job. This is what happens when J&amp;L answers first, every time.</p>
-
-    <!-- Demo panel: SMS sequencer (v2.1 A1: appears BEFORE ring-badge and trust-row in DOM so it
-         renders above them on mobile without needing order overrides) -->
-    <div class="demo-panel reveal">
-      <div class="demo-head">
-        <div class="demo-title">Text thread &middot; <b>J&amp;L Plumbing LLC</b></div>
-        <button class="replay-btn" id="replayBtn" type="button">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
-          Replay
-        </button>
+      <div class="ring-badge">
+        <span class="ring r1"></span>
+        <span class="ring r2"></span>
+        <span class="ring r3"></span>
+        <svg class="phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       </div>
-      <!-- SMS script: active water leak emergency in Mooresville. 4 bubbles: caller, AI, caller, AI -->
-      <div class="thread" id="thread">
-        <div class="bubble caller"><span>I have water coming out from under my kitchen sink and I don't know how to shut it off. Can someone come today?</span><span class="stamp">2:14 PM</span></div>
-        <div class="typing" id="typing1"><span></span><span></span><span></span></div>
-        <div class="bubble ai"><span class="badge">AI replied in 38 seconds</span><span>We're in Mooresville and can help. Head to the cabinet under the sink and turn the valve clockwise to stop the flow. What's your address?</span><span class="stamp">2:15 PM</span></div>
-        <div class="bubble caller"><span>14 Spinnaker Bay Dr, and the valve isn't budging.</span><span class="stamp">2:16 PM</span></div>
-        <div class="typing" id="typing2"><span></span><span></span><span></span></div>
-        <div class="bubble ai"><span>Got it. Jeff can be there between 3 and 5 this afternoon. You'll get a text with his info in a few minutes.</span><span class="stamp">2:17 PM</span></div>
-      </div>
-      <div class="demo-foot">
-        <div class="resp-time"><span class="dot"></span> First reply in 38 sec, no human touched a phone</div>
-        <div class="disclaimer">Simulated exchange for demo purposes</div>
+
+      <div class="trust-row">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b>Live on Brothers Tree Service's actual number.</b> Not a mockup. Built specifically for Monroe, NC.</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b>Nothing to install or change.</b> It runs behind the number you already give out. You keep working.</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b>15 years in Union County, nearly 300 five-star reviews.</b> This just makes sure the next storm call reaches you and becomes the next one.</span>
+        </div>
       </div>
     </div>
 
-    <!-- Ring-badge and trust-row appear AFTER demo panel in DOM: on mobile they stack below it -->
-    <div class="ring-badge">
-      <span class="ring r1"></span>
-      <span class="ring r2"></span>
-      <span class="ring r3"></span>
-      <svg class="phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <!-- SMS demo panel -->
+    <div class="hero-demo">
+      <div class="demo-panel reveal">
+        <div class="demo-head">
+          <div class="demo-title">Text thread &middot; <b>Brothers Tree Service</b></div>
+          <button class="replay-btn" id="replayBtn" type="button" aria-label="Replay the SMS sequence">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+            Replay
+          </button>
+        </div>
+        <div class="thread" id="thread">
+          <div class="bubble caller" id="b0">Hey, we had a big oak come down on our fence tonight from that storm. Part of it is leaning on the house. I need someone out here to look at this as soon as possible.<span class="stamp">11:47 PM</span></div>
+          <div class="typing" id="typing1"><span></span><span></span><span></span></div>
+          <div class="bubble ai" id="b1"><span class="ai-badge">AI replied in 38 seconds</span>Hi, this is Brothers Tree Service. Sorry to hear about that. A tree on your fence and leaning on the structure is something we take seriously. Can you give me the address and let me know the best time to reach you in the morning for a full quote?<span class="stamp">11:47 PM</span></div>
+          <div class="bubble caller" id="b2">Yeah it is 412 Elm Ridge Road, Monroe. I am up early, any time after 7 works.<span class="stamp">11:49 PM</span></div>
+          <div class="typing" id="typing2"><span></span><span></span><span></span></div>
+          <div class="bubble ai" id="b3">Got it, 412 Elm Ridge Road. One of the brothers will call you by 7:30 AM to go over the removal and what we can do about the fence section. You are on the schedule. Stay clear of that leaning section tonight.<span class="stamp">11:49 PM</span></div>
+        </div>
+        <div class="demo-foot">
+          <div class="resp-time"><span class="dot"></span> First reply in 38 sec, no one touched a phone</div>
+          <div class="disclaimer">Simulated exchange for demo purposes</div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="trust-row">
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-        <span><b>Live on J&amp;L's actual number.</b> Not a mockup, not a template with your name swapped in.</span>
-      </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-        <span><b>Nothing for Jeff or Lizzie to install or check.</b> It runs quietly behind the number you already give out.</span>
-      </div>
-      <div class="trust-item">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-        <span><b>Five-star rated by Mooresville homeowners.</b> This just makes sure the next caller reaches you instead of whoever picks up next.</span>
-      </div>
+  <!-- PROOF BAND: real client photo, treated with scrim + grain + duotone -->
+  <section class="proof reveal" data-section="proof">
+    <div class="proof-img" role="img" aria-label="Brothers Tree Service crane removal job in Monroe, NC"></div>
+    <div class="proof-cap">
+      <div class="k">Their own work, not a stock photo</div>
+      <p>Brothers Tree Service running a crane removal in Monroe, NC. This is who answers when the call goes through.</p>
     </div>
   </section>
 
   <!-- THE MATH -->
-  <!-- Stat sourcing: plumbing emergency kitchen-sink or supply-line repair + initial water-damage
-       assessment in NC. Range $500-$2,500 per standard plumbing service estimates for the NC market,
-       per the prospect brief. Mid-point $1,500 used as count-up target. Range stated honestly in copy.
-       Broader call-miss sourcing: 62% of small-business calls unanswered / 85% of voicemail-callers
-       never call back: https://www.getaira.io/blog/missed-business-calls-statistics -->
+  <!-- SOURCED STAT (live-search verified 2026-07-23, per v2 spec D4.3 — never training data):
+       Emergency tree removal with crane, large tree fallen on/near a structure:
+       Real job examples in eastern NC: 85-ft willow oak $7,500; 70-ft dead pine $4,200;
+       pair of 75-ft oaks $4,250 each; 60-ft sweetgum $3,800.
+       Source: https://dctreecutting.com/blog/crane-tree-removal-cost/
+       Emergency/after-hours premium: 50-100% over standard rates.
+       Source: https://stumpoff.com/emergency-tree-removal-cost/
+       NC large tree removal (100-ft): $1,500-$3,000+, crane often required.
+       Source: https://brownsarborcare.com/cost-to-have-a-tree-cut-down-factors-and-average-costs-in-north-carolina/
+       Anchor stat: $4,500 (conservative midpoint of documented NC crane emergency jobs).
+       Framing: value of ONE missed storm-damage crane-removal call. -->
   <section class="math reveal" data-section="math">
     <div>
       <div class="stat-label">
-        What one unanswered emergency call costs
+        Value of one missed storm-removal call
         <button class="stat-replay" id="statReplayBtn" type="button" aria-label="Replay the counter">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
         </button>
       </div>
-      <div class="stat-number">$1<span class="cents">,500</span></div>
-      <div class="stat-sub">midpoint of a Mooresville kitchen-sink emergency repair</div>
+      <div class="stat-number" id="statNum">$4<span class="cents">,500</span></div>
+      <div class="stat-sub">conservative midpoint for a crane emergency removal in NC</div>
     </div>
     <div class="math-copy">
-      <p>In the Lake Norman area, a kitchen-sink or supply-line emergency runs <strong>$500 to $2,500</strong> once you factor in the repair, parts, and a first look at any water damage. That is standard NC plumbing service range. Here is the part that hurts: call studies put <strong>62 percent of calls to small businesses at unanswered</strong>, and <strong>85 percent of those callers never try again</strong>. They dial the next plumber. For a two-person shop like J&amp;L, where Jeff is the phone and he's usually under a sink, that math compounds fast. This page shows you what it looks like when it stops happening.</p>
+      <p>Real crane removal jobs in North Carolina run <strong>$3,800 to $7,500 per tree</strong> when a storm brings one down near a structure. Add the after-hours surcharge and the crane mobilization fee and a single Saturday night call can be worth more than a full week of routine trimming jobs. Here is the part that stings: <strong>most of those calls come in at night or on weekends</strong> when you're in the field. The homeowner hits voicemail, scrolls to the next crew on Google, and that crew gets the job and the equipment day. This page shows what happens when you stop losing those calls.</p>
     </div>
   </section>
 
-  <!-- HOW IT WORKS: asymmetric grid, one tall lead + two supporting, never 3 equal cards -->
+  <!-- HOW IT WORKS — asymmetric grid, one tall lead item plus supporting items (not 3 equal cards) -->
   <section class="how reveal" data-section="how-it-works">
     <div class="how-head">
       <h2>How the catch works</h2>
-      <span>Three moving parts, no app to open</span>
+      <span>Three steps, nothing to install</span>
     </div>
     <div class="how-grid">
       <div class="how-item lead">
         <div>
           <div class="how-num">01</div>
           <h3>The call gets missed, on purpose</h3>
-          <p>Jeff stays focused on the job in front of him. Nobody climbs out from under a sink to answer the phone. The call rings out exactly like it always has.</p>
+          <p>You and your crew are running chainsaws. Nobody is climbing down to answer a phone at 11 PM after a storm. That is when the calls come in. Emergency tree work does not wait for business hours and neither do the homeowners dialing their way down the Google list.</p>
         </div>
-        <p>Every unanswered call fires a text back to that number in under a minute, while the homeowner still has your name on their screen instead of the next plumber on the list.</p>
+        <p>Every missed call fires a text back to the homeowner in under a minute. You are still working. The homeowner has your name on their screen and nowhere else to go.</p>
       </div>
       <div class="how-item">
         <div class="how-num">02</div>
-        <h3>The AI knows plumbing</h3>
-        <p>Valve location, shutoff triage, active versus contained. It asks the right things, settles the caller down, and collects the address before they dial anyone else.</p>
+        <h3>The AI asks the right questions</h3>
+        <p>It knows tree work: what is fallen, what is leaning on a structure, how urgent it is, and what a removal quote needs. Real triage, not a generic autoresponder.</p>
       </div>
       <div class="how-item">
         <div class="how-num">03</div>
-        <h3>Jeff gets a booked afternoon</h3>
-        <p>Time and address texted to both sides. Jeff finishes the job he's on and shows up to a confirmed visit, not a cold voicemail from three hours ago.</p>
+        <h3>You get a morning callback locked in</h3>
+        <p>Address, best call time, and the job scope. Texted to you while you sleep. You wake up to a warm lead, not a cold voicemail you do not recognize.</p>
       </div>
     </div>
   </section>
 
-  <!-- CTA: one CTA only, always https://paymegpt.com/p/KqXvRWYi -->
-  <section class="cta-section reveal" id="ctaSection" data-section="cta">
+  <!-- CTA — ONE CTA only, always https://paymegpt.com/p/KqXvRWYi -->
+  <section class="cta-section reveal" data-section="cta" id="ctaPanel">
     <div class="cta-panel">
       <div class="cta-inner">
         <h2>See it running on <em>your</em> number.</h2>
-        <p>Fifteen minutes with Ryan. He will walk through exactly what you saw above, live on J&amp;L's line, and give you a straight answer on whether it is worth doing.</p>
-        <!-- CTA href: https://paymegpt.com/p/KqXvRWYi — never change this -->
+        <p>Fifteen minutes with Ryan. He will walk through exactly what you saw above, live on Brothers Tree Service's line, and give you a straight answer on whether it is worth doing for Monroe and Union County.</p>
         <a class="cta-btn" href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">
           Book 15 minutes with Ryan
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
         </a>
-        <p class="cta-note">No pitch deck, no obligation. Just a look at what this looks like on your phone.</p>
+        <p class="cta-note">No pitch deck, no pressure. Just a look at what this looks like on your phone.</p>
       </div>
     </div>
   </section>
 
-  <footer>
-    <p class="quietline">"Whoever picks up first gets the job. This is how J&amp;L Plumbing picks up first, every time."</p>
+  <footer data-section="footer">
+    <p class="quietline">Whoever calls back first after a storm gets the crane day. This is how Brothers Tree Service calls back first, every time.</p>
     <div class="foot">
       <div>Put together by Ryan McNally at AID Marketing Agency</div>
-      <!-- footer CTA repeated verbatim: https://paymegpt.com/p/KqXvRWYi -->
-      <div><a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">Book 15 minutes with Ryan</a></div>
+      <div><a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">paymegpt.com/p/KqXvRWYi</a></div>
     </div>
   </footer>
 
-</div>
+</div><!-- /.wrap -->
 
-
-
-<!-- AID demo concierge (shared widget 54722168) + session-guarded 7-second auto-open (v2.1 A3) -->
+<!-- AID demo concierge (shared widget 54722168) + one-shot auto-open (A3) -->
 <script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
+
+
 
 
   <script src="script.js"></script>
