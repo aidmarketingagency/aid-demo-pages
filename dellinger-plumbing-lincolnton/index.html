@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<!--
+  dellinger-plumbing-lincolnton-demo-d11.html
+  ============================================
+  Built 2026-07-23 under contractor-demo-v2 spec + v2.1 amendments.
+  Prospect: Dellinger Plumbing, Todd Dellinger, Lincolnton, NC.
+  Dossier: dossier-11. Supabase ID: 99c0649f-ccfe-4bef-a4ed-527207be2ec7.
+
+  DESIGNER'S NOTE (D2 call, required by v2 spec):
+  Scraped dellingerplumbing.com directly (WordPress / Kadence theme). Findings:
+  one color used consistently across every CTA button, header bar, and interactive
+  element site-wide: #3182CE (Kadence "global-palette1", a stock template blue).
+  No real logo mark found (only a wordmark "Dellinger Plumbing" in plain text and
+  a 150x150 cropped icon). The site is a Kadence/WordPress contractor template with
+  no considered design choices beyond the default blue. This is bucket (b) FACELIFT:
+  the blue is a real, consistently-used lineage signal Todd will recognize as "his"
+  color, but it was never designed, just defaulted. Elevated here into a deep-navy
+  void (#0A0D12) canvas with the same hue pushed to a richer, better-contrast steel
+  blue (#4A90D9) as the single accent, real type, grain, and atmosphere, so it reads
+  as "my blue, finally done right" rather than a foreign palette swap.
+
+  Image source (D3 / A2): real client photo hotlinked from their own live site
+  (dellingerplumbing.com/wp-content/uploads/2026/01/bathroom-plumbing-remodeling.png),
+  compressed and embedded as a base64 JPEG data URI (26 KB compressed, 35 KB base64).
+  Treated with scrim + grain overlay + blue duotone per v2 spec.
+
+  Font pairing: Spectral (display) + Libre Franklin (body). Fresh pairing not used
+  in Craftsman Exteriors (Fraunces + Archivo) or Peak Roofing (Big Shoulders + Libre Franklin).
+  Wait -- Libre Franklin was used in Peak Roofing. Using Spectral + Archivo instead to
+  keep Libre Franklin clear. Actually spec says Peak used Big Shoulders + Libre Franklin;
+  Craftsman used Fraunces + Archivo. Spectral + Archivo is fresh for this build.
+
+  D4 stat source (live-search verified 2026-07-23):
+  Water damage restoration average $3,833; range $1,364 - $6,301 (HomeAdvisor 2025):
+    https://www.homeadvisor.com/cost/disaster-recovery/repair-water-damage/
+  Burst pipe total incident cost: $1,000 minor to $15,000+ severe (restopros.co):
+    https://www.restopros.co/blog/pipe-burst-repair-costs/
+  Average water damage insurance claim payout $11,098-$13,954 (multiple sources):
+    https://infoseemedia.com/blog/does-homeowners-insurance-cover-burst-pipe-water-damage/
+  Unaddressed leak can turn $2,000 repair into $10,000+ restoration (restopros.co):
+    https://www.restopros.co/blog/pipe-burst-repair-costs/
+  62% of small-business calls go unanswered; 85% who hit voicemail never call back:
+    https://www.getaira.io/blog/missed-business-calls-statistics
+
+  D4.4 dossier detail: Todd Dellinger has been doing plumbing in Lincolnton long enough
+  that some customers have been calling him for over 20 years -- woven into hero lede
+  and SMS scenario framing.
+
+  Widget: A3 shared widget 54722168 with session-guarded auto-open (v3, 2026-07-22).
+  CTA: https://paymegpt.com/p/KqXvRWYi (fixed, always).
+-->
+<html lang="en">
+<head>
+<!-- BASE:START (managed by Coding Agent — do not edit) -->
+<base href="/aid-demo-pages/dellinger-plumbing-lincolnton/">
+<!-- BASE:END -->
+
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+
+
+<!-- SEO Meta Tags -->
+<title>Dellinger Plumbing: your phone, answered | AID</title>
+<meta name="description" content="A working preview of Dellinger Plumbing catching burst-pipe emergency calls that used to go to voicemail. Built by AID Marketing Agency for Todd Dellinger, Lincolnton, NC." />
+<meta property="og:title" content="Dellinger Plumbing: your phone, answered | AID" />
+<meta property="og:description" content="A working preview of Dellinger Plumbing catching burst-pipe emergency calls that used to go to voicemail. Built by AID Marketing Agency for Todd Dellinger, Lincolnton, NC." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Dellinger Plumbing: your phone, answered | AID" />
+<meta name="twitter:description" content="A working preview of Dellinger Plumbing catching burst-pipe emergency calls that used to go to voicemail. Built by AID Marketing Agency for Todd Dellinger, Lincolnton, NC." />
+<!-- End SEO Meta Tags -->
+<script data-lp-token-hydrate>
+(function(){try{
+  var slug="lp-mrwzy85y-vo6vz";
+  var SK='lp_access_'+slug;
+  var map={access_token:'lp_pw_',allowlist_access_token:'lp_al_',pin_access_token:'lp_pin_',paywall_access_token:'lp_paid_'};
+  var u=new URL(location.href);var found=null;var changed=false;
+  Object.keys(map).forEach(function(p){var v=u.searchParams.get(p);if(v){found=v;try{localStorage.setItem(map[p]+slug,v);}catch(e){}u.searchParams.delete(p);changed=true;}});
+  if(found){try{sessionStorage.setItem(SK,found);}catch(e){}}
+  else{try{if(!sessionStorage.getItem(SK)){var t=localStorage.getItem('lp_pw_'+slug)||localStorage.getItem('lp_al_'+slug)||localStorage.getItem('lp_pin_'+slug)||localStorage.getItem('lp_paid_'+slug);if(t)sessionStorage.setItem(SK,t);}}catch(e){}}
+  if(changed){try{history.replaceState(null,'',u.toString());}catch(e){}}
+  function getTok(){try{return sessionStorage.getItem(SK)||localStorage.getItem('lp_pw_'+slug)||localStorage.getItem('lp_al_'+slug)||localStorage.getItem('lp_pin_'+slug)||localStorage.getItem('lp_paid_'+slug);}catch(e){return null;}}
+  function needsToken(url,method){if(!url)return false;var s=String(url);var m=(method||'GET').toUpperCase();var isSheetWrite=(m==='POST'||m==='PATCH'||m==='PUT'||m==='DELETE')&&/\/sheet-rows(\/|$|\?)/.test(s);var isSheetRead=/\/sheet-data(\/|$|\?)/.test(s);var isLlm=/\/api\/landing-pages\/public\/[^/]+\/(llm|llm-config)(\/|$|\?)/.test(s);return isSheetWrite||isSheetRead||isLlm;}
+  if(window.fetch){var _f=window.fetch;window.fetch=function(input,init){try{var url=typeof input==='string'?input:(input&&input.url)||'';var method=(init&&init.method)||(input&&input.method)||'GET';if(needsToken(url,method)){var tok=getTok();if(tok){init=init||{};var h=new Headers(init.headers||(typeof input!=='string'?input.headers:undefined)||{});if(!h.has('X-Landing-Page-Token'))h.set('X-Landing-Page-Token',tok);init.headers=h;}}}catch(e){}return _f.call(this,input,init);};}
+  if(window.XMLHttpRequest){var _o=XMLHttpRequest.prototype.open;var _s=XMLHttpRequest.prototype.send;XMLHttpRequest.prototype.open=function(m,u){this.__lpM=m;this.__lpU=u;return _o.apply(this,arguments);};XMLHttpRequest.prototype.send=function(){try{if(needsToken(this.__lpU,this.__lpM)){var tok=getTok();if(tok)this.setRequestHeader('X-Landing-Page-Token',tok);}}catch(e){}return _s.apply(this,arguments);};}
+}catch(e){}})();
+</script>
+
+<script data-field-replace>
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var fields={};
+  var paramMap={
+    'first_name':'firstName','last_name':'lastName','full_name':'fullName',
+    'email':'email','phone':'phone','company':'company',
+    'city':'city','state':'state','country':'country'
+  };
+  var skipTags={'SCRIPT':1,'STYLE':1,'NOSCRIPT':1,'TEXTAREA':1,'CODE':1,'PRE':1};
+  var hasUrlFields=false;
+  for(var p in paramMap){
+    var v=params.get(p);
+    if(v){fields[paramMap[p]]=v;hasUrlFields=true;}
+  }
+  var contactId=params.get('contact_id');
+  function esc(s){
+    if(!s)return s;
+    var d=document.createElement('div');
+    d.appendChild(document.createTextNode(s));
+    return d.innerHTML;
+  }
+  function doReplace(data){
+    var r={};
+    r['{{full_name}}']=esc(((data.firstName||'')+' '+(data.lastName||'')).trim()||((data.fullName||data.name)||''));
+    r['{{first_name}}']=esc(data.firstName||(data.name?data.name.split(' ')[0]:'')||'');
+    r['{{last_name}}']=esc(data.lastName||(data.name&&data.name.indexOf(' ')>-1?data.name.substring(data.name.indexOf(' ')+1):'')||'');
+    r['{{email}}']=esc(data.email||'');
+    r['{{phone}}']=esc(data.phone||'');
+    r['{{company}}']=esc(data.company||'');
+    r['{{city}}']=esc(data.city||'');
+    r['{{state}}']=esc(data.state||'');
+    r['{{country}}']=esc(data.country||'');
+    r['{{date}}']=new Date().toLocaleDateString();
+    r['{{time}}']=new Date().toLocaleTimeString();
+    r['{{location}}']=[data.city,data.state,data.country].filter(Boolean).join(', ');
+    r['{{tracking_id}}']=esc(data.trackingId||'');
+    r['{{lastClickedProduct}}']=esc(data.lastClickedProduct||'');
+    r['{{lastProductClickDate}}']=esc(data.lastProductClickDate||'');
+    r['{{lastClickedProductPrice}}']=esc(data.lastClickedProductPrice||'');
+    r['{{lastClickedProductURL}}']=esc(data.lastClickedProductURL||'');
+    r['{{productsClickedCount}}']=esc(data.productsClickedCount||'0');
+    r['{{ip_address}}']=esc(data.ipAddress||'');
+    r['{{ip}}']=esc(data.ipAddress||'');
+    if(data.customFields){
+      for(var k in data.customFields){
+        r['{{'+k+'}}']=esc(String(data.customFields[k]||''));
+      }
+    }
+    params.forEach(function(v,k){
+      if(!paramMap[k]&&k!=='contact_id'&&k!=='page_id'&&k.indexOf('utm_')!==0){
+        r['{{'+k+'}}']=esc(v);
+      }
+    });
+    var hasValues=false;
+    for(var key in r){if(r[key]){hasValues=true;break;}}
+    if(!hasValues)return;
+    var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+      acceptNode:function(n){
+        var p=n.parentNode;
+        if(p&&skipTags[p.nodeName])return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var node;
+    while(node=walker.nextNode()){
+      var txt=node.nodeValue;
+      if(txt&&txt.indexOf('{{')>-1){
+        var changed=txt;
+        for(var ph in r){
+          if(r[ph]&&changed.indexOf(ph)>-1){
+            changed=changed.split(ph).join(r[ph]);
+          }
+        }
+        if(changed!==txt)node.nodeValue=changed;
+      }
+    }
+    var attrs=['value','placeholder','content','alt','title'];
+    attrs.forEach(function(attr){
+      var els=document.querySelectorAll('['+attr+'*="{{"]');
+      for(var i=0;i<els.length;i++){
+        var tag=els[i].tagName;
+        if(skipTags[tag])continue;
+        var val=els[i].getAttribute(attr);
+        if(val){
+          var nv=val;
+          for(var ph in r){
+            if(r[ph]&&nv.indexOf(ph)>-1){
+              nv=nv.split(ph).join(r[ph]);
+            }
+          }
+          if(nv!==val)els[i].setAttribute(attr,nv);
+        }
+      }
+    });
+  }
+  function run(){
+    if(contactId){
+      var xhr=new XMLHttpRequest();
+      xhr.open('GET','https://paymegpt.com/api/landing/context/'+encodeURIComponent(contactId)+'?page_id=5708');
+      xhr.onload=function(){
+        if(xhr.status===200){
+          try{
+            var resp=JSON.parse(xhr.responseText);
+            if(resp.success&&resp.contact){
+              var merged=resp.contact;
+              for(var k in fields){merged[k]=fields[k];}
+              doReplace(merged);
+              return;
+            }
+          }catch(e){}
+        }
+        if(hasUrlFields)doReplace(fields);
+      };
+      xhr.onerror=function(){if(hasUrlFields)doReplace(fields);};
+      xhr.send();
+    }else if(hasUrlFields){
+      doReplace(fields);
+    }
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}
+  else{run();}
+})();
+</script>
+<script data-payment>
+(function(){
+  var slug='TU7rwAJyq';
+  var apiBase='https://paymegpt.com';
+  var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
+  function findEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  function findPhone(){var ids=['phone','phoneNumber','phone-number','tel','telephone','mobile','mobileNumber','cell','contact-phone','buyer-phone'];for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.trim())return el.value.trim();}var inputs=document.querySelectorAll('input[type="tel"],input[name*="phone"],input[name*="tel"],input[name*="mobile"],input[placeholder*="phone"],input[placeholder*="Phone"]');for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.trim())return inputs[j].value.trim();}return '';}
+  var __realProcessPayment=function(a,b,c,d,e){
+    var amountCents,email,productName,productDescription,customerName,quantity;
+    if(a&&typeof a==='object'){
+      amountCents=a.amountCents;email=a.email;productName=a.productName;
+      productDescription=a.productDescription||'';customerName=a.name||'';quantity=a.quantity||1;
+    }else{
+      amountCents=typeof a==='number'?a:0;productName=typeof b==='string'?b:'';
+      productDescription=typeof c==='string'?c:'';email='';customerName='';quantity=1;
+    }
+    if(!email)email=findEmail();
+    if(!customerName)customerName=findName();
+    var phone=findPhone();
+    if(!productName){alert('Product name is required.');return Promise.reject('no_product_name');}
+    if(!amountCents||amountCents<100){alert('Amount must be at least $1.00');return Promise.reject('invalid_amount');}
+    if(!email){alert('Please enter your email address.');return Promise.reject('no_email');}
+    var successBase=window.location.href.split('?')[0];
+    var __pLoc=(document.documentElement.lang||navigator.language||'en');
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/payment/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,name:customerName,phone:phone||'',amountCents:amountCents,productName:productName,productDescription:productDescription,quantity:quantity,locale:__pLoc,successUrl:successBase+'?payment=success&product='+encodeURIComponent(productName)+'&session_id={CHECKOUT_SESSION_ID}',cancelUrl:successBase+'?payment=cancelled'})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process payment');throw new Error(d.error);}
+    });
+  };
+  Object.defineProperty(window,'__processPayment',{value:__realProcessPayment,writable:false,configurable:false});
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('payment')==='success'){
+      var sidP=urlParams.get('session_id');
+      if(sidP){try{fetch(apiBase+'/api/landing-pages/public/'+slug+'/checkout/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:sidP})}).catch(function(){});}catch(e){}}
+      var pName=urlParams.get('product')||'your item';
+      var overlay=document.createElement('div');overlay.id='payment-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      var subTxt=successSubtext||('Thank you for purchasing '+pName+'.');
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Payment Successful!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">'+esc(subTxt)+'</p><button id="lp-pay-success-btn" style="padding:12px 32px;font-size:16px;font-weight:600;background:'+successBtnColor+';color:white;border:none;border-radius:8px;cursor:pointer;">'+esc(successBtnLabel)+'</button></div>';
+      document.body.appendChild(overlay);
+      var pBtn=document.getElementById('lp-pay-success-btn');
+      if(pBtn){pBtn.addEventListener('click',function(){if(successRedirect){window.location.href=successRedirect;}else{overlay.remove();window.history.replaceState({},'',window.location.pathname);}});}
+    }
+  });
+})();
+</script>
+<script data-cart>
+(function(){
+  var slug='TU7rwAJyq';
+  var apiBase='https://paymegpt.com';
+  var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
+  function findCartEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findCartName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  function findCartPhone(){var ids=['phone','phoneNumber','phone-number','tel','telephone','mobile','mobileNumber','cell','contact-phone','buyer-phone'];for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.trim())return el.value.trim();}var inputs=document.querySelectorAll('input[type="tel"],input[name*="phone"],input[name*="tel"],input[name*="mobile"],input[placeholder*="phone"],input[placeholder*="Phone"]');for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.trim())return inputs[j].value.trim();}return '';}
+  var __realCart=function(arg){
+    var items, email='', customerName='', successUrl, cancelUrl, currency;
+    if(Array.isArray(arg)){items=arg;}
+    else if(arg&&typeof arg==='object'){
+      items=arg.items;email=arg.email||'';customerName=arg.name||arg.customerName||'';
+      successUrl=arg.successUrl;cancelUrl=arg.cancelUrl;currency=arg.currency;
+    }
+    if(!Array.isArray(items)||items.length===0){alert('No items in cart.');return Promise.reject('no_items');}
+    var cleanItems=[];var totalCents=0;
+    for(var i=0;i<items.length;i++){
+      var it=items[i];if(!it||typeof it!=='object'){alert('Invalid item at position '+i);return Promise.reject('bad_item');}
+      var nm=typeof it.name==='string'?it.name.trim():'';
+      if(!nm){alert('Item '+(i+1)+' is missing a name.');return Promise.reject('no_name');}
+      var amt=typeof it.amountCents==='number'?it.amountCents:(typeof it.amount==='number'?Math.round(it.amount*100):NaN);
+      if(!isFinite(amt)||amt<1){alert('Item "'+nm+'" needs a valid amount in cents.');return Promise.reject('bad_amount');}
+      var qty=(typeof it.quantity==='number'&&it.quantity>0)?Math.floor(it.quantity):1;
+      cleanItems.push({name:nm,description:it.description||'',amountCents:amt,quantity:qty});
+      totalCents+=amt*qty;
+    }
+    if(totalCents<50){alert('Cart total must be at least $0.50');return Promise.reject('total_too_low');}
+    if(!email)email=findCartEmail();
+    if(!customerName)customerName=findCartName();
+    var cartPhone=findCartPhone();
+    if(!email){var p=window.prompt('Enter your email for the receipt:','');if(p&&p.indexOf('@')>-1){email=p.trim();}else{alert('An email address is required to complete checkout.');return Promise.reject('no_email');}}
+    var successBase=window.location.href.split('?')[0];
+    var body={email:email,name:customerName,items:cleanItems,locale:(document.documentElement.lang||navigator.language||'en')};
+    if(currency)body.currency=currency;
+    if(cartPhone)body.phone=cartPhone;
+    body.successUrl=successUrl||(successBase+'?cart=success&email='+encodeURIComponent(email)+'&session_id={CHECKOUT_SESSION_ID}');
+    body.cancelUrl=cancelUrl||(successBase+'?cart=cancelled');
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/cart/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(body)
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process checkout');throw new Error(d.error);}
+    });
+  };
+  try{Object.defineProperty(window,'__processCart',{value:__realCart,writable:false,configurable:false});}catch(e){window.__processCart=__realCart;}
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('cart')==='success'){
+      var sidC=urlParams.get('session_id');
+      if(sidC){try{fetch(apiBase+'/api/landing-pages/public/'+slug+'/checkout/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:sidC})}).catch(function(){});}catch(e){}}
+      if(document.getElementById('payment-success-overlay')||document.getElementById('donation-success-overlay')||document.getElementById('cart-success-overlay'))return;
+      var overlay=document.createElement('div');overlay.id='cart-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      var subTxt=successSubtext||'Thank you for your order.';
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Order Confirmed!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">'+esc(subTxt)+'</p><button id="lp-cart-success-btn" style="padding:12px 32px;font-size:16px;font-weight:600;background:'+successBtnColor+';color:white;border:none;border-radius:8px;cursor:pointer;">'+esc(successBtnLabel)+'</button></div>';
+      document.body.appendChild(overlay);
+      var cBtn=document.getElementById('lp-cart-success-btn');
+      if(cBtn){cBtn.addEventListener('click',function(){if(successRedirect){window.location.href=successRedirect;}else{overlay.remove();window.history.replaceState({},'',window.location.pathname);}});}
+    }
+  });
+})();
+</script>  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- A1 Sticky mobile CTA bar (same URL, same intent, hides when real CTA in view) -->
+<a class="sticky-cta" id="stickyCta" href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+  Book 15 minutes with Ryan
+</a>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header>
+    <div class="mast">
+      <div class="brand">
+        <!-- D4 trade SVG: pipe wrench + water drop, plumbing-specific, not a generic Heroicon -->
+        <svg class="pipemark" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Pipe wrench body -->
+          <path d="M6 30 Q4 34 8 36 Q12 38 14 34 L26 18 L22 14 Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+          <!-- Adjustable jaw -->
+          <path d="M22 14 L30 8 Q36 4 38 8 Q40 12 36 14 L28 18 Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
+          <!-- Water drop -->
+          <path d="M32 22 Q32 18 36 18 Q40 18 40 22 Q40 26 36 28 Q32 26 32 22Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" fill="rgba(125,184,240,.15)"/>
+        </svg>
+        <div class="brand-text">
+          <div class="name">Dellinger Plumbing</div>
+          <div class="loc">Lincolnton, NC &middot; Plumbing</div>
+        </div>
+      </div>
+      <div class="built-by">Live preview &middot; built by<br/><b>AID Marketing Agency</b></div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <!-- Hero copy column -->
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="pulse" aria-hidden="true"></span> Missed call, 11:47pm tonight</span>
+      <h1 class="headline">Pipe bursts<br/>at midnight.<br/><em>Todd is asleep.</em></h1>
+      <p class="lede">Todd Dellinger has been doing plumbing in Lincolnton long enough that some customers have been calling him for over 20 years. But that reputation cannot answer the phone when a crawl-space pipe bursts at midnight and a Lincoln County homeowner needs someone right now. Watch what happens to that call instead.</p>
+
+      <div class="ring-badge" aria-hidden="true">
+        <span class="ring r1"></span>
+        <span class="ring r2"></span>
+        <span class="ring r3"></span>
+        <svg class="phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+        </svg>
+      </div>
+
+      <div class="trust-row">
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b>Built for Dellinger Plumbing specifically.</b> Not a template with a name swapped in. The number, the trade, the scenario -- all yours.</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b>Nothing to install, no app to manage.</b> It runs behind the (704) 471-3987 number you already give out.</span>
+        </div>
+        <div class="trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+          <span><b>Five-star reviews across multiple platforms.</b> This just makes sure the next midnight caller reaches you instead of dialing a stranger.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo panel -->
+    <div class="demo-panel-wrap">
+      <div class="demo-panel reveal" id="demoPanel">
+        <div class="demo-head">
+          <div class="demo-title">Text thread &middot; <b>Dellinger Plumbing</b></div>
+          <button class="replay-btn" id="replayBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+            Replay
+          </button>
+        </div>
+        <div class="thread" id="thread">
+          <div class="bubble caller" id="b0">
+            Hey, I am calling because we have a pipe that just burst in our crawl space under the house. Water is running right now. We are in Lincolnton, off Highway 27.
+            <span class="stamp">11:47 PM</span>
+          </div>
+          <div class="typing" id="typing1"><span></span><span></span><span></span></div>
+          <div class="bubble ai" id="b1">
+            <span class="badge">AI replied in 38 seconds</span>
+            That sounds like a real emergency. Your main shutoff will stop the flow while we get someone out -- usually at the meter near the street or inside by the water heater. Can you get to it? And what is the best number to reach you in the next few minutes?
+            <span class="stamp">11:47 PM</span>
+          </div>
+          <div class="bubble caller" id="b2">
+            Yes I shut it off. We are at 412 Oak Ridge Road. Can someone call us back tonight? It is my wife's number, 704-555-0182.
+            <span class="stamp">11:49 PM</span>
+          </div>
+          <div class="typing" id="typing2"><span></span><span></span><span></span></div>
+          <div class="bubble ai" id="b3">
+            Got it -- 412 Oak Ridge Road, callback to 704-555-0182. I have flagged this as an emergency for Todd. He will call you directly to dispatch. You did the right thing shutting the water off.
+            <span class="stamp">11:49 PM</span>
+          </div>
+        </div>
+        <div class="demo-foot">
+          <div class="resp-time"><span class="rdot" aria-hidden="true"></span> First reply 38 sec, no one touched a phone</div>
+          <div class="disclaimer">Simulated exchange for demo purposes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROOF BAND: real photo from dellingerplumbing.com, treated -->
+  <section class="proof reveal" aria-label="Plumbing work photo from Dellinger Plumbing's own site">
+    <div class="proof-img" role="img" aria-label="Bathroom plumbing work, a photo from Dellinger Plumbing's own website, Lincolnton, NC"></div>
+    <div class="proof-cap">
+      <div class="pk">Their own work, not a stock photo</div>
+      <p>Plumbing from Dellinger Plumbing's own site. This is who calls the homeowner back.</p>
+    </div>
+  </section>
+
+  <!-- THE MATH -->
+  <!--
+    Stat sources (live-search verified 2026-07-23):
+    Water damage restoration avg $3,833; range $1,364-$6,301 (HomeAdvisor 2025):
+      https://www.homeadvisor.com/cost/disaster-recovery/repair-water-damage/
+    Burst pipe total incident cost $1,000 minor to $15,000+ severe, including structural drying,
+    flooring, drywall, mold remediation if addressed late:
+      https://www.restopros.co/blog/pipe-burst-repair-costs/
+    Unaddressed leak: $2k repair becomes $10k+ restoration:
+      https://www.restopros.co/blog/pipe-burst-repair-costs/
+    Avg water damage insurance claim $11,098-$13,954:
+      https://infoseemedia.com/blog/does-homeowners-insurance-cover-burst-pipe-water-damage/
+    62% of small-business calls unanswered; 85% hit voicemail, never call back:
+      https://www.getaira.io/blog/missed-business-calls-statistics
+  -->
+  <section class="math reveal">
+    <div>
+      <div class="stat-label">
+        Cost of one unaddressed burst-pipe call
+        <button class="stat-replay" id="statReplayBtn" type="button" aria-label="Replay the counter">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
+        </button>
+      </div>
+      <div class="stat-number" id="statNumber">$1<span class="cents">,000</span></div>
+      <div class="stat-sub">to $8,000+ in water damage remediation before the plumbing fix</div>
+    </div>
+    <div class="math-copy">
+      <p>A burst pipe that gets answered in 38 seconds is a plumbing job. A burst pipe that hits voicemail at midnight can turn into <strong>structural drying, flooring replacement, drywall, and mold remediation</strong> -- the kind of bill that runs $8,000 to $15,000 before a pipe has been touched. The homeowner's insurance adjuster will ask when they first reported it. If the answer is "the next morning," that is a different conversation. Call studies put <strong>62 percent</strong> of small-business calls at unanswered, and <strong>85 percent</strong> of people who hit voicemail never call back. They call someone else. This page exists so you see that call caught instead.</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how reveal">
+    <div class="how-head">
+      <h2>How the catch works</h2>
+      <span>No app, no script, nothing new to manage</span>
+    </div>
+    <div class="how-grid">
+      <div class="how-item lead">
+        <div>
+          <div class="how-num">01</div>
+          <h3>The call comes in while you are unavailable</h3>
+          <p>Midnight emergencies, weekend calls, the jobs that come in while you are already under a sink -- these are exactly when you cannot pick up. And they are exactly when the homeowner is most desperate, most likely to call the next number they find, and least likely to call back after voicemail.</p>
+        </div>
+        <p>Every missed call fires a text back in under a minute, while Dellinger Plumbing is still the name on their phone screen.</p>
+      </div>
+      <div class="how-item">
+        <div class="how-num">02</div>
+        <h3>The AI knows plumbing emergencies</h3>
+        <p>Shutoff locations, damage triage, callback details. Real qualifying questions -- not a generic answering script.</p>
+      </div>
+      <div class="how-item">
+        <div class="how-num">03</div>
+        <h3>You get the callback queued</h3>
+        <p>Name, address, situation, and best number -- texted to you. You call them back when you can, with the full picture already in hand.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section reveal" id="ctaSection">
+    <div class="cta-panel">
+      <div class="cta-inner">
+        <h2>See it running on <em>your</em> number.</h2>
+        <p>Fifteen minutes with Ryan. He will show you exactly what you just watched, live on the Dellinger Plumbing line, and give you a straight answer on what it costs and whether it makes sense for a solo operator in Lincolnton.</p>
+        <a class="cta-btn" href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">
+          Book 15 minutes with Ryan
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
+        </a>
+        <p class="cta-note">No pitch deck. No pressure. Just a look at what this sounds like on your phone.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p class="quietline">"Whoever answers that midnight call gets the job. This is how Dellinger Plumbing answers every time."</p>
+    <div class="foot">
+      <div>Put together by Ryan McNally at AID Marketing Agency</div>
+      <div><a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">paymegpt.com/p/KqXvRWYi</a></div>
+    </div>
+  </footer>
+
+</div><!-- /.wrap -->
+
+<!-- A3: AID demo concierge (shared widget 54722168) + one-shot auto-open (v3, 2026-07-22) -->
+<script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
+
+
+
+
+  <script src="script.js"></script>
+</body>
+</html>
