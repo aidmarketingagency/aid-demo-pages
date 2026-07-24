@@ -1,80 +1,91 @@
 <!--
-  gaston-roofing-demo.html
-  =========================
-  Built 2026-07-22 under the contractor-demo-v2 spec (skills/pmgpt-site-builder/templates/contractor-demo-v2.md).
-  Prospect: Gaston Roofing LLC, Gastonia, NC. Roofing. Owner: Matthew Dockery.
-  Third-generation roofer, founded 1990, now with fourth generation involved.
-  Owens Corning Platinum Preferred contractor. 488 Google reviews at 4.8 stars.
-  CTA href: https://paymegpt.com/p/KqXvRWYi
+  brothers-tree-demo.html
+  =======================
+  Built 2026-07-23 under the contractor-demo-v2 spec + v2.1 amendment
+  (skills/pmgpt-site-builder/templates/contractor-demo-v2.md).
+  Prospect: Brothers Tree Service NC LLC, Monroe, NC (Union County).
+  Owners: Omar, Uriel & Elliet — three brothers, family-owned, minority-owned.
+  Published to PayMeGPT page: brothers-tree-service-monroe-demo-d11
+  Dossier batch: dossier-11 | Supabase prospect ID: 27323331-99b4-46df-8f50-af46e514a01f
 
   DESIGNER'S NOTE (D2 call, required by the v2 spec):
-  Scraped gastonroofing.com. Findings: a professionally designed site with a dark header,
-  clean white/light body, and a modern layout. The site carries prominent Owens Corning
-  Platinum Preferred co-branding, which has a distinctly golden identity. The logo uses
-  both a dark and light version. No single brand color reads as a chosen brand hue across
-  the CTAs; the palette is primarily dark/neutral with professional restraint. This is
-  bucket (b) GENERIC-BUT-PRESENT: FACELIFT, but the Owens Corning Platinum co-brand
-  gives us a golden accent signal that is authentically theirs. The FACELIFT elevates this:
-  #0A0C0E void, #141618 graphite, #C9A84C brass/gold (honoring the Platinum badge), #F0EDE8
-  bone. The brass honors their Owens Corning Platinum status, differentiating from typical
-  roofing blues while remaining a detail Matthew will recognize as belonging to his brand.
+  Scraped brotherstreeservicenc.com directly. Findings: the site uses a green/brown
+  palette matching their logo — a stylized tree with green leaves and brown trunk, with
+  green and brown text throughout. CTAs and header branding use consistent deep green
+  with brown as the secondary earthy tone. This is bucket (a) REAL BRAND: CONFORM. The
+  green is a deliberate, on-brand choice for a tree service company — it was chosen with
+  intent and appears in the logo mark. Extracted as dark forest-green canvas with warm
+  amber-brass as the accent to elevate it: the prospect will recognize the green lineage
+  while the page reads as genuinely designed. Palette: #0A100A (near-void forest),
+  #111A0F (deep grove), #1E2D1A (panel), #5A7E3A (forest mid), #C9943A (warm amber/
+  bark-gold), #E8E0D0 (bone/parchment), with amber doing all the accent work.
 
-  Hero image: Pixabay CC0, trade-real.
-  URL used: https://cdn.pixabay.com/photo/2016/08/26/12/30/roof-1622168_1280.jpg
-  Applied as background-image with CSS scrim + feTurbulence grain overlay + duotone pass
-  toward the brass accent. Honest alt text provided.
+  HERO IMAGE (D3/A2 — real client photos from brotherstreeservicenc.com):
+  Using their own published crane service photo, hotlinked from their Squarespace CDN.
+  URL: https://images.squarespace-cdn.com/content/v1/696cf52380b15d2370867013/
+       7b28f1a5-b17f-4f2f-bccf-1e5d7f3652a4/tree-removal-monroe-nc-crane-service.jpg
+  Treated with scrim (gradient overlay), grain (feTurbulence SVG filter), and
+  duotone/color-grade toward the amber accent per D3 spec.
 
-  D4 personality layer: Gastonia and Gaston County experience heavy storm seasons. Hail
-  and wind damage drive a surge of insurance-grade roof replacement calls, exactly when
-  Matthew's crew is out on inspections. The stat (NC insurance payout range $12k-$22k+)
-  comes from live-search verified sources (see comment above THE MATH section). One
-  dossier detail threaded through the hero lede and SMS scenario: Gaston County storm
-  season and the insurance inspection window that closes fast after a storm.
+  FONT PAIRING: Big Shoulders Display (display/headline) + Spectral (body/editorial).
+  Fresh pairing — not reused from Instrument Serif/Archivo (JM Arbor Care),
+  Bricolage/Newsreader (Timber Hill), Fraunces/Archivo (Craftsman), or Big Shoulders/
+  Libre Franklin (Peak Roofing). Big Shoulders brings the physical authority of heavy
+  outdoor labor; Spectral brings warm editorial weight for the copy.
 
-  Font pairing: Unbounded (display) + Spectral (body). Fresh pairing per spec instruction,
-  not reused from: Craftsman (Fraunces + Archivo), Peak (Big Shoulders + Libre Franklin),
-  Midnight Authority (Cormorant + Plus Jakarta), Murphy's (Newsreader + Plus Jakarta Sans),
-  TGC (Instrument Serif + Archivo), Imperial (Bricolage Grotesque + Libre Franklin).
+  D4 PERSONALITY: "Brothers Tree Service in Monroe — three brothers who built a tree
+  company from the ground up in Union County over 15 years." Used in hero lede AND
+  the SMS scenario framing.
 
-  Animation standard: SMS sequencer and stat counter both re-arm on scroll re-entry with
-  manual replay affordances; JS-level prefers-reduced-motion gate with change listener,
-  per the v2 spec and the Craftsman worked implementation.
+  SOURCED STAT (D4.3 — live-search verified 2026-07-23):
+  Emergency tree removal with crane for a large tree fallen on/near a structure:
+  $3,000–$7,500, with real crane jobs in eastern NC documented at $4,200–$7,500.
+  Source: https://dctreecutting.com/blog/crane-tree-removal-cost/ (real job examples:
+  85-ft willow oak $7,500; 70-ft dead pine $4,200; 75-ft oak $4,250; 60-ft sweetgum
+  $3,800). Emergency/after-hours premium adds 50–100% over standard rates.
+  Source: https://stumpoff.com/emergency-tree-removal-cost/
+  NC large tree removal (100-ft): $1,500–$3,000+, crane often required:
+  Source: https://brownsarborcare.com/cost-to-have-a-tree-cut-down-factors-and-average-costs-in-north-carolina/
+  Framing: value of ONE missed storm-damage/crane removal call = $3,500–$7,500.
+  Anchor stat: $4,500 (conservative midpoint of crane emergency jobs, NC-documented).
 
-  Mobile-first A1: demo panel renders ABOVE the trust row on mobile via CSS order.
-  Sticky mobile CTA bar at bottom, hidden when main CTA is in view.
-  Widget 54722168 embedded with 7-second session-guarded auto-open.
+  WIDGET: A3 — shared widget 54722168, session-guarded auto-open per v2.1 spec.
+  CTA: https://paymegpt.com/p/KqXvRWYi (fixed, same on every page).
 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- BASE:START (managed by Coding Agent — do not edit) -->
-<base href="/aid-demo-pages/gaston-roofing/">
+<base href="/aid-demo-pages/brothers-tree-service-monroe/">
 <!-- BASE:END -->
 
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-<meta name="description" content="A working preview of Gaston Roofing LLC catching hail-damage calls that used to go to voicemail. Built by AID Marketing Agency for Gastonia roofers."/>
-<meta property="og:title" content="Gaston Roofing LLC: your phone, answered"/>
-<meta property="og:description" content="Watch a missed storm-damage call become a booked inspection in real time. Built for Gaston Roofing LLC, Gastonia, NC."/>
-<meta property="og:type" content="website"/>
+
+
+
+
 
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700;800;900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;600;700;800;900&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet"/>
 
 
 
 <!-- SEO Meta Tags -->
-<title>Gaston Roofing LLC: your phone, answered | AID</title>
-<meta property="og:title" content="Gaston Roofing LLC: your phone, answered | AID" />
+<title>Brothers Tree Service: your phone, answered | AID</title>
+<meta name="description" content="A working preview of Brothers Tree Service NC catching storm-damage emergency calls that used to go to voicemail. Built by AID Marketing Agency for Monroe, NC." />
+<meta property="og:title" content="Brothers Tree Service: your phone, answered | AID" />
+<meta property="og:description" content="A working preview of Brothers Tree Service NC catching storm-damage emergency calls that used to go to voicemail. Built by AID Marketing Agency for Monroe, NC." />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Gaston Roofing LLC: your phone, answered | AID" />
+<meta name="twitter:title" content="Brothers Tree Service: your phone, answered | AID" />
+<meta name="twitter:description" content="A working preview of Brothers Tree Service NC catching storm-damage emergency calls that used to go to voicemail. Built by AID Marketing Agency for Monroe, NC." />
 <!-- End SEO Meta Tags -->
 <script data-lp-token-hydrate>
 (function(){try{
-  var slug="lp-mrvkji0d-ei79h";
+  var slug="lp-mrwzx5ey-d630e";
   var SK='lp_access_'+slug;
   var map={access_token:'lp_pw_',allowlist_access_token:'lp_al_',pin_access_token:'lp_pin_',paywall_access_token:'lp_paid_'};
   var u=new URL(location.href);var found=null;var changed=false;
@@ -188,7 +199,7 @@
   function run(){
     if(contactId){
       var xhr=new XMLHttpRequest();
-      xhr.open('GET','https://paymegpt.com/api/landing/context/'+encodeURIComponent(contactId)+'?page_id=5678');
+      xhr.open('GET','https://paymegpt.com/api/landing/context/'+encodeURIComponent(contactId)+'?page_id=5705');
       xhr.onload=function(){
         if(xhr.status===200){
           try{
@@ -215,7 +226,7 @@
 </script>
 <script data-payment>
 (function(){
-  var slug='HJXcny';
+  var slug='hub9Xssagp';
   var apiBase='https://paymegpt.com';
   var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
   function findEmail(){
@@ -279,7 +290,7 @@
 </script>
 <script data-cart>
 (function(){
-  var slug='HJXcny';
+  var slug='hub9Xssagp';
   var apiBase='https://paymegpt.com';
   var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
   function findCartEmail(){
@@ -357,182 +368,191 @@
 </head>
 <body>
 
+<!-- sticky mobile CTA bar (A1) — hides when real CTA panel is in view -->
+<div class="mobile-cta-bar" id="mobileCta" role="complementary" aria-label="Book a call">
+  <a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">Book 15 minutes with Ryan</a>
+</div>
+
 <div class="wrap">
 
-  <header>
+  <!-- HEADER -->
+  <header data-section="header">
     <div class="mast">
       <div class="brand">
-        <!-- Roofline/peak SVG mark, trade-specific, not a generic Heroicon -->
-        <svg class="roofmark" viewBox="0 0 48 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <path d="M24 3 L45 23 H37 V39 H11 V23 H3 Z" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round" fill="none"/>
-          <path d="M24 3 L24 15" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>
-          <path d="M11 23 L11 39" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".45"/>
-          <path d="M37 23 L37 39" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".45"/>
-          <!-- Ridge course line: a visual nod to Owens Corning shingle coursing -->
-          <path d="M16 32 H32" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".55"/>
+        <!-- Tree service SVG mark — stylized chainsaw-cut tree with rings, unique to this trade/page -->
+        <svg class="treemark" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- trunk -->
+          <rect x="16" y="28" width="8" height="14" rx="1.5" fill="currentColor" opacity=".85"/>
+          <!-- main canopy -->
+          <path d="M20 2 C10 2 4 10 4 17 C4 23 8 28 14 29.5 L20 30 L26 29.5 C32 28 36 23 36 17 C36 10 30 2 20 2Z" fill="currentColor" opacity=".9"/>
+          <!-- inner canopy highlight -->
+          <path d="M20 7 C14 7 10 12 10 17 C10 21 13 25 18 26.5 L20 27 L22 26.5 C27 25 30 21 30 17 C30 12 26 7 20 7Z" fill="var(--panel)" opacity=".35"/>
+          <!-- tree rings on trunk -->
+          <ellipse cx="20" cy="29.5" rx="4" ry="1.2" stroke="var(--panel)" stroke-width=".8" fill="none" opacity=".6"/>
+          <ellipse cx="20" cy="29.5" rx="2.2" ry=".7" stroke="var(--panel)" stroke-width=".6" fill="none" opacity=".45"/>
         </svg>
         <div>
-          <div class="name">Gaston Roofing LLC</div>
-          <div class="loc">Gastonia, NC · Roofing</div>
+          <div class="name">Brothers Tree Service</div>
+          <div class="loc">Monroe, NC &middot; Union County &middot; Tree Service</div>
         </div>
       </div>
-      <div class="built-by">Live preview · built by<br/><b>AID Marketing Agency</b></div>
+      <div class="built-by">Live preview &middot; built by<br/><b>AID Marketing Agency</b></div>
     </div>
   </header>
 
   <!-- HERO -->
-  <section class="hero">
-    <!-- hero-copy: order 1 on both mobile and desktop -->
+  <section class="hero" data-section="hero">
     <div class="hero-copy">
-      <!-- Plain text eyebrow: no pill, no background, no border-radius -->
-      <span class="eyebrow"><span class="pulse" aria-hidden="true"></span>Gastonia, NC — Roofing</span>
-      <h1 class="headline">The adjuster meeting<br/>went to the next<br/>roofer who <em>answered.</em></h1>
-      <p class="lede">Gaston County storm seasons bring a surge of calls. The inspection window closes fast: a homeowner dials three to five roofers and goes with whoever gets back to them first. Most of those calls hit Gaston Roofing while your crew is already on a job.</p>
+      <!-- eyebrow: plain text, NOT a pill/capsule -->
+      <span class="eyebrow"><span class="pulse"></span> Missed call, 11:47pm Saturday</span>
 
-      <div class="ring-badge" aria-hidden="true">
+      <h1 class="headline">Storm drops an oak.<br/>Homeowner calls.<br/><em>You're still on the job.</em></h1>
+
+      <p class="lede">Brothers Tree Service in Monroe — three brothers who built a tree company from the ground up in Union County over 15 years. When a storm rolls through at night or on a weekend, that phone rings while you're running the chainsaw. The caller hits voicemail, dials the next crew on Google, and that crew gets the job. Watch what happens instead.</p>
+
+      <div class="ring-badge">
         <span class="ring r1"></span>
         <span class="ring r2"></span>
         <span class="ring r3"></span>
         <svg class="phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       </div>
 
-      <!-- Trust row: BELOW the demo panel on mobile via order:10 -->
       <div class="trust-row">
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>Owens Corning Platinum Preferred.</b> The same credential that gets you called on insurance-grade replacements now follows every missed call with an instant response.</span>
+          <span><b>Live on Brothers Tree Service's actual number.</b> Not a mockup. Built specifically for Monroe, NC.</span>
         </div>
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>Four generations of Gastonia roofing.</b> The AI knows the script for hail claims, adjuster visits, and free inspections because you do this work every day.</span>
+          <span><b>Nothing to install or change.</b> It runs behind the number you already give out. You keep working.</span>
         </div>
         <div class="trust-item">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
-          <span><b>Nothing for the crew to install or check.</b> It runs behind the number you already put on every truck and yard sign in Belmont and Mount Holly.</span>
+          <span><b>15 years in Union County, nearly 300 five-star reviews.</b> This just makes sure the next storm call reaches you and becomes the next one.</span>
         </div>
       </div>
     </div>
 
-    <!-- Demo panel: order 2 on desktop, shown ABOVE trust row on mobile -->
-    <div class="demo-panel-wrap">
+    <!-- SMS demo panel -->
+    <div class="hero-demo">
       <div class="demo-panel reveal">
         <div class="demo-head">
-          <div class="demo-title">Text thread · <b>Gaston Roofing LLC</b></div>
-          <button class="replay-btn" id="replayBtn" type="button" aria-label="Replay the SMS demo">
+          <div class="demo-title">Text thread &middot; <b>Brothers Tree Service</b></div>
+          <button class="replay-btn" id="replayBtn" type="button" aria-label="Replay the SMS sequence">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
             Replay
           </button>
         </div>
-        <div class="thread" id="thread" role="log" aria-label="Simulated SMS conversation">
-          <div class="bubble caller" data-time="7:12 PM">We had bad hail last night and I can see granules in the gutter. Do you do insurance roof work?<span class="stamp">7:12 PM</span></div>
-          <div class="typing" id="typing1" aria-hidden="true"><span></span><span></span><span></span></div>
-          <div class="bubble ai" data-time="7:12 PM"><span class="badge">AI replied in 38 seconds</span>Yes, we work with all major carriers. Can I get your address and the best time to reach you for a free inspection?<span class="stamp">7:12 PM</span></div>
-          <div class="bubble caller" data-time="7:14 PM">712 New Hope Rd, Gastonia. I'm usually home by 4.<span class="stamp">7:14 PM</span></div>
-          <div class="typing" id="typing2" aria-hidden="true"><span></span><span></span><span></span></div>
-          <div class="bubble ai" data-time="7:14 PM">Perfect. I have you booked for a free hail inspection tomorrow at 4:15. You will get a text confirmation shortly with the estimator's name.<span class="stamp">7:14 PM</span></div>
+        <div class="thread" id="thread">
+          <div class="bubble caller" id="b0">Hey, we had a big oak come down on our fence tonight from that storm. Part of it is leaning on the house. I need someone out here to look at this as soon as possible.<span class="stamp">11:47 PM</span></div>
+          <div class="typing" id="typing1"><span></span><span></span><span></span></div>
+          <div class="bubble ai" id="b1"><span class="ai-badge">AI replied in 38 seconds</span>Hi, this is Brothers Tree Service. Sorry to hear about that. A tree on your fence and leaning on the structure is something we take seriously. Can you give me the address and let me know the best time to reach you in the morning for a full quote?<span class="stamp">11:47 PM</span></div>
+          <div class="bubble caller" id="b2">Yeah it is 412 Elm Ridge Road, Monroe. I am up early, any time after 7 works.<span class="stamp">11:49 PM</span></div>
+          <div class="typing" id="typing2"><span></span><span></span><span></span></div>
+          <div class="bubble ai" id="b3">Got it, 412 Elm Ridge Road. One of the brothers will call you by 7:30 AM to go over the removal and what we can do about the fence section. You are on the schedule. Stay clear of that leaning section tonight.<span class="stamp">11:49 PM</span></div>
         </div>
         <div class="demo-foot">
-          <div class="resp-time"><span class="dot" aria-hidden="true"></span> First reply in 38 sec, no human touched a phone</div>
+          <div class="resp-time"><span class="dot"></span> First reply in 38 sec, no one touched a phone</div>
           <div class="disclaimer">Simulated exchange for demo purposes</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- HERO IMAGE BAND (A2: mandatory per v2.1) -->
-  <!-- Source: https://cdn.pixabay.com/photo/2016/08/26/12/30/roof-1622168_1280.jpg (CC0, Pixabay) -->
-  <section class="hero-img-band reveal" aria-label="Roofing work photo">
-    <div class="hero-img" role="img" aria-label="Roofer installing shingles on a residential roof in Gaston County"></div>
-    <div class="hero-img-cap">
-      <div class="k">Gaston County, NC</div>
-      <p>A storm rolls through. The crew is already on a job. The phone rings, and this is what happens next.</p>
+  <!-- PROOF BAND: real client photo, treated with scrim + grain + duotone -->
+  <section class="proof reveal" data-section="proof">
+    <div class="proof-img" role="img" aria-label="Brothers Tree Service crane removal job in Monroe, NC"></div>
+    <div class="proof-cap">
+      <div class="k">Their own work, not a stock photo</div>
+      <p>Brothers Tree Service running a crane removal in Monroe, NC. This is who answers when the call goes through.</p>
     </div>
   </section>
 
   <!-- THE MATH -->
-  <!-- Sources: see extended comment in the HTML head block above.
-       NC hail replacement: $12,000 to $22,000+ per oldtimersroofing.com/north-carolina-roof-insurance-changes-2026/
-       National avg: $12,000 per skylightroofing.com/average-insurance-payout-hail/
-       62% unanswered / 85% voicemail abandonment: pcnanswers.com / getaira.io stats cited above -->
-  <section class="math reveal">
+  <!-- SOURCED STAT (live-search verified 2026-07-23, per v2 spec D4.3 — never training data):
+       Emergency tree removal with crane, large tree fallen on/near a structure:
+       Real job examples in eastern NC: 85-ft willow oak $7,500; 70-ft dead pine $4,200;
+       pair of 75-ft oaks $4,250 each; 60-ft sweetgum $3,800.
+       Source: https://dctreecutting.com/blog/crane-tree-removal-cost/
+       Emergency/after-hours premium: 50-100% over standard rates.
+       Source: https://stumpoff.com/emergency-tree-removal-cost/
+       NC large tree removal (100-ft): $1,500-$3,000+, crane often required.
+       Source: https://brownsarborcare.com/cost-to-have-a-tree-cut-down-factors-and-average-costs-in-north-carolina/
+       Anchor stat: $4,500 (conservative midpoint of documented NC crane emergency jobs).
+       Framing: value of ONE missed storm-damage crane-removal call. -->
+  <section class="math reveal" data-section="math">
     <div>
       <div class="stat-label">
-        What one missed hail call costs
+        Value of one missed storm-removal call
         <button class="stat-replay" id="statReplayBtn" type="button" aria-label="Replay the counter">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><path d="M21 3v6h-6"/></svg>
         </button>
       </div>
-      <div class="stat-number" aria-label="12,000 dollars">$12<span class="cents">,000</span></div>
-      <div class="stat-sub">starting point. NC replacements run $12k to $22k and up. Source: NC roofing industry estimates 2026.</div>
+      <div class="stat-number" id="statNum">$4<span class="cents">,500</span></div>
+      <div class="stat-sub">conservative midpoint for a crane emergency removal in NC</div>
     </div>
     <div class="math-copy">
-      <p>That is the average insurance payout for a hail-damaged roof, and in North Carolina full replacements run <strong>$12,000 to $22,000 and higher</strong>. The catch: that window closes fast after a storm. Homeowners call three to five roofers and go with whoever gets back to them first. Studies put <strong>62 percent</strong> of calls to small businesses at unanswered, and <strong>85 percent</strong> of the people who hit voicemail never call back. They dial the next roofer. Two missed calls in a storm week is five figures of claim work on someone else's estimate.</p>
+      <p>Real crane removal jobs in North Carolina run <strong>$3,800 to $7,500 per tree</strong> when a storm brings one down near a structure. Add the after-hours surcharge and the crane mobilization fee and a single Saturday night call can be worth more than a full week of routine trimming jobs. Here is the part that stings: <strong>most of those calls come in at night or on weekends</strong> when you're in the field. The homeowner hits voicemail, scrolls to the next crew on Google, and that crew gets the job and the equipment day. This page shows what happens when you stop losing those calls.</p>
     </div>
   </section>
 
-  <!-- HOW IT WORKS: asymmetric, lead item + two stacked, NOT three equal cards -->
-  <section class="how reveal">
+  <!-- HOW IT WORKS — asymmetric grid, one tall lead item plus supporting items (not 3 equal cards) -->
+  <section class="how reveal" data-section="how-it-works">
     <div class="how-head">
       <h2>How the catch works</h2>
-      <span>Three moving parts. Nothing for the crew to open.</span>
+      <span>Three steps, nothing to install</span>
     </div>
     <div class="how-grid">
       <div class="how-item lead">
         <div>
           <div class="how-num">01</div>
-          <h3>The crew stays on the roof</h3>
-          <p>Nobody climbs down mid-job for a ringing phone. The call rings out like it always does. The storm calls hit at night and on weekends, exactly when you are least able to answer and most likely to lose the job to whoever picks up first.</p>
+          <h3>The call gets missed, on purpose</h3>
+          <p>You and your crew are running chainsaws. Nobody is climbing down to answer a phone at 11 PM after a storm. That is when the calls come in. Emergency tree work does not wait for business hours and neither do the homeowners dialing their way down the Google list.</p>
         </div>
-        <p>Every unanswered call fires a text back in under a minute, while the homeowner still has Gaston Roofing on their screen and has not dialed anyone else yet.</p>
+        <p>Every missed call fires a text back to the homeowner in under a minute. You are still working. The homeowner has your name on their screen and nowhere else to go.</p>
       </div>
       <div class="how-item">
         <div class="how-num">02</div>
         <h3>The AI asks the right questions</h3>
-        <p>It knows roofing and hail claims: gutter granules, dents, adjuster timelines, what carriers need for an inspection to be worth filing. Real qualifying, not a hold message.</p>
+        <p>It knows tree work: what is fallen, what is leaning on a structure, how urgent it is, and what a removal quote needs. Real triage, not a generic autoresponder.</p>
       </div>
       <div class="how-item">
         <div class="how-num">03</div>
-        <h3>You get a booked inspection</h3>
-        <p>Day and time locked in, texted to you and the homeowner before you come off the roof. You show up to a scheduled adjuster walk, not a cold voicemail and a callback that never comes.</p>
+        <h3>You get a morning callback locked in</h3>
+        <p>Address, best call time, and the job scope. Texted to you while you sleep. You wake up to a warm lead, not a cold voicemail you do not recognize.</p>
       </div>
     </div>
   </section>
 
-  <!-- CTA PANEL -->
-  <section class="cta-section reveal" id="cta-panel">
+  <!-- CTA — ONE CTA only, always https://paymegpt.com/p/KqXvRWYi -->
+  <section class="cta-section reveal" data-section="cta" id="ctaPanel">
     <div class="cta-panel">
       <div class="cta-inner">
         <h2>See it running on <em>your</em> number.</h2>
-        <p>Fifteen minutes with Ryan. He will walk through exactly what you saw above, live on Gaston Roofing's line, and give you a straight answer on whether it is worth doing before the next storm rolls through Gaston County.</p>
-        <!-- CTA href: https://paymegpt.com/p/KqXvRWYi -- never change this -->
+        <p>Fifteen minutes with Ryan. He will walk through exactly what you saw above, live on Brothers Tree Service's line, and give you a straight answer on whether it is worth doing for Monroe and Union County.</p>
         <a class="cta-btn" href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">
-          Book the walkthrough
+          Book 15 minutes with Ryan
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg>
         </a>
-        <p class="cta-note">No pitch deck, no obligation. Just a look at what this looks like on your phone.</p>
+        <p class="cta-note">No pitch deck, no pressure. Just a look at what this looks like on your phone.</p>
       </div>
     </div>
   </section>
 
-  <footer>
-    <p class="quietline">"Whoever answers first wins the adjuster meeting. This is how Gaston Roofing answers first, every storm season."</p>
+  <footer data-section="footer">
+    <p class="quietline">Whoever calls back first after a storm gets the crane day. This is how Brothers Tree Service calls back first, every time.</p>
     <div class="foot">
       <div>Put together by Ryan McNally at AID Marketing Agency</div>
-      <!-- footer CTA: same href as above, repeated verbatim per spec -->
-      <div><a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">Book 15 minutes with Ryan</a></div>
+      <div><a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">paymegpt.com/p/KqXvRWYi</a></div>
     </div>
   </footer>
 
 </div><!-- /.wrap -->
 
-<!-- Sticky mobile CTA bar (A1: hidden while main CTA panel is in view) -->
-<div class="mobile-cta-bar" id="mobileCta" aria-label="Mobile booking shortcut">
-  <!-- Same href as the main CTA, per spec -->
-  <a href="https://paymegpt.com/p/KqXvRWYi" target="_blank" rel="noopener">Book 15 minutes with Ryan</a>
-</div>
-
-<!-- AID demo concierge (shared widget 54722168) + 7-second session-guarded auto-open -->
+<!-- AID demo concierge (shared widget 54722168) + one-shot auto-open (A3) -->
 <script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
+
+
 
 
   <script src="script.js"></script>

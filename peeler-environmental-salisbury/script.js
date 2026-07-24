@@ -102,6 +102,7 @@
   var replayBtn = document.getElementById('replayBtn');
   var timers = [];
   var demoRun = 0;
+  var playing = false;
 
   function clearAllTimers() {
     timers.forEach(clearTimeout);
@@ -109,19 +110,28 @@
   }
 
   function resetThread() {
-    clearAllTimers();
-    demoRun++;
     bubbles.forEach(function(b) { b.classList.remove('show'); });
     typings.forEach(function(t) { if(t) t.classList.remove('show'); });
     replayBtn.classList.remove('spin');
   }
 
+  function showThreadFinal() {
+    clearAllTimers();
+    playing = false;
+    bubbles.forEach(function(b) { b.classList.add('show'); });
+    typings.forEach(function(t) { if(t) t.classList.remove('show'); });
+  }
+
   function playThread() {
     if (reducedMotion.matches) {
-      /* static fallback -- show everything immediately */
-      bubbles.forEach(function(b) { b.classList.add('show'); });
+      /* static fallback -- show everything immediately, no transforms */
+      showThreadFinal();
       return;
     }
+    /* Always restarts from the top: the Replay button must reset and replay even mid-play. */
+    clearAllTimers();
+    resetThread();
+    playing = true;
     var run = ++demoRun;
     var seq = [
       [0,   function() { bubbles[0].classList.add('show'); }],
@@ -129,7 +139,7 @@
       [2200,function() { if(typings[0]) typings[0].classList.remove('show'); bubbles[1].classList.add('show'); }],
       [3400,function() { bubbles[2].classList.add('show'); }],
       [4300,function() { if(typings[1]) typings[1].classList.add('show'); }],
-      [5600,function() { if(typings[1]) typings[1].classList.remove('show'); bubbles[3].classList.add('show'); }],
+      [5600,function() { if(typings[1]) typings[1].classList.remove('show'); bubbles[3].classList.add('show'); playing = false; }],
     ];
     seq.forEach(function(step) {
       var t = setTimeout(function() {
@@ -140,27 +150,55 @@
     });
   }
 
-  /* IntersectionObserver: re-arm on every scroll re-entry */
+  /* Autoplay contract: fire ONCE when the demo panel first becomes visible, including
+     when it is already visible at script init. While any part of the panel stays in
+     view the observer never restarts it; re-arm ONLY after the panel has FULLY left
+     the viewport, so scrolling away and back replays it once per re-entry. The Replay
+     button is the only mid-view restart path. */
+  var armed = true;
+
+  function autoplayThread() {
+    if (!armed) return;
+    armed = false;
+    playThread();
+  }
+
+  function elementVisibleNow(el) {
+    var rect = el.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var visible = Math.min(rect.bottom, vh) - Math.max(rect.top, 0);
+    if (visible <= 0 || rect.height <= 0) return false;
+    return (visible / rect.height) >= 0.15 || visible >= vh * 0.15;
+  }
+
   var demoPanel = document.querySelector('.demo-panel');
   if (demoPanel) {
-    var demoIO = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          resetThread();
-          playThread();
-        } else {
-          clearAllTimers();
-        }
-      });
-    }, {threshold: 0.25});
-    demoIO.observe(demoPanel);
+    if ('IntersectionObserver' in window) {
+      var demoIO = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) {
+            /* Fully out of the viewport (threshold 0): stop, reset, re-arm. */
+            clearAllTimers();
+            playing = false;
+            resetThread();
+            armed = true;
+          } else if (entry.intersectionRatio >= 0.15) {
+            autoplayThread();
+          }
+        });
+      }, {threshold: [0, 0.15, 0.2]});
+      demoIO.observe(demoPanel);
+      /* Already visible at script init: threshold crossings may never fire. */
+      if (elementVisibleNow(demoPanel)) autoplayThread();
+    } else {
+      playThread();
+    }
   }
 
   replayBtn.addEventListener('click', function() {
     replayBtn.classList.add('spin');
     setTimeout(function() { replayBtn.classList.remove('spin'); }, 600);
-    resetThread();
-    setTimeout(playThread, 150);
+    playThread();
   });
 
   /* ---- Stat counter ---- */
