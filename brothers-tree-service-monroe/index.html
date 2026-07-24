@@ -9,23 +9,23 @@
   Dossier batch: dossier-11 | Supabase prospect ID: 27323331-99b4-46df-8f50-af46e514a01f
 
   DESIGNER'S NOTE (D2 call, required by the v2 spec):
-  Scraped brotherstreeservicenc.com directly. Findings: the site uses a green/brown
-  palette matching their logo — a stylized tree with green leaves and brown trunk, with
-  green and brown text throughout. CTAs and header branding use consistent deep green
-  with brown as the secondary earthy tone. This is bucket (a) REAL BRAND: CONFORM. The
-  green is a deliberate, on-brand choice for a tree service company — it was chosen with
-  intent and appears in the logo mark. Extracted as dark forest-green canvas with warm
-  amber-brass as the accent to elevate it: the prospect will recognize the green lineage
-  while the page reads as genuinely designed. Palette: #0A100A (near-void forest),
-  #111A0F (deep grove), #1E2D1A (panel), #5A7E3A (forest mid), #C9943A (warm amber/
-  bark-gold), #E8E0D0 (bone/parchment), with amber doing all the accent work.
+  Bucket (a) REAL BRAND: CONFORM. Brothers Tree Service NC's live Squarespace site
+  uses #036E0A as its custom brand green across every service heading (Tree Removal,
+  Tree Trimming, Stump Grinding, Crane & Bucket, HOA), confirmed by their logo (forest
+  tree + green BROTHERS wordmark). The page wears their exact green as the accent on a
+  dark cinematic canvas tuned green-warm to harmonize with it — deliberately NOT AID's
+  own void/brass brand (banned on prospect pages). Palette: #0A0F0A (void),
+  #141B14 (panel), #1C271A (panel-hi), #036E0A (accent = their exact site green),
+  #5FB56A (leaf green for legible text/dots/borders on the dark canvas), #F1F3EC (ink).
 
-  HERO IMAGE (D3/A2 — real client photos from brotherstreeservicenc.com):
-  Using their own published crane service photo, hotlinked from their Squarespace CDN.
-  URL: https://images.squarespace-cdn.com/content/v1/696cf52380b15d2370867013/
-       7b28f1a5-b17f-4f2f-bccf-1e5d7f3652a4/tree-removal-monroe-nc-crane-service.jpg
-  Treated with scrim (gradient overlay), grain (feTurbulence SVG filter), and
-  duotone/color-grade toward the amber accent per D3 spec.
+  HERO/PROOF IMAGE (D3/A2 — on-trade imagery from brotherstreeservicenc.com):
+  Their own Squarespace crane-removal scene — a crane lifting a fallen limb clear of a
+  house, the exact after-hours storm scenario this page sells against. Cropped to drop
+  the source card frame and embedded as a base64 data URI in styles.css so it can never
+  hotlink-break. Treated with scrim, grain (feTurbulence SVG filter), and a multiply
+  duotone toward the brand green (#036E0A) per D3 spec. (Note: the prospect's site
+  images are stylized illustrations, not photographs, so the proof caption/alt are
+  written honestly as such — no "real photo" claim.)
 
   FONT PAIRING: Big Shoulders Display (display/headline) + Spectral (body/editorial).
   Fresh pairing — not reused from Instrument Serif/Archivo (JM Arbor Care),
@@ -459,12 +459,12 @@
     </div>
   </section>
 
-  <!-- PROOF BAND: real client photo, treated with scrim + grain + duotone -->
+  <!-- PROOF BAND: on-trade crane scene from the prospect's own site, treated with scrim + grain + green duotone -->
   <section class="proof reveal" data-section="proof">
-    <div class="proof-img" role="img" aria-label="Brothers Tree Service crane removal job in Monroe, NC"></div>
+    <div class="proof-img" role="img" aria-label="Illustration of a crane-assisted removal lifting a fallen tree limb clear of a house."></div>
     <div class="proof-cap">
-      <div class="k">Their own work, not a stock photo</div>
-      <p>Brothers Tree Service running a crane removal in Monroe, NC. This is who answers when the call goes through.</p>
+      <div class="k">The 11:47 PM storm call</div>
+      <p>A crane removal over the house is exactly the kind of after-hours emergency that goes to voicemail. This makes sure it reaches Brothers Tree Service instead of the next crew on Google.</p>
     </div>
   </section>
 
@@ -601,7 +601,7 @@
       img=document.createElement('img');
       img.src=IMG;img.alt='';img.setAttribute('data-aid-icon','');
       img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;top:0;left:0;pointer-events:none;';
-      b.style.background='#0D0D0F';
+      b.style.background='#0A0F0A';
       b.appendChild(img);
     }
     var c=container();

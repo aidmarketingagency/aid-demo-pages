@@ -50,7 +50,7 @@
     d.setAttribute('data-aid-teaser', '');
     d.setAttribute('role', 'button');
     d.setAttribute('tabindex', '0');
-    d.style.cssText = 'position:fixed;right:20px;bottom:98px;z-index:999998;max-width:250px;background:#141419;color:#F4F4F5;padding:13px 32px 13px 16px;border-radius:16px;border:1px solid rgba(201,148,58,.45);box-shadow:0 12px 28px rgba(0,0,0,.5);font:500 14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;cursor:pointer;opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease;';
+    d.style.cssText = 'position:fixed;right:20px;bottom:98px;z-index:999998;max-width:250px;background:#141B14;color:#F4F4F5;padding:13px 32px 13px 16px;border-radius:16px;border:1px solid rgba(95,181,106,.45);box-shadow:0 12px 28px rgba(0,0,0,.5);font:500 14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;cursor:pointer;opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease;';
     var txt = document.createElement('p');
     txt.style.cssText = 'margin:0;';
     txt.textContent = "Give your customers AN OFFER they can't refuse! 🎤";
@@ -61,7 +61,7 @@
     x.style.cssText = 'position:absolute;top:2px;right:6px;background:transparent;border:none;color:rgba(244,244,245,.55);font-size:18px;line-height:1;cursor:pointer;padding:2px 4px;';
     x.addEventListener('click', function (e) { e.stopPropagation(); hideTeaser(); });
     var arrow = document.createElement('span');
-    arrow.style.cssText = 'position:absolute;bottom:-7px;right:26px;width:12px;height:12px;background:#141419;border-right:1px solid rgba(201,148,58,.45);border-bottom:1px solid rgba(201,148,58,.45);transform:rotate(45deg);';
+    arrow.style.cssText = 'position:absolute;bottom:-7px;right:26px;width:12px;height:12px;background:#141B14;border-right:1px solid rgba(95,181,106,.45);border-bottom:1px solid rgba(95,181,106,.45);transform:rotate(45deg);';
     d.appendChild(txt);
     d.appendChild(x);
     d.appendChild(arrow);
@@ -132,7 +132,6 @@
   }
 
   function playThread(){
-    if (reducedMotion()){ showThreadFinal(); return; }
     if (playing) return;
     playing = true;
     var gen = ++seqGen;
@@ -183,7 +182,7 @@
 
     var rearmIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
-        if (!e.isIntersecting && !reducedMotion()){
+        if (!e.isIntersecting){
           clearTimers(); seqGen++; playing = false;
           resetThread();
           armed = true;
@@ -248,7 +247,6 @@
     }
 
     function runCount(){
-      if (reducedMotion()){ showStatFinal(); return; }
       var runId = ++countRun;
       var dur = 1350;
       var start = null;
@@ -264,8 +262,6 @@
       }
       requestAnimationFrame(step);
     }
-
-    if (reducedMotion()){ showStatFinal(); }
 
     var statIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
@@ -290,8 +286,6 @@
   } else if (statEl){
     if (statReplayBtn) statReplayBtn.style.display = 'none';
   }
-
-  if (reducedMotion()){ showThreadFinal(); }
 
   /* ============================================================
      STICKY MOBILE CTA BAR — hide while real CTA panel is in view

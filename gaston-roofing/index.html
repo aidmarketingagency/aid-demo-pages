@@ -8,21 +8,20 @@
   CTA href: https://paymegpt.com/p/KqXvRWYi
 
   DESIGNER'S NOTE (D2 call, required by the v2 spec):
-  Scraped gastonroofing.com. Findings: a professionally designed site with a dark header,
-  clean white/light body, and a modern layout. The site carries prominent Owens Corning
-  Platinum Preferred co-branding, which has a distinctly golden identity. The logo uses
-  both a dark and light version. No single brand color reads as a chosen brand hue across
-  the CTAs; the palette is primarily dark/neutral with professional restraint. This is
-  bucket (b) GENERIC-BUT-PRESENT: FACELIFT, but the Owens Corning Platinum co-brand
-  gives us a golden accent signal that is authentically theirs. The FACELIFT elevates this:
-  #0A0C0E void, #141618 graphite, #C9A84C brass/gold (honoring the Platinum badge), #F0EDE8
-  bone. The brass honors their Owens Corning Platinum status, differentiating from typical
-  roofing blues while remaining a detail Matthew will recognize as belonging to his brand.
+  Bucket (a) REAL BRAND. Recon recovered Gaston Roofing's actual identity from a Wayback
+  snapshot (live site currently down, Cloudflare 1001 / DNS failure): The7 WordPress theme
+  accent vars (--the7-accent-color / --the7-btn-bg-color / --accent all = #008e9d) plus a
+  teal "Gaston Roofing" logo wordmark. So teal #008E9D is their EXACT brand hue, not a hue
+  we chose. We conform to it: teal accent on a cool dark-cinematic scaffold (void #071113,
+  panel #0F1E20, cool near-white ink #EAF3F4 matching their white button text). The dark
+  scaffold has a faint cool undertone tuned so the teal pops. No AID brand colors appear on
+  a prospect page.
 
-  Hero image: Pixabay CC0, trade-real.
-  URL used: https://cdn.pixabay.com/photo/2016/08/26/12/30/roof-1622168_1280.jpg
-  Applied as background-image with CSS scrim + feTurbulence grain overlay + duotone pass
-  toward the brass accent. Honest alt text provided.
+  Hero image: a REAL completed Gaston Roofing project — 513 Huffstetler Rd, Cramerton NC
+  (Gaston County): pristine standing-seam gray metal roof, white board-and-batten farmhouse.
+  Served from the local asset assets/hero-513-huffstetler-cramerton.jpg (never hotlinked, as
+  the origin is down). Applied as background-image with CSS scrim + feTurbulence grain
+  overlay + duotone pass toward the teal accent. Honest alt text provided.
 
   D4 personality layer: Gastonia and Gaston County experience heavy storm seasons. Hail
   and wind damage drive a surge of insurance-grade roof replacement calls, exactly when
@@ -440,9 +439,10 @@
   </section>
 
   <!-- HERO IMAGE BAND (A2: mandatory per v2.1) -->
-  <!-- Source: https://cdn.pixabay.com/photo/2016/08/26/12/30/roof-1622168_1280.jpg (CC0, Pixabay) -->
-  <section class="hero-img-band reveal" aria-label="Roofing work photo">
-    <div class="hero-img" role="img" aria-label="Roofer installing shingles on a residential roof in Gaston County"></div>
+  <!-- Source: real Gaston Roofing project, 513 Huffstetler Rd, Cramerton NC. Local asset
+       assets/hero-513-huffstetler-cramerton.jpg (origin down, so not hotlinked). -->
+  <section class="hero-img-band reveal" aria-label="Completed Gaston Roofing project photo">
+    <div class="hero-img" role="img" aria-label="A completed Gaston Roofing project in Cramerton, NC: a modern white farmhouse with a new standing-seam gray metal roof"></div>
     <div class="hero-img-cap">
       <div class="k">Gaston County, NC</div>
       <p>A storm rolls through. The crew is already on a job. The phone rings, and this is what happens next.</p>
@@ -583,7 +583,7 @@
       img=document.createElement('img');
       img.src=IMG;img.alt='';img.setAttribute('data-aid-icon','');
       img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;top:0;left:0;pointer-events:none;';
-      b.style.background='#0D0D0F';
+      b.style.background='#071113';
       b.appendChild(img);
     }
     var c=container();

@@ -14,18 +14,16 @@
   Published to PayMeGPT (page created in this build run).
   Dossier: batch dossier-11, prospect ID 3976ff1d-cb98-4e95-8ec8-8ea10ba0b6e1.
 
-  DESIGNER'S NOTE (D2 call, required by v2 spec):
-  Scraped peelerenvironmental.com directly (Drupal 10, Sprowt3 theme). CSS variables:
-  --color-primary: #2F1093 (deep purple), --color-secondary: #A20909 (red),
-  --color-tertiary: #21971F (green), --color-dark: #08022c.
-  The purple and red are stock Sprowt/franchise-builder template defaults, no real logo mark
-  visible in the HTML. The green (#21971F), however, is brand-meaningful: it appears as a
-  tertiary accent and fits the "Environmental" name perfectly. This is bucket (b) FACELIFT:
-  the template-default purple is dropped, the green hue is kept as the lineage signal and
-  elevated into a deeper, richer forest accent (#1A6B18 pushed darker for near-black canvas
-  contrast), paired with a near-void dark field (#060C06 with slight green cast, then
-  #0C160C for panels), grain, and atmosphere. The prospect will recognize the green as
-  "their" environmental brand color, done right for the first time.
+  DESIGNER'S NOTE (D2 call, required by v2 spec) -- REVISED after re-recon:
+  Resolved peelerenvironmental.com's live Drupal theme custom properties (theme_3.css):
+  --color-primary: #47a836 (leaf green), --color-secondary: #ffb100 (amber),
+  --color-tertiary: #0c52a1 (blue), --color-light: #f3f6f6, --color-dark: #383838.
+  Usage confirms green is THE brand accent: .cta-link span / .button use --color-primary-dark,
+  hero gradients + the nav toggle use --color-primary. This is bucket (a) REAL BRAND: we conform
+  to Peeler's actual hex. accent=#47A836 is their exact primary; ink=#F3F6F6 is their own
+  --color-light. void=#0A0F0B and panel=#121A14 are green-tinted deep charcoals (NOT neutral,
+  NOT AID brass) that carry the eco-green identity onto a dark cinematic canvas, with grain and
+  atmosphere. The prospect recognizes the green as "their" environmental brand color.
 
   FONT PAIRING: Newsreader (display) + Syne (body). Heritage + technical precision.
   Not reused from previous builds (Craftsman: Fraunces+Archivo; Peak: Big Shoulders+Libre Franklin;
@@ -600,7 +598,7 @@
       img=document.createElement('img');
       img.src=IMG;img.alt='';img.setAttribute('data-aid-icon','');
       img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;top:0;left:0;pointer-events:none;';
-      b.style.background='#0D0D0F';
+      b.style.background='#0A0F0B';
       b.appendChild(img);
     }
     var c=container();

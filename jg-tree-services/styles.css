@@ -1,19 +1,20 @@
-/* Palette: CONFORM to jgtreeservices.com. #2D2D2D charcoal deepened to the canvas,
-     #BAFB2F lime kept verbatim as the single accent, #419758 logo green as deep support. */
+/* Palette: CONFORM to jgtreeservices.com. Their #2D2D2D charcoal deepened to a green-black
+     canvas, their #BAFB2F lime kept verbatim as the single accent, #419758 logo green as deep
+     support. Target tokens: void #0D0F0A, panel #1A1D13, accent #BAFB2F, ink #EEF3E3. */
   :root{
-    --void:#131510;
-    --panel:#1b1e16;
-    --panel-hi:#23271c;
+    --void:#0D0F0A;
+    --panel:#1A1D13;
+    --panel-hi:#22271a;
     --charcoal:#2d2d2d;
     --lime:#bafb2f;
     --lime-soft:#d6fd85;
     --green-deep:#419758;
     --green-leaf:#65bd7c;
-    --bone:#f2f1e9;
+    --bone:#eef3e3;
     --ash:#a6ab97;
     --ash-dim:#5f6555;
-    --hair:rgba(242,241,233,.1);
-    --hair-soft:rgba(242,241,233,.06);
+    --hair:rgba(238,243,227,.1);
+    --hair-soft:rgba(238,243,227,.06);
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -58,7 +59,8 @@
   header{padding:26px 0 8px}
   .mast{display:flex;align-items:center;justify-content:space-between;gap:14px}
   .brand{display:flex;align-items:center;gap:12px}
-  .treemark{width:36px;height:40px;flex:none;color:var(--lime)}
+  .brandlogo{height:48px;width:auto;flex:none;display:block;filter:drop-shadow(0 3px 8px rgba(0,0,0,.45))}
+  @media (max-width:640px){.brandlogo{height:42px}}
   .brand .name{font-family:'Syne',sans-serif;font-weight:800;font-size:1.12rem;letter-spacing:-.01em;line-height:1}
   .brand .loc{font-size:.66rem;color:var(--ash);text-transform:uppercase;letter-spacing:.16em;margin-top:5px}
   .built-by{font-size:.68rem;color:var(--ash-dim);text-transform:uppercase;letter-spacing:.14em;text-align:right}
@@ -88,25 +90,36 @@
      Lake Norman treeline, one big oak, bucked log rounds. Same scrim + grain treatment
      a photo would get so it reads as part of this page, not a drop-in. */
   .hero-art{
-    position:relative;margin:26px 0 0;max-width:470px;height:200px;
+    position:relative;margin:26px 0 0;max-width:470px;height:300px;
     border-radius:12px;overflow:hidden;border:1px solid var(--hair);
-    background:linear-gradient(180deg,#232a1a 0%,#161a11 78%,#12150e 100%);
+    background:#101309;
     box-shadow:0 30px 60px -26px rgba(0,0,0,.7);
   }
-  .hero-art svg{display:block;width:100%;height:100%}
+  /* Real JG job photo (Recent-Work-1 from their WP media library): crew member roped up a
+     trunk mid-removal with fresh-cut log rounds in the foreground. Desaturated + zoomed to
+     hold the climber and the log pile and push the side clutter (tires/pallet) out of frame.
+     Duotone-toward-lime + scrim + grain layered over via the pseudo-elements below. */
+  .hero-art .hero-photo{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    object-position:50% 20%;transform:scale(1.6);transform-origin:32% 34%;
+    filter:grayscale(.66) contrast(1.05) brightness(.8) sepia(.14);z-index:0;
+  }
   .hero-art::before{
-    content:"";position:absolute;inset:0;
-    background:linear-gradient(170deg, rgba(65,151,88,.2) 0%, rgba(19,21,16,.06) 44%, rgba(19,21,16,.62) 100%);
+    content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+    background:
+      linear-gradient(180deg, rgba(13,15,10,.08) 0%, rgba(13,15,10,.22) 46%, rgba(13,15,10,.82) 100%),
+      linear-gradient(148deg, rgba(65,151,88,.52) 0%, rgba(186,251,47,.34) 58%, rgba(186,251,47,.16) 100%);
   }
   .hero-art::after{
-    content:"";position:absolute;inset:0;opacity:.1;mix-blend-mode:overlay;
+    content:"";position:absolute;inset:0;z-index:2;opacity:.12;mix-blend-mode:overlay;pointer-events:none;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
   .hero-art .cap{
-    position:absolute;left:14px;bottom:10px;z-index:2;
-    font-size:.64rem;color:var(--ash);text-transform:uppercase;letter-spacing:.14em;
+    position:absolute;left:14px;bottom:10px;z-index:3;
+    font-size:.64rem;color:var(--bone);text-transform:uppercase;letter-spacing:.14em;
+    text-shadow:0 1px 6px rgba(0,0,0,.7);
   }
-  @media (max-width:640px){.hero-art{height:170px}}
+  @media (max-width:640px){.hero-art{height:230px}}
 
   .ring-badge{position:relative;width:56px;height:56px;margin:30px 0 0}
   .ring-badge svg.phone{position:relative;z-index:1;width:56px;height:56px;color:var(--lime)}
@@ -326,9 +339,17 @@
     .sticky-cta.hide{transform:translateY(100%)}
   }
 
+  /* Reduced-motion: honor the OS preference by stripping only the SPATIAL and looping motion
+     (slide, scale, bounce, ping, spin) while KEEPING the sequential opacity crossfade, so the
+     SMS demo (which is the product) still visibly plays and the stat still tallies. Removing
+     the old blanket transition:none/opacity kill is what lets the bubbles fade in in sequence
+     instead of snapping to a static, fully populated thread. */
   @media (prefers-reduced-motion: reduce){
-    *,*::before,*::after{animation:none !important;transition:none !important}
-    .reveal{opacity:1;transform:none}
-    .bubble,.typing{transform:none}
     html{scroll-behavior:auto}
+    .pulse,.ring{animation:none!important}
+    .typing span{animation:none!important}          /* stop the bouncing typing dots */
+    .replay-btn.spin svg,.stat-replay.spin svg{animation:none!important;transition:none!important;transform:none!important}
+    .bubble,.bubble.show{transform:none!important}  /* fade in place, no slide/scale */
+    .typing{transform:none!important}
+    .reveal{opacity:1!important;transform:none!important}  /* sections appear, no slide-up */
   }

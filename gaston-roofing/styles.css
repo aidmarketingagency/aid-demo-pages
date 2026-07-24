@@ -1,17 +1,21 @@
 
+  /* Palette: Gaston Roofing LLC brand teal (#008E9D, from their The7 theme accent
+     vars + teal logo wordmark) on a cool dark-cinematic scaffold. Accent is their
+     EXACT brand hue; void/panel carry a faint cool undertone so the teal reads.
+     Variable names kept from the house template; values are the Gaston palette. */
   :root{
-    --void:#0A0C0E;
-    --graphite:#141618;
-    --panel:#1a1c1f;
-    --panel-hi:#202326;
-    --brass:#C9A84C;
-    --brass-deep:#9e7d2d;
-    --brass-soft:#e0c272;
-    --bone:#F0EDE8;
-    --ash:#a89f90;
-    --ash-dim:#6b6358;
-    --hair:rgba(240,237,232,.1);
-    --hair-soft:rgba(240,237,232,.06);
+    --void:#071113;
+    --graphite:#0B1719;
+    --panel:#0F1E20;
+    --panel-hi:#14282B;
+    --brass:#008E9D;
+    --brass-deep:#00707B;
+    --brass-soft:#45C3D1;
+    --bone:#EAF3F4;
+    --ash:#8FA6A8;
+    --ash-dim:#5A7072;
+    --hair:rgba(234,243,244,.1);
+    --hair-soft:rgba(234,243,244,.06);
   }
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
@@ -26,13 +30,13 @@
   }
   h1,h2,h3,.display{font-family:'Unbounded',sans-serif;font-weight:800;letter-spacing:-.02em}
 
-  /* Atmosphere: grain overlay via feTurbulence SVG filter + warm brass haze */
+  /* Atmosphere: grain overlay via feTurbulence SVG filter + cool teal haze */
   body::before{
     content:"";position:fixed;inset:-80px;z-index:0;pointer-events:none;
     background:
-      radial-gradient(900px 640px at 88% -8%, rgba(201,168,76,.13), transparent 62%),
-      radial-gradient(760px 640px at -10% 94%, rgba(158,125,45,.11), transparent 58%),
-      radial-gradient(640px 480px at 46% 38%, rgba(224,194,114,.04), transparent 62%);
+      radial-gradient(900px 640px at 88% -8%, rgba(0,142,157,.13), transparent 62%),
+      radial-gradient(760px 640px at -10% 94%, rgba(0,112,123,.11), transparent 58%),
+      radial-gradient(640px 480px at 46% 38%, rgba(69,195,209,.04), transparent 62%);
   }
   body::after{
     content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.04;
@@ -41,8 +45,8 @@
   @media (max-width:640px){
     body::before{
       background:
-        radial-gradient(560px 420px at 86% -4%, rgba(201,168,76,.09), transparent 62%),
-        radial-gradient(480px 400px at -8% 96%, rgba(158,125,45,.08), transparent 58%);
+        radial-gradient(560px 420px at 86% -4%, rgba(0,142,157,.09), transparent 62%),
+        radial-gradient(480px 400px at -8% 96%, rgba(0,112,123,.08), transparent 58%);
     }
   }
 
@@ -100,14 +104,14 @@
   .eyebrow .pulse{
     width:7px;height:7px;border-radius:50%;
     background:var(--brass);
-    box-shadow:0 0 0 0 rgba(201,168,76,.6);
+    box-shadow:0 0 0 0 rgba(0,142,157,.6);
     animation:pulse 2.2s infinite;
     flex:none;
   }
   @keyframes pulse{
-    0%{box-shadow:0 0 0 0 rgba(201,168,76,.55)}
-    70%{box-shadow:0 0 0 10px rgba(201,168,76,0)}
-    100%{box-shadow:0 0 0 0 rgba(201,168,76,0)}
+    0%{box-shadow:0 0 0 0 rgba(0,142,157,.55)}
+    70%{box-shadow:0 0 0 10px rgba(0,142,157,0)}
+    100%{box-shadow:0 0 0 0 rgba(0,142,157,0)}
   }
 
   h1.headline{
@@ -174,12 +178,12 @@
   .demo-title b{color:var(--bone);font-weight:700}
   .replay-btn{
     display:inline-flex;align-items:center;gap:6px;
-    background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);color:var(--brass-soft);
+    background:rgba(0,142,157,.1);border:1px solid rgba(0,142,157,.3);color:var(--brass-soft);
     font-family:'Spectral',serif;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
     padding:7px 12px;border-radius:20px;cursor:pointer;
     transition:background .18s,transform .18s,border-color .18s;
   }
-  .replay-btn:hover{background:rgba(201,168,76,.2);border-color:rgba(201,168,76,.5);transform:translateY(-1px)}
+  .replay-btn:hover{background:rgba(0,142,157,.2);border-color:rgba(0,142,157,.5);transform:translateY(-1px)}
   .replay-btn:active{transform:translateY(0)}
   .replay-btn svg{width:13px;height:13px;transition:transform .5s ease}
   .replay-btn.spin svg{transform:rotate(360deg)}
@@ -195,12 +199,12 @@
   .bubble.show{opacity:1;transform:none}
   .bubble .stamp{display:block;font-size:.66rem;color:var(--ash-dim);margin-top:6px;letter-spacing:.02em}
   .bubble.caller{
-    background:rgba(240,237,232,.06);border:1px solid var(--hair-soft);
+    background:rgba(234,243,244,.06);border:1px solid var(--hair-soft);
     border-bottom-left-radius:3px;
   }
   .bubble.ai{
-    background:linear-gradient(135deg,rgba(201,168,76,.2),rgba(158,125,45,.2));
-    border:1px solid rgba(201,168,76,.3);
+    background:linear-gradient(135deg,rgba(0,142,157,.2),rgba(0,112,123,.2));
+    border:1px solid rgba(0,142,157,.3);
     margin-left:auto;border-bottom-right-radius:3px;
   }
   .badge{
@@ -213,7 +217,7 @@
     display:flex;align-items:center;gap:4px;width:fit-content;
     margin-left:auto;margin-bottom:10px;
     padding:11px 14px;border-radius:10px;
-    background:rgba(201,168,76,.14);border:1px solid rgba(201,168,76,.25);
+    background:rgba(0,142,157,.14);border:1px solid rgba(0,142,157,.25);
     opacity:0;transition:opacity .25s ease;
   }
   .typing.show{opacity:1}
@@ -234,21 +238,24 @@
   .disclaimer{font-size:.64rem;color:var(--ash-dim);text-align:right;font-family:'Spectral',serif}
 
   /* ---- Hero image band (A2: mandatory) ---- */
-  /* Source: https://cdn.pixabay.com/photo/2016/08/26/12/30/roof-1622168_1280.jpg (CC0, Pixabay) */
+  /* Source: real completed Gaston Roofing project — 513 Huffstetler Rd, Cramerton NC
+     (Gaston County). Standing-seam gray metal roof, white board-and-batten farmhouse.
+     Saved locally at assets/hero-513-huffstetler-cramerton.jpg (origin gastonroofing.com
+     is down / Cloudflare 1001, so we serve the local asset, never a hotlink). */
   .hero-img-band{
     position:relative;margin:52px 0 0;border-radius:16px;overflow:hidden;
     border:1px solid var(--hair);
   }
   .hero-img{
     position:relative;height:300px;
-    background-image:url('https://cdn.pixabay.com/photo/2016/08/26/12/30/roof-1622168_1280.jpg');
-    background-size:cover;background-position:center 54%;
-    filter:saturate(.68) contrast(1.08) brightness(.6);
+    background-image:url('assets/hero-513-huffstetler-cramerton.jpg');
+    background-size:cover;background-position:center 40%;
+    filter:saturate(.86) contrast(1.05) brightness(.75);
   }
-  /* Scrim toward brass accent for duotone feel */
+  /* Scrim toward teal accent for duotone feel */
   .hero-img::before{
     content:"";position:absolute;inset:0;
-    background:linear-gradient(108deg, var(--void) 4%, rgba(10,12,14,.52) 38%, rgba(158,125,45,.32) 100%);
+    background:linear-gradient(108deg, var(--void) 4%, rgba(7,17,19,.52) 38%, rgba(0,112,123,.32) 100%);
   }
   /* Grain overlay on the image itself */
   .hero-img::after{
@@ -285,10 +292,10 @@
   .stat-replay{
     display:inline-flex;align-items:center;justify-content:center;flex:none;
     width:22px;height:22px;border-radius:50%;cursor:pointer;
-    background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.3);color:var(--brass-soft);
+    background:rgba(0,142,157,.1);border:1px solid rgba(0,142,157,.3);color:var(--brass-soft);
     transition:background .18s,border-color .18s,transform .18s;
   }
-  .stat-replay:hover{background:rgba(201,168,76,.22);border-color:rgba(201,168,76,.55);transform:translateY(-1px)}
+  .stat-replay:hover{background:rgba(0,142,157,.22);border-color:rgba(0,142,157,.55);transform:translateY(-1px)}
   .stat-replay svg{width:11px;height:11px;transition:transform .5s ease}
   .stat-replay.spin svg{transform:rotate(360deg)}
   .stat-number{
@@ -310,10 +317,10 @@
   .how-grid{display:grid;grid-template-columns:1.35fr 1fr;grid-template-rows:auto auto;gap:16px}
   .how-item{
     border:1px solid var(--hair);border-radius:12px;padding:26px;
-    background:rgba(240,237,232,.02);
+    background:rgba(234,243,244,.02);
     transition:border-color .2s,background .2s,transform .2s;
   }
-  .how-item:hover{border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.05);transform:translateY(-3px)}
+  .how-item:hover{border-color:rgba(0,142,157,.4);background:rgba(0,142,157,.05);transform:translateY(-3px)}
   .how-item.lead{grid-row:1/3;display:flex;flex-direction:column;justify-content:space-between;min-height:280px}
   .how-num{
     font-family:'Unbounded',sans-serif;font-weight:900;
@@ -340,7 +347,7 @@
   }
   .cta-panel::before{
     content:"";position:absolute;inset:0;pointer-events:none;
-    background:radial-gradient(580px 320px at 88% -12%, rgba(201,168,76,.2), transparent 66%);
+    background:radial-gradient(580px 320px at 88% -12%, rgba(0,142,157,.2), transparent 66%);
   }
   .cta-inner{position:relative;z-index:1;max-width:640px}
   .cta-panel h2{
@@ -360,10 +367,10 @@
     letter-spacing:-.01em;
     color:var(--void);background:linear-gradient(92deg,var(--brass-soft),var(--brass));
     border-radius:10px;padding:17px 30px;text-decoration:none;
-    box-shadow:0 18px 38px -14px rgba(201,168,76,.5);
+    box-shadow:0 18px 38px -14px rgba(0,142,157,.5);
     transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;
   }
-  .cta-btn:hover{transform:translateY(-3px);box-shadow:0 22px 48px -14px rgba(201,168,76,.7);filter:brightness(1.06)}
+  .cta-btn:hover{transform:translateY(-3px);box-shadow:0 22px 48px -14px rgba(0,142,157,.7);filter:brightness(1.06)}
   .cta-btn svg{width:18px;height:18px;transition:transform .2s ease}
   .cta-btn:hover svg{transform:translate(3px,-2px)}
   .cta-note{font-size:.76rem;color:var(--ash-dim);margin-top:16px;font-family:'Spectral',serif}
@@ -399,8 +406,14 @@
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
   .reveal.visible{opacity:1;transform:none}
 
-  /* ---- prefers-reduced-motion ---- */
+  /* ---- prefers-reduced-motion ----
+     Kill only spatial motion (slide / scale / bounce = the vestibular triggers) and
+     keep the sequential opacity crossfade + the count-up, so the demo still visibly
+     plays for reduce-motion users instead of snapping to a static final state. */
   @media (prefers-reduced-motion:reduce){
-    .bubble,.typing,.reveal{transition:none!important;opacity:1!important;transform:none!important}
+    .bubble{transform:none!important}
+    .bubble.show{transform:none!important}
+    .typing span{animation:none!important}          /* stop the bouncing typing dots */
+    .reveal{opacity:1!important;transform:none!important}   /* sections appear, no slide-up */
     .ring,.pulse,.replay-btn.spin svg,.stat-replay.spin svg{animation:none!important}
   }
