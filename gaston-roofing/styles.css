@@ -360,7 +360,6 @@
     font-size:1rem;color:var(--ash);max-width:50ch;margin-bottom:30px;
     font-family:'Spectral',serif;line-height:1.7;
   }
-  /* CTA href: https://paymegpt.com/p/KqXvRWYi -- do not change */
   .cta-btn{
     display:inline-flex;align-items:center;gap:10px;
     font-family:'Unbounded',sans-serif;font-weight:800;font-size:.95rem;
