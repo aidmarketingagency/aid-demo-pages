@@ -161,19 +161,42 @@
     playThread();
   });
 
-  /* Re-arm on every scroll re-entry; reset and cancel in-flight on exit */
+  /* Autoplay contract (v2, matches jg-tree-services/charlotte-pest): fires ONCE when the
+     thread first becomes ~15-18% visible, including already-visible at script init. No
+     restart while any part of the thread stays in view; re-arm ONLY after it has fully
+     left the viewport, so scrolling away and back replays it once per re-entry. */
+  var armed = true;
+
+  function autoplayThread(){
+    if (!armed) return;
+    armed = false;
+    playThread();
+  }
+
   if ('IntersectionObserver' in window){
-    var demoIO = new IntersectionObserver(function(entries){
+    var playIO = new IntersectionObserver(function(entries){
       entries.forEach(function(e){
-        if (e.isIntersecting){
-          playThread();
-        } else if (!reducedMotion()){
+        if (e.isIntersecting && e.intersectionRatio >= 0.15){ autoplayThread(); }
+      });
+    }, { threshold: 0.18 });
+    playIO.observe(thread);
+
+    var rearmIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting && !reducedMotion()){
           clearTimers(); seqGen++; playing = false;
           resetThread();
+          armed = true;
         }
       });
-    }, { threshold: 0.3 });
-    demoIO.observe(thread);
+    }, { threshold: 0 });
+    rearmIO.observe(thread);
+
+    // Already visible at script init: play now instead of waiting on an entry.
+    var initRect = thread.getBoundingClientRect();
+    var initVh = window.innerHeight || document.documentElement.clientHeight;
+    var initVisible = Math.min(initRect.bottom, initVh) - Math.max(initRect.top, 0);
+    if (initRect.height > 0 && initVisible / initRect.height >= 0.15){ autoplayThread(); }
   } else {
     playThread();
   }
