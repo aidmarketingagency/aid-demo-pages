@@ -63,6 +63,12 @@
       });
     }, { threshold: 0.3 });
     demoIO.observe(thread);
+
+    // Already visible at script init: play now instead of waiting on an entry.
+    var initRect = thread.getBoundingClientRect();
+    var initVh = window.innerHeight || document.documentElement.clientHeight;
+    var initVisible = Math.min(initRect.bottom, initVh) - Math.max(initRect.top, 0);
+    if (initRect.height > 0 && initVisible / initRect.height >= 0.15){ playThread(); }
   } else {
     playThread();
   }

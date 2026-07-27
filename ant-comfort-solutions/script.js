@@ -171,7 +171,14 @@
       });
     }, { threshold: 0.25 });
     var demoPanel = document.getElementById('demo-panel');
-    if (demoPanel) demoIO.observe(demoPanel);
+    if (demoPanel) {
+      demoIO.observe(demoPanel);
+      // Already visible at script init: play now instead of waiting on an entry.
+      var initRect = demoPanel.getBoundingClientRect();
+      var initVh = window.innerHeight || document.documentElement.clientHeight;
+      var initVisible = Math.min(initRect.bottom, initVh) - Math.max(initRect.top, 0);
+      if (initRect.height > 0 && initVisible / initRect.height >= 0.15){ playSMS(); }
+    }
   } else {
     showBubbleImmediate();
   }
