@@ -1,5 +1,5 @@
 :root{
-    --void:#0a0f0d;
+    --void:#14161A;
     --panel:#161619;
     --panel-hi:#1e1e22;
     --pine:#3f9469;
@@ -85,7 +85,7 @@
   .hero-scrim{
     position:absolute;inset:0;z-index:-1;pointer-events:none;
     background:
-      linear-gradient(180deg, var(--void) 0%, rgba(10,15,13,.84) 22%, rgba(10,15,13,.92) 55%, var(--void) 100%),
+      linear-gradient(180deg, var(--void) 0%, rgba(20,22,26,.84) 22%, rgba(20,22,26,.92) 55%, var(--void) 100%),
       radial-gradient(760px 520px at 84% 6%, rgba(63,148,105,.16), transparent 60%);
   }
   /* Plain text eyebrow, NOT a pill capsule: uppercase letterspaced label + pulsing live dot,

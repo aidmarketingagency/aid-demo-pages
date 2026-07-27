@@ -1,5 +1,5 @@
 :root{
-    --void:#0E0E12;
+    --void:#14161A;
     --panel:#141420;
     --panel-hi:#1B1B2A;
     --accent:#3A6EBF;
@@ -190,12 +190,12 @@
     background:
       radial-gradient(ellipse 70% 80% at 72% 38%, rgba(58,110,191,.38), transparent 62%),
       radial-gradient(ellipse 50% 60% at 20% 70%, rgba(30,61,122,.42), transparent 58%),
-      radial-gradient(ellipse 90% 40% at 50% 0%, rgba(14,14,18,.8), transparent 70%),
-      linear-gradient(160deg, #0E0E12 0%, #141420 55%, #1B1B2A 100%);
+      radial-gradient(ellipse 90% 40% at 50% 0%, rgba(20,22,26,.8), transparent 70%),
+      linear-gradient(160deg, #14161A 0%, #141420 55%, #1B1B2A 100%);
   }
   .proof-bg::before{
     content:"";position:absolute;inset:0;
-    background:linear-gradient(110deg, rgba(14,14,18,.7) 5%, rgba(14,14,18,.3) 45%, rgba(30,61,122,.25) 100%);
+    background:linear-gradient(110deg, rgba(20,22,26,.7) 5%, rgba(20,22,26,.3) 45%, rgba(30,61,122,.25) 100%);
   }
   /* heavy grain overlay matching body::after treatment */
   .proof-bg::after{

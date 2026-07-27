@@ -1,7 +1,7 @@
 :root{
     /* CONFORM palette: their real red #fe0000 works the page (brightened to --red-hot for dark-canvas
        legibility); the black plaque of their own logo becomes the void canvas. */
-    --void:#0c0b0d;
+    --void:#14161A;
     --panel:#18151a;
     --panel-hi:#201c22;
     --red:#fe0000;

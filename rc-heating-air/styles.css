@@ -1,6 +1,6 @@
 :root{
     /* Midnight Authority fallback (D2 bucket c): no live site, no extractable brand. */
-    --void:#100D0B;
+    --void:#14161A;
     --void-deep:#0A0706;
     --panel:#221E1A;
     --panel-hi:#2B2620;
@@ -78,7 +78,7 @@
   .hero-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 38%;z-index:-2;filter:grayscale(.6) contrast(1.12) brightness(.42) saturate(1.1)}
   .hero-photo-scrim{position:absolute;inset:0;z-index:-1;pointer-events:none;
     background:
-      linear-gradient(180deg, rgba(6,6,7,.72) 0%, rgba(13,13,15,.94) 62%, rgba(13,13,15,.97) 100%),
+      linear-gradient(180deg, rgba(20,22,26,.72) 0%, rgba(20,22,26,.94) 62%, rgba(20,22,26,.97) 100%),
       linear-gradient(120deg, rgba(224,90,43,.38), transparent 62%);
     mix-blend-mode:multiply;
   }
