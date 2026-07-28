@@ -24,7 +24,7 @@
   National hail avg ~$12,000 (skylightroofing.com/average-insurance-payout-hail/).
 
   Widget: shared AID demo concierge (widget ID 54722168).
-  A3 teaser script present. A3b boost script present (tag: data-aid-widget-boost).
+  A3 teaser script present. A3b mobile-boost script present (see closing script tags).
   Sequencer: playIO + rearmIO SEPARATE observers, getBoundingClientRect() check in script.js.
   Published to PayMeGPT via htmlCode parameter. CTA: https://aidmarketingagency.github.io/aid-discovery-call/
 -->
@@ -366,73 +366,8 @@ footer .wrap{display:flex;flex-direction:column;gap:10px}
 
 <script src="script.js"></script>
 
-<!-- AID demo concierge (shared widget 54722168) + one-shot auto-open -->
+<!-- AID demo concierge (shared widget 54722168) + mobile boost + one-shot auto-open -->
 <script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
-<script>
-(function () {
-  var WID = '54722168';
-  var BUBBLE_ID = 'ultra-fast-widget-bubble-' + WID;
-  var OPEN_KEY = 'aidWidgetAutoOpened';
-  var LEGACY_KEY = 'aidDemoWidgetAutoOpened';
-  var TEASER_KEY = 'aidTeaserShown';
-  var TEASER_AT = 10;
-  var OPEN_AT = 20;
-  var hasBoost = !!document.querySelector('script[data-aid-widget-boost]');
-  function bubble() { return document.getElementById(BUBBLE_ID); }
-  function isOpen() {
-    var c = document.getElementById('ultra-fast-widget-container-' + WID);
-    return !!(c && getComputedStyle(c).display !== 'none');
-  }
-  function alreadyOpened() {
-    try { return !!(sessionStorage.getItem(OPEN_KEY) || sessionStorage.getItem(LEGACY_KEY)); } catch (e) { return false; }
-  }
-  var teaser = null;
-  var userTouched = false;
-  document.addEventListener('click', function (e) {
-    if (e.isTrusted && e.target && e.target.closest && e.target.closest('#' + BUBBLE_ID)) { userTouched = true; hideTeaser(); }
-  }, true);
-  function hideTeaser() {
-    if (!teaser) return;
-    var t = teaser; teaser = null; t.style.opacity = '0';
-    setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 450);
-  }
-  function openChat() { hideTeaser(); var b = bubble(); if (b && !isOpen()) b.click(); }
-  function showTeaser() {
-    if (teaser || userTouched || isOpen() || alreadyOpened()) return;
-    try { if (sessionStorage.getItem(TEASER_KEY)) return; sessionStorage.setItem(TEASER_KEY, '1'); } catch (e) {}
-    var d = document.createElement('div');
-    d.setAttribute('data-aid-teaser', '');
-    d.setAttribute('role', 'button');
-    d.setAttribute('tabindex', '0');
-    d.style.cssText = 'position:fixed;right:20px;bottom:98px;z-index:999998;max-width:250px;background:#141419;color:#F4F4F5;padding:13px 32px 13px 16px;border-radius:16px;border:1px solid color-mix(in srgb, var(--accent) 45%, transparent);box-shadow:0 12px 28px rgba(0,0,0,.5);font:500 14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;cursor:pointer;opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease;';
-    var txt = document.createElement('p'); txt.style.cssText = 'margin:0;'; txt.textContent = "Give your customers AN OFFER they can't refuse!";
-    var x = document.createElement('button'); x.type = 'button'; x.setAttribute('aria-label', 'Dismiss'); x.textContent = '×';
-    x.style.cssText = 'position:absolute;top:2px;right:6px;background:transparent;border:none;color:rgba(244,244,245,.55);font-size:18px;line-height:1;cursor:pointer;padding:2px 4px;';
-    x.addEventListener('click', function (e) { e.stopPropagation(); hideTeaser(); });
-    var arrow = document.createElement('span');
-    arrow.style.cssText = 'position:absolute;bottom:-7px;right:26px;width:12px;height:12px;background:#141419;border-right:1px solid color-mix(in srgb, var(--accent) 45%, transparent);border-bottom:1px solid color-mix(in srgb, var(--accent) 45%, transparent);transform:rotate(45deg);';
-    d.appendChild(txt); d.appendChild(x); d.appendChild(arrow);
-    d.addEventListener('click', function (e) { if (e.target === x) return; e.stopPropagation(); openChat(); });
-    d.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openChat(); } });
-    document.body.appendChild(d); teaser = d;
-    requestAnimationFrame(function () { d.style.opacity = '1'; d.style.transform = 'translateY(0)'; });
-  }
-  var ticks = 0;
-  var timer = setInterval(function () {
-    ticks += 1;
-    if (isOpen()) { hideTeaser(); if (hasBoost || ticks >= OPEN_AT) clearInterval(timer); return; }
-    var b = bubble();
-    if (b && ticks >= TEASER_AT) showTeaser();
-    if (!hasBoost && b && ticks >= OPEN_AT) {
-      clearInterval(timer); hideTeaser();
-      var guard = alreadyOpened();
-      try { sessionStorage.setItem(LEGACY_KEY, '1'); } catch (e) {}
-      if (!guard && !userTouched && !isOpen()) b.click();
-    }
-    if (ticks > 60) clearInterval(timer);
-  }, 1000);
-})();
-</script>
 <script data-aid-widget-boost>
 (function(){
   var WID='54722168';
@@ -504,6 +439,71 @@ footer .wrap{display:flex;flex-direction:column;gap:10px}
     },20000);
   }
   setInterval(function(){sync();autoOpen();},400);
+})();
+</script>
+<script>
+(function () {
+  var WID = '54722168';
+  var BUBBLE_ID = 'ultra-fast-widget-bubble-' + WID;
+  var OPEN_KEY = 'aidWidgetAutoOpened';
+  var LEGACY_KEY = 'aidDemoWidgetAutoOpened';
+  var TEASER_KEY = 'aidTeaserShown';
+  var TEASER_AT = 10;
+  var OPEN_AT = 20;
+  var hasBoost = !!document.querySelector('script[data-aid-widget-boost]');
+  function bubble() { return document.getElementById(BUBBLE_ID); }
+  function isOpen() {
+    var c = document.getElementById('ultra-fast-widget-container-' + WID);
+    return !!(c && getComputedStyle(c).display !== 'none');
+  }
+  function alreadyOpened() {
+    try { return !!(sessionStorage.getItem(OPEN_KEY) || sessionStorage.getItem(LEGACY_KEY)); } catch (e) { return false; }
+  }
+  var teaser = null;
+  var userTouched = false;
+  document.addEventListener('click', function (e) {
+    if (e.isTrusted && e.target && e.target.closest && e.target.closest('#' + BUBBLE_ID)) { userTouched = true; hideTeaser(); }
+  }, true);
+  function hideTeaser() {
+    if (!teaser) return;
+    var t = teaser; teaser = null; t.style.opacity = '0';
+    setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 450);
+  }
+  function openChat() { hideTeaser(); var b = bubble(); if (b && !isOpen()) b.click(); }
+  function showTeaser() {
+    if (teaser || userTouched || isOpen() || alreadyOpened()) return;
+    try { if (sessionStorage.getItem(TEASER_KEY)) return; sessionStorage.setItem(TEASER_KEY, '1'); } catch (e) {}
+    var d = document.createElement('div');
+    d.setAttribute('data-aid-teaser', '');
+    d.setAttribute('role', 'button');
+    d.setAttribute('tabindex', '0');
+    d.style.cssText = 'position:fixed;right:20px;bottom:98px;z-index:999998;max-width:250px;background:#141419;color:#F4F4F5;padding:13px 32px 13px 16px;border-radius:16px;border:1px solid color-mix(in srgb, var(--accent) 45%, transparent);box-shadow:0 12px 28px rgba(0,0,0,.5);font:500 14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;cursor:pointer;opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease;';
+    var txt = document.createElement('p'); txt.style.cssText = 'margin:0;'; txt.textContent = "Give your customers AN OFFER they can't refuse!";
+    var x = document.createElement('button'); x.type = 'button'; x.setAttribute('aria-label', 'Dismiss'); x.textContent = '×';
+    x.style.cssText = 'position:absolute;top:2px;right:6px;background:transparent;border:none;color:rgba(244,244,245,.55);font-size:18px;line-height:1;cursor:pointer;padding:2px 4px;';
+    x.addEventListener('click', function (e) { e.stopPropagation(); hideTeaser(); });
+    var arrow = document.createElement('span');
+    arrow.style.cssText = 'position:absolute;bottom:-7px;right:26px;width:12px;height:12px;background:#141419;border-right:1px solid color-mix(in srgb, var(--accent) 45%, transparent);border-bottom:1px solid color-mix(in srgb, var(--accent) 45%, transparent);transform:rotate(45deg);';
+    d.appendChild(txt); d.appendChild(x); d.appendChild(arrow);
+    d.addEventListener('click', function (e) { if (e.target === x) return; e.stopPropagation(); openChat(); });
+    d.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openChat(); } });
+    document.body.appendChild(d); teaser = d;
+    requestAnimationFrame(function () { d.style.opacity = '1'; d.style.transform = 'translateY(0)'; });
+  }
+  var ticks = 0;
+  var timer = setInterval(function () {
+    ticks += 1;
+    if (isOpen()) { hideTeaser(); if (hasBoost || ticks >= OPEN_AT) clearInterval(timer); return; }
+    var b = bubble();
+    if (b && ticks >= TEASER_AT) showTeaser();
+    if (!hasBoost && b && ticks >= OPEN_AT) {
+      clearInterval(timer); hideTeaser();
+      var guard = alreadyOpened();
+      try { sessionStorage.setItem(LEGACY_KEY, '1'); } catch (e) {}
+      if (!guard && !userTouched && !isOpen()) b.click();
+    }
+    if (ticks > 60) clearInterval(timer);
+  }, 1000);
 })();
 </script>
 
