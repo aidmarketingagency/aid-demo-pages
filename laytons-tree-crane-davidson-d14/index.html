@@ -1,39 +1,20 @@
 <!DOCTYPE html>
 <!--
   laytons-tree-crane-davidson-d14.html
-  =====================================
-  Built 2026-07-28 under the contractor-demo-v2 spec (skills/pmgpt-site-builder/templates/contractor-demo-v2.md).
-  Prospect: Layton's Tree & Crane Service, Inc. (Davidson, NC). Tree service: removal, trimming,
-  crane-assisted removals, stump grinding, storm damage, lot clearing, emergency response.
-  Owner: Layton P. Holsinger III (President). Founded 1973. 2 ISA Certified Arborists.
-  Phone: (704) 892-1112. Email: services@laytonstreeandcraneservice.com.
+  Built 2026-07-28 under contractor-demo-v2 spec.
+  Prospect: Layton's Tree & Crane Service, Inc. (Davidson, NC).
+  Owner: Layton P. Holsinger III. Founded 1973. 2 ISA Certified Arborists.
 
-  DESIGNER'S NOTE (D2 call, required by the v2 spec):
-  Scraped laytonstreeandcraneservice.com. Findings: the site carries a blue logo prominently
-  (logo file named "LAYTONS-TREE-CRANE-SERVICE-BLUE"), used as the consistent brand color
-  across the header and CTAs. This is a functional branded site with a real logo mark but the
-  blue reads as a franchise-era default rather than a crafted design decision. Bucket (b)
-  FACELIFT: their blue is the lineage signal. Deep confident blue (#2E6FBF) as the single accent
-  on a near-black midnight canvas. The prospect will recognize "that's my blue" while the
-  execution looks considered for the first time.
+  DESIGNER'S NOTE (D2 bucket b FACELIFT):
+  Scraped laytonstreeandcraneservice.com. Blue logo prominently featured
+  (logo file "LAYTONS-TREE-CRANE-SERVICE-BLUE"). Bucket (b) FACELIFT:
+  deep confident blue #2E6FBF on near-black midnight canvas. Prospect
+  recognizes "that's my blue" while execution looks considered.
 
-  Palette:
-  --void: #0C1018 (deep midnight blue-black)
-  --panel: #141B26 (cool dark navy for panels)
-  --accent: #2E6FBF (deep confident blue)
-  --ink: #EDF2F8 (cool off-white)
-
-  Font pairing: Unbounded (display, wght 600/700) + Libre Franklin (body, wght 400/500).
-  Unbounded reads powerful/industrial -- fits crane/arborist work perfectly.
-
-  D4 personality layer: storm-damage / crane-removal scenario, Lake Norman corridor.
-  Dossier detail: Layton's has operated in the Davidson area for 50+ years with crane capacity
-  for large removals -- but crane work requires at minimum a 2-person crew, so when a storm
-  hits and emergency calls come in while the crew is mid-removal, those calls go unanswered.
-  Stat target: 2500 (crane-assisted removal average for NC, $1,500-$4,500+ range).
-  Pixabay image ID 7030059: arborist/tree climbers (CC0), trade-real, treated with scrim + grain + blue duotone.
-  Source for stats: typical NC large tree removal ranges from $1,500 to $4,500+ for large crane-assisted jobs.
-  (angi.com/costs/tree-removal-cost; homeadvisor.com/cost/lawn-and-garden/remove-a-tree/)
+  Palette: --void:#0C1018 --panel:#141B26 --accent:#2E6FBF --ink:#EDF2F8
+  Fonts: Unbounded (display) + Libre Franklin (body) from Google Fonts
+  Image: Pixabay ID 7030059, CC0, tree climbers/arborists
+  Stats: Angi/HomeAdvisor NC tree removal $1,500-$4,500+ crane-assisted
 -->
 <html lang="en">
 <head>
@@ -44,11 +25,9 @@
 <meta property="og:title" content="Layton's Tree &amp; Crane: your emergency calls, answered"/>
 <meta property="og:description" content="Watch a missed storm-damage call become a booked removal in real time. Built for Layton's Tree &amp; Crane Service, Davidson, NC."/>
 <meta property="og:type" content="website"/>
-
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700&family=Libre+Franklin:wght@400;500;600&display=swap" rel="stylesheet"/>
-
 <style>
 :root{
   --void:#0C1018;
@@ -65,33 +44,15 @@
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  background:var(--void);
-  color:var(--ink);
-  font-family:'Libre Franklin',-apple-system,sans-serif;
-  line-height:1.6;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-  position:relative;
-}
+body{background:var(--void);color:var(--ink);font-family:'Libre Franklin',-apple-system,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;}
 h1,h2,h3,.display{font-family:'Unbounded',sans-serif;font-weight:700;letter-spacing:-.02em}
-
-/* atmosphere: grain + blue glow */
-body::before{
-  content:"";position:fixed;inset:-80px;z-index:0;pointer-events:none;
-  background:
-    radial-gradient(900px 620px at 82% -8%, rgba(46,111,191,.15), transparent 62%),
-    radial-gradient(760px 640px at -14% 94%, rgba(26,74,133,.18), transparent 58%),
-    radial-gradient(640px 500px at 48% 38%, rgba(107,163,224,.04), transparent 60%);
-}
-body::after{
-  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.038;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
+body::before{content:"";position:fixed;inset:-80px;z-index:0;pointer-events:none;
+  background:radial-gradient(900px 620px at 82% -8%, rgba(46,111,191,.15), transparent 62%),
+  radial-gradient(760px 640px at -14% 94%, rgba(26,74,133,.18), transparent 58%),
+  radial-gradient(640px 500px at 48% 38%, rgba(107,163,224,.04), transparent 60%);}
+body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.038;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 .wrap{position:relative;z-index:1;max-width:1180px;margin:0 auto;padding:0 22px}
-
-/* -- Header -- */
 header{padding:26px 0 8px}
 .mast{display:flex;align-items:center;justify-content:space-between;gap:14px}
 .brand{display:flex;align-items:center;gap:13px}
@@ -100,110 +61,53 @@ header{padding:26px 0 8px}
 .brand .loc{font-size:.66rem;color:var(--ash);text-transform:uppercase;letter-spacing:.18em;margin-top:5px;font-family:'Libre Franklin',sans-serif;font-weight:500}
 .built-by{font-size:.66rem;color:var(--ash-dim);text-transform:uppercase;letter-spacing:.14em;text-align:right;font-family:'Libre Franklin',sans-serif}
 .built-by b{color:var(--ash);font-weight:600}
-
-/* -- Hero: broken asymmetric grid -- */
-.hero{
-  display:grid;grid-template-columns:1.2fr .8fr;gap:8px;
-  padding:44px 0 10px;align-items:start;
-}
+.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:8px;padding:44px 0 10px;align-items:start;}
 .hero-copy{padding-top:16px;order:1}
 .demo-panel-wrap{order:2}
-
-/* Plain text eyebrow: no pill, no background, no border, no border-radius */
-.eyebrow{
-  display:inline-flex;align-items:center;gap:9px;
-  font-size:.7rem;text-transform:uppercase;letter-spacing:.22em;color:var(--accent-soft);
-  margin-bottom:22px;font-family:'Libre Franklin',sans-serif;font-weight:600;
-}
-.eyebrow .pulse{
-  width:7px;height:7px;border-radius:50%;background:var(--accent-soft);
-  box-shadow:0 0 0 0 rgba(46,111,191,.6);animation:pulse 2.2s infinite
-}
-@keyframes pulse{
-  0%{box-shadow:0 0 0 0 rgba(46,111,191,.55)}
-  70%{box-shadow:0 0 0 10px rgba(46,111,191,0)}
-  100%{box-shadow:0 0 0 0 rgba(46,111,191,0)}
-}
-
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.7rem;text-transform:uppercase;letter-spacing:.22em;color:var(--accent-soft);margin-bottom:22px;font-family:'Libre Franklin',sans-serif;font-weight:600;}
+.eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--accent-soft);box-shadow:0 0 0 0 rgba(46,111,191,.6);animation:pulse 2.2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(46,111,191,.55)}70%{box-shadow:0 0 0 10px rgba(46,111,191,0)}100%{box-shadow:0 0 0 0 rgba(46,111,191,0)}}
 h1.headline{font-size:clamp(2.2rem,5.8vw,3.9rem);line-height:1.02;color:var(--ink)}
 h1.headline em{font-style:normal;color:var(--accent-soft)}
 .hero p.lede{margin-top:20px;font-size:1.04rem;color:var(--ash);max-width:46ch;line-height:1.65;font-weight:400}
-
 .ring-badge{position:relative;width:54px;height:54px;margin:28px 0 0}
 .ring-badge svg.phone{position:relative;z-index:1;width:54px;height:54px;color:var(--accent-soft)}
 .ring{position:absolute;inset:0;border-radius:50%;border:1.5px solid var(--accent-soft);animation:ringpulse 2.1s ease-out infinite}
 .ring.r2{animation-delay:.7s}
 .ring.r3{animation-delay:1.4s}
 @keyframes ringpulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(2.1);opacity:0}}
-
 .trust-row{display:flex;flex-direction:column;gap:14px;margin-top:48px;max-width:360px}
 .trust-item{display:flex;align-items:flex-start;gap:12px;padding-bottom:14px;border-bottom:1px solid var(--hair-soft)}
 .trust-item:last-child{border-bottom:none}
 .trust-item svg{width:17px;height:17px;color:var(--accent-soft);flex:none;margin-top:2px}
 .trust-item span{font-size:.85rem;color:var(--ash);line-height:1.5}
 .trust-item b{color:var(--ink);font-weight:600}
-
-/* -- SMS demo panel -- */
-.demo-panel{
-  position:relative;margin-top:6px;margin-left:-2px;
-  background:linear-gradient(180deg,var(--panel-hi),var(--panel));
-  border:1px solid var(--hair);border-top:2px solid var(--accent);
-  border-radius:14px;padding:0;box-shadow:0 40px 80px -30px rgba(0,0,0,.8);
-  overflow:hidden;
-}
-.demo-head{
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  padding:16px 18px;border-bottom:1px solid var(--hair-soft);
-}
+.demo-panel{position:relative;margin-top:6px;margin-left:-2px;background:linear-gradient(180deg,var(--panel-hi),var(--panel));border:1px solid var(--hair);border-top:2px solid var(--accent);border-radius:14px;padding:0;box-shadow:0 40px 80px -30px rgba(0,0,0,.8);overflow:hidden;}
+.demo-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 18px;border-bottom:1px solid var(--hair-soft);}
 .demo-title{font-size:.7rem;text-transform:uppercase;letter-spacing:.16em;color:var(--ash);font-family:'Libre Franklin',sans-serif;font-weight:600}
 .demo-title b{color:var(--ink)}
-.replay-btn{
-  display:inline-flex;align-items:center;gap:6px;
-  background:rgba(46,111,191,.12);border:1px solid rgba(46,111,191,.35);color:var(--accent-soft);
-  font-family:'Libre Franklin',sans-serif;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
-  padding:7px 12px;border-radius:20px;cursor:pointer;transition:background .18s,transform .18s,border-color .18s;
-}
+.replay-btn{display:inline-flex;align-items:center;gap:6px;background:rgba(46,111,191,.12);border:1px solid rgba(46,111,191,.35);color:var(--accent-soft);font-family:'Libre Franklin',sans-serif;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:7px 12px;border-radius:20px;cursor:pointer;transition:background .18s,transform .18s,border-color .18s;}
 .replay-btn:hover{background:rgba(46,111,191,.22);border-color:rgba(46,111,191,.6);transform:translateY(-1px)}
 .replay-btn:active{transform:translateY(0)}
 .replay-btn svg{width:13px;height:13px;transition:transform .5s ease}
 .replay-btn.spin svg{transform:rotate(360deg)}
-
 .thread{padding:18px 18px 8px;min-height:310px}
-.bubble{
-  max-width:86%;padding:12px 14px;border-radius:10px;font-size:.9rem;line-height:1.52;
-  margin-bottom:10px;opacity:0;transform:translateY(10px) scale(.98);
-  transition:opacity .4s ease,transform .4s ease;
-}
+.bubble{max-width:86%;padding:12px 14px;border-radius:10px;font-size:.9rem;line-height:1.52;margin-bottom:10px;opacity:0;transform:translateY(10px) scale(.98);transition:opacity .4s ease,transform .4s ease;}
 .bubble.show{opacity:1;transform:none}
 .bubble .stamp{display:block;font-size:.66rem;color:var(--ash-dim);margin-top:6px;letter-spacing:.02em}
 .bubble.caller{background:rgba(237,242,248,.06);border:1px solid var(--hair-soft);border-bottom-left-radius:3px}
 .bubble.ai{background:linear-gradient(135deg,rgba(46,111,191,.24),rgba(26,74,133,.24));border:1px solid rgba(46,111,191,.35);margin-left:auto;border-bottom-right-radius:3px}
-.badge{
-  display:inline-block;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
-  color:var(--void);background:linear-gradient(92deg,var(--accent-soft),var(--accent));
-  border-radius:6px;padding:3px 8px;margin-bottom:7px;font-family:'Libre Franklin',sans-serif;
-}
-.typing{
-  display:flex;align-items:center;gap:4px;width:fit-content;margin-left:auto;margin-bottom:10px;
-  padding:11px 14px;border-radius:10px;background:rgba(46,111,191,.16);border:1px solid rgba(46,111,191,.3);
-  opacity:0;transition:opacity .25s ease;
-}
+.badge{display:inline-block;font-size:.62rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--void);background:linear-gradient(92deg,var(--accent-soft),var(--accent));border-radius:6px;padding:3px 8px;margin-bottom:7px;font-family:'Libre Franklin',sans-serif;}
+.typing{display:flex;align-items:center;gap:4px;width:fit-content;margin-left:auto;margin-bottom:10px;padding:11px 14px;border-radius:10px;background:rgba(46,111,191,.16);border:1px solid rgba(46,111,191,.3);opacity:0;transition:opacity .25s ease;}
 .typing.show{opacity:1}
 .typing span{width:5px;height:5px;border-radius:50%;background:var(--accent-soft);animation:tdot 1.1s infinite ease-in-out}
 .typing span:nth-child(2){animation-delay:.15s}
 .typing span:nth-child(3){animation-delay:.3s}
 @keyframes tdot{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
-
-.demo-foot{
-  display:flex;align-items:center;gap:8px;justify-content:space-between;
-  padding:12px 18px 16px;border-top:1px solid var(--hair-soft);
-}
+.demo-foot{display:flex;align-items:center;gap:8px;justify-content:space-between;padding:12px 18px 16px;border-top:1px solid var(--hair-soft);}
 .resp-time{display:flex;align-items:center;gap:7px;font-size:.7rem;color:var(--ash);font-family:'Libre Franklin',sans-serif}
 .resp-time .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
 .disclaimer{font-size:.64rem;color:var(--ash-dim);text-align:right;font-family:'Libre Franklin',sans-serif}
-
-/* -- Proof band: Pixabay arborist photo, treated -- */
-/* Source: Pixabay ID 7030059, CC0, tree climbers/arborists */
 .proof{position:relative;margin:52px 0 0;border-radius:16px;overflow:hidden;border:1px solid var(--hair)}
 .proof-img{
   position:relative;height:280px;
@@ -211,158 +115,86 @@ h1.headline em{font-style:normal;color:var(--accent-soft)}
   background-size:cover;background-position:center 40%;
   filter:saturate(.65) contrast(1.08) brightness(.6);
 }
-.proof-img::before{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(105deg, var(--void) 4%, rgba(12,16,24,.52) 40%, rgba(26,74,133,.4) 100%);
-}
-.proof-img::after{
-  content:"";position:absolute;inset:0;opacity:.1;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
+.proof-img::before{content:"";position:absolute;inset:0;background:linear-gradient(105deg, var(--void) 4%, rgba(12,16,24,.52) 40%, rgba(26,74,133,.4) 100%);}
+.proof-img::after{content:"";position:absolute;inset:0;opacity:.1;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
 .proof-cap{position:absolute;left:24px;bottom:22px;z-index:2;max-width:58ch}
 .proof-cap .k{font-size:.66rem;text-transform:uppercase;letter-spacing:.18em;color:var(--accent-soft);margin-bottom:6px;font-family:'Libre Franklin',sans-serif;font-weight:600}
 .proof-cap p{font-size:.92rem;color:var(--ink);line-height:1.55}
-
-/* -- The math section -- */
-.math{
-  margin:72px 0 0;display:grid;grid-template-columns:1fr 1.4fr;gap:52px;align-items:center;
-}
+.math{margin:72px 0 0;display:grid;grid-template-columns:1fr 1.4fr;gap:52px;align-items:center;}
 .math-stat{text-align:center;padding:36px;background:var(--panel);border:1px solid var(--hair);border-radius:16px;position:relative}
-.math-stat .big{
-  font-family:'Unbounded',sans-serif;font-weight:700;
-  font-size:clamp(3.4rem,9vw,5.8rem);line-height:1;
-  color:var(--accent-soft);letter-spacing:-.03em;
-}
+.math-stat .big{font-family:'Unbounded',sans-serif;font-weight:700;font-size:clamp(3.4rem,9vw,5.8rem);line-height:1;color:var(--accent-soft);letter-spacing:-.03em;}
 .math-stat .label{font-size:.7rem;text-transform:uppercase;letter-spacing:.2em;color:var(--ash);margin-top:10px;font-family:'Libre Franklin',sans-serif;font-weight:600}
-.stat-replay{
-  position:absolute;top:14px;right:14px;
-  background:transparent;border:1px solid rgba(46,111,191,.3);color:var(--ash-dim);
-  width:28px;height:28px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  transition:border-color .18s,color .18s;
-}
+.stat-replay{position:absolute;top:14px;right:14px;background:transparent;border:1px solid rgba(46,111,191,.3);color:var(--ash-dim);width:28px;height:28px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:border-color .18s,color .18s;}
 .stat-replay:hover{border-color:var(--accent);color:var(--accent-soft)}
 .stat-replay svg{width:13px;height:13px}
 .math-copy h2{font-size:clamp(1.55rem,3.3vw,2.2rem);line-height:1.15;color:var(--ink);margin-bottom:18px}
 .math-copy p{font-size:.94rem;color:var(--ash);line-height:1.7;margin-bottom:0}
 .math-copy .src{font-size:.7rem;color:var(--ash-dim);margin-top:10px}
-
-/* -- How it works: asymmetric grid -- */
 .hiw{margin:72px 0 0}
 .hiw h2{font-size:clamp(1.6rem,3.5vw,2.3rem);color:var(--ink);margin-bottom:40px;max-width:36ch}
 .hiw-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;align-items:start}
-.hiw-lead{
-  background:var(--panel);border:1px solid var(--hair);border-left:3px solid var(--accent);
-  border-radius:12px;padding:32px;
-}
+.hiw-lead{background:var(--panel);border:1px solid var(--hair);border-left:3px solid var(--accent);border-radius:12px;padding:32px;}
 .hiw-lead .num{font-family:'Unbounded',sans-serif;font-weight:700;font-size:2.6rem;color:var(--accent);opacity:.35;line-height:1;margin-bottom:14px}
 .hiw-lead h3{font-family:'Unbounded',sans-serif;font-size:1.12rem;font-weight:700;color:var(--ink);margin-bottom:12px}
 .hiw-lead p{font-size:.9rem;color:var(--ash);line-height:1.65}
 .hiw-stack{display:flex;flex-direction:column;gap:16px}
-.hiw-item{
-  background:var(--panel);border:1px solid var(--hair);border-radius:10px;
-  padding:22px 24px;
-}
+.hiw-item{background:var(--panel);border:1px solid var(--hair);border-radius:10px;padding:22px 24px;}
 .hiw-item .num{font-family:'Unbounded',sans-serif;font-weight:700;font-size:1.5rem;color:var(--accent);opacity:.4;line-height:1;margin-bottom:8px}
 .hiw-item h3{font-family:'Unbounded',sans-serif;font-size:.88rem;font-weight:700;color:var(--ink);margin-bottom:7px}
 .hiw-item p{font-size:.84rem;color:var(--ash);line-height:1.6}
-
-/* -- Reveal animations on scroll -- */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .55s ease,transform .55s ease}
 .reveal.show{opacity:1;transform:none}
-
-/* -- CTA panel -- */
-.cta-section{
-  margin:80px 0 0;
-  background:var(--panel);border:1px solid var(--hair);border-top:2px solid var(--accent);
-  border-radius:16px;padding:52px 48px;text-align:center;
-}
+.cta-section{margin:80px 0 0;background:var(--panel);border:1px solid var(--hair);border-top:2px solid var(--accent);border-radius:16px;padding:52px 48px;text-align:center;}
 .cta-section h2{font-size:clamp(1.7rem,3.8vw,2.6rem);color:var(--ink);margin-bottom:14px;line-height:1.12}
 .cta-section p{font-size:1rem;color:var(--ash);max-width:52ch;margin:0 auto 34px;line-height:1.65}
-.cta-btn{
-  display:inline-block;background:var(--accent);color:var(--ink);
-  font-family:'Unbounded',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.03em;
-  padding:17px 38px;border-radius:10px;text-decoration:none;
-  box-shadow:0 8px 28px rgba(46,111,191,.38);transition:background .18s,transform .18s,box-shadow .18s;
-}
+.cta-btn{display:inline-block;background:var(--accent);color:var(--ink);font-family:'Unbounded',sans-serif;font-weight:700;font-size:.88rem;letter-spacing:.03em;padding:17px 38px;border-radius:10px;text-decoration:none;box-shadow:0 8px 28px rgba(46,111,191,.38);transition:background .18s,transform .18s,box-shadow .18s;}
 .cta-btn:hover{background:var(--accent-soft);transform:translateY(-2px);box-shadow:0 12px 34px rgba(46,111,191,.5)}
 .cta-btn:active{transform:translateY(0)}
-
-/* -- Footer -- */
-footer{
-  margin:64px 0 0;padding:32px 0 40px;border-top:1px solid var(--hair-soft);
-  text-align:center;
-}
+footer{margin:64px 0 0;padding:32px 0 40px;border-top:1px solid var(--hair-soft);text-align:center;}
 footer p{font-size:.78rem;color:var(--ash-dim);line-height:1.8}
 footer a{color:var(--ash);text-decoration:none;border-bottom:1px solid var(--hair)}
 footer a:hover{color:var(--accent-soft)}
-
-/* -- Sticky mobile CTA bar (<= 820px) -- */
-.sticky-cta{
-  display:none;position:fixed;bottom:0;left:0;right:0;z-index:9000;
-  background:var(--accent);padding:14px 20px calc(14px + env(safe-area-inset-bottom,0px));
-  text-align:center;box-shadow:0 -4px 20px rgba(0,0,0,.4);
-}
-.sticky-cta a{
-  color:var(--ink);font-family:'Unbounded',sans-serif;font-weight:700;
-  font-size:.82rem;text-decoration:none;letter-spacing:.03em;
-}
+.sticky-cta{display:none;position:fixed;bottom:0;left:0;right:0;z-index:9000;background:var(--accent);padding:14px 20px calc(14px + env(safe-area-inset-bottom,0px));text-align:center;box-shadow:0 -4px 20px rgba(0,0,0,.4);}
+.sticky-cta a{color:var(--ink);font-family:'Unbounded',sans-serif;font-weight:700;font-size:.82rem;text-decoration:none;letter-spacing:.03em;}
 .sticky-cta.hidden{display:none!important}
-
 @media(max-width:820px){
   .sticky-cta{display:block}
   body{padding-bottom:66px}
-
-  /* Mobile render order: eyebrow + headline + lede, THEN demo panel, THEN trust row */
   .hero{grid-template-columns:1fr;gap:6px;padding-top:28px}
   .hero-copy{order:1;padding-top:0}
   .demo-panel-wrap{order:2}
   .trust-row{margin-top:28px;max-width:100%}
-
   .math{grid-template-columns:1fr;gap:28px}
   .hiw-grid{grid-template-columns:1fr}
   .cta-section{padding:38px 24px}
   .proof-img{height:200px}
   .proof-cap{left:16px;bottom:14px}
 }
-
 @media(max-width:640px){
   h1.headline{font-size:2.1rem}
   .math-stat .big{font-size:3.8rem}
 }
-
-/* prefers-reduced-motion */
 @media(prefers-reduced-motion:reduce){
   .bubble,.typing,.reveal{transform:none!important}
-  /* Do NOT add opacity:1!important or transition:none!important here.
-     That kills the sequential crossfade. The .show class handles it. */
+  /* Do NOT add opacity:1!important or transition:none here. Sequential crossfade still runs. */
   .ring,.pulse,.replay-btn.spin svg{animation:none!important}
 }
 </style>
 </head>
 <body>
 
-<!-- header -->
 <header>
   <div class="wrap">
     <div class="mast">
       <div class="brand">
-        <!-- Tree + crane cable SVG mark: trade-specific, not a generic Heroicon -->
         <svg class="treemark" viewBox="0 0 40 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- crane arm horizontal -->
           <line x1="22" y1="4" x2="38" y2="4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <!-- crane vertical mast -->
           <line x1="38" y1="4" x2="38" y2="20" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <!-- crane cable -->
           <line x1="30" y1="4" x2="30" y2="12" stroke="currentColor" stroke-width="1.5" stroke-dasharray="2 2" stroke-linecap="round"/>
-          <!-- hook -->
           <path d="M28.5 12 Q30 14 31.5 12" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          <!-- tree trunk -->
           <rect x="9" y="24" width="5" height="12" rx="1.5" fill="currentColor" opacity="0.7"/>
-          <!-- tree canopy left -->
           <ellipse cx="8" cy="18" rx="7" ry="9" fill="currentColor" opacity="0.6"/>
-          <!-- tree canopy center -->
           <ellipse cx="12" cy="14" rx="8" ry="10" fill="currentColor"/>
-          <!-- tree canopy right -->
           <ellipse cx="17" cy="18" rx="6" ry="8" fill="currentColor" opacity="0.7"/>
         </svg>
         <div>
@@ -375,7 +207,6 @@ footer a:hover{color:var(--accent-soft)}
   </div>
 </header>
 
-<!-- hero -->
 <section>
   <div class="wrap">
     <div class="hero">
@@ -388,8 +219,8 @@ footer a:hover{color:var(--accent-soft)}
           Storm hits.<br>Crew is on a<br><em>crane removal.</em><br>Phone rings.
         </h1>
         <p class="lede">
-          When a big oak comes down in Lake Norman and your two-person crane crew is already mid-job,
-          that homeowner does not wait. They call the next company on their phone.
+          When a big oak comes down near Lake Norman and your two-person crane crew is already
+          mid-job, that homeowner does not wait. They call the next company on their phone.
         </p>
         <div class="ring-badge" aria-hidden="true">
           <svg class="phone" viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -400,7 +231,6 @@ footer a:hover{color:var(--accent-soft)}
           <div class="ring r2"></div>
           <div class="ring r3"></div>
         </div>
-
         <div class="trust-row">
           <div class="trust-item">
             <svg viewBox="0 0 17 17" fill="none" aria-hidden="true"><path d="M8.5 1l2 5h5l-4 3 1.5 5-4.5-3-4.5 3 1.5-5-4-3h5z" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
@@ -416,7 +246,6 @@ footer a:hover{color:var(--accent-soft)}
           </div>
         </div>
       </div>
-
       <div class="demo-panel-wrap">
         <div class="demo-panel" id="smsThread">
           <div class="demo-head">
@@ -429,10 +258,9 @@ footer a:hover{color:var(--accent-soft)}
               Replay
             </button>
           </div>
-
           <div class="thread" id="thread">
             <div class="bubble caller" id="b1">
-              <span>We had a big oak come down in the storm last night -- it's blocking our driveway and part of the roof. Do you handle emergency removals?</span>
+              <span>We had a big oak come down in the storm last night. It's blocking our driveway and part of the roof. Do you handle emergency removals?</span>
               <span class="stamp">Homeowner &middot; 8:12 AM</span>
             </div>
             <div class="typing" id="t2" aria-hidden="true"><span></span><span></span><span></span></div>
@@ -451,31 +279,32 @@ footer a:hover{color:var(--accent-soft)}
               <span class="stamp">Layton's &middot; AI Response</span>
             </div>
           </div>
-
           <div class="demo-foot">
             <div class="resp-time"><span class="dot"></span> AI answered in under 20 seconds</div>
             <div class="disclaimer">Demo scenario only</div>
           </div>
         </div>
       </div>
-    </div><!-- .hero -->
+    </div>
   </div>
 </section>
 
-<!-- Proof photo band -->
+<!-- Pixabay ID 7030059, CC0 -->
 <section>
   <div class="wrap">
     <div class="proof reveal">
-      <div class="proof-img" role="img" aria-label="Arborists working on tree removal, similar to the kind of crane-assisted work Layton's handles in Davidson, NC"></div>
+      <div class="proof-img" role="img" aria-label="Arborists at work on a tree removal, similar to the crane-assisted jobs Layton's handles in the Davidson, NC area"></div>
       <div class="proof-cap">
         <div class="k">The job that's already booked</div>
-        <p>While Layton's crew handles the current removal, the AI takes the next call. That homeowner gets a confirmed time slot before the crew even comes down from the tree.</p>
+        <p>While Layton's crew handles the current removal, the AI takes the next call. That homeowner gets a confirmed time slot before the crew comes down from the tree.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- The math -->
+<!-- Stats: Angi/HomeAdvisor NC tree removal cost data -->
+<!-- https://www.angi.com/articles/how-much-does-it-cost-to-remove-a-tree.htm -->
+<!-- Crane-assisted large tree removal in NC: $1,500 to $4,500+. Emergency premium 20-40%. -->
 <section>
   <div class="wrap">
     <div class="math reveal">
@@ -486,26 +315,18 @@ footer a:hover{color:var(--accent-soft)}
             <polyline points="10,1 11.5,3.5 8.5,4"/>
           </svg>
         </button>
-        <!-- Source: Angi/HomeAdvisor NC large tree removal cost data; range $1,500-$4,500+ for crane-assisted -->
-        <!-- https://www.angi.com/articles/how-much-does-it-cost-to-remove-a-tree.htm -->
-        <!-- Emergency/storm premium adds 20-40% to the base cost -->
         <div class="big" id="statNum">$0</div>
         <div class="label">Per missed crane job</div>
       </div>
       <div class="math-copy">
-        <h2>A crane-assisted removal in the Lake Norman area typically runs $1,500 to $4,500.</h2>
-        <p>
-          When a storm call comes in and your crew is on another job, that homeowner calls the next
-          tree company within a minute. Emergency removals often carry a 20 to 40 percent premium
-          on top of that range. One unanswered call is not a missed lead. It's a lost job.
-        </p>
+        <h2>A large crane-assisted removal in the Lake Norman area typically runs $1,500 to $4,500.</h2>
+        <p>When a storm call comes in and your crew is on another job, that homeowner calls the next tree company within a minute. Emergency removals often carry a 20 to 40 percent premium on top of that range. One unanswered call is not a missed lead. It's a lost job.</p>
         <p class="src">Source: Angi, HomeAdvisor NC tree removal cost data. Emergency premium: industry standard 20-40%.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- How it works -->
 <section>
   <div class="wrap">
     <div class="hiw reveal">
@@ -514,24 +335,18 @@ footer a:hover{color:var(--accent-soft)}
         <div class="hiw-lead">
           <div class="num">01</div>
           <h3>Call comes in while the crew is on-site</h3>
-          <p>
-            Crane removals are two-person jobs. Your team cannot stop mid-cut to answer the phone.
-            The AI picks up in seconds, gets the homeowner's details, and books them into your
-            schedule while you finish the job in front of you.
-          </p>
+          <p>Crane removals are two-person jobs. Your team cannot stop mid-cut to answer the phone. The AI picks up in seconds, gets the homeowner's details, and books them into your schedule while you finish the job in front of you.</p>
         </div>
         <div class="hiw-stack">
           <div class="hiw-item">
             <div class="num">02</div>
             <h3>Customer gets a real response, fast</h3>
-            <p>Name, location, tree size, urgency. The AI captures it all and sends a confirmation
-            text with Layton's number for anything urgent.</p>
+            <p>Name, location, tree size, urgency. The AI captures it all and sends a confirmation text with Layton's number for anything urgent.</p>
           </div>
           <div class="hiw-item">
             <div class="num">03</div>
             <h3>You see a full schedule by the time you're done</h3>
-            <p>After a storm, every booked slot is a job that did not go to a competitor.
-            No callbacks required. The homeowner already has a time.</p>
+            <p>After a storm, every booked slot is a job that did not go to a competitor. No callbacks required. The homeowner already has a time.</p>
           </div>
         </div>
       </div>
@@ -539,70 +354,48 @@ footer a:hover{color:var(--accent-soft)}
   </div>
 </section>
 
-<!-- CTA -->
 <section>
   <div class="wrap">
     <div class="cta-section reveal">
       <h2>See how it works for Layton's</h2>
-      <p>
-        A 15-minute call is enough to show you exactly how the AI handles a storm-damage inquiry,
-        answers the crane question, and gets the homeowner on your schedule while your crew is mid-job.
-      </p>
-      <a class="cta-btn" href="https://aidmarketingagency.github.io/aid-discovery-call/" rel="noopener">
-        Book 15 minutes with Ryan
-      </a>
+      <p>A 15-minute call is enough to show you exactly how the AI handles a storm-damage inquiry, answers the crane question, and gets the homeowner on your schedule while your crew is mid-job.</p>
+      <a class="cta-btn" href="https://aidmarketingagency.github.io/aid-discovery-call/" rel="noopener">Book 15 minutes with Ryan</a>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
 <footer>
   <div class="wrap">
     <p>Fifty years of Davidson-area tree work, and still the call that matters most is the one that goes unanswered.</p>
-    <p style="margin-top:10px">
-      <a href="https://aidmarketingagency.github.io/aid-discovery-call/" rel="noopener">Book a 15-minute call with Ryan</a>
-    </p>
+    <p style="margin-top:10px"><a href="https://aidmarketingagency.github.io/aid-discovery-call/" rel="noopener">Book a 15-minute call with Ryan</a></p>
     <p style="margin-top:16px;font-size:.72rem;color:var(--ash-dim)">Put together by Ryan McNally at AID Marketing Agency</p>
   </div>
 </footer>
 
-<!-- Sticky mobile CTA -->
 <div class="sticky-cta" id="stickyCta">
   <a href="https://aidmarketingagency.github.io/aid-discovery-call/" rel="noopener">Book 15 minutes with Ryan</a>
 </div>
 
-<!-- Section reveal observer -->
 <script>
 (function(){
-  var els = document.querySelectorAll('.reveal');
-  if(!els.length) return;
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target);}
-    });
+  var els=document.querySelectorAll('.reveal');
+  if(!els.length)return;
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target);}});
   },{threshold:0.12});
   els.forEach(function(el){io.observe(el);});
 })();
 </script>
 
-<!-- SMS sequencer: D4 mandatory pattern (separate playIO + rearmIO + getBoundingClientRect check) -->
 <script>
 (function(){
-  var thread = document.getElementById('smsThread');
-  var replayBtn = document.getElementById('replayBtn');
-  var b1=document.getElementById('b1');
-  var t2=document.getElementById('t2');
-  var b2=document.getElementById('b2');
-  var b3=document.getElementById('b3');
-  var t4=document.getElementById('t4');
-  var b4=document.getElementById('b4');
-  var timers=[];
-  var played=false;
-
-  function clearTimers(){
-    timers.forEach(clearTimeout);
-    timers=[];
-  }
+  var thread=document.getElementById('smsThread');
+  var replayBtn=document.getElementById('replayBtn');
+  var b1=document.getElementById('b1'),t2=document.getElementById('t2');
+  var b2=document.getElementById('b2'),b3=document.getElementById('b3');
+  var t4=document.getElementById('t4'),b4=document.getElementById('b4');
+  var timers=[],played=false;
+  function clearTimers(){timers.forEach(clearTimeout);timers=[];}
   function resetThread(){
     clearTimers();
     [b1,b2,b3,b4].forEach(function(b){b.classList.remove('show');});
@@ -610,8 +403,7 @@ footer a:hover{color:var(--accent-soft)}
     replayBtn.classList.remove('spin');
   }
   function playThread(){
-    resetThread();
-    played=true;
+    resetThread();played=true;
     timers.push(setTimeout(function(){b1.classList.add('show');},400));
     timers.push(setTimeout(function(){t2.classList.add('show');},1400));
     timers.push(setTimeout(function(){t2.classList.remove('show');b2.classList.add('show');},3000));
@@ -619,196 +411,59 @@ footer a:hover{color:var(--accent-soft)}
     timers.push(setTimeout(function(){t4.classList.add('show');},5600));
     timers.push(setTimeout(function(){t4.classList.remove('show');b4.classList.add('show');},7400));
   }
-
   replayBtn.addEventListener('click',function(){
     replayBtn.classList.add('spin');
     setTimeout(function(){replayBtn.classList.remove('spin');},600);
     playThread();
   });
-
-  /* MANDATORY: separate playIO (plays once on entry) and rearmIO (resets on full exit) */
-  var playIO = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting && !played){
-        played=true;
-        playThread();
-      }
-    });
+  var playIO=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting&&!played){played=true;playThread();}});
   },{threshold:0.3});
-
-  var rearmIO = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(!e.isIntersecting){
-        played=false;
-        resetThread();
-      }
-    });
+  var rearmIO=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(!e.isIntersecting){played=false;resetThread();}});
   },{threshold:0});
-
   playIO.observe(thread);
   rearmIO.observe(thread);
-
-  /* MANDATORY: immediate play if already in initial viewport */
-  var rect = thread.getBoundingClientRect();
-  if(rect.top < window.innerHeight && rect.bottom > 0){
-    played=true;
-    playThread();
-  }
+  var rect=thread.getBoundingClientRect();
+  if(rect.top<window.innerHeight&&rect.bottom>0){played=true;playThread();}
 })();
 </script>
 
-<!-- Stat counter with replay -->
 <script>
 (function(){
   var statEl=document.getElementById('statNum');
   var replayBtn=document.getElementById('statReplayBtn');
-  var target=2500;
-  var countRun=0;
-
-  function formatNum(n){
-    return '$'+n.toLocaleString('en-US');
-  }
+  var target=2500,countRun=0;
   function runCount(){
-    var run=++countRun;
-    var start=performance.now();
-    var dur=1800;
+    var run=++countRun,start=performance.now(),dur=1800;
     statEl.textContent='$0';
     function step(now){
       if(run!==countRun)return;
-      var p=Math.min((now-start)/dur,1);
-      var ease=1-Math.pow(1-p,3);
-      statEl.textContent=formatNum(Math.round(ease*target));
+      var p=Math.min((now-start)/dur,1),ease=1-Math.pow(1-p,3);
+      statEl.textContent='$'+Math.round(ease*target).toLocaleString('en-US');
       if(p<1)requestAnimationFrame(step);
     }
     requestAnimationFrame(step);
   }
-
   replayBtn.addEventListener('click',function(){runCount();});
-
   var statIO=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){
-        runCount();
-        statIO.unobserve(e.target);
-      }
-    });
+    entries.forEach(function(e){if(e.isIntersecting){runCount();statIO.unobserve(e.target);}});
   },{threshold:0.4});
   statIO.observe(statEl);
 })();
 </script>
 
-<!-- Sticky CTA: hide when real CTA panel is in view -->
 <script>
 (function(){
-  var bar=document.getElementById('stickyCta');
-  var ctaSection=document.querySelector('.cta-section');
+  var bar=document.getElementById('stickyCta'),ctaSection=document.querySelector('.cta-section');
   if(!ctaSection||!bar)return;
   var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      bar.classList.toggle('hidden',e.isIntersecting);
-    });
+    entries.forEach(function(e){bar.classList.toggle('hidden',e.isIntersecting);});
   },{threshold:0.1});
   io.observe(ctaSection);
 })();
 </script>
 
-<!-- AID demo concierge (shared widget 54722168) + one-shot auto-open -->
-<script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
-<script>
-/* AID teaser bubble + auto-open schedule (v3, 2026-07-22):
-   teaser at 10s next to the closed launcher, auto-open never before 20s.
-   Pages with the data-aid-widget-boost snippet keep that snippet's own 20s
-   opener; this block only auto-opens on pages without it. Clicking the
-   teaser or the launcher opens the chat immediately. */
-(function () {
-  var WID = '54722168';
-  var BUBBLE_ID = 'ultra-fast-widget-bubble-' + WID;
-  var OPEN_KEY = 'aidWidgetAutoOpened';
-  var LEGACY_KEY = 'aidDemoWidgetAutoOpened';
-  var TEASER_KEY = 'aidTeaserShown';
-  var TEASER_AT = 10; /* seconds, the old auto-open moment */
-  var OPEN_AT = 20;   /* seconds, minimum auto-open delay */
-  var hasBoost = !!document.querySelector('script[data-aid-widget-boost]');
-  function bubble() { return document.getElementById(BUBBLE_ID); }
-  function isOpen() {
-    var c = document.getElementById('ultra-fast-widget-container-' + WID);
-    return !!(c && getComputedStyle(c).display !== 'none');
-  }
-  function alreadyOpened() {
-    try { return !!(sessionStorage.getItem(OPEN_KEY) || sessionStorage.getItem(LEGACY_KEY)); } catch (e) { return false; }
-  }
-  var teaser = null;
-  var userTouched = false;
-  document.addEventListener('click', function (e) {
-    if (e.isTrusted && e.target && e.target.closest && e.target.closest('#' + BUBBLE_ID)) {
-      userTouched = true;
-      hideTeaser();
-    }
-  }, true);
-  function hideTeaser() {
-    if (!teaser) return;
-    var t = teaser;
-    teaser = null;
-    t.style.opacity = '0';
-    setTimeout(function () { if (t.parentNode) t.parentNode.removeChild(t); }, 450);
-  }
-  function openChat() {
-    hideTeaser();
-    var b = bubble();
-    if (b && !isOpen()) b.click();
-  }
-  function showTeaser() {
-    if (teaser || userTouched || isOpen() || alreadyOpened()) return;
-    try {
-      if (sessionStorage.getItem(TEASER_KEY)) return;
-      sessionStorage.setItem(TEASER_KEY, '1');
-    } catch (e) {}
-    var d = document.createElement('div');
-    d.setAttribute('data-aid-teaser', '');
-    d.setAttribute('role', 'button');
-    d.setAttribute('tabindex', '0');
-    d.style.cssText = 'position:fixed;right:20px;bottom:98px;z-index:999998;max-width:250px;background:#141419;color:#F4F4F5;padding:13px 32px 13px 16px;border-radius:16px;border:1px solid color-mix(in srgb, var(--accent) 45%, transparent);box-shadow:0 12px 28px rgba(0,0,0,.5);font:500 14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;cursor:pointer;opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease;';
-    var txt = document.createElement('p');
-    txt.style.cssText = 'margin:0;';
-    txt.textContent = "Give your customers AN OFFER they can't refuse! 🎙️";
-    var x = document.createElement('button');
-    x.type = 'button';
-    x.setAttribute('aria-label', 'Dismiss');
-    x.textContent = '×';
-    x.style.cssText = 'position:absolute;top:2px;right:6px;background:transparent;border:none;color:rgba(244,244,245,.55);font-size:18px;line-height:1;cursor:pointer;padding:2px 4px;';
-    x.addEventListener('click', function (e) { e.stopPropagation(); hideTeaser(); });
-    var arrow = document.createElement('span');
-    arrow.style.cssText = 'position:absolute;bottom:-7px;right:26px;width:12px;height:12px;background:#141419;border-right:1px solid color-mix(in srgb, var(--accent) 45%, transparent);border-bottom:1px solid color-mix(in srgb, var(--accent) 45%, transparent);transform:rotate(45deg);';
-    d.appendChild(txt);
-    d.appendChild(x);
-    d.appendChild(arrow);
-    d.addEventListener('click', function (e) { if (e.target === x) return; e.stopPropagation(); openChat(); });
-    d.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openChat(); } });
-    document.body.appendChild(d);
-    teaser = d;
-    requestAnimationFrame(function () { d.style.opacity = '1'; d.style.transform = 'translateY(0)'; });
-  }
-  var ticks = 0;
-  var timer = setInterval(function () {
-    ticks += 1;
-    if (isOpen()) {
-      hideTeaser();
-      if (hasBoost || ticks >= OPEN_AT) clearInterval(timer);
-      return;
-    }
-    var b = bubble();
-    if (b && ticks >= TEASER_AT) showTeaser();
-    if (!hasBoost && b && ticks >= OPEN_AT) {
-      clearInterval(timer);
-      hideTeaser();
-      var guard = alreadyOpened();
-      try { sessionStorage.setItem(LEGACY_KEY, '1'); } catch (e) {}
-      if (!guard && !userTouched && !isOpen()) b.click();
-    }
-    if (ticks > 60) clearInterval(timer);
-  }, 1000);
-})();
-</script>
 <!-- AID demo concierge (shared widget 54722168) + data-aid-widget-boost sheeted desktop fix (7/21) -->
 <script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
 <script data-aid-widget-boost>
@@ -820,8 +475,6 @@ footer a:hover{color:var(--accent-soft)}
   function container(){return document.getElementById('ultra-fast-widget-container-'+WID);}
   function bubble(){return document.getElementById('ultra-fast-widget-bubble-'+WID);}
   function isOpen(){var c=container();return !!(c&&getComputedStyle(c).display!=='none');}
-  /* Mobile: chat opens as a bottom sheet, not a fullscreen takeover. The expand
-     button toggles true fullscreen. Inline !important beats the widget's own CSS. */
   function sheet(c){
     if(!mobile()||full){unsheet(c);return;}
     var s=c.style;
@@ -884,6 +537,66 @@ footer a:hover{color:var(--accent-soft)}
     },20000);
   }
   setInterval(function(){sync();autoOpen();},400);
+})();
+</script>
+
+<!-- AID demo concierge teaser + session-guarded auto-open (v3, 2026-07-22) -->
+<script>
+(function(){
+  var WID='54722168';
+  var BUBBLE_ID='ultra-fast-widget-bubble-'+WID;
+  var OPEN_KEY='aidWidgetAutoOpened';
+  var LEGACY_KEY='aidDemoWidgetAutoOpened';
+  var TEASER_KEY='aidTeaserShown';
+  var TEASER_AT=10;
+  var OPEN_AT=20;
+  var hasBoost=!!document.querySelector('script[data-aid-widget-boost]');
+  function bubble(){return document.getElementById(BUBBLE_ID);}
+  function isOpen(){var c=document.getElementById('ultra-fast-widget-container-'+WID);return !!(c&&getComputedStyle(c).display!=='none');}
+  function alreadyOpened(){try{return !!(sessionStorage.getItem(OPEN_KEY)||sessionStorage.getItem(LEGACY_KEY));}catch(e){return false;}}
+  var teaser=null,userTouched=false;
+  document.addEventListener('click',function(e){
+    if(e.isTrusted&&e.target&&e.target.closest&&e.target.closest('#'+BUBBLE_ID)){userTouched=true;hideTeaser();}
+  },true);
+  function hideTeaser(){
+    if(!teaser)return;
+    var t=teaser;teaser=null;t.style.opacity='0';
+    setTimeout(function(){if(t.parentNode)t.parentNode.removeChild(t);},450);
+  }
+  function openChat(){hideTeaser();var b=bubble();if(b&&!isOpen())b.click();}
+  function showTeaser(){
+    if(teaser||userTouched||isOpen()||alreadyOpened())return;
+    try{if(sessionStorage.getItem(TEASER_KEY))return;sessionStorage.setItem(TEASER_KEY,'1');}catch(e){}
+    var d=document.createElement('div');
+    d.setAttribute('data-aid-teaser','');d.setAttribute('role','button');d.setAttribute('tabindex','0');
+    d.style.cssText='position:fixed;right:20px;bottom:98px;z-index:999998;max-width:250px;background:#141419;color:#F4F4F5;padding:13px 32px 13px 16px;border-radius:16px;border:1px solid color-mix(in srgb, var(--accent) 45%, transparent);box-shadow:0 12px 28px rgba(0,0,0,.5);font:500 14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;cursor:pointer;opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease;';
+    var txt=document.createElement('p');txt.style.cssText='margin:0;';
+    txt.textContent="Give your customers AN OFFER they can't refuse! 🎙️";
+    var x=document.createElement('button');x.type='button';x.setAttribute('aria-label','Dismiss');x.textContent='×';
+    x.style.cssText='position:absolute;top:2px;right:6px;background:transparent;border:none;color:rgba(244,244,245,.55);font-size:18px;line-height:1;cursor:pointer;padding:2px 4px;';
+    x.addEventListener('click',function(e){e.stopPropagation();hideTeaser();});
+    var arrow=document.createElement('span');
+    arrow.style.cssText='position:absolute;bottom:-7px;right:26px;width:12px;height:12px;background:#141419;border-right:1px solid color-mix(in srgb, var(--accent) 45%, transparent);border-bottom:1px solid color-mix(in srgb, var(--accent) 45%, transparent);transform:rotate(45deg);';
+    d.appendChild(txt);d.appendChild(x);d.appendChild(arrow);
+    d.addEventListener('click',function(e){if(e.target===x)return;e.stopPropagation();openChat();});
+    d.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openChat();}});
+    document.body.appendChild(d);teaser=d;
+    requestAnimationFrame(function(){d.style.opacity='1';d.style.transform='translateY(0)';});
+  }
+  var ticks=0;
+  var timer=setInterval(function(){
+    ticks+=1;
+    if(isOpen()){hideTeaser();if(hasBoost||ticks>=OPEN_AT)clearInterval(timer);return;}
+    var b=bubble();
+    if(b&&ticks>=TEASER_AT)showTeaser();
+    if(!hasBoost&&b&&ticks>=OPEN_AT){
+      clearInterval(timer);hideTeaser();
+      var guard=alreadyOpened();
+      try{sessionStorage.setItem(LEGACY_KEY,'1');}catch(e){}
+      if(!guard&&!userTouched&&!isOpen())b.click();
+    }
+    if(ticks>60)clearInterval(timer);
+  },1000);
 })();
 </script>
 
