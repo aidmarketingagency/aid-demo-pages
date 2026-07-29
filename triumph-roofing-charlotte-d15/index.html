@@ -1,0 +1,581 @@
+<!--
+  triumph-roofing-charlotte-d15.html
+  =====================================
+  Built 2026-07-29 under contractor-demo-v2 spec (v2.1 amendments A1-A4 included).
+  Prospect: Triumph Roofing LLC, Charlotte, NC. Owner: Yuriy Kobzyev.
+  Phone: (704) 559-9667. Score: 8 (HOT). Trade: roofing, storm damage restoration.
+
+  DESIGNER'S NOTE (D2 call, required by the v2 spec):
+  Scraped triumphroofingcharlotte.com directly. The wpr-usedcss inline block returned a
+  clear and deliberate brand color: #f83839 / #f43939 / #fb3e3f (a vivid signal red)
+  applied consistently across every CTA hover state, primary navigation link color, and
+  sub-menu active color. The dominant canvas is a near-black navy (#091217 / #141422).
+  This is bucket (a) REAL BRAND: CONFORM -- the red is specific, saturated, and
+  consistent across every interactive element; it is not a stock default or an incidental
+  color. The page is built on their exact red (#F43939) as the single accent against a
+  near-black canvas (#0C1014). Bucket (c) is explicitly ruled out: a real brand exists.
+
+  Type pairing: Instrument Serif (display) + Archivo (body). Fresh pairing per the spec's
+  "never reuse back-to-back" rule: NOT Big Shoulders + Libre Franklin (Peak Roofing), NOT
+  Fraunces + Archivo (Craftsman Pilot), NOT Bricolage + Plus Jakarta (D14 HVAC), NOT
+  Fraunces + Newsreader or Syne + Spectral (prior D14 builds).
+
+  Hero image: Pixabay CC0 roofing tile photo, base64 embedded (~216KB), single
+  self-contained file under 450KB total. Treated with red-tinted dark scrim + grain.
+  Pixabay source: https://pixabay.com/photos/ (CC0, no attribution required per TOS)
+
+  D4 personality layer: Yuriy's 12-person crew completing full replacements in a single
+  day; 48-hour storm window after a Charlotte hail event. Ballantyne neighborhood named
+  in SMS scenario. Stat target 15000 (midpoint of $12k-$22k NC storm replacement range).
+
+  Industry stats (D4.3) -- source URLs:
+  - triumphroofingcharlotte.com/roof-replacement-costs-charlotte-2026/
+  - charlotteaceroofing.com/how-much-does-a-new-roof-cost-in-charlotte-nc-2026-pricing-guide/
+  - oldtimersroofing.com/north-carolina-roof-insurance-changes-2026/
+  - pcnanswers.com/missed-call-revenue-study/
+  - getaira.io/blog/missed-business-calls-statistics
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- BASE:START (managed by Coding Agent — do not edit) -->
+<base href="/aid-demo-pages/triumph-roofing-charlotte-d15/">
+<!-- BASE:END -->
+
+<meta charset="utf-8"/>
+<!-- pmgpt-demo-template:contractor-demo-v2 -->
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+
+
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet"/>
+
+
+
+<!-- SEO Meta Tags -->
+<title>Triumph Roofing LLC: your phone, answered | AID</title>
+<meta name="description" content="A working preview of Triumph Roofing catching storm-damage calls that used to go to voicemail. Built by AID Marketing Agency for Charlotte roofers." />
+<meta property="og:title" content="Triumph Roofing LLC: your phone, answered | AID" />
+<meta property="og:description" content="A working preview of Triumph Roofing catching storm-damage calls that used to go to voicemail. Built by AID Marketing Agency for Charlotte roofers." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Triumph Roofing LLC: your phone, answered | AID" />
+<meta name="twitter:description" content="A working preview of Triumph Roofing catching storm-damage calls that used to go to voicemail. Built by AID Marketing Agency for Charlotte roofers." />
+<!-- End SEO Meta Tags -->
+<script data-lp-token-hydrate>
+(function(){try{
+  var slug="lp-ms5knn5x-f4jop";
+  var SK='lp_access_'+slug;
+  var map={access_token:'lp_pw_',allowlist_access_token:'lp_al_',pin_access_token:'lp_pin_',paywall_access_token:'lp_paid_'};
+  var u=new URL(location.href);var found=null;var changed=false;
+  Object.keys(map).forEach(function(p){var v=u.searchParams.get(p);if(v){found=v;try{localStorage.setItem(map[p]+slug,v);}catch(e){}u.searchParams.delete(p);changed=true;}});
+  if(found){try{sessionStorage.setItem(SK,found);}catch(e){}}
+  else{try{if(!sessionStorage.getItem(SK)){var t=localStorage.getItem('lp_pw_'+slug)||localStorage.getItem('lp_al_'+slug)||localStorage.getItem('lp_pin_'+slug)||localStorage.getItem('lp_paid_'+slug);if(t)sessionStorage.setItem(SK,t);}}catch(e){}}
+  if(changed){try{history.replaceState(null,'',u.toString());}catch(e){}}
+  function getTok(){try{return sessionStorage.getItem(SK)||localStorage.getItem('lp_pw_'+slug)||localStorage.getItem('lp_al_'+slug)||localStorage.getItem('lp_pin_'+slug)||localStorage.getItem('lp_paid_'+slug);}catch(e){return null;}}
+  function needsToken(url,method){if(!url)return false;var s=String(url);var m=(method||'GET').toUpperCase();var isSheetWrite=(m==='POST'||m==='PATCH'||m==='PUT'||m==='DELETE')&&/\/sheet-rows(\/|$|\?)/.test(s);var isSheetRead=/\/sheet-data(\/|$|\?)/.test(s);var isLlm=/\/api\/landing-pages\/public\/[^/]+\/(llm|llm-config)(\/|$|\?)/.test(s);return isSheetWrite||isSheetRead||isLlm;}
+  if(window.fetch){var _f=window.fetch;window.fetch=function(input,init){try{var url=typeof input==='string'?input:(input&&input.url)||'';var method=(init&&init.method)||(input&&input.method)||'GET';if(needsToken(url,method)){var tok=getTok();if(tok){init=init||{};var h=new Headers(init.headers||(typeof input!=='string'?input.headers:undefined)||{});if(!h.has('X-Landing-Page-Token'))h.set('X-Landing-Page-Token',tok);init.headers=h;}}}catch(e){}return _f.call(this,input,init);};}
+  if(window.XMLHttpRequest){var _o=XMLHttpRequest.prototype.open;var _s=XMLHttpRequest.prototype.send;XMLHttpRequest.prototype.open=function(m,u){this.__lpM=m;this.__lpU=u;return _o.apply(this,arguments);};XMLHttpRequest.prototype.send=function(){try{if(needsToken(this.__lpU,this.__lpM)){var tok=getTok();if(tok)this.setRequestHeader('X-Landing-Page-Token',tok);}}catch(e){}return _s.apply(this,arguments);};}
+}catch(e){}})();
+</script>
+
+<script data-field-replace>
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var fields={};
+  var paramMap={
+    'first_name':'firstName','last_name':'lastName','full_name':'fullName',
+    'email':'email','phone':'phone','company':'company',
+    'city':'city','state':'state','country':'country'
+  };
+  var skipTags={'SCRIPT':1,'STYLE':1,'NOSCRIPT':1,'TEXTAREA':1,'CODE':1,'PRE':1};
+  var hasUrlFields=false;
+  for(var p in paramMap){
+    var v=params.get(p);
+    if(v){fields[paramMap[p]]=v;hasUrlFields=true;}
+  }
+  var contactId=params.get('contact_id');
+  function esc(s){
+    if(!s)return s;
+    var d=document.createElement('div');
+    d.appendChild(document.createTextNode(s));
+    return d.innerHTML;
+  }
+  function doReplace(data){
+    var r={};
+    r['{{full_name}}']=esc(((data.firstName||'')+' '+(data.lastName||'')).trim()||((data.fullName||data.name)||''));
+    r['{{first_name}}']=esc(data.firstName||(data.name?data.name.split(' ')[0]:'')||'');
+    r['{{last_name}}']=esc(data.lastName||(data.name&&data.name.indexOf(' ')>-1?data.name.substring(data.name.indexOf(' ')+1):'')||'');
+    r['{{email}}']=esc(data.email||'');
+    r['{{phone}}']=esc(data.phone||'');
+    r['{{company}}']=esc(data.company||'');
+    r['{{city}}']=esc(data.city||'');
+    r['{{state}}']=esc(data.state||'');
+    r['{{country}}']=esc(data.country||'');
+    r['{{date}}']=new Date().toLocaleDateString();
+    r['{{time}}']=new Date().toLocaleTimeString();
+    r['{{location}}']=[data.city,data.state,data.country].filter(Boolean).join(', ');
+    r['{{tracking_id}}']=esc(data.trackingId||'');
+    r['{{lastClickedProduct}}']=esc(data.lastClickedProduct||'');
+    r['{{lastProductClickDate}}']=esc(data.lastProductClickDate||'');
+    r['{{lastClickedProductPrice}}']=esc(data.lastClickedProductPrice||'');
+    r['{{lastClickedProductURL}}']=esc(data.lastClickedProductURL||'');
+    r['{{productsClickedCount}}']=esc(data.productsClickedCount||'0');
+    r['{{ip_address}}']=esc(data.ipAddress||'');
+    r['{{ip}}']=esc(data.ipAddress||'');
+    if(data.customFields){
+      for(var k in data.customFields){
+        r['{{'+k+'}}']=esc(String(data.customFields[k]||''));
+      }
+    }
+    params.forEach(function(v,k){
+      if(!paramMap[k]&&k!=='contact_id'&&k!=='page_id'&&k.indexOf('utm_')!==0){
+        r['{{'+k+'}}']=esc(v);
+      }
+    });
+    var hasValues=false;
+    for(var key in r){if(r[key]){hasValues=true;break;}}
+    if(!hasValues)return;
+    var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+      acceptNode:function(n){
+        var p=n.parentNode;
+        if(p&&skipTags[p.nodeName])return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var node;
+    while(node=walker.nextNode()){
+      var txt=node.nodeValue;
+      if(txt&&txt.indexOf('{{')>-1){
+        var changed=txt;
+        for(var ph in r){
+          if(r[ph]&&changed.indexOf(ph)>-1){
+            changed=changed.split(ph).join(r[ph]);
+          }
+        }
+        if(changed!==txt)node.nodeValue=changed;
+      }
+    }
+    var attrs=['value','placeholder','content','alt','title'];
+    attrs.forEach(function(attr){
+      var els=document.querySelectorAll('['+attr+'*="{{"]');
+      for(var i=0;i<els.length;i++){
+        var tag=els[i].tagName;
+        if(skipTags[tag])continue;
+        var val=els[i].getAttribute(attr);
+        if(val){
+          var nv=val;
+          for(var ph in r){
+            if(r[ph]&&nv.indexOf(ph)>-1){
+              nv=nv.split(ph).join(r[ph]);
+            }
+          }
+          if(nv!==val)els[i].setAttribute(attr,nv);
+        }
+      }
+    });
+  }
+  function run(){
+    if(contactId){
+      var xhr=new XMLHttpRequest();
+      xhr.open('GET','https://paymegpt.com/api/landing/context/'+encodeURIComponent(contactId)+'?page_id=5794');
+      xhr.onload=function(){
+        if(xhr.status===200){
+          try{
+            var resp=JSON.parse(xhr.responseText);
+            if(resp.success&&resp.contact){
+              var merged=resp.contact;
+              for(var k in fields){merged[k]=fields[k];}
+              doReplace(merged);
+              return;
+            }
+          }catch(e){}
+        }
+        if(hasUrlFields)doReplace(fields);
+      };
+      xhr.onerror=function(){if(hasUrlFields)doReplace(fields);};
+      xhr.send();
+    }else if(hasUrlFields){
+      doReplace(fields);
+    }
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}
+  else{run();}
+})();
+</script>
+<script data-payment>
+(function(){
+  var slug='CZmhjPPQ';
+  var apiBase='https://paymegpt.com';
+  var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
+  function findEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  function findPhone(){var ids=['phone','phoneNumber','phone-number','tel','telephone','mobile','mobileNumber','cell','contact-phone','buyer-phone'];for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.trim())return el.value.trim();}var inputs=document.querySelectorAll('input[type="tel"],input[name*="phone"],input[name*="tel"],input[name*="mobile"],input[placeholder*="phone"],input[placeholder*="Phone"]');for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.trim())return inputs[j].value.trim();}return '';}
+  var __realProcessPayment=function(a,b,c,d,e){
+    var amountCents,email,productName,productDescription,customerName,quantity;
+    if(a&&typeof a==='object'){
+      amountCents=a.amountCents;email=a.email;productName=a.productName;
+      productDescription=a.productDescription||'';customerName=a.name||'';quantity=a.quantity||1;
+    }else{
+      amountCents=typeof a==='number'?a:0;productName=typeof b==='string'?b:'';
+      productDescription=typeof c==='string'?c:'';email='';customerName='';quantity=1;
+    }
+    if(!email)email=findEmail();
+    if(!customerName)customerName=findName();
+    var phone=findPhone();
+    if(!productName){alert('Product name is required.');return Promise.reject('no_product_name');}
+    if(!amountCents||amountCents<100){alert('Amount must be at least $1.00');return Promise.reject('invalid_amount');}
+    if(!email){alert('Please enter your email address.');return Promise.reject('no_email');}
+    var successBase=window.location.href.split('?')[0];
+    var __pLoc=(document.documentElement.lang||navigator.language||'en');
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/payment/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,name:customerName,phone:phone||'',amountCents:amountCents,productName:productName,productDescription:productDescription,quantity:quantity,locale:__pLoc,successUrl:successBase+'?payment=success&product='+encodeURIComponent(productName)+'&session_id={CHECKOUT_SESSION_ID}',cancelUrl:successBase+'?payment=cancelled'})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process payment');throw new Error(d.error);}
+    });
+  };
+  Object.defineProperty(window,'__processPayment',{value:__realProcessPayment,writable:false,configurable:false});
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('payment')==='success'){
+      var sidP=urlParams.get('session_id');
+      if(sidP){try{fetch(apiBase+'/api/landing-pages/public/'+slug+'/checkout/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:sidP})}).catch(function(){});}catch(e){}}
+      var pName=urlParams.get('product')||'your item';
+      var overlay=document.createElement('div');overlay.id='payment-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      var subTxt=successSubtext||('Thank you for purchasing '+pName+'.');
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Payment Successful!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">'+esc(subTxt)+'</p><button id="lp-pay-success-btn" style="padding:12px 32px;font-size:16px;font-weight:600;background:'+successBtnColor+';color:white;border:none;border-radius:8px;cursor:pointer;">'+esc(successBtnLabel)+'</button></div>';
+      document.body.appendChild(overlay);
+      var pBtn=document.getElementById('lp-pay-success-btn');
+      if(pBtn){pBtn.addEventListener('click',function(){if(successRedirect){window.location.href=successRedirect;}else{overlay.remove();window.history.replaceState({},'',window.location.pathname);}});}
+    }
+  });
+})();
+</script>
+<script data-cart>
+(function(){
+  var slug='CZmhjPPQ';
+  var apiBase='https://paymegpt.com';
+  var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
+  function findCartEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findCartName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  function findCartPhone(){var ids=['phone','phoneNumber','phone-number','tel','telephone','mobile','mobileNumber','cell','contact-phone','buyer-phone'];for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.trim())return el.value.trim();}var inputs=document.querySelectorAll('input[type="tel"],input[name*="phone"],input[name*="tel"],input[name*="mobile"],input[placeholder*="phone"],input[placeholder*="Phone"]');for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.trim())return inputs[j].value.trim();}return '';}
+  var __realCart=function(arg){
+    var items, email='', customerName='', successUrl, cancelUrl, currency;
+    if(Array.isArray(arg)){items=arg;}
+    else if(arg&&typeof arg==='object'){
+      items=arg.items;email=arg.email||'';customerName=arg.name||arg.customerName||'';
+      successUrl=arg.successUrl;cancelUrl=arg.cancelUrl;currency=arg.currency;
+    }
+    if(!Array.isArray(items)||items.length===0){alert('No items in cart.');return Promise.reject('no_items');}
+    var cleanItems=[];var totalCents=0;
+    for(var i=0;i<items.length;i++){
+      var it=items[i];if(!it||typeof it!=='object'){alert('Invalid item at position '+i);return Promise.reject('bad_item');}
+      var nm=typeof it.name==='string'?it.name.trim():'';
+      if(!nm){alert('Item '+(i+1)+' is missing a name.');return Promise.reject('no_name');}
+      var amt=typeof it.amountCents==='number'?it.amountCents:(typeof it.amount==='number'?Math.round(it.amount*100):NaN);
+      if(!isFinite(amt)||amt<1){alert('Item "'+nm+'" needs a valid amount in cents.');return Promise.reject('bad_amount');}
+      var qty=(typeof it.quantity==='number'&&it.quantity>0)?Math.floor(it.quantity):1;
+      cleanItems.push({name:nm,description:it.description||'',amountCents:amt,quantity:qty});
+      totalCents+=amt*qty;
+    }
+    if(totalCents<50){alert('Cart total must be at least $0.50');return Promise.reject('total_too_low');}
+    if(!email)email=findCartEmail();
+    if(!customerName)customerName=findCartName();
+    var cartPhone=findCartPhone();
+    if(!email){var p=window.prompt('Enter your email for the receipt:','');if(p&&p.indexOf('@')>-1){email=p.trim();}else{alert('An email address is required to complete checkout.');return Promise.reject('no_email');}}
+    var successBase=window.location.href.split('?')[0];
+    var body={email:email,name:customerName,items:cleanItems,locale:(document.documentElement.lang||navigator.language||'en')};
+    if(currency)body.currency=currency;
+    if(cartPhone)body.phone=cartPhone;
+    body.successUrl=successUrl||(successBase+'?cart=success&email='+encodeURIComponent(email)+'&session_id={CHECKOUT_SESSION_ID}');
+    body.cancelUrl=cancelUrl||(successBase+'?cart=cancelled');
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/cart/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(body)
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process checkout');throw new Error(d.error);}
+    });
+  };
+  try{Object.defineProperty(window,'__processCart',{value:__realCart,writable:false,configurable:false});}catch(e){window.__processCart=__realCart;}
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('cart')==='success'){
+      var sidC=urlParams.get('session_id');
+      if(sidC){try{fetch(apiBase+'/api/landing-pages/public/'+slug+'/checkout/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:sidC})}).catch(function(){});}catch(e){}}
+      if(document.getElementById('payment-success-overlay')||document.getElementById('donation-success-overlay')||document.getElementById('cart-success-overlay'))return;
+      var overlay=document.createElement('div');overlay.id='cart-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      var subTxt=successSubtext||'Thank you for your order.';
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Order Confirmed!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">'+esc(subTxt)+'</p><button id="lp-cart-success-btn" style="padding:12px 32px;font-size:16px;font-weight:600;background:'+successBtnColor+';color:white;border:none;border-radius:8px;cursor:pointer;">'+esc(successBtnLabel)+'</button></div>';
+      document.body.appendChild(overlay);
+      var cBtn=document.getElementById('lp-cart-success-btn');
+      if(cBtn){cBtn.addEventListener('click',function(){if(successRedirect){window.location.href=successRedirect;}else{overlay.remove();window.history.replaceState({},'',window.location.pathname);}});}
+    }
+  });
+})();
+</script>  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Grain SVG filter definition (feTurbulence) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <filter id="grain-filter" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.80" numOctaves="4" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="grey"/>
+      <feBlend in="SourceGraphic" in2="grey" mode="overlay" result="blend"/>
+      <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- HEADER -->
+<header class="site-header" role="banner">
+  <div class="header-inner">
+    <div class="brand">
+      <!-- Roofing SVG icon brandmark (roofline + ridge peak mark) -->
+      <div class="brandmark" aria-hidden="true">
+        <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 10L11 2L21 10" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4 8.2V16a1 1 0 001 1h4v-4h4v4h4a1 1 0 001-1V8.2" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M9 7l2-2 2 2" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="brand-text">
+        <div class="brand-name">Triumph Roofing LLC</div>
+        <div class="brand-sub">Charlotte, NC &middot; Roofing</div>
+      </div>
+    </div>
+    <span class="preview-tag">Live preview, built by AID Marketing Agency</span>
+  </div>
+</header>
+
+<!-- HERO: broken/asymmetric grid -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-bg" role="img" aria-label="Close-up of a terracotta roof tile surface, representing quality roofing workmanship"></div>
+
+  <!-- LEFT COLUMN: copy -->
+  <div class="hero-copy">
+    <div class="eyebrow">
+      <span class="live-dot" aria-hidden="true"></span>
+      Charlotte Roofing Demo
+    </div>
+
+    <h1>Your next <em>storm call</em> should not go to voicemail</h1>
+
+    <p class="hero-lede">Yuriy&#39;s 12-person crew can do a full replacement in a single day across Charlotte. After a hail event hits the metro, there is a 48-hour window where every homeowner with visible damage is calling the same week, and the roofer who picks up first usually gets the adjuster meeting.</p>
+
+    <!-- Trust row: 3 lines, NOT 3 cards -->
+    <div class="trust-row">
+      <div class="trust-item">
+        <span class="trust-dot" aria-hidden="true"></span>
+        <span>154 five-star Google reviews and an A+ BBB rating, both earned since 2019</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-dot" aria-hidden="true"></span>
+        <span>Full roof replacements completed in a single day by a 12-person crew</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-dot" aria-hidden="true"></span>
+        <span>62% of small-business calls go unanswered. One missed storm call is a 5,000 job at risk</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT COLUMN: SMS demo panel (A1: moves above trust-row at mobile) -->
+  <div class="hero-panel">
+    <!-- Ring badge motif -->
+    <div class="ring-badge" aria-hidden="true">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.03 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/>
+      </svg>
+    </div>
+
+    <div class="demo-label">Watch what happens instead of voicemail</div>
+
+    <div class="phone-frame">
+      <div class="phone-top">
+        <div class="phone-avatar" aria-hidden="true">TR</div>
+        <div class="phone-contact">
+          <div class="phone-name">Triumph Roofing</div>
+          <div class="phone-status">AI line active 24/7</div>
+        </div>
+      </div>
+
+      <div id="thread" role="list" aria-label="SMS conversation demo">
+        <div class="bubble caller" role="listitem" data-time="1800">I just found hail damage on my roof after that storm last night. I need an inspection.</div>
+        <div class="typing" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="bubble ai" role="listitem" data-time="1800">
+          <span class="badge">AI replied in 18 seconds</span><br/>
+          Hi, I&#39;m Triumph Roofing&#39;s after-hours line. We do hail damage inspections in Charlotte, and we can have someone out tomorrow morning. Are you in the Charlotte area?
+        </div>
+        <div class="bubble caller" role="listitem" data-time="1600">Yes, Ballantyne. The damage looks bad, it might be a full replacement.</div>
+        <div class="typing" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div class="bubble ai" role="listitem" data-time="1800">Understood. I have a 9 AM slot available. I am texting you Yuriy&#39;s direct line and a confirmation now.</div>
+      </div>
+
+      <button class="replay-btn" id="replayBtn" aria-label="Replay the SMS demo">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/>
+        </svg>
+        Replay
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- THE MATH -->
+<!-- Industry stats sources:
+     - triumphroofingcharlotte.com/roof-replacement-costs-charlotte-2026/
+       Charlotte avg: ,500-5,000 standard asphalt; 2,000-2,000+ insurance/storm
+     - charlotteaceroofing.com/how-much-does-a-new-roof-cost-in-charlotte-nc-2026-pricing-guide/
+     - oldtimersroofing.com/north-carolina-roof-insurance-changes-2026/
+       NC full replacements 2k-2k+ confirmed 2026
+     - Missed call stats: 62% unanswered, 85% never call back
+       pcnanswers.com/missed-call-revenue-study/
+       getaira.io/blog/missed-business-calls-statistics
+     Animated counter target: 15000 (midpoint of 2k-2k NC storm replacement range) -->
+<section class="math" aria-label="The math on missed calls">
+  <div class="container">
+    <div class="math-inner reveal">
+      <div class="stat-block">
+        <div class="stat-label">
+          Revenue at risk per missed storm call
+          <button class="stat-replay" id="statReplayBtn" aria-label="Replay stat counter">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/>
+            </svg>
+          </button>
+        </div>
+        <div class="stat-number" id="statEl" aria-live="polite">
+          <span id="dollarNode">/bin/bash</span><span class="cents" id="centsSpan">,000</span>
+        </div>
+        <div class="stat-sub">One NC storm-damage roof replacement averages 2,000 to 2,000. This figure is per call, not per month.</div>
+      </div>
+      <div class="math-copy">
+        <p>After a hail event, homeowners in Charlotte do not wait. <strong>They call the first roofer who answers</strong>, and that roofer sets the inspection, gets in front of the adjuster, and writes the job. The one who went to voicemail does not get a callback.</p>
+        <p>85% of callers who hit voicemail never try again. For a roofing crew that can finish a full replacement in a single day, each missed storm call is 5,000 walking to the next number on Google.</p>
+        <p>You have built 154 five-star reviews in Charlotte and your crew can do a full replacement in a day. <strong>The gap is not the work. It is the 48-hour window right after the storm.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS: asymmetric grid, one tall lead + 2 supporting -->
+<section class="how" aria-label="How the catch works">
+  <div class="container">
+    <div class="how-header reveal">
+      <span class="section-label">How the catch works</span>
+      <h2>Every call answered. Every lead timestamped.</h2>
+    </div>
+    <div class="how-grid reveal">
+      <!-- Lead item: tall, spans 2 rows -->
+      <div class="how-item lead">
+        <div class="how-num">01</div>
+        <div class="how-title">The storm hits. Your phone rings at midnight.</div>
+        <div class="how-body">
+          <p>Hail events in Charlotte do not respect business hours. A homeowner spots shingles missing at 10 PM and starts calling. Your crew is off the roof, you are not checking messages.</p>
+          <p style="margin-top:14px">The AI line picks up in under 20 seconds. It knows your service area, knows you do hail inspections, and speaks plainly. No hold music, no voicemail box, no "leave a message and we&#39;ll call you back."</p>
+          <p style="margin-top:14px">By the time you check your phone in the morning, the lead is logged, a slot is offered, and Yuriy&#39;s direct line has already been texted to the homeowner. The competitor who answered manually is starting from the same place you are, but they got there at midnight.</p>
+        </div>
+      </div>
+      <!-- Supporting item 2 -->
+      <div class="how-item">
+        <div class="how-num">02</div>
+        <div class="how-title">Slot offered, confirmation sent</div>
+        <div class="how-body">A specific morning time is offered and a confirmation SMS goes out immediately. The homeowner has a name and a time on their phone before they go to sleep.</div>
+      </div>
+      <!-- Supporting item 3 -->
+      <div class="how-item">
+        <div class="how-num">03</div>
+        <div class="how-title">You wake up to a booked inspection</div>
+        <div class="how-body">No cold callbacks, no chasing. The lead is warm, the time is set, and you show up to a homeowner who already knows Triumph Roofing is coming. The adjuster meeting follows from there.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA PANEL -->
+<section class="cta-panel" id="ctaPanel" aria-label="Book a call with AID">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <div class="cta-copy">
+        <h2>Want to see this running on your number?</h2>
+        <p>Fifteen minutes with Ryan. No pitch deck, no pressure. We will walk through exactly what the AI would say on your next storm call and what it costs to have it live this week.</p>
+      </div>
+      <a href="https://aidmarketingagency.github.io/aid-discovery-call/" class="cta-btn" rel="noopener">
+        Book 15 minutes with Ryan
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-quote">The roofer who picks up first gets the adjuster meeting.</p>
+        <p class="footer-by" style="margin-top:6px">Put together by Ryan McNally at AID Marketing Agency</p>
+      </div>
+      <a href="https://aidmarketingagency.github.io/aid-discovery-call/" class="footer-link" rel="noopener">Book 15 minutes with Ryan</a>
+    </div>
+  </div>
+</footer>
+
+<!-- MOBILE STICKY CTA (A1) -->
+<div class="mobile-cta-bar" id="mobileCta" role="complementary" aria-label="Mobile booking bar">
+  <a href="https://aidmarketingagency.github.io/aid-discovery-call/" rel="noopener">Book 15 minutes with Ryan</a>
+</div>
+
+<!-- AID demo concierge widget teaser + auto-open (A3, v2.1 spec) -->
+<script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
+
+
+<!-- AID demo concierge (shared widget 54722168) + data-aid-widget-boost sheeted desktop fix (7/21) -->
+<script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
+
+
+
+
+  <script src="script.js"></script>
+</body>
+</html>
