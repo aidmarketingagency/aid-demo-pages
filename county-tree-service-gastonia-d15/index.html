@@ -1,0 +1,591 @@
+<!--
+  county-tree-service-gastonia-d15.html
+  ======================================
+  Built 2026-07-29 under the contractor-demo-v2 spec (skills/pmgpt-site-builder/templates/contractor-demo-v2.md).
+  Prospect: County Tree Service, Inc., Gastonia, NC. Owner: Wayne Philbeck. Trade: Tree Service.
+  Site: countytreeserviceinc.com | Phone: (704) 568-7202 | Founded: 1973
+
+  DESIGNER'S NOTE (D2 brand classification):
+  Scraped countytreeserviceinc.com directly (curl + CSS fetch). The theme CSS at
+  /wp-content/themes/countryTree/css/layout.css reveals a deliberate two-tone green brand:
+  #56ab32 (bright lime-green) used site-wide for CTAs, buttons, nav highlights, links, and
+  list icons, paired with #274811 (deep forest green) used in footers, form selects, and
+  dark panel backgrounds. No third accent color appears with any consistency. This is a
+  genuine, considered brand palette, not a WordPress default. Bucket (a) REAL BRAND: CONFORM.
+  #274811 deepened to #0f1a08 for the near-black void, #56ab32 desaturated slightly to
+  #4fa128 and used as the single --accent doing all structural work (CTA fills, live dot,
+  ring badge, hairlines, stat highlight). The lime-green reads perfectly for a 53-year
+  family tree operation and doesn't need to be reinvented.
+
+  Font pairing: Unbounded (display, hero headline) + Spectral (editorial body copy).
+  Fresh pair under the v2 no-back-to-back rule: not Big Shoulders + Libre Franklin (Peak),
+  not Bricolage + Plus Jakarta (banned), not Fraunces + Newsreader, not Syne + Spectral,
+  not Instrument Serif + Archivo (JM Arbor Care), not Cormorant + Plus Jakarta (AID house).
+  Unbounded's geometric slab weight reads established/industrial without feeling cold;
+  Spectral's old-style serif feels earned for 53 years of family craft. Together they say
+  "this company has been doing this a very long time and they know exactly what they are doing."
+
+  Hero image: Pixabay CC0 -- arborist climbing a tall tree with chainsaw and rigging gear.
+  Duotone-graded toward the forest-green accent. Source: /tmp/img_tree_service.txt
+  (Pixabay tree service climbing image, CC0 license, no attribution required per their TOS).
+
+  Stat sourcing:
+  - 62% of small-business calls go unanswered; 85% of callers who don't reach someone
+    never call back: getaira.io/blog/missed-business-calls-statistics and
+    pcnanswers.com/missed-call-revenue-study/
+  - Average tree removal job value in NC: $750-$1,500 typical residential; $2,000-$5,000+
+    for large trees or emergency storm work: homeadvisor.com tree removal cost guides.
+  - Counter target: $2,500 per missed emergency storm call (midpoint of emergency range).
+
+  Animation standard: TWO IntersectionObservers (playIO + rearmIO), getBoundingClientRect
+  initial-visibility check, replay button on SMS thread, stat counter with replay,
+  prefers-reduced-motion: spatial transforms off, crossfades ON.
+
+  v2.1 amendments applied: A1 mobile order (demo panel above trust-row at <=820px),
+  sticky mobile CTA bar, A2 hero image embedded as base64 data URI, A3 shared widget
+  54722168 with teaser script, A3b data-aid-widget-boost snippet, A4 funnel posture.
+
+  Zero em dashes. Zero en dashes. No platform attribution strings in copy.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- BASE:START (managed by Coding Agent — do not edit) -->
+<base href="/aid-demo-pages/county-tree-service-gastonia-d15/">
+<!-- BASE:END -->
+
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+
+
+
+
+<!-- pmgpt-demo-template:contractor-demo-v2 -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet"/>
+
+
+
+<!-- SEO Meta Tags -->
+<title>County Tree Service: your phone, answered | AID</title>
+<meta name="description" content="A working preview of County Tree Service catching storm-day calls across Gastonia and Gaston County that used to go to voicemail. Built by AID Marketing Agency." />
+<meta property="og:title" content="County Tree Service: your phone, answered | AID" />
+<meta property="og:description" content="A working preview of County Tree Service catching storm-day calls across Gastonia and Gaston County that used to go to voicemail. Built by AID Marketing Agency." />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="County Tree Service: your phone, answered | AID" />
+<meta name="twitter:description" content="A working preview of County Tree Service catching storm-day calls across Gastonia and Gaston County that used to go to voicemail. Built by AID Marketing Agency." />
+<!-- End SEO Meta Tags -->
+<script data-lp-token-hydrate>
+(function(){try{
+  var slug="lp-ms5knxx6-68tzo";
+  var SK='lp_access_'+slug;
+  var map={access_token:'lp_pw_',allowlist_access_token:'lp_al_',pin_access_token:'lp_pin_',paywall_access_token:'lp_paid_'};
+  var u=new URL(location.href);var found=null;var changed=false;
+  Object.keys(map).forEach(function(p){var v=u.searchParams.get(p);if(v){found=v;try{localStorage.setItem(map[p]+slug,v);}catch(e){}u.searchParams.delete(p);changed=true;}});
+  if(found){try{sessionStorage.setItem(SK,found);}catch(e){}}
+  else{try{if(!sessionStorage.getItem(SK)){var t=localStorage.getItem('lp_pw_'+slug)||localStorage.getItem('lp_al_'+slug)||localStorage.getItem('lp_pin_'+slug)||localStorage.getItem('lp_paid_'+slug);if(t)sessionStorage.setItem(SK,t);}}catch(e){}}
+  if(changed){try{history.replaceState(null,'',u.toString());}catch(e){}}
+  function getTok(){try{return sessionStorage.getItem(SK)||localStorage.getItem('lp_pw_'+slug)||localStorage.getItem('lp_al_'+slug)||localStorage.getItem('lp_pin_'+slug)||localStorage.getItem('lp_paid_'+slug);}catch(e){return null;}}
+  function needsToken(url,method){if(!url)return false;var s=String(url);var m=(method||'GET').toUpperCase();var isSheetWrite=(m==='POST'||m==='PATCH'||m==='PUT'||m==='DELETE')&&/\/sheet-rows(\/|$|\?)/.test(s);var isSheetRead=/\/sheet-data(\/|$|\?)/.test(s);var isLlm=/\/api\/landing-pages\/public\/[^/]+\/(llm|llm-config)(\/|$|\?)/.test(s);return isSheetWrite||isSheetRead||isLlm;}
+  if(window.fetch){var _f=window.fetch;window.fetch=function(input,init){try{var url=typeof input==='string'?input:(input&&input.url)||'';var method=(init&&init.method)||(input&&input.method)||'GET';if(needsToken(url,method)){var tok=getTok();if(tok){init=init||{};var h=new Headers(init.headers||(typeof input!=='string'?input.headers:undefined)||{});if(!h.has('X-Landing-Page-Token'))h.set('X-Landing-Page-Token',tok);init.headers=h;}}}catch(e){}return _f.call(this,input,init);};}
+  if(window.XMLHttpRequest){var _o=XMLHttpRequest.prototype.open;var _s=XMLHttpRequest.prototype.send;XMLHttpRequest.prototype.open=function(m,u){this.__lpM=m;this.__lpU=u;return _o.apply(this,arguments);};XMLHttpRequest.prototype.send=function(){try{if(needsToken(this.__lpU,this.__lpM)){var tok=getTok();if(tok)this.setRequestHeader('X-Landing-Page-Token',tok);}}catch(e){}return _s.apply(this,arguments);};}
+}catch(e){}})();
+</script>
+
+<script data-field-replace>
+(function(){
+  var params=new URLSearchParams(window.location.search);
+  var fields={};
+  var paramMap={
+    'first_name':'firstName','last_name':'lastName','full_name':'fullName',
+    'email':'email','phone':'phone','company':'company',
+    'city':'city','state':'state','country':'country'
+  };
+  var skipTags={'SCRIPT':1,'STYLE':1,'NOSCRIPT':1,'TEXTAREA':1,'CODE':1,'PRE':1};
+  var hasUrlFields=false;
+  for(var p in paramMap){
+    var v=params.get(p);
+    if(v){fields[paramMap[p]]=v;hasUrlFields=true;}
+  }
+  var contactId=params.get('contact_id');
+  function esc(s){
+    if(!s)return s;
+    var d=document.createElement('div');
+    d.appendChild(document.createTextNode(s));
+    return d.innerHTML;
+  }
+  function doReplace(data){
+    var r={};
+    r['{{full_name}}']=esc(((data.firstName||'')+' '+(data.lastName||'')).trim()||((data.fullName||data.name)||''));
+    r['{{first_name}}']=esc(data.firstName||(data.name?data.name.split(' ')[0]:'')||'');
+    r['{{last_name}}']=esc(data.lastName||(data.name&&data.name.indexOf(' ')>-1?data.name.substring(data.name.indexOf(' ')+1):'')||'');
+    r['{{email}}']=esc(data.email||'');
+    r['{{phone}}']=esc(data.phone||'');
+    r['{{company}}']=esc(data.company||'');
+    r['{{city}}']=esc(data.city||'');
+    r['{{state}}']=esc(data.state||'');
+    r['{{country}}']=esc(data.country||'');
+    r['{{date}}']=new Date().toLocaleDateString();
+    r['{{time}}']=new Date().toLocaleTimeString();
+    r['{{location}}']=[data.city,data.state,data.country].filter(Boolean).join(', ');
+    r['{{tracking_id}}']=esc(data.trackingId||'');
+    r['{{lastClickedProduct}}']=esc(data.lastClickedProduct||'');
+    r['{{lastProductClickDate}}']=esc(data.lastProductClickDate||'');
+    r['{{lastClickedProductPrice}}']=esc(data.lastClickedProductPrice||'');
+    r['{{lastClickedProductURL}}']=esc(data.lastClickedProductURL||'');
+    r['{{productsClickedCount}}']=esc(data.productsClickedCount||'0');
+    r['{{ip_address}}']=esc(data.ipAddress||'');
+    r['{{ip}}']=esc(data.ipAddress||'');
+    if(data.customFields){
+      for(var k in data.customFields){
+        r['{{'+k+'}}']=esc(String(data.customFields[k]||''));
+      }
+    }
+    params.forEach(function(v,k){
+      if(!paramMap[k]&&k!=='contact_id'&&k!=='page_id'&&k.indexOf('utm_')!==0){
+        r['{{'+k+'}}']=esc(v);
+      }
+    });
+    var hasValues=false;
+    for(var key in r){if(r[key]){hasValues=true;break;}}
+    if(!hasValues)return;
+    var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
+      acceptNode:function(n){
+        var p=n.parentNode;
+        if(p&&skipTags[p.nodeName])return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    var node;
+    while(node=walker.nextNode()){
+      var txt=node.nodeValue;
+      if(txt&&txt.indexOf('{{')>-1){
+        var changed=txt;
+        for(var ph in r){
+          if(r[ph]&&changed.indexOf(ph)>-1){
+            changed=changed.split(ph).join(r[ph]);
+          }
+        }
+        if(changed!==txt)node.nodeValue=changed;
+      }
+    }
+    var attrs=['value','placeholder','content','alt','title'];
+    attrs.forEach(function(attr){
+      var els=document.querySelectorAll('['+attr+'*="{{"]');
+      for(var i=0;i<els.length;i++){
+        var tag=els[i].tagName;
+        if(skipTags[tag])continue;
+        var val=els[i].getAttribute(attr);
+        if(val){
+          var nv=val;
+          for(var ph in r){
+            if(r[ph]&&nv.indexOf(ph)>-1){
+              nv=nv.split(ph).join(r[ph]);
+            }
+          }
+          if(nv!==val)els[i].setAttribute(attr,nv);
+        }
+      }
+    });
+  }
+  function run(){
+    if(contactId){
+      var xhr=new XMLHttpRequest();
+      xhr.open('GET','https://paymegpt.com/api/landing/context/'+encodeURIComponent(contactId)+'?page_id=5795');
+      xhr.onload=function(){
+        if(xhr.status===200){
+          try{
+            var resp=JSON.parse(xhr.responseText);
+            if(resp.success&&resp.contact){
+              var merged=resp.contact;
+              for(var k in fields){merged[k]=fields[k];}
+              doReplace(merged);
+              return;
+            }
+          }catch(e){}
+        }
+        if(hasUrlFields)doReplace(fields);
+      };
+      xhr.onerror=function(){if(hasUrlFields)doReplace(fields);};
+      xhr.send();
+    }else if(hasUrlFields){
+      doReplace(fields);
+    }
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}
+  else{run();}
+})();
+</script>
+<script data-payment>
+(function(){
+  var slug='Rh33zr8Kv';
+  var apiBase='https://paymegpt.com';
+  var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
+  function findEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  function findPhone(){var ids=['phone','phoneNumber','phone-number','tel','telephone','mobile','mobileNumber','cell','contact-phone','buyer-phone'];for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.trim())return el.value.trim();}var inputs=document.querySelectorAll('input[type="tel"],input[name*="phone"],input[name*="tel"],input[name*="mobile"],input[placeholder*="phone"],input[placeholder*="Phone"]');for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.trim())return inputs[j].value.trim();}return '';}
+  var __realProcessPayment=function(a,b,c,d,e){
+    var amountCents,email,productName,productDescription,customerName,quantity;
+    if(a&&typeof a==='object'){
+      amountCents=a.amountCents;email=a.email;productName=a.productName;
+      productDescription=a.productDescription||'';customerName=a.name||'';quantity=a.quantity||1;
+    }else{
+      amountCents=typeof a==='number'?a:0;productName=typeof b==='string'?b:'';
+      productDescription=typeof c==='string'?c:'';email='';customerName='';quantity=1;
+    }
+    if(!email)email=findEmail();
+    if(!customerName)customerName=findName();
+    var phone=findPhone();
+    if(!productName){alert('Product name is required.');return Promise.reject('no_product_name');}
+    if(!amountCents||amountCents<100){alert('Amount must be at least $1.00');return Promise.reject('invalid_amount');}
+    if(!email){alert('Please enter your email address.');return Promise.reject('no_email');}
+    var successBase=window.location.href.split('?')[0];
+    var __pLoc=(document.documentElement.lang||navigator.language||'en');
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/payment/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email:email,name:customerName,phone:phone||'',amountCents:amountCents,productName:productName,productDescription:productDescription,quantity:quantity,locale:__pLoc,successUrl:successBase+'?payment=success&product='+encodeURIComponent(productName)+'&session_id={CHECKOUT_SESSION_ID}',cancelUrl:successBase+'?payment=cancelled'})
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process payment');throw new Error(d.error);}
+    });
+  };
+  Object.defineProperty(window,'__processPayment',{value:__realProcessPayment,writable:false,configurable:false});
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('payment')==='success'){
+      var sidP=urlParams.get('session_id');
+      if(sidP){try{fetch(apiBase+'/api/landing-pages/public/'+slug+'/checkout/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:sidP})}).catch(function(){});}catch(e){}}
+      var pName=urlParams.get('product')||'your item';
+      var overlay=document.createElement('div');overlay.id='payment-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      var subTxt=successSubtext||('Thank you for purchasing '+pName+'.');
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Payment Successful!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">'+esc(subTxt)+'</p><button id="lp-pay-success-btn" style="padding:12px 32px;font-size:16px;font-weight:600;background:'+successBtnColor+';color:white;border:none;border-radius:8px;cursor:pointer;">'+esc(successBtnLabel)+'</button></div>';
+      document.body.appendChild(overlay);
+      var pBtn=document.getElementById('lp-pay-success-btn');
+      if(pBtn){pBtn.addEventListener('click',function(){if(successRedirect){window.location.href=successRedirect;}else{overlay.remove();window.history.replaceState({},'',window.location.pathname);}});}
+    }
+  });
+})();
+</script>
+<script data-cart>
+(function(){
+  var slug='Rh33zr8Kv';
+  var apiBase='https://paymegpt.com';
+  var successSubtext='';var successBtnLabel='Continue';var successBtnColor='#16a34a';var successRedirect='';
+  function findCartEmail(){
+    var ids=['email','emailAddress','buyer-email','buyerEmail','user-email','userEmail','checkout-email','customer-email','contact-email'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.includes('@'))return el.value.trim();}
+    var inputs=document.querySelectorAll('input[type="email"],input[name*="email"],input[placeholder*="email"],input[placeholder*="Email"]');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.includes('@'))return inputs[j].value.trim();}
+    return '';
+  }
+  function findCartName(){
+    var ids=['name','fullName','full-name','buyer-name','buyerName','customer-name','userName','user-name'];
+    for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value)return el.value.trim();}
+    var inputs=document.querySelectorAll('input[name*="name"]:not([name*="email"]):not([type="email"]),input[placeholder*="name"]:not([placeholder*="email"]):not([type="email"]),input[placeholder*="Name"]:not([type="email"])');
+    for(var j=0;j<inputs.length;j++){if(inputs[j].value)return inputs[j].value.trim();}
+    return '';
+  }
+  function findCartPhone(){var ids=['phone','phoneNumber','phone-number','tel','telephone','mobile','mobileNumber','cell','contact-phone','buyer-phone'];for(var i=0;i<ids.length;i++){var el=document.getElementById(ids[i]);if(el&&el.value&&el.value.trim())return el.value.trim();}var inputs=document.querySelectorAll('input[type="tel"],input[name*="phone"],input[name*="tel"],input[name*="mobile"],input[placeholder*="phone"],input[placeholder*="Phone"]');for(var j=0;j<inputs.length;j++){if(inputs[j].value&&inputs[j].value.trim())return inputs[j].value.trim();}return '';}
+  var __realCart=function(arg){
+    var items, email='', customerName='', successUrl, cancelUrl, currency;
+    if(Array.isArray(arg)){items=arg;}
+    else if(arg&&typeof arg==='object'){
+      items=arg.items;email=arg.email||'';customerName=arg.name||arg.customerName||'';
+      successUrl=arg.successUrl;cancelUrl=arg.cancelUrl;currency=arg.currency;
+    }
+    if(!Array.isArray(items)||items.length===0){alert('No items in cart.');return Promise.reject('no_items');}
+    var cleanItems=[];var totalCents=0;
+    for(var i=0;i<items.length;i++){
+      var it=items[i];if(!it||typeof it!=='object'){alert('Invalid item at position '+i);return Promise.reject('bad_item');}
+      var nm=typeof it.name==='string'?it.name.trim():'';
+      if(!nm){alert('Item '+(i+1)+' is missing a name.');return Promise.reject('no_name');}
+      var amt=typeof it.amountCents==='number'?it.amountCents:(typeof it.amount==='number'?Math.round(it.amount*100):NaN);
+      if(!isFinite(amt)||amt<1){alert('Item "'+nm+'" needs a valid amount in cents.');return Promise.reject('bad_amount');}
+      var qty=(typeof it.quantity==='number'&&it.quantity>0)?Math.floor(it.quantity):1;
+      cleanItems.push({name:nm,description:it.description||'',amountCents:amt,quantity:qty});
+      totalCents+=amt*qty;
+    }
+    if(totalCents<50){alert('Cart total must be at least $0.50');return Promise.reject('total_too_low');}
+    if(!email)email=findCartEmail();
+    if(!customerName)customerName=findCartName();
+    var cartPhone=findCartPhone();
+    if(!email){var p=window.prompt('Enter your email for the receipt:','');if(p&&p.indexOf('@')>-1){email=p.trim();}else{alert('An email address is required to complete checkout.');return Promise.reject('no_email');}}
+    var successBase=window.location.href.split('?')[0];
+    var body={email:email,name:customerName,items:cleanItems,locale:(document.documentElement.lang||navigator.language||'en')};
+    if(currency)body.currency=currency;
+    if(cartPhone)body.phone=cartPhone;
+    body.successUrl=successUrl||(successBase+'?cart=success&email='+encodeURIComponent(email)+'&session_id={CHECKOUT_SESSION_ID}');
+    body.cancelUrl=cancelUrl||(successBase+'?cart=cancelled');
+    return fetch(apiBase+'/api/landing-pages/public/'+slug+'/cart/checkout',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(body)
+    }).then(function(r){return r.json();}).then(function(d){
+      if(d.checkoutUrl){window.location.href=d.checkoutUrl;}
+      else{alert(d.error||'Failed to process checkout');throw new Error(d.error);}
+    });
+  };
+  try{Object.defineProperty(window,'__processCart',{value:__realCart,writable:false,configurable:false});}catch(e){window.__processCart=__realCart;}
+  document.addEventListener('DOMContentLoaded',function(){
+    var urlParams=new URLSearchParams(window.location.search);
+    if(urlParams.get('cart')==='success'){
+      var sidC=urlParams.get('session_id');
+      if(sidC){try{fetch(apiBase+'/api/landing-pages/public/'+slug+'/checkout/confirm',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sessionId:sidC})}).catch(function(){});}catch(e){}}
+      if(document.getElementById('payment-success-overlay')||document.getElementById('donation-success-overlay')||document.getElementById('cart-success-overlay'))return;
+      var overlay=document.createElement('div');overlay.id='cart-success-overlay';
+      overlay.style.cssText='position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:999999;font-family:system-ui,-apple-system,sans-serif;';
+      function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+      var subTxt=successSubtext||'Thank you for your order.';
+      overlay.innerHTML='<div style="background:white;border-radius:16px;padding:40px;max-width:420px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.15);"><div style="width:64px;height:64px;border-radius:50%;background:#dcfce7;margin:0 auto 20px;display:flex;align-items:center;justify-content:center;"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><h2 style="margin:0 0 12px;font-size:24px;font-weight:700;color:#111827;">Order Confirmed!</h2><p style="margin:0 0 24px;color:#6b7280;font-size:16px;">'+esc(subTxt)+'</p><button id="lp-cart-success-btn" style="padding:12px 32px;font-size:16px;font-weight:600;background:'+successBtnColor+';color:white;border:none;border-radius:8px;cursor:pointer;">'+esc(successBtnLabel)+'</button></div>';
+      document.body.appendChild(overlay);
+      var cBtn=document.getElementById('lp-cart-success-btn');
+      if(cBtn){cBtn.addEventListener('click',function(){if(successRedirect){window.location.href=successRedirect;}else{overlay.remove();window.history.replaceState({},'',window.location.pathname);}});}
+    }
+  });
+})();
+</script>  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<!-- Grain overlay SVG filter -->
+<svg class="grain" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <filter id="grain-f">
+    <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch"/>
+    <feColorMatrix type="saturate" values="0"/>
+    <feBlend in="SourceGraphic" mode="multiply"/>
+  </filter>
+  <rect width="100%" height="100%" filter="url(#grain-f)"/>
+</svg>
+
+<!-- HEADER -->
+<header class="site-header" role="banner">
+  <a href="#" class="brandmark" aria-label="County Tree Service, Inc.">
+    <!-- Tree SVG: canopy silhouette over trunk -->
+    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- Layered canopy masses -->
+      <ellipse cx="18" cy="17" rx="11" ry="9" fill="#4fa128" opacity="0.95"/>
+      <ellipse cx="11" cy="20" rx="7" ry="6" fill="#4fa128" opacity="0.85"/>
+      <ellipse cx="25" cy="20" rx="7" ry="6" fill="#4fa128" opacity="0.85"/>
+      <!-- Trunk -->
+      <rect x="16" y="25" width="4" height="8" rx="1.5" fill="#274811"/>
+      <!-- Chainsaw accent notch -->
+      <rect x="14" y="31" width="8" height="1.5" rx=".75" fill="#4fa128" opacity="0.5"/>
+    </svg>
+    <div class="brand-text">
+      <span class="brand-name">County Tree Service</span>
+      <span class="brand-sub">Gastonia, NC</span>
+    </div>
+  </a>
+  <div class="header-tag">Live preview<br>Built by AID Marketing Agency</div>
+</header>
+
+<!-- HERO -->
+<section class="hero" aria-label="Hero">
+  <div class="hero-bg" role="img" aria-label="Arborist climbing a tall tree with rigging gear, performing tree removal work"></div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+
+  <!-- COPY COLUMN (order:1 on mobile per A1) -->
+  <div class="hero-copy">
+    <div class="hero-eyebrow">
+      <span class="live-dot" aria-hidden="true"></span>
+      <span class="label">Gastonia + Gaston County</span>
+    </div>
+
+    <h1 class="hero-h1 display">
+      53 years of tree work.<br>
+      Your next call<br>
+      <em>shouldn't go to voicemail.</em>
+    </h1>
+
+    <p class="hero-lede">
+      County Tree Service has been working the Gastonia and Gaston County area since 1973, two generations. Wayne's three-person crew handles everything from routine pruning to storm removals across a 50-mile radius.
+    </p>
+
+    <!-- DEMO PANEL inserted here in DOM for A1 mobile ordering -->
+    <!-- On desktop this is positioned in the right column via grid -->
+    <!-- On mobile CSS order:2 brings it right after lede -->
+  </div>
+
+  <!-- DEMO PANEL (order:2 on mobile per A1) -->
+  <div class="hero-panel" id="demo-panel-wrap">
+    <div class="phone-frame" id="sms-thread" role="region" aria-label="SMS conversation demo">
+      <div class="phone-top">
+        <div class="phone-avatar" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="18" cy="17" rx="11" ry="9" fill="rgba(10,21,6,0.6)"/>
+            <ellipse cx="11" cy="20" rx="7" ry="6" fill="rgba(10,21,6,0.5)"/>
+            <ellipse cx="25" cy="20" rx="7" ry="6" fill="rgba(10,21,6,0.5)"/>
+            <rect x="16" y="25" width="4" height="8" rx="1.5" fill="rgba(10,21,6,0.7)"/>
+          </svg>
+        </div>
+        <div class="phone-caller-info">
+          <div class="caller-name">Gastonia Homeowner</div>
+          <div class="caller-sub">Storm emergency inquiry</div>
+        </div>
+        <button class="replay-btn" id="replay-btn" aria-label="Replay SMS demo">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 .49-4.95"/>
+          </svg>
+          Replay
+        </button>
+      </div>
+      <div class="phone-body" id="phone-body">
+        <!-- Bubbles injected by JS -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST ROW + RING BADGE (below demo panel on mobile per A1) -->
+<div style="position:relative;z-index:2;padding:0 44px 64px;background:var(--void);" id="trust-section">
+  <div class="trust-row" role="list">
+    <div class="trust-item" role="listitem">
+      <svg class="trust-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+      <span>Family-owned since 1973, second generation</span>
+    </div>
+    <div class="trust-item" role="listitem">
+      <svg class="trust-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+      <span>A+ BBB rating, licensed and insured across NC</span>
+    </div>
+    <div class="trust-item" role="listitem">
+      <svg class="trust-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+      <span>Storm removals, pruning, stump grinding, lot clearing</span>
+    </div>
+  </div>
+
+  <div class="ring-badge">
+    <div class="ring" aria-hidden="true">
+      <div class="ring-circle">
+        <svg class="ring-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.62 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6.29 6.29l.62-.62a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21.73 17z"/>
+        </svg>
+      </div>
+    </div>
+    <p class="ring-text">
+      Your family has been doing tree work in Gastonia since 1973, two generations of it. When a storm drops a tree across a fence on a Tuesday and your three-person crew is already on a removal job, the homeowner calling about the second tree is probably not waiting more than a few minutes before they try someone else.
+    </p>
+  </div>
+</div>
+
+<!-- PROOF BAND: STAT + CONTEXT -->
+<section class="proof reveal" aria-labelledby="proof-heading">
+  <div class="stat-col">
+    <div class="stat-label">
+      <span class="label">The math on one missed storm call</span>
+    </div>
+    <!-- Source: homeadvisor.com tree removal cost guides
+         Emergency storm removals: $2,000-$5,000+ in NC for large trees
+         Midpoint used: $2,500 per missed emergency job
+         Additional context: getaira.io/blog/missed-business-calls-statistics
+         pcnanswers.com/missed-call-revenue-study/ -->
+    <div class="stat-number" id="stat-display" aria-live="polite" aria-label="Dollar value of one missed emergency storm call">
+      <span id="stat-val">$0</span>
+      <button class="stat-replay" id="stat-replay-btn" aria-label="Replay stat counter">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M1 4v6h6"/><path d="M3.51 15a9 0 1 0 .49-4.95"/>
+        </svg>
+      </button>
+    </div>
+    <p class="stat-sub">
+      Emergency storm tree removal in NC runs $2,000 to $5,000 or more for large trees, with same-day and after-hours work at a premium.
+      That is a single job. Not a week, not a month.
+      62% of calls to small businesses go unanswered, and 85% of callers who reach voicemail never call back.
+    </p>
+  </div>
+  <div class="proof-copy" id="proof-heading">
+    <h2>The call you missed already happened.</h2>
+    <p>
+      A storm drops an oak on a fence in Gastonia at 8 PM on a Wednesday. The homeowner opens Google, dials the first number. <strong>You're on another job. No answer.</strong>
+    </p>
+    <p>
+      They dial the second number. That crew picks up, gets the address, and schedules a same-day slot. Your phone rings three minutes later but that homeowner is already booked.
+    </p>
+    <p>
+      The job didn't disappear. Your crew just didn't get it.
+    </p>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how reveal" aria-labelledby="how-heading">
+  <div class="how-head">
+    <h2 id="how-heading" class="display">How it catches the call you can't pick up.</h2>
+    <p class="how-lead-p">Not a voicemail. Not a form. A live SMS reply in under a minute, every time someone calls and you can't get there.</p>
+  </div>
+  <div class="how-grid">
+    <div class="how-item lead">
+      <div class="how-num">01</div>
+      <h3>Call comes in. You're on a job.</h3>
+      <p>The system picks up instantly. No ring-ring-voicemail. A live text reply goes to the caller within seconds, confirms your service area, and starts qualifying the job while your crew is still on site.</p>
+    </div>
+    <div class="how-item">
+      <div class="how-num">02</div>
+      <h3>Job details, on your terms.</h3>
+      <p>Address, tree size, urgency. All gathered in plain English over text. By the time you call back, you already know whether it's a small prune or a same-day storm removal.</p>
+    </div>
+    <div class="how-item">
+      <div class="how-num">03</div>
+      <h3>Slot confirmed. Caller kept.</h3>
+      <p>A time slot goes to the homeowner by text. They have something in hand. You get the job. No missed revenue, no chasing leads who already moved on.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA PANEL -->
+<section class="cta-panel reveal" id="cta-panel" aria-labelledby="cta-heading">
+  <h2 id="cta-heading" class="display">See it live on County Tree Service's line.</h2>
+  <p>15 minutes with Ryan. We walk through exactly what this would look like answering calls for Wayne's crew in Gastonia.</p>
+  <a href="https://aidmarketingagency.github.io/aid-discovery-call/" class="cta-btn" rel="noopener">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    Book 15 minutes with Ryan
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <p class="footer-quiet">
+    "A 53-year family operation. The calls deserve the same care as the trees."
+  </p>
+  <div class="footer-by">
+    Put together by Ryan McNally at AID Marketing Agency.<br>
+    <a href="https://aidmarketingagency.github.io/aid-discovery-call/" class="footer-link" rel="noopener">aidmarketingagency.github.io/aid-discovery-call</a>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE CTA BAR (A1) -->
+<div class="sticky-cta" id="sticky-cta" role="complementary" aria-label="Book a call">
+  <a href="https://aidmarketingagency.github.io/aid-discovery-call/" rel="noopener">Book 15 minutes with Ryan</a>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+
+
+<!-- AID demo concierge (shared widget 54722168) + one-shot auto-open -->
+<script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
+
+
+<!-- AID demo concierge (shared widget 54722168) + data-aid-widget-boost sheeted desktop fix (7/21) -->
+<script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
+
+
+  <script src="script.js"></script>
+</body>
+</html>
