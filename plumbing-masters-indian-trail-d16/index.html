@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Plumbing Masters, Inc. — AID Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@600;700;800&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    /* ── tokens ── */
+    :root{
+      --void:#0E1824;
+      --panel:#162236;
+      --panel-hi:#1E2D44;
+      --accent:#1E6EAB;
+      --accent-deep:#165890;
+      --ink:#EAF2FA;
+      --ink-muted:rgba(234,242,250,.6);
+      --ink-faint:rgba(234,242,250,.35);
+      --radius:14px;
+      --sms-radius:18px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{
+      background:var(--void);
+      color:var(--ink);
+      font-family:'Archivo',sans-serif;
+      font-size:16px;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    /* ── layout ── */
+    .container{max-width:860px;margin:0 auto;padding:0 24px;}
+    section{padding:80px 0;}
+    @media(max-width:600px){section{padding:56px 0;}}
+
+    /* ── nav ── */
+    .sitenav{
+      position:sticky;top:0;z-index:900;
+      background:rgba(14,24,36,.88);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(30,110,171,.18);
+      padding:14px 24px;
+    }
+    .sitenav-inner{
+      max-width:860px;margin:0 auto;
+      display:flex;align-items:center;justify-content:space-between;gap:16px;
+    }
+    .nav-brand{display:flex;align-items:center;gap:10px;}
+    .nav-brand .tradesvg{width:28px;height:30px;color:var(--accent);}
+    .nav-name{font-family:'Spectral',serif;font-weight:700;font-size:1rem;color:var(--ink);letter-spacing:.01em;}
+    .nav-cta{
+      font-family:'Archivo',sans-serif;font-weight:600;font-size:.8rem;
+      background:var(--accent);color:#fff;
+      padding:8px 18px;border-radius:8px;text-decoration:none;
+      transition:background .2s;white-space:nowrap;
+    }
+    .nav-cta:hover{background:var(--accent-deep);}
+
+    /* ── hero ── */
+    .hero{padding:100px 0 80px;}
+    .hero-eyebrow{
+      font-family:'Archivo',sans-serif;font-weight:500;font-size:.78rem;
+      text-transform:uppercase;letter-spacing:.12em;color:var(--accent);
+      margin-bottom:20px;
+    }
+    .hero h1{
+      font-family:'Spectral',serif;font-weight:800;
+      font-size:clamp(2.4rem,6vw,3.6rem);
+      line-height:1.12;letter-spacing:-.02em;
+      color:var(--ink);margin-bottom:28px;
+    }
+    .hero h1 em{color:var(--accent);font-style:normal;}
+    .hero-lede{
+      font-size:1.08rem;color:var(--ink-muted);
+      max-width:580px;line-height:1.7;margin-bottom:40px;
+    }
+    .hero-cta{
+      display:inline-block;
+      background:var(--accent);color:#fff;
+      font-family:'Archivo',sans-serif;font-weight:700;font-size:1rem;
+      padding:16px 36px;border-radius:10px;text-decoration:none;
+      transition:background .2s,transform .15s;
+    }
+    .hero-cta:hover{background:var(--accent-deep);transform:translateY(-2px);}
+    .hero-icon{
+      margin-bottom:32px;
+      display:flex;align-items:center;gap:12px;
+    }
+    .hero-icon .tradesvg{width:44px;height:46px;color:var(--accent);}
+
+    /* ── trust row ── */
+    .trust{background:var(--panel);border-top:1px solid rgba(30,110,171,.15);border-bottom:1px solid rgba(30,110,171,.15);}
+    .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;}
+    @media(max-width:640px){.trust-grid{grid-template-columns:1fr;}}
+    .trust-item{
+      padding:28px 24px;
+      border-right:1px solid rgba(30,110,171,.15);
+      display:flex;align-items:flex-start;gap:12px;
+    }
+    .trust-item:last-child{border-right:none;}
+    @media(max-width:640px){
+      .trust-item{border-right:none;border-bottom:1px solid rgba(30,110,171,.15);}
+      .trust-item:last-child{border-bottom:none;}
+    }
+    .trust-dot{
+      width:8px;height:8px;border-radius:50%;
+      background:var(--accent);flex-shrink:0;margin-top:7px;
+    }
+    .trust-text{font-size:.88rem;color:var(--ink-muted);line-height:1.5;}
+
+    /* ── section label ── */
+    .section-label{
+      font-family:'Archivo',sans-serif;font-weight:600;font-size:.72rem;
+      text-transform:uppercase;letter-spacing:.14em;color:var(--accent);
+      margin-bottom:14px;
+    }
+    .section-title{
+      font-family:'Spectral',serif;font-weight:700;
+      font-size:clamp(1.7rem,4vw,2.4rem);
+      line-height:1.2;color:var(--ink);margin-bottom:16px;
+    }
+
+    /* ── SMS demo ── */
+    .sms-section{background:var(--panel);}
+    .sms-wrap{
+      background:var(--panel-hi);
+      border-radius:var(--radius);
+      border:1px solid rgba(30,110,171,.18);
+      padding:32px 28px 28px;
+      max-width:520px;
+    }
+    .sms-header{
+      display:flex;align-items:center;gap:10px;
+      margin-bottom:24px;padding-bottom:16px;
+      border-bottom:1px solid rgba(30,110,171,.12);
+    }
+    .sms-avatar{
+      width:40px;height:40px;border-radius:50%;
+      background:var(--accent);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Spectral',serif;font-weight:700;font-size:.95rem;color:#fff;
+      flex-shrink:0;
+    }
+    .sms-title-block .sms-name{font-weight:600;font-size:.95rem;color:var(--ink);}
+    .sms-title-block .sms-sub{font-size:.75rem;color:var(--ink-muted);}
+
+    .thread{display:flex;flex-direction:column;gap:10px;}
+    .bubble{
+      max-width:82%;padding:12px 16px;
+      border-radius:var(--sms-radius);
+      font-size:.88rem;line-height:1.55;
+      opacity:0;
+    }
+    .bubble.caller{
+      align-self:flex-end;
+      background:var(--accent);color:#fff;
+      border-bottom-right-radius:4px;
+    }
+    .bubble.ai{
+      align-self:flex-start;
+      background:var(--panel);color:var(--ink);
+      border-bottom-left-radius:4px;
+      border:1px solid rgba(30,110,171,.2);
+      position:relative;
+    }
+    .bubble-badge{
+      display:inline-block;margin-top:6px;
+      font-size:.7rem;font-weight:600;
+      background:rgba(30,110,171,.18);color:var(--accent);
+      padding:3px 9px;border-radius:20px;
+    }
+    .typing{
+      align-self:flex-start;
+      background:var(--panel);border:1px solid rgba(30,110,171,.2);
+      border-bottom-left-radius:4px;
+      padding:12px 16px;border-radius:var(--sms-radius);
+      display:none;opacity:0;
+    }
+    .typing-dots{display:flex;gap:5px;}
+    .typing-dots span{
+      width:7px;height:7px;border-radius:50%;
+      background:var(--ink-muted);
+      animation:blink 1.2s infinite;
+    }
+    .typing-dots span:nth-child(2){animation-delay:.2s;}
+    .typing-dots span:nth-child(3){animation-delay:.4s;}
+    @keyframes blink{0%,80%,100%{opacity:.3;}40%{opacity:1;}}
+
+    .replay-btn{
+      margin-top:20px;align-self:center;
+      background:transparent;border:1px solid rgba(30,110,171,.4);
+      color:var(--ink-muted);border-radius:8px;
+      padding:8px 18px;font-size:.8rem;font-family:'Archivo',sans-serif;
+      cursor:pointer;display:flex;align-items:center;gap:6px;
+      transition:border-color .2s,color .2s;
+    }
+    .replay-btn:hover{border-color:var(--accent);color:var(--ink);}
+    .replay-btn svg{transition:transform .4s;}
+    .replay-btn.spin svg{animation:spin360 .5s linear;}
+    @keyframes spin360{to{transform:rotate(360deg);}}
+
+    /* ── stat ── */
+    .stat-section{background:var(--void);}
+    .stat-card{
+      background:var(--panel);border-radius:var(--radius);
+      border:1px solid rgba(30,110,171,.2);
+      padding:48px 40px;display:grid;
+      grid-template-columns:auto 1fr;gap:40px;align-items:start;
+    }
+    @media(max-width:600px){.stat-card{grid-template-columns:1fr;gap:24px;padding:32px 24px;}}
+    .stat-number{
+      font-family:'Spectral',serif;font-weight:800;
+      font-size:clamp(3rem,8vw,4.8rem);
+      color:var(--accent);line-height:1;letter-spacing:-.03em;
+    }
+    .stat-headline{
+      font-family:'Spectral',serif;font-weight:700;
+      font-size:1.25rem;color:var(--ink);margin-bottom:12px;line-height:1.3;
+    }
+    .stat-copy{font-size:.88rem;color:var(--ink-muted);line-height:1.7;}
+
+    /* ── how it works ── */
+    .how-section{background:var(--panel);}
+    .how-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px;}
+    @media(max-width:640px){.how-grid{grid-template-columns:1fr;}}
+    .how-lead{grid-column:1/-1;}
+    .how-card{
+      background:var(--panel-hi);border-radius:var(--radius);
+      border:1px solid rgba(30,110,171,.15);
+      padding:28px 24px;
+    }
+    .how-card.lead{
+      background:var(--void);
+      border-color:rgba(30,110,171,.25);
+    }
+    .how-step{
+      font-family:'Archivo',sans-serif;font-weight:700;font-size:.7rem;
+      text-transform:uppercase;letter-spacing:.14em;color:var(--accent);
+      margin-bottom:10px;
+    }
+    .how-card h3{
+      font-family:'Spectral',serif;font-weight:700;font-size:1.1rem;
+      color:var(--ink);margin-bottom:10px;line-height:1.3;
+    }
+    .how-card p{font-size:.88rem;color:var(--ink-muted);line-height:1.65;}
+
+    /* ── CTA panel ── */
+    .cta-section{background:var(--accent-deep);}
+    .cta-inner{text-align:center;max-width:560px;margin:0 auto;}
+    .cta-inner h2{
+      font-family:'Spectral',serif;font-weight:800;
+      font-size:clamp(1.8rem,4.5vw,2.6rem);
+      color:#fff;margin-bottom:16px;line-height:1.2;
+    }
+    .cta-inner p{color:rgba(255,255,255,.8);font-size:1rem;margin-bottom:32px;line-height:1.6;}
+    .cta-btn{
+      display:inline-block;
+      background:#fff;color:var(--accent-deep);
+      font-family:'Archivo',sans-serif;font-weight:700;font-size:1rem;
+      padding:16px 40px;border-radius:10px;text-decoration:none;
+      transition:opacity .2s,transform .15s;
+    }
+    .cta-btn:hover{opacity:.92;transform:translateY(-2px);}
+
+    /* ── footer ── */
+    footer{
+      background:var(--void);
+      border-top:1px solid rgba(30,110,171,.12);
+      padding:32px 24px;text-align:center;
+    }
+    .footer-quiet{font-size:.8rem;color:var(--ink-faint);font-style:italic;}
+
+    /* ── reduced motion ── */
+    @media(prefers-reduced-motion:reduce){
+      .bubble,.typing,.reveal{transform:none!important}
+      .ring,.pulse,.replay-btn.spin svg{animation:none!important}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- nav -->
+  <nav class="sitenav" aria-label="Site navigation">
+    <div class="sitenav-inner">
+      <div class="nav-brand">
+        <svg class="tradesvg" viewBox="0 0 36 38" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 4 C18 4 11 14 11 20 a7 7 0 0 0 14 0 C25 14 18 4 18 4z"/><path d="M14 22 a4 4 0 0 0 8 0"/></svg>
+        <span class="nav-name">Plumbing Masters, Inc.</span>
+      </div>
+      <a href="https://aidmarketingagency.github.io/aid-discovery-call/" class="nav-cta">Book 15 min</a>
+    </div>
+  </nav>
+
+  <!-- hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-icon">
+        <svg class="tradesvg" viewBox="0 0 36 38" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 4 C18 4 11 14 11 20 a7 7 0 0 0 14 0 C25 14 18 4 18 4z"/><path d="M14 22 a4 4 0 0 0 8 0"/></svg>
+      </div>
+      <p class="hero-eyebrow">Since 2004. Indian Trail, NC. 8-person crew.</p>
+      <h1>The leak call that<br/>reached <em>voicemail</em><br/>while your crew<br/>was mid-job.</h1>
+      <p class="hero-lede">Plumbing Masters has served Union County since 2004 with an 8-person crew running residential, commercial, and emergency calls. When all eight are running jobs, the next emergency caller goes wherever picks up first.</p>
+      <a href="https://aidmarketingagency.github.io/aid-discovery-call/" class="hero-cta">See how it works — book 15 min</a>
+    </div>
+  </section>
+
+  <!-- trust row -->
+  <div class="trust">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="trust-dot"></div>
+          <p class="trust-text">Emergency plumbing calls answered in under 30 seconds</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-dot"></div>
+          <p class="trust-text">Tech dispatched and appointment confirmed before you hang up</p>
+        </div>
+        <div class="trust-item">
+          <div class="trust-dot"></div>
+          <p class="trust-text">Running nights and weekends — when leaks don't wait</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SMS demo -->
+  <section class="sms-section">
+    <div class="container">
+      <p class="section-label">Live demo</p>
+      <h2 class="section-title">Watch the call get handled.</h2>
+      <div class="sms-wrap">
+        <div class="sms-header">
+          <div class="sms-avatar">PM</div>
+          <div class="sms-title-block">
+            <div class="sms-name">Plumbing Masters</div>
+            <div class="sms-sub">AI answering assistant · active</div>
+          </div>
+        </div>
+        <div class="thread" id="sms-thread" role="log" aria-live="polite" aria-label="SMS conversation demo">
+          <div class="bubble caller" id="b1">We have water pouring from under the sink and we can't find the shutoff. Can someone come today?</div>
+          <div class="typing" id="t1" aria-hidden="true"><div class="typing-dots"><span></span><span></span><span></span></div></div>
+          <div class="bubble ai" id="b2">Hi, this is the virtual assistant for Plumbing Masters. We have a tech available today at 2 PM. What's your address?<br/><span class="bubble-badge">Replied in 22 sec</span></div>
+          <div class="bubble caller" id="b3">4501 Old Monroe Rd, Indian Trail. It's bad — water on the floor.</div>
+          <div class="typing" id="t2" aria-hidden="true"><div class="typing-dots"><span></span><span></span><span></span></div></div>
+          <div class="bubble ai" id="b4">Got it. A Plumbing Masters tech is confirmed for 2 PM. You'll get a text 30 minutes before arrival. Does that work?</div>
+        </div>
+        <button class="replay-btn" id="replay-btn" type="button" aria-label="Replay SMS demo">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+          Replay
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- stat -->
+  <section class="stat-section">
+    <div class="container">
+      <div class="stat-card">
+        <div class="stat-number" id="stat-counter" aria-label="$1,800">$0</div>
+        <div>
+          <div class="stat-headline">One missed emergency call during a busy afternoon.</div>
+          <p class="stat-copy">When an emergency plumbing call hits voicemail and 85% of those callers never call back, that is a job worth $1,500 to $2,000 for a standard repair — or significantly more for a main line or slab issue. With 8 techs running the route, the window opens every day. <!-- source: pcnanswers.com/missed-call-revenue-study/ --></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- how it works -->
+  <section class="how-section">
+    <div class="container">
+      <p class="section-label">How it works</p>
+      <h2 class="section-title">Three steps, no missed jobs.</h2>
+      <div class="how-grid">
+        <div class="how-card lead how-lead">
+          <div class="how-step">Step 01</div>
+          <h3>The call that arrives while everyone is on a job</h3>
+          <p>When all 8 techs are on service calls, the next emergency caller gets voicemail. In Union County's growing market, that homeowner moves to the next result before the job wraps.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-step">Step 02</div>
+          <h3>Handled in seconds, not a callback queue</h3>
+          <p>Every inbound call triggers an immediate real conversation. The caller describes the issue, gets a tech slot, and receives a confirmation text — while the current job finishes.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-step">Step 03</div>
+          <h3>You arrive to a customer who stayed.</h3>
+          <p>By the time the tech pulls up, this homeowner has already been helped. They stayed because they felt handled. That's a warmer call and a faster estimate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-inner">
+        <h2>See it working for Plumbing Masters.</h2>
+        <p>This is a live preview built for Joe Donofrio and the Plumbing Masters crew. 15 minutes to walk through it.</p>
+        <a href="https://aidmarketingagency.github.io/aid-discovery-call/" class="cta-btn">Book 15 minutes with Ryan</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- footer -->
+  <footer>
+    <p class="footer-quiet">Every emergency call deserves an answer.</p>
+  </footer>
+
+  <!-- AID demo concierge (shared widget 54722168) + data-aid-widget-boost sheeted desktop fix (7/21) -->
+  <script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
+  <script data-aid-widget-boost>
+  (function(){
+    var WID='54722168';
+    var IMG='https://paymegpt.com/api/files/avatar/widget_avatar_mcp_widget_54722168_1784002747499.png';
+    function mobile(){return window.innerWidth<769;}
+    var full=false, fsBtn=null;
+    function container(){return document.getElementById('ultra-fast-widget-container-'+WID);}
+    function bubble(){return document.getElementById('ultra-fast-widget-bubble-'+WID);}
+    function isOpen(){var c=container();return !!(c&&getComputedStyle(c).display!=='none');}
+    function sheet(c){
+      if(!mobile()||full){unsheet(c);return;}
+      var s=c.style;
+      s.setProperty('top','auto','important');s.setProperty('bottom','10px','important');
+      s.setProperty('left','8px','important');s.setProperty('right','8px','important');
+      s.setProperty('width','auto','important');s.setProperty('height','72vh','important');
+      s.setProperty('max-height','72vh','important');s.setProperty('border-radius','16px','important');
+      sheeted=true;
+    }
+    var sheeted=false;
+    function unsheet(c){
+      if(!sheeted)return;
+      ['top','bottom','left','right','width','height','max-height','border-radius'].forEach(function(p){c.style.removeProperty(p);});
+      sheeted=false;
+    }
+    function ensureFsBtn(c){
+      if(!mobile()){if(fsBtn&&fsBtn.parentNode){fsBtn.parentNode.removeChild(fsBtn);fsBtn=null;}return;}
+      if(fsBtn&&c.contains(fsBtn))return;
+      fsBtn=document.createElement('button');
+      fsBtn.type='button';fsBtn.setAttribute('aria-label','Toggle full screen');
+      fsBtn.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M8 3H3v5"/><path d="M16 3h5v5"/><path d="M8 21H3v-5"/><path d="M16 21h5v-5"/></svg>';
+      fsBtn.style.cssText='position:absolute;top:9px;left:10px;z-index:2147483647;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:9px;cursor:pointer;';
+      fsBtn.addEventListener('click',function(e){
+        e.stopPropagation();full=!full;var c2=container();
+        if(c2){if(full){unsheet(c2);}else{sheet(c2);}}
+      });
+      c.appendChild(fsBtn);
+    }
+    function sync(){
+      var b=bubble();if(!b)return;
+      var open=isOpen();
+      if(open){try{sessionStorage.setItem('aidWidgetAutoOpened','1');}catch(e){}}
+      var img=b.querySelector('img[data-aid-icon]');
+      if(open){if(img){img.remove();b.style.background='';}}
+      else if(!img){
+        img=document.createElement('img');img.src=IMG;img.alt='';img.setAttribute('data-aid-icon','');
+        img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;top:0;left:0;pointer-events:none;';
+        b.style.background='#0D0D0F';b.appendChild(img);
+      }
+      var c=container();
+      if(c){if(open){ensureFsBtn(c);sheet(c);}else{full=false;unsheet(c);}}
+    }
+    var armed=false;
+    function autoOpen(){
+      if(armed)return;var b=bubble();if(!b)return;armed=true;
+      try{if(sessionStorage.getItem('aidWidgetAutoOpened'))return;}catch(e){}
+      setTimeout(function(){
+        try{if(sessionStorage.getItem('aidWidgetAutoOpened'))return;}catch(e){}
+        try{sessionStorage.setItem('aidWidgetAutoOpened','1');}catch(e){}
+        if(!isOpen())b.click();
+      },20000);
+    }
+    setInterval(function(){sync();autoOpen();},400);
+  })();
+  </script>
+
+  <!-- AID demo visit beacon (data-aid-visit-beacon) -- copied byte for byte, never re-authored.
+
+       Plain English: this records only that this page was viewed today. It records nothing
+       about who viewed it, and it saves nothing on the visitor's device.
+
+       TWO gates, and BOTH must pass before anything is sent.
+
+       Gate 1, accumulated visible dwell. Link scanners inside email clients fetch these
+       URLs, and some of them execute JavaScript. A fake "he opened it" alert is worse than
+       no data at all, so nothing is sent unless the page was genuinely visible for a full
+       four seconds. Those four seconds are ACCUMULATED, not consecutive from load: opening
+       the link in a background tab and reading it ten minutes later is a real prospect, and
+       so is one who flips back to their inbox for a second mid-read. Both used to send
+       nothing at all. The server does header and user-agent filtering too; this is the
+       client half of the same filter.
+
+       Gate 2, human interaction. A modern URL-detonation sandbox (Proofpoint URL Defense,
+       Microsoft Defender Safe Links) renders the page in real headless Chrome, presents a
+       consumer user-agent, does not flag itself as automated, and sits on the page far
+       longer than four seconds -- so neither gate 1 nor the server's user-agent list can
+       see it at all. What such a sandbox very rarely does is scroll, move a pointer, or
+       type: synthesising that convincingly is expensive and most sandboxes do not bother.
+       A real person reading a long demo page scrolls within seconds. So at least one
+       genuine interaction is required as well. This is the cheapest discriminator
+       available between "a machine rendered this page" and "a person is looking at this
+       page". It is not a proof: a sandbox that DOES synthesise input still gets through.
+       It raises the cost of a false alert rather than eliminating it.
+
+       Stores nothing: no cookie, no localStorage, no sessionStorage, no visitor id. Sends
+       nothing identifying: no document.referrer, no screen size, no fingerprint. Gate 2
+       sends one boolean and nothing else -- not what the visitor did, not how many times,
+       not where on the page. One fire-and-forget POST per page load, or none at all.
+       Failures are swallowed -- a tracking error must never be visible to a prospect
+       reading the page. -->
+  <script data-aid-visit-beacon>
+  (function(){
+    var ENDPOINT = 'https://aid-interactive-db.netlify.app/api/demo-visit';
+    var MIN_DWELL_MS = 4000;
+    var TICK_MS = 500;
+    /* The <slug> of /aid-demo-pages/<slug>/ : lowercase alphanumeric and dashes only. */
+    var SLUG_RE = /^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$/;
+
+    var sent = false;
+    var visibleMs = 0;
+    var segmentStart = null;
+    var interacted = false;
+    var moves = 0;
+
+    function readSlug(){
+      var parts = location.pathname.split('/').filter(Boolean);
+      var i = parts.indexOf('aid-demo-pages');
+      var candidate = i !== -1 ? parts[i + 1] : parts[parts.length - 1];
+      return candidate && SLUG_RE.test(candidate) ? candidate : null;
+    }
+
+    function isVisible(){ return document.visibilityState === 'visible'; }
+
+    /* Bank the open visible segment and stop the clock. Hidden time is never
+       banked, so a page that is NEVER visible -- a prerender, a JS-executing
+       scanner, a tab nobody ever looks at -- accumulates exactly 0ms, can never
+       reach MIN_DWELL_MS, and therefore sends nothing, ever. */
+    function bank(){
+      if (segmentStart === null) return;
+      visibleMs += Date.now() - segmentStart;
+      segmentStart = null;
+    }
+
+    /* Gate 2. Scroll, touch, key and click each qualify on the very first event:
+       none of them happens without a person. Pointer movement is the one noisy
+       signal -- a single move is nearly free for a headless run to emit, and some
+       pointer stacks report one on entry with nobody there -- so it takes two
+       before it counts, then detaches itself. A real hand produces dozens inside a
+       second, so the cost to a genuine reader is nil. */
+    function mark(){ interacted = true; }
+    function onMove(){
+      moves += 1;
+      if (moves < 2) return;
+      interacted = true;
+      document.removeEventListener('pointermove', onMove);
+    }
+
+    var slug = readSlug();
+    if (!slug) return;
+    /* Loading hidden is NOT fatal. Middle-click and "open link in new tab" from an
+       email client are how a lot of real prospects arrive; the clock simply starts
+       when the tab is first looked at. */
+    if (isVisible()) segmentStart = Date.now();
+
+    document.addEventListener('visibilitychange', function(){
+      if (isVisible()) { if (segmentStart === null) segmentStart = Date.now(); }
+      else bank();
+    });
+
+    /* passive so nothing here can ever delay a scroll on a prospect's phone, and
+       once so each listener costs one call and then detaches. */
+    var ONCE = { passive: true, once: true };
+    document.addEventListener('scroll', mark, ONCE);
+    document.addEventListener('touchstart', mark, ONCE);
+    document.addEventListener('keydown', mark, ONCE);
+    document.addEventListener('click', mark, ONCE);
+    document.addEventListener('pointermove', onMove, { passive: true });
+
+    var timer = setInterval(function(){
+      if (sent || !isVisible()) return;
+      bank();
+      segmentStart = Date.now();
+      /* Both gates, together. Dwell alone only proves something held the page
+         open, which is precisely what a detonation sandbox does. */
+      if (visibleMs < MIN_DWELL_MS || !interacted) return;
+      sent = true;
+      clearInterval(timer);
+      try {
+        fetch(ENDPOINT, {
+          method: 'POST',
+          keepalive: true,
+          credentials: 'omit',
+          mode: 'cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            slug: slug,
+            /* Accumulated visible milliseconds, never reported below the gate we
+               actually enforced: a tick landing a hair early would otherwise lose
+               a real visit to the server's too_fast branch. */
+            dwell_ms: Math.max(MIN_DWELL_MS, visibleMs),
+            visibility: document.visibilityState,
+            automated: navigator.webdriver === true,
+            /* A bare boolean, so the server can enforce gate 2 as well. What the
+               visitor did, how often, and where on the page are deliberately not
+               collected: that is behaviour we have no business recording. */
+            interacted: interacted
+          })
+        }).catch(function(){});
+      } catch (e) {}
+    }, TICK_MS);
+  })();
+  </script>
+
+  <script>
+  // SMS thread animation
+  (function(){
+    var thread = document.getElementById('sms-thread');
+    var bubbles = [
+      document.getElementById('b1'),
+      document.getElementById('b2'),
+      document.getElementById('b3'),
+      document.getElementById('b4')
+    ];
+    var typings = [
+      document.getElementById('t1'),
+      document.getElementById('t2')
+    ];
+    var replayBtn = document.getElementById('replay-btn');
+    var statCounter = document.getElementById('stat-counter');
+    var playing = false;
+    var timers = [];
+
+    function reset(){
+      timers.forEach(function(t){ clearTimeout(t); });
+      timers = [];
+      playing = false;
+      bubbles.forEach(function(b){ b.style.opacity = '0'; });
+      typings.forEach(function(t){ t.style.display = 'none'; t.style.opacity = '0'; });
+      replayBtn.classList.remove('spin');
+    }
+
+    function delay(fn, ms){
+      var t = setTimeout(fn, ms);
+      timers.push(t);
+    }
+
+    function showBubble(el){
+      el.style.opacity = '1';
+    }
+    function showTyping(el){
+      el.style.display = 'flex';
+      el.style.opacity = '1';
+    }
+    function hideTyping(el){
+      el.style.display = 'none';
+      el.style.opacity = '0';
+    }
+
+    function playThread(){
+      if(playing) return;
+      playing = true;
+      // b1
+      delay(function(){ showBubble(bubbles[0]); }, 400);
+      // typing 1
+      delay(function(){ showTyping(typings[0]); }, 1000);
+      // b2 (AI reply)
+      delay(function(){ hideTyping(typings[0]); showBubble(bubbles[1]); }, 2400);
+      // b3 (caller)
+      delay(function(){ showBubble(bubbles[2]); }, 3600);
+      // typing 2
+      delay(function(){ showTyping(typings[1]); }, 4400);
+      // b4 (AI reply)
+      delay(function(){ hideTyping(typings[1]); showBubble(bubbles[3]); }, 5800);
+    }
+
+    // stat counter
+    var statTarget = 1800;
+    var statDuration = 1800;
+    var statStarted = false;
+    function runCounter(){
+      if(statStarted) return;
+      statStarted = true;
+      var start = null;
+      function step(ts){
+        if(!start) start = ts;
+        var progress = Math.min((ts - start) / statDuration, 1);
+        var val = Math.round(progress * statTarget);
+        statCounter.textContent = '$' + val.toLocaleString();
+        if(progress < 1) requestAnimationFrame(step);
+        else statCounter.textContent = '$1,800';
+      }
+      requestAnimationFrame(step);
+    }
+
+    // IntersectionObserver for counter
+    var counterEl = document.getElementById('stat-counter');
+    var counterIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ runCounter(); counterIO.unobserve(e.target); } });
+    }, { threshold: 0.5 });
+    counterIO.observe(counterEl);
+
+    // IntersectionObserver for SMS thread — mandatory pattern
+    var playIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { playThread(); playIO.unobserve(e.target); }
+      });
+    }, { threshold: 0.3 });
+    var rearmIO = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) { reset(); playIO.observe(e.target); }
+      });
+    }, { threshold: 0 });
+    // getBoundingClientRect init-visible check
+    var rect = thread.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      playThread();
+    } else {
+      playIO.observe(thread);
+    }
+    rearmIO.observe(thread);
+
+    // replay button
+    replayBtn.addEventListener('click', function(){
+      replayBtn.classList.add('spin');
+      reset();
+      setTimeout(function(){
+        replayBtn.classList.remove('spin');
+        playThread();
+      }, 500);
+    });
+  })();
+  </script>
+</body>
+</html>
