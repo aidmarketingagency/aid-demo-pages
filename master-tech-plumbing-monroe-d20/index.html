@@ -1,0 +1,146 @@
+<!--
+  master-tech-plumbing-monroe-d20
+  =================================
+  Business: Master Tech Plumbing
+  City: Monroe, NC
+  Trade: plumbing
+  Owner: Matt Wolbert (CEO)
+  Palette: void #080F1C, panel #0E1C36, panel-hi #142848, accent #1F6BD4, accent-deep #1558B0, ink #EDF2FF
+  Fonts: Bricolage Grotesque (display) + Newsreader (body)
+  Template: contractor-demo-v2
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <!-- pmgpt-demo-template:contractor-demo-v2 -->
+  <!-- business-marker:master-tech-plumbing-monroe-d20 -->
+  <title>Master Tech Plumbing — Missed-Call AI Demo | AID</title>
+  <meta name="description" content="A working preview of Master Tech Plumbing catching the 2 AM emergency calls that go to voicemail. Built by AID Marketing Agency."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+  <nav class="sitenav" aria-label="Site navigation">
+    <div class="sitenav-inner">
+      <div class="nav-brand">
+        <svg class="tradesvg" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 4 C18 4 12 12 12 18 C12 24 14.7 28 18 28 C21.3 28 24 24 24 18 C24 12 18 4 18 4Z"/><line x1="10" y1="30" x2="26" y2="30"/><line x1="13" y1="33" x2="23" y2="33"/></svg>
+        <span class="nav-name">Master Tech Plumbing</span>
+      </div>
+      <a href="https://aidmarketingagency.github.io/aid-discovery-call/" class="nav-cta">Book 15 min</a>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-icon">
+        <svg class="tradesvg" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 4 C18 4 12 12 12 18 C12 24 14.7 28 18 28 C21.3 28 24 24 24 18 C24 12 18 4 18 4Z"/><line x1="10" y1="30" x2="26" y2="30"/><line x1="13" y1="33" x2="23" y2="33"/></svg>
+      </div>
+      <p class="hero-eyebrow"><span class="live-dot" aria-hidden="true"></span>PLUMBING · MONROE, NC · 24-HOUR EMERGENCY SERVICE · LICENSED IN NC</p>
+      <h1>The 2 AM pipe burst that called<br/>your main number and got<br/><em>voicemail</em>.</h1>
+      <p class="hero-lede">You run a 24-hour shop in Monroe and when a 2 AM emergency call comes in, your main number is the only thing standing between a booked job and a lost one. A homeowner with water pouring under the kitchen sink doesn't wait — they call the next plumber who picks up.</p>
+      <a href="https://aidmarketingagency.github.io/aid-discovery-call/" class="hero-cta">See how it works — book 15 min</a>
+    </div>
+  </section>
+
+  <div class="trust">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item"><div class="trust-dot"></div><p class="trust-text">Emergency calls answered in under 30 seconds — any hour</p></div>
+        <div class="trust-item"><div class="trust-dot"></div><p class="trust-text">Dispatch confirmed and tech en route before you hang up</p></div>
+        <div class="trust-item"><div class="trust-dot"></div><p class="trust-text">Licensed in NC — serving Monroe and Union County 24/7</p></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="sms-section">
+    <div class="container">
+      <p class="section-label">Live demo</p>
+      <h2 class="section-title">Watch the call get handled.</h2>
+      <div class="sms-wrap">
+        <div class="sms-header">
+          <div class="sms-avatar">MT</div>
+          <div>
+            <div class="sms-name">Master Tech Plumbing</div>
+            <div class="sms-sub">AI answering assistant · active</div>
+          </div>
+        </div>
+        <div id="thread" role="log" aria-live="polite" aria-label="SMS conversation demo">
+          <div class="bubble caller" id="b1">We have water pouring out from under the kitchen sink — I can't get the shutoff to work and it's flooding my cabinet. This is an emergency.</div>
+          <div class="typing-indicator" id="typing1"><span></span><span></span><span></span></div>
+          <div class="bubble ai" id="b2">This is Master Tech Plumbing's emergency line. We're on it. Can you get to your main water shutoff? It's usually near the water meter or in a utility closet.<br/><span class="bubble-badge">Replied in 16 sec</span></div>
+          <div class="bubble caller" id="b3">1804 Secrest Shortcut Rd, Monroe 28110. I found the main and shut it. There's water everywhere — I need someone out here tonight.</div>
+          <div class="typing-indicator" id="typing2"><span></span><span></span><span></span></div>
+          <div class="bubble ai" id="b4">Confirmed emergency dispatch for 1804 Secrest Shortcut Rd. A Master Tech tech is headed your way — ETA approximately 45 minutes. We're licensed in NC and handle all emergency repairs.</div>
+        </div>
+        <button class="replay-btn" id="replay" type="button" aria-label="Replay SMS demo">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+          Replay
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="stat-section">
+    <div class="container">
+      <div class="stat-card">
+        <div class="stat-number" id="counter" aria-label="$3200">$0</div>
+        <div>
+          <div class="stat-headline">Average emergency plumbing repair cost in North Carolina.</div>
+          <p class="stat-copy">A 2 AM pipe burst is a $3,000+ job that goes to whoever picks up the phone. In Monroe and Union County, emergency calls that go to voicemail don't wait until morning — the homeowner with water on their kitchen floor calls the next licensed plumber that answers and that relationship carries forward.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="how-section">
+    <div class="container">
+      <p class="section-label">How it works</p>
+      <h2 class="section-title">2 AM call. Answered in 16 seconds.</h2>
+      <div class="how-grid">
+        <div class="how-card lead how-lead">
+          <div class="how-step">Step 01</div>
+          <h3>A 2 AM pipe burst is a $3,000+ job that goes to whoever picks up the phone. An AI answering service takes every emergency call, walks the homeowner through the shutoff, and dispatches your crew before the water spreads further.</h3>
+          <p>Matt's shop is 24 hours but the main number hits voicemail at 2 AM. The homeowner, cabinet flooding and shutoff not working, calls the next licensed Monroe plumber who picks up. That's the emergency repair, the follow-up inspection, and the maintenance relationship that leaves with it.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-step">Step 02</div>
+          <h3>Triage on the call</h3>
+          <p>Shutoff steps, damage scope, and address all captured before dispatch. Your tech arrives knowing the situation, not walking in blind.</p>
+        </div>
+        <div class="how-card">
+          <div class="how-step">Step 03</div>
+          <h3>Confirmed dispatch</h3>
+          <p>Tech en route, ETA texted to the customer, no callback required. The homeowner stops panicking the moment they have a number.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-inner">
+        <h2>See it working for Master Tech Plumbing.</h2>
+        <p>A live preview built for Matt Wolbert and the team in Monroe. 15 minutes to walk through it.</p>
+        <a href="https://aidmarketingagency.github.io/aid-discovery-call/" class="cta-btn">Book 15 minutes with Ryan</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-inner">
+      <p class="footer-quiet">Put together by Ryan McNally at <a href="https://aidmarketingagency.github.io/aid-discovery-call/" class="footer-link">AID Marketing Agency</a>.</p>
+    </div>
+  </footer>
+
+  <!-- data-aid-widget-boost -->
+  <script src="https://cdn.paymegpt.com/widget.js" data-page-id="aid-demo-boost" async defer></script>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
