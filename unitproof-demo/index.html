@@ -565,5 +565,85 @@ const App = () => {
 
 ReactDOM.createRoot(document.getElementById('root')).render(<App />);
 </script>
+
+<script>
+/* AID demo-page visit beacon v2 (injected by execution/inject_demo_beacons.py)
+   Posts to the AIOS dashboard Netlify function which holds the Supabase key.
+   Privacy: only slug, dwell bucket, visibility, webdriver flag, and interacted
+   boolean are sent. IP and user-agent are read by the function to classify the
+   visit, then discarded. Nothing is stored beyond the slug and the ET date. */
+(function(){
+  var ENDPOINT = 'https://aid-interactive-db.netlify.app/api/demo-visit';
+  var MIN_DWELL_MS = 4000;
+  var SLUG_RE = /^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$/;
+
+  var sent = false, visibleMs = 0, segmentStart = null, interacted = false, moves = 0;
+
+  function readSlug(){
+    var parts = location.pathname.split('/').filter(Boolean);
+    var i = parts.indexOf('aid-demo-pages');
+    var candidate = i !== -1 ? parts[i + 1] : parts[parts.length - 1];
+    return candidate && SLUG_RE.test(candidate) ? candidate : null;
+  }
+
+  function isVisible(){ return document.visibilityState === 'visible'; }
+
+  function bank(){
+    if (segmentStart === null) return;
+    visibleMs += Date.now() - segmentStart;
+    segmentStart = null;
+  }
+
+  /* Pointer movement needs two events before counting to avoid false positives
+     from pointer stacks that report one move on page entry. Real humans produce
+     dozens; the 2-move threshold is invisible to them. */
+  function mark(){ interacted = true; }
+  function onMove(){
+    moves += 1;
+    if (moves < 2) return;
+    interacted = true;
+    document.removeEventListener('pointermove', onMove);
+  }
+
+  var slug = readSlug();
+  if (!slug) return;
+
+  if (isVisible()) segmentStart = Date.now();
+  document.addEventListener('visibilitychange', function(){
+    if (isVisible()){ if (segmentStart === null) segmentStart = Date.now(); }
+    else bank();
+  });
+
+  var ONCE = { passive: true, once: true };
+  document.addEventListener('scroll',     mark, ONCE);
+  document.addEventListener('touchstart', mark, ONCE);
+  document.addEventListener('keydown',    mark, ONCE);
+  document.addEventListener('click',      mark, ONCE);
+  document.addEventListener('pointermove', onMove, { passive: true });
+
+  setInterval(function(){
+    if (sent) return;
+    bank();
+    if (visibleMs < MIN_DWELL_MS || !interacted) return;
+    sent = true;
+    try {
+      fetch(ENDPOINT, {
+        method: 'POST',
+        keepalive: true,
+        credentials: 'omit',
+        mode: 'cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          slug: slug,
+          dwell_ms: Math.max(MIN_DWELL_MS, visibleMs),
+          visibility: document.visibilityState,
+          automated: navigator.webdriver === true,
+          interacted: interacted
+        })
+      });
+    } catch(e){}
+  }, 500);
+})();
+</script>
 </body>
 </html>
