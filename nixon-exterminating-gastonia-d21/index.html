@@ -1,0 +1,185 @@
+<!--
+  nixon-exterminating-gastonia-d21
+  ==================================
+  Business: Nixon Exterminating, Inc.
+  City: Gastonia, NC
+  Trade: pest_control
+  Owner: Phillip Nixon (President, 13 employees, founded 1958)
+  Template: contractor-demo-v2
+  pmgpt-demo-template:contractor-demo-v2
+  business-marker:nixon-exterminating-gastonia-d21
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Nixon Exterminating — Missed-Call AI Demo | AID</title>
+  <meta name="description" content="A working preview of Nixon Exterminating catching the termite inquiry calls that go to voicemail. Built by AID Marketing Agency."/>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700&family=Spectral:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="sitenav">
+    <div class="sitenav-inner">
+      <div class="nav-brand">
+        <svg class="tradesvg" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 3 L30 8 L30 20 C30 27 24 32 18 33 C12 32 6 27 6 20 L6 8 Z"/>
+          <circle cx="18" cy="17" r="5"/>
+          <line x1="18" y1="12" x2="18" y2="9"/>
+          <line x1="12" y1="16" x2="8" y2="14"/>
+          <line x1="24" y1="16" x2="28" y2="14"/>
+          <line x1="12" y1="20" x2="8" y2="22"/>
+          <line x1="24" y1="20" x2="28" y2="22"/>
+        </svg>
+        <span class="nav-name">Nixon Exterminating, Inc.</span>
+      </div>
+      <a class="nav-cta" href="https://aidmarketingagency.github.io/aid-discovery-call/">Book a 15-Min Call</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-icon">
+        <svg class="tradesvg" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 3 L30 8 L30 20 C30 27 24 32 18 33 C12 32 6 27 6 20 L6 8 Z"/>
+          <circle cx="18" cy="17" r="5"/>
+          <line x1="18" y1="12" x2="18" y2="9"/>
+          <line x1="12" y1="16" x2="8" y2="14"/>
+          <line x1="24" y1="16" x2="28" y2="14"/>
+          <line x1="12" y1="20" x2="8" y2="22"/>
+          <line x1="24" y1="20" x2="28" y2="22"/>
+        </svg>
+      </div>
+      <p class="hero-eyebrow"><span class="live-dot"></span>PEST CONTROL · GASTONIA, NC · SERVING GASTON COUNTY SINCE 1958</p>
+      <h1>The termite inquiry that went to <em>voicemail</em> while your route crew was already out.</h1>
+      <p class="hero-lede">You have run Nixon Exterminating in Gastonia for over 60 years. When a termite inquiry comes in during route day, your crew of 13 is already on scheduled stops — and that call reaches the office line at a time nobody's at the desk.</p>
+      <a class="hero-cta" href="https://aidmarketingagency.github.io/aid-discovery-call/">See It Working — Book 15 Min</a>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <div class="trust">
+    <div class="trust-grid">
+      <div class="trust-item">
+        <div class="trust-dot"></div>
+        <p class="trust-text">Termite and pest inquiries answered any hour</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-dot"></div>
+        <p class="trust-text">Full job details captured before a tech routes</p>
+      </div>
+      <div class="trust-item">
+        <div class="trust-dot"></div>
+        <p class="trust-text">Serving Gaston County since 1958</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SMS SECTION -->
+  <section class="sms-section">
+    <div class="container">
+      <p class="section-label">Live Demo</p>
+      <h2 class="section-title">Watch the AI answer the call no one is at the desk to take.</h2>
+      <div style="margin-top:32px;">
+        <div class="sms-wrap">
+          <div class="sms-header">
+            <div class="sms-avatar">NE</div>
+            <div>
+              <p class="sms-name">Nixon Exterminating</p>
+              <p class="sms-sub">AI Answering Service · Active now</p>
+            </div>
+          </div>
+          <div id="thread">
+            <div class="bubble caller" id="b1">We found what looks like termite mud tubes in the crawl space this morning. I'm not sure how long they've been there. Can Nixon Exterminating come take a look?</div>
+            <div class="typing-indicator" id="typing1"><span></span><span></span><span></span></div>
+            <div class="bubble ai" id="b2">This is the answering service for Nixon Exterminating. Our team can inspect your crawl space — what's the address and have you seen any swarmers or soft wood damage inside?<br/><span class="bubble-badge">Answered in 26 sec</span></div>
+            <div class="bubble caller" id="b3">2248 Beatty Dr, Gastonia 28054. No swarmers, but the mud tubes are on the center beam and I found some soft drywall near the back wall.</div>
+            <div class="typing-indicator" id="typing2"><span></span><span></span><span></span></div>
+            <div class="bubble ai" id="b4">Confirmed. A Nixon technician is scheduled for a crawl space inspection this week. You'll get a call to confirm the exact time. Keep the area accessible if you can.</div>
+          </div>
+          <button class="replay-btn" id="replay">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6A4 4 0 1 1 6 2"/><polyline points="10 2 10 6 6 6"/></svg>
+            Replay
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STAT SECTION -->
+  <section class="stat-section">
+    <div class="container">
+      <div class="stat-card">
+        <div>
+          <div class="stat-number" id="counter">$0</div>
+        </div>
+        <div>
+          <p class="stat-headline">Average structural termite damage repair in North Carolina.</p>
+          <p class="stat-copy">A termite inspection in the Gastonia market that reveals active colony damage typically leads to $4,000–$14,000 in combined treatment and structural repair. When a homeowner who found mud tubes in their crawl space can't reach Nixon Exterminating, they call the next licensed pest company — and a 60-year relationship ends with one missed call.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW SECTION -->
+  <section class="how-section">
+    <div class="container">
+      <p class="section-label">How It Works</p>
+      <h2 class="section-title">Every call answered. Every job captured.</h2>
+      <div class="how-grid">
+        <div class="how-card lead how-lead">
+          <p class="how-step">Step 01</p>
+          <h3>Every termite inquiry answered — during route day, after hours, on weekends — by a trained AI that captures the damage description, schedules the inspection, and keeps the homeowner off the competitor list.</h3>
+          <p>Phil's crew of 13 is on scheduled stops across Gaston County. The termite call — from a homeowner who found mud tubes on the center beam of their crawl space — reaches the office line when nobody's at the desk. PayMeGPT answers before the second ring, captures the address and damage description, and schedules the inspection.</p>
+        </div>
+        <div class="how-card">
+          <p class="how-step">Step 02</p>
+          <h3>Qualifies the job</h3>
+          <p>Damage type, location, visible swarmers — captured before any tech routes. Every inspection starts with the full picture.</p>
+        </div>
+        <div class="how-card">
+          <p class="how-step">Step 03</p>
+          <h3>Schedules the inspection</h3>
+          <p>Appointment window booked without pulling a tech off a stop. Homeowner stops calling competitors.</p>
+        </div>
+        <div class="how-card">
+          <p class="how-step">Step 04</p>
+          <h3>Follows up automatically</h3>
+          <p>Confirmation and reminder go out automatically. Homeowner has the prep instructions ready when the tech arrives.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-inner">
+        <h2>See it working for Nixon Exterminating.</h2>
+        <p>A live preview built for Phillip Nixon and the crew in Gastonia. 15 minutes to walk through it.</p>
+        <a class="cta-btn" href="https://aidmarketingagency.github.io/aid-discovery-call/">Book a 15-Min Call</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <p class="footer-quiet">This is a working demo built by <a class="footer-link" href="https://aidmarketingagency.github.io/aid-discovery-call/">AID Marketing Agency</a>. Nixon Exterminating, Inc. is a real business in Gastonia, NC. This page is not affiliated with or endorsed by Nixon Exterminating.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="https://paymegpt.com/widget.js" data-widget="54722168" async></script>
+  <script data-aid-widget-boost="20000">
+  (function(){var WID='54722168';var IMG='https://paymegpt.com/api/files/avatar/widget_avatar_mcp_widget_54722168_1784002747499.png';function mobile(){return window.innerWidth<769;}var full=false,fsBtn=null;function container(){return document.getElementById('ultra-fast-widget-container-'+WID);}function bubble(){return document.getElementById('ultra-fast-widget-bubble-'+WID);}function isOpen(){var c=container();return !!(c&&getComputedStyle(c).display!=='none');}function sheet(c){if(!mobile()||full){unsheet(c);return;}var s=c.style;s.setProperty('top','auto','important');s.setProperty('bottom','10px','important');s.setProperty('left','8px','important');s.setProperty('right','8px','important');s.setProperty('width','auto','important');s.setProperty('height','72vh','important');s.setProperty('max-height','72vh','important');s.setProperty('border-radius','16px','important');sheeted=true;}var sheeted=false;function unsheet(c){if(!sheeted)return;['top','bottom','left','right','width','height','max-height','border-radius'].forEach(function(p){c.style.removeProperty(p);});sheeted=false;}function ensureFsBtn(c){if(!mobile()){if(fsBtn&&fsBtn.parentNode){fsBtn.parentNode.removeChild(fsBtn);fsBtn=null;}return;}if(fsBtn&&c.contains(fsBtn))return;fsBtn=document.createElement('button');fsBtn.type='button';fsBtn.setAttribute('aria-label','Toggle full screen');fsBtn.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M8 3H3v5"/><path d="M16 3h5v5"/><path d="M8 21H3v-5"/><path d="M16 21h5v-5"/></svg>';fsBtn.style.cssText='position:absolute;top:9px;left:10px;z-index:2147483647;width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.14);color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:9px;cursor:pointer;';fsBtn.addEventListener('click',function(e){e.stopPropagation();full=!full;var c2=container();if(c2){if(full){unsheet(c2);}else{sheet(c2);}}});c.appendChild(fsBtn);}function sync(){var b=bubble();if(!b)return;var open=isOpen();if(open){try{sessionStorage.setItem('aidWidgetAutoOpened','1');}catch(e){}}var img=b.querySelector('img[data-aid-icon]');if(open){if(open){if(img){img.remove();b.style.background='';}}else if(!img){img=document.createElement('img');img.src=IMG;img.alt='';img.setAttribute('data-aid-icon','');img.style.cssText='width:100%;height:100%;object-fit:cover;border-radius:50%;position:absolute;top:0;left:0;pointer-events:none;';b.style.background='#0D0D0F';b.appendChild(img);}}var c=container();if(c){if(open){ensureFsBtn(c);sheet(c);}else{full=false;unsheet(c);}}}var armed=false;function autoOpen(){if(armed)return;var b=bubble();if(!b)return;armed=true;try{if(sessionStorage.getItem('aidWidgetAutoOpened'))return;}catch(e){}setTimeout(function(){try{if(sessionStorage.getItem('aidWidgetAutoOpened'))return;}catch(e){}try{sessionStorage.setItem('aidWidgetAutoOpened','1');}catch(e){}if(!isOpen())b.click();},20000);}setInterval(function(){sync();autoOpen();},400);})();
+  </script>
+  <script data-aid-visit-beacon>
+  (function(){var ENDPOINT='https://aid-interactive-db.netlify.app/api/demo-visit';var MIN_DWELL_MS=4000;var SLUG_RE=/^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$/;var sent=false,visibleMs=0,segmentStart=null,interacted=false,moves=0;function readSlug(){var parts=location.pathname.split('/').filter(Boolean);var i=parts.indexOf('aid-demo-pages');var candidate=i!==-1?parts[i+1]:parts[parts.length-1];return candidate&&SLUG_RE.test(candidate)?candidate:null;}function isVisible(){return document.visibilityState==='visible';}function bank(){if(segmentStart===null)return;visibleMs+=Date.now()-segmentStart;segmentStart=null;}function mark(){interacted=true;}function onMove(){moves+=1;if(moves<2)return;interacted=true;document.removeEventListener('pointermove',onMove);}var slug=readSlug();if(!slug)return;if(isVisible())segmentStart=Date.now();document.addEventListener('visibilitychange',function(){if(isVisible()){if(segmentStart===null)segmentStart=Date.now();}else bank();});var ONCE={passive:true,once:true};document.addEventListener('scroll',mark,ONCE);document.addEventListener('touchstart',mark,ONCE);document.addEventListener('keydown',mark,ONCE);document.addEventListener('click',mark,ONCE);document.addEventListener('pointermove',onMove,{passive:true});setInterval(function(){if(sent)return;bank();if(visibleMs<MIN_DWELL_MS||!interacted)return;sent=true;try{fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:slug,interacted:true})});}catch(e){}},500);})();
+  </script>
+</body>
+</html>
