@@ -147,5 +147,35 @@
 
   <script src="script.js"></script>
 
+  <script data-aid-visit-beacon>
+  (function(){
+    var ENDPOINT='https://aid-interactive-db.netlify.app/api/demo-visit';
+    var MIN_DWELL_MS=4000;
+    var SLUG_RE=/^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$/;
+    var sent=false,visibleMs=0,segmentStart=null,interacted=false,moves=0;
+    function readSlug(){var parts=location.pathname.split('/').filter(Boolean);var i=parts.indexOf('aid-demo-pages');var candidate=i!==-1?parts[i+1]:parts[parts.length-1];return candidate&&SLUG_RE.test(candidate)?candidate:null;}
+    function isVisible(){return document.visibilityState==='visible';}
+    function bank(){if(segmentStart===null)return;visibleMs+=Date.now()-segmentStart;segmentStart=null;}
+    function mark(){interacted=true;}
+    function onMove(){moves+=1;if(moves<2)return;interacted=true;document.removeEventListener('pointermove',onMove);}
+    var slug=readSlug();
+    if(!slug)return;
+    if(isVisible())segmentStart=Date.now();
+    document.addEventListener('visibilitychange',function(){if(isVisible()){if(segmentStart===null)segmentStart=Date.now();}else bank();});
+    var ONCE={passive:true,once:true};
+    document.addEventListener('scroll',mark,ONCE);
+    document.addEventListener('touchstart',mark,ONCE);
+    document.addEventListener('keydown',mark,ONCE);
+    document.addEventListener('click',mark,ONCE);
+    document.addEventListener('pointermove',onMove,{passive:true});
+    setInterval(function(){
+      if(sent)return;
+      bank();
+      if(visibleMs<MIN_DWELL_MS||!interacted)return;
+      sent=true;
+      try{fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({slug:slug,interacted:true})});}catch(e){}
+    },500);
+  })();
+  </script>
 </body>
 </html>
