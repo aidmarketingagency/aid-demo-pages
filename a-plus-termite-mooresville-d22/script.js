@@ -18,4 +18,3 @@ document.getElementById('replay').addEventListener('click',()=>{resetThread();se
 const counter=document.getElementById('counter');let counted=false;
 const cntIO=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting&&!counted){counted=true;const target=3200,dur=1600,start=performance.now();function step(now){const pr=Math.min((now-start)/dur,1);const val=Math.round(pr*pr*(3-2*pr)*target);counter.textContent='$'+val.toLocaleString();if(pr<1)requestAnimationFrame(step);}requestAnimationFrame(step);}});},{threshold:0.3});
 if(counter)cntIO.observe(document.querySelector('.stat-section'));
-(function(){var s={slug:'a-plus-termite-mooresville-d22',page_url:location.href,referrer:document.referrer,ua:navigator.userAgent.slice(0,120)};fetch('https://aid-interactive-db.netlify.app/.netlify/functions/demo-beacon',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(s),mode:'cors',keepalive:true}).catch(function(){});})();
