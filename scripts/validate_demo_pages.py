@@ -9,11 +9,22 @@ merge-freeze-guard (Agentic_Systems) requires before any agent-side
 `gh pr merge` of this repo's PRs.
 
 Checks per changed */index.html:
-  1. BEACON    — page wires visit tracking to aid-interactive-db.netlify.app
+  1. BEACON    — page posts visits to the one live beacon endpoint,
+                 https://aid-interactive-db.netlify.app/api/demo-visit.
+                 Verified against the production Netlify deploy 2026-08-10:
+                 /api/demo-visit rewrites to the demo-visit function; no other
+                 beacon function exists. A bare host match is not enough — the
+                 d20-d22 pages all contained the host while POSTing to a dead
+                 path, which is exactly the regression this check must catch.
   2. BOOKING   — the aid-discovery-call booking CTA is present
   3. NO-PMGPT  — no visible paymegpt.com/p/ URLs (ruling 2026-07-21: zero)
   4. NO-SCAFFOLD — no template scaffolding or unrendered placeholder text
   5. TITLE     — a real, non-generic <title>
+  6. NO-DEAD-ENDPOINT — neither index.html nor any sibling *.js references
+                 aid-interactive-db.netlify.app/.netlify/functions/ — every
+                 such path 404s in production (only /api/* rewrites exist).
+                 Scanned in *.js too because the d20-d22 rogue beacon lived in
+                 script.js, next to a clean index.html.
 
 A PR that changes no page index.html (infra, scripts, workflows) passes.
 Exit 0 = pass, 1 = violations (printed per page).
@@ -27,6 +38,12 @@ import sys
 from pathlib import Path
 
 BEACON_HOST = "aid-interactive-db.netlify.app"
+# The ONLY live beacon endpoint (verified 2026-08-10 against the production
+# deploy's redirect + function manifest). Pages must reference it in full.
+BEACON_ENDPOINT = f"https://{BEACON_HOST}/api/demo-visit"
+# Direct function paths on the beacon host 404 in production; any reference
+# is a dead POST that silently drops the visit signal.
+DEAD_FUNCTION_PATH = f"{BEACON_HOST}/.netlify/functions/"
 BOOKING_SLUG = "aid-discovery-call"
 RAW_PMGPT = "paymegpt.com/p/"
 SCAFFOLD_PATTERNS = [
@@ -63,8 +80,18 @@ def validate(path: Path) -> list[str]:
     html = path.read_text(encoding="utf-8", errors="replace")
     lower = html.lower()
     violations = []
-    if BEACON_HOST not in html:
-        violations.append(f"BEACON: no {BEACON_HOST} tracking endpoint")
+    if BEACON_ENDPOINT not in html:
+        violations.append(f"BEACON: no {BEACON_ENDPOINT} tracking endpoint")
+    dead_refs = [path.name] if DEAD_FUNCTION_PATH in html else []
+    for sibling in sorted(path.parent.glob("*.js")):
+        if DEAD_FUNCTION_PATH in sibling.read_text(encoding="utf-8",
+                                                   errors="replace"):
+            dead_refs.append(sibling.name)
+    for name in dead_refs:
+        violations.append(
+            f"NO-DEAD-ENDPOINT: {name} references {DEAD_FUNCTION_PATH}* "
+            "(404 in production; only /api/demo-visit is live)"
+        )
     if BOOKING_SLUG not in html:
         violations.append(f"BOOKING: no {BOOKING_SLUG} CTA link")
     if RAW_PMGPT in lower:
