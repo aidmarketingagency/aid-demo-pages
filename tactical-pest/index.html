@@ -390,11 +390,14 @@
   </header>
 
   <div class="hero-img-band reveal">
+    <!-- 2026-08-12: onerror fallback — hotlinked CDN assets rot (panic-plumbing 404
+         lesson); a dead photo hides itself instead of rendering a broken icon. -->
     <img
       src="https://cdn.pixabay.com/photo/2014/03/25/16/32/ant-296408_1280.jpg"
       alt="Close-up of an ant on wood, representing the pest inspection work Tactical Pest handles across Mint Hill and the Matthews corridor"
       loading="lazy"
       decoding="async"
+      onerror="this.hidden=true"
     />
   </div>
 

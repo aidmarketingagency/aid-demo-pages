@@ -446,7 +446,10 @@
   <!-- BRAND BAND: their real logo, hotlinked from their own Wix media library -->
   <section class="brand-band reveal" data-section="brand">
     <div class="logo-cell">
-      <img src="https://static.wixstatic.com/media/18436b_b0944361fb474d009b44b1656d904da1~mv2.jpg" alt="The real Carolina Care Heating and Air logo" loading="lazy"/>
+      <!-- 2026-08-12: onerror fallback — hotlinked Wix CDN assets rot (panic-plumbing
+           404 lesson); a dead logo swaps to a styled text brand mark, never a broken icon. -->
+      <img src="https://static.wixstatic.com/media/18436b_b0944361fb474d009b44b1656d904da1~mv2.jpg" alt="The real Carolina Care Heating and Air logo" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false"/>
+      <b hidden style="font-size:1.45rem;font-weight:800;color:#042a6b;letter-spacing:.02em;text-align:center">Carolina Care Heating &amp; Air</b>
     </div>
     <div class="cap-cell">
       <div class="k">Your brand, untouched</div>

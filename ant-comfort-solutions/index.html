@@ -352,10 +352,13 @@
 <section class="hero">
   <div class="hero-bg">
     <!-- Pixabay CC0: air conditioner photo, id 8573127 -->
+    <!-- 2026-08-12: onerror fallback — hotlinked CDN assets rot (panic-plumbing 404
+         lesson); a dead hero photo hides itself instead of rendering a broken icon. -->
     <img
       src="https://cdn.pixabay.com/photo/2024/02/14/14/19/air-conditioner-8573127_1280.jpg"
       alt="Residential air conditioning unit being serviced by an HVAC technician"
       loading="eager"
+      onerror="this.hidden=true"
     >
   </div>
   <div class="hero-inner">
