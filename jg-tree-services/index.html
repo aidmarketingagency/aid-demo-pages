@@ -397,9 +397,8 @@
         <!-- Real JG mascot logo (JG-logo.webp from their WP media library): lime-green oval,
              charcoal "JG", hi-vis/amber climber. The warm amber lives here so it stays out of
              the palette accent role. -->
-        <!-- 2026-08-12: onerror fallback — hotlinked client CDN assets rot (panic-plumbing
-             404 lesson); if their WP asset dies, the text name beside it carries the brand. -->
-        <img class="brandlogo" src="https://jgtreeservices.com/wp-content/uploads/2025/06/JG-logo.webp" alt="JG Tree Services logo" width="52" height="43" decoding="async" onerror="this.hidden=true" />
+        <!-- 2026-08-18: JG-logo.webp confirmed dead (HTTP 415) — downgraded to styled text
+             brand mark per demo_logo_guard.py contract. Text name + loc below carry the brand. -->
         <div>
           <div class="name">JG Tree Services</div>
           <div class="loc">Mooresville, NC &middot; Tree Service</div>
@@ -419,9 +418,11 @@
       <!-- A2 hero visual: real JG job photo (Recent-Work-1 from their WP media library) -- a
            crew member roped high up a trunk mid-removal with fresh-cut log rounds in the
            foreground. Desaturated + zoomed + duotone-toward-lime with scrim + grain applied by
-           the .hero-art pseudo-elements, so the photo reads as part of this page. -->
-      <figure class="hero-art" role="img" aria-label="JG Tree Services crew member roped high up a tree trunk mid-removal, fresh-cut log rounds stacked in the foreground">
-        <img class="hero-photo" src="https://jgtreeservices.com/wp-content/uploads/2025/06/Recent-Work-1.webp" alt="JG Tree Services crew member roped up a tree trunk mid-removal, with fresh-cut log rounds in the foreground" loading="lazy" decoding="async" onerror="this.hidden=true" />
+           the .hero-art pseudo-elements, so the photo reads as part of this page.
+           2026-08-18: Recent-Work-1.webp confirmed dead (HTTP 415) — img removed per
+           demo_logo_guard.py contract. .hero-art ::before gradient + ::after grain render
+           over background:#101309 and remain fully visible without the photo. -->
+      <figure class="hero-art" role="img" aria-label="JG Tree Services — Lake Norman, on the job">
         <figcaption class="cap">Lake Norman, on the job</figcaption>
       </figure>
 
