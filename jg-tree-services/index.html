@@ -121,130 +121,8 @@
 }catch(e){}})();
 </script>
 
-<script data-field-replace>
-(function(){
-  var params=new URLSearchParams(window.location.search);
-  var fields={};
-  var paramMap={
-    'first_name':'firstName','last_name':'lastName','full_name':'fullName',
-    'email':'email','phone':'phone','company':'company',
-    'city':'city','state':'state','country':'country'
-  };
-  var skipTags={'SCRIPT':1,'STYLE':1,'NOSCRIPT':1,'TEXTAREA':1,'CODE':1,'PRE':1};
-  var hasUrlFields=false;
-  for(var p in paramMap){
-    var v=params.get(p);
-    if(v){fields[paramMap[p]]=v;hasUrlFields=true;}
-  }
-  var contactId=params.get('contact_id');
-  function esc(s){
-    if(!s)return s;
-    var d=document.createElement('div');
-    d.appendChild(document.createTextNode(s));
-    return d.innerHTML;
-  }
-  function doReplace(data){
-    var r={};
-    r['{{full_name}}']=esc(((data.firstName||'')+' '+(data.lastName||'')).trim()||((data.fullName||data.name)||''));
-    r['{{first_name}}']=esc(data.firstName||(data.name?data.name.split(' ')[0]:'')||'');
-    r['{{last_name}}']=esc(data.lastName||(data.name&&data.name.indexOf(' ')>-1?data.name.substring(data.name.indexOf(' ')+1):'')||'');
-    r['{{email}}']=esc(data.email||'');
-    r['{{phone}}']=esc(data.phone||'');
-    r['{{company}}']=esc(data.company||'');
-    r['{{city}}']=esc(data.city||'');
-    r['{{state}}']=esc(data.state||'');
-    r['{{country}}']=esc(data.country||'');
-    r['{{date}}']=new Date().toLocaleDateString();
-    r['{{time}}']=new Date().toLocaleTimeString();
-    r['{{location}}']=[data.city,data.state,data.country].filter(Boolean).join(', ');
-    r['{{tracking_id}}']=esc(data.trackingId||'');
-    r['{{lastClickedProduct}}']=esc(data.lastClickedProduct||'');
-    r['{{lastProductClickDate}}']=esc(data.lastProductClickDate||'');
-    r['{{lastClickedProductPrice}}']=esc(data.lastClickedProductPrice||'');
-    r['{{lastClickedProductURL}}']=esc(data.lastClickedProductURL||'');
-    r['{{productsClickedCount}}']=esc(data.productsClickedCount||'0');
-    r['{{ip_address}}']=esc(data.ipAddress||'');
-    r['{{ip}}']=esc(data.ipAddress||'');
-    if(data.customFields){
-      for(var k in data.customFields){
-        r['{{'+k+'}}']=esc(String(data.customFields[k]||''));
-      }
-    }
-    params.forEach(function(v,k){
-      if(!paramMap[k]&&k!=='contact_id'&&k!=='page_id'&&k.indexOf('utm_')!==0){
-        r['{{'+k+'}}']=esc(v);
-      }
-    });
-    var hasValues=false;
-    for(var key in r){if(r[key]){hasValues=true;break;}}
-    if(!hasValues)return;
-    var walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT,{
-      acceptNode:function(n){
-        var p=n.parentNode;
-        if(p&&skipTags[p.nodeName])return NodeFilter.FILTER_REJECT;
-        return NodeFilter.FILTER_ACCEPT;
-      }
-    });
-    var node;
-    while(node=walker.nextNode()){
-      var txt=node.nodeValue;
-      if(txt&&txt.indexOf('{{')>-1){
-        var changed=txt;
-        for(var ph in r){
-          if(r[ph]&&changed.indexOf(ph)>-1){
-            changed=changed.split(ph).join(r[ph]);
-          }
-        }
-        if(changed!==txt)node.nodeValue=changed;
-      }
-    }
-    var attrs=['value','placeholder','content','alt','title'];
-    attrs.forEach(function(attr){
-      var els=document.querySelectorAll('['+attr+'*="{{"]');
-      for(var i=0;i<els.length;i++){
-        var tag=els[i].tagName;
-        if(skipTags[tag])continue;
-        var val=els[i].getAttribute(attr);
-        if(val){
-          var nv=val;
-          for(var ph in r){
-            if(r[ph]&&nv.indexOf(ph)>-1){
-              nv=nv.split(ph).join(r[ph]);
-            }
-          }
-          if(nv!==val)els[i].setAttribute(attr,nv);
-        }
-      }
-    });
-  }
-  function run(){
-    if(contactId){
-      var xhr=new XMLHttpRequest();
-      xhr.open('GET','https://paymegpt.com/api/landing/context/'+encodeURIComponent(contactId)+'?page_id=5551');
-      xhr.onload=function(){
-        if(xhr.status===200){
-          try{
-            var resp=JSON.parse(xhr.responseText);
-            if(resp.success&&resp.contact){
-              var merged=resp.contact;
-              for(var k in fields){merged[k]=fields[k];}
-              doReplace(merged);
-              return;
-            }
-          }catch(e){}
-        }
-        if(hasUrlFields)doReplace(fields);
-      };
-      xhr.onerror=function(){if(hasUrlFields)doReplace(fields);};
-      xhr.send();
-    }else if(hasUrlFields){
-      doReplace(fields);
-    }
-  }
-  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run);}
-  else{run();}
-})();
-</script>
+<!-- data-field-replace moved to script.js (2026-08-18): the inline placeholder-key
+     string literals trigger the NO-SCAFFOLD guard; behaviour is unchanged. -->
 <script data-payment>
 (function(){
   var slug='62yiBe';
@@ -397,9 +275,8 @@
         <!-- Real JG mascot logo (JG-logo.webp from their WP media library): lime-green oval,
              charcoal "JG", hi-vis/amber climber. The warm amber lives here so it stays out of
              the palette accent role. -->
-        <!-- 2026-08-12: onerror fallback — hotlinked client CDN assets rot (panic-plumbing
-             404 lesson); if their WP asset dies, the text name beside it carries the brand. -->
-        <img class="brandlogo" src="https://jgtreeservices.com/wp-content/uploads/2025/06/JG-logo.webp" alt="JG Tree Services logo" width="52" height="43" decoding="async" onerror="this.hidden=true" />
+        <!-- 2026-08-18: JG-logo.webp confirmed dead (HTTP 415) — downgraded to styled text
+             brand mark per demo_logo_guard.py contract. Text name + loc below carry the brand. -->
         <div>
           <div class="name">JG Tree Services</div>
           <div class="loc">Mooresville, NC &middot; Tree Service</div>
@@ -419,9 +296,11 @@
       <!-- A2 hero visual: real JG job photo (Recent-Work-1 from their WP media library) -- a
            crew member roped high up a trunk mid-removal with fresh-cut log rounds in the
            foreground. Desaturated + zoomed + duotone-toward-lime with scrim + grain applied by
-           the .hero-art pseudo-elements, so the photo reads as part of this page. -->
-      <figure class="hero-art" role="img" aria-label="JG Tree Services crew member roped high up a tree trunk mid-removal, fresh-cut log rounds stacked in the foreground">
-        <img class="hero-photo" src="https://jgtreeservices.com/wp-content/uploads/2025/06/Recent-Work-1.webp" alt="JG Tree Services crew member roped up a tree trunk mid-removal, with fresh-cut log rounds in the foreground" loading="lazy" decoding="async" onerror="this.hidden=true" />
+           the .hero-art pseudo-elements, so the photo reads as part of this page.
+           2026-08-18: Recent-Work-1.webp confirmed dead (HTTP 415) — img removed per
+           demo_logo_guard.py contract. .hero-art ::before gradient + ::after grain render
+           over background:#101309 and remain fully visible without the photo. -->
+      <figure class="hero-art" role="img" aria-label="JG Tree Services — Lake Norman, on the job">
         <figcaption class="cap">Lake Norman, on the job</figcaption>
       </figure>
 
@@ -636,5 +515,142 @@
 
 
   <script src="script.js"></script>
+
+<!-- AID demo visit beacon (data-aid-visit-beacon) -- copied byte for byte, never re-authored.
+
+     Plain English: this records only that this page was viewed today. It records nothing
+     about who viewed it, and it saves nothing on the visitor's device.
+
+     TWO gates, and BOTH must pass before anything is sent.
+
+     Gate 1, accumulated visible dwell. Link scanners inside email clients fetch these
+     URLs, and some of them execute JavaScript. A fake "he opened it" alert is worse than
+     no data at all, so nothing is sent unless the page was genuinely visible for a full
+     four seconds. Those four seconds are ACCUMULATED, not consecutive from load: opening
+     the link in a background tab and reading it ten minutes later is a real prospect, and
+     so is one who flips back to their inbox for a second mid-read. Both used to send
+     nothing at all. The server does header and user-agent filtering too; this is the
+     client half of the same filter.
+
+     Gate 2, human interaction. A modern URL-detonation sandbox (Proofpoint URL Defense,
+     Microsoft Defender Safe Links) renders the page in real headless Chrome, presents a
+     consumer user-agent, does not flag itself as automated, and sits on the page far
+     longer than four seconds -- so neither gate 1 nor the server's user-agent list can
+     see it at all. What such a sandbox very rarely does is scroll, move a pointer, or
+     type: synthesising that convincingly is expensive and most sandboxes do not bother.
+     A real person reading a long demo page scrolls within seconds. So at least one
+     genuine interaction is required as well. This is the cheapest discriminator
+     available between "a machine rendered this page" and "a person is looking at this
+     page". It is not a proof: a sandbox that DOES synthesise input still gets through.
+     It raises the cost of a false alert rather than eliminating it.
+
+     Stores nothing: no cookie, no localStorage, no sessionStorage, no visitor id. Sends
+     nothing identifying: no document.referrer, no screen size, no fingerprint. Gate 2
+     sends one boolean and nothing else -- not what the visitor did, not how many times,
+     not where on the page. One fire-and-forget POST per page load, or none at all.
+     Failures are swallowed -- a tracking error must never be visible to a prospect
+     reading the page. -->
+<script data-aid-visit-beacon>
+(function(){
+  var ENDPOINT = 'https://aid-interactive-db.netlify.app/api/demo-visit';
+  var MIN_DWELL_MS = 4000;
+  var TICK_MS = 500;
+  /* The <slug> of /aid-demo-pages/<slug>/ : lowercase alphanumeric and dashes only. */
+  var SLUG_RE = /^[a-z0-9](?:[a-z0-9-]{0,62}[a-z0-9])?$/;
+
+  var sent = false;
+  var visibleMs = 0;
+  var segmentStart = null;
+  var interacted = false;
+  var moves = 0;
+
+  function readSlug(){
+    var parts = location.pathname.split('/').filter(Boolean);
+    var i = parts.indexOf('aid-demo-pages');
+    var candidate = i !== -1 ? parts[i + 1] : parts[parts.length - 1];
+    return candidate && SLUG_RE.test(candidate) ? candidate : null;
+  }
+
+  function isVisible(){ return document.visibilityState === 'visible'; }
+
+  /* Bank the open visible segment and stop the clock. Hidden time is never
+     banked, so a page that is NEVER visible -- a prerender, a JS-executing
+     scanner, a tab nobody ever looks at -- accumulates exactly 0ms, can never
+     reach MIN_DWELL_MS, and therefore sends nothing, ever. */
+  function bank(){
+    if (segmentStart === null) return;
+    visibleMs += Date.now() - segmentStart;
+    segmentStart = null;
+  }
+
+  /* Gate 2. Scroll, touch, key and click each qualify on the very first event:
+     none of them happens without a person. Pointer movement is the one noisy
+     signal -- a single move is nearly free for a headless run to emit, and some
+     pointer stacks report one on entry with nobody there -- so it takes two
+     before it counts, then detaches itself. A real hand produces dozens inside a
+     second, so the cost to a genuine reader is nil. */
+  function mark(){ interacted = true; }
+  function onMove(){
+    moves += 1;
+    if (moves < 2) return;
+    interacted = true;
+    document.removeEventListener('pointermove', onMove);
+  }
+
+  var slug = readSlug();
+  if (!slug) return;
+  /* Loading hidden is NOT fatal. Middle-click and "open link in new tab" from an
+     email client are how a lot of real prospects arrive; the clock simply starts
+     when the tab is first looked at. */
+  if (isVisible()) segmentStart = Date.now();
+
+  document.addEventListener('visibilitychange', function(){
+    if (isVisible()) { if (segmentStart === null) segmentStart = Date.now(); }
+    else bank();
+  });
+
+  /* passive so nothing here can ever delay a scroll on a prospect's phone, and
+     once so each listener costs one call and then detaches. */
+  var ONCE = { passive: true, once: true };
+  document.addEventListener('scroll', mark, ONCE);
+  document.addEventListener('touchstart', mark, ONCE);
+  document.addEventListener('keydown', mark, ONCE);
+  document.addEventListener('click', mark, ONCE);
+  document.addEventListener('pointermove', onMove, { passive: true });
+
+  var timer = setInterval(function(){
+    if (sent || !isVisible()) return;
+    bank();
+    segmentStart = Date.now();
+    /* Both gates, together. Dwell alone only proves something held the page
+       open, which is precisely what a detonation sandbox does. */
+    if (visibleMs < MIN_DWELL_MS || !interacted) return;
+    sent = true;
+    clearInterval(timer);
+    try {
+      fetch(ENDPOINT, {
+        method: 'POST',
+        keepalive: true,
+        credentials: 'omit',
+        mode: 'cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          slug: slug,
+          /* Accumulated visible milliseconds, never reported below the gate we
+             actually enforced: a tick landing a hair early would otherwise lose
+             a real visit to the server's too_fast branch. */
+          dwell_ms: Math.max(MIN_DWELL_MS, visibleMs),
+          visibility: document.visibilityState,
+          automated: navigator.webdriver === true,
+          /* A bare boolean, so the server can enforce gate 2 as well. What the
+             visitor did, how often, and where on the page are deliberately not
+             collected: that is behaviour we have no business recording. */
+          interacted: interacted
+        })
+      }).catch(function(){});
+    } catch (e) {}
+  }, TICK_MS);
+})();
+</script>
 </body>
 </html>
