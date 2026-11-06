@@ -1,0 +1,56 @@
+{
+  "source_commit": "64424239def80a9661e2bae08e749c81006a4ab0",
+  "backup_ref": "refs/heads/archive/crown-city-wide-before-takedown-2026-11-06",
+  "pages_deployment_run": "https://github.com/aidmarketingagency/aid-demo-pages/actions/runs/32162240418",
+  "verified_on": "2026-11-06",
+  "archive_sha256": "876036f74ea56366073ba886d16f0940f5b0af13380696d5553aeff006d57c0b",
+  "total_original_bytes": 133176,
+  "files": [
+    {
+      "path": "city-wide-exterminating-locust-d19/index.html",
+      "bytes": 13066,
+      "sha256": "c25148451a6432d1369c8e0764411ed4d7de4957ba0a5684a028923e3412efdd",
+      "git_blob": "b9b6535498cc1e7054f8dad6ab4230d9a2f5be40"
+    },
+    {
+      "path": "city-wide-exterminating-locust-d19/script.js",
+      "bytes": 1969,
+      "sha256": "e4098944fdcd4dcbe902c08c05477c8e81cf6f7a5f6ede599fc7065587ad7c32",
+      "git_blob": "d8ce336fb64d0eb5ef8a92be69a59e9c8e6fcece"
+    },
+    {
+      "path": "city-wide-exterminating-locust-d19/styles.css",
+      "bytes": 8524,
+      "sha256": "35e9332334c9af7b2c8854fab0e565a35d6c659d661779b074a0186523374f4a",
+      "git_blob": "a154d198222fc6e0557e4e3210eebe643108a011"
+    },
+    {
+      "path": "crown-pest-control/index.html",
+      "bytes": 38812,
+      "sha256": "bceccca60c84e58ec59e59f2e315b55e4554fe343490b564ffc2668ace9a63d3",
+      "git_blob": "4536b9c78a8bbef6eb9ee7f056bd23ab831f7734"
+    },
+    {
+      "path": "crown-pest-control/script.js",
+      "bytes": 10395,
+      "sha256": "5e530a55a6fa47e84e7bb62e82da8c772c7b62af43dbb1bb0e4a9d2464983cd8",
+      "git_blob": "a1a18f2530cb1fc32a3bb2678d3009d5651347b8"
+    },
+    {
+      "path": "crown-pest-control/styles.css",
+      "bytes": 60410,
+      "sha256": "b4e09bfeba3f332282f94bc865aa85dfd19b6311ce3d6ca7ac311c7ce4cc93ca",
+      "git_blob": "d80ab92e60bf6877865b48f16d1b5f2384493f77"
+    }
+  ],
+  "live_before": {
+    "https://aidmarketingagency.github.io/aid-demo-pages/crown-pest-control/": {
+      "status": 200,
+      "html_matches_source_commit": true
+    },
+    "https://aidmarketingagency.github.io/aid-demo-pages/city-wide-exterminating-locust-d19/": {
+      "status": 200,
+      "html_matches_source_commit": true
+    }
+  }
+}
